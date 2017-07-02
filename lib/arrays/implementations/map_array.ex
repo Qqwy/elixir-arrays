@@ -35,6 +35,39 @@ defmodule Arrays.Implementations.MapArray do
     reduce(contents, fun.(contents[index], acc), fun, index + 1, max_index)
   end
 
+  @behaviour Access
+
+  def fetch(array = %MapArray{contents: contents}, index) when index >= 0 and index < map_size(contents) do
+    Map.fetch(contents, index)
+  end
+  def fetch(array = %MapArray{contents: contents}, index) when index < 0 and index > (-map_size(contents)) do
+    Map.fetch(contents, index + map_size(contents))
+  end
+
+  def get(array = %MapArray{contents: contents}, index, default) when index >= 0 and index < map_size(contents) do
+    Map.get(contents, index, default)
+  end
+  def get(array = %MapArray{contents: contents}, index, default) when index < 0 and index > (-map_size(contents)) do
+    Map.get(contents, index, default)
+  end
+
+  def get_and_update(array = %MapArray{contents: contents}, index, function) when index >= 0 and index < map_size(contents) do
+    Map.get_and_update(contents, index, function)
+  end
+  def get_and_update(array = %MapArray{contents: contents}, index, function) when index < 0 and index > (-map_size(contents)) do
+    Map.get_and_update(contents, index, function)
+  end
+
+  def pop(array = %MapArray{contents: contents, default: default},index) when index >= 0 and index < map_size(contents) do
+    new_contents = Map.put(contents, index, default)
+    %MapArray{array | contents: new_contents}
+  end
+
+  def pop(array = %MapArray{contents: contents, default: default},index) when index < 0 and index > (-map_size(contents)) do
+    new_contents = Map.put(contents, index + map_size(contents), default)
+    %MapArray{array | contents: new_contents}
+  end
+
   defimpl Arrays.Protocol do
     alias Arrays.Implementations.MapArray
 
@@ -69,7 +102,7 @@ defmodule Arrays.Implementations.MapArray do
       default
     end
 
-    def get(%MapArray{contents: contents}, index) when index > 0 and index < map_size(contents) do
+    def get(%MapArray{contents: contents}, index) when index >= 0 and index < map_size(contents) do
       contents[index]
     end
 
@@ -77,7 +110,7 @@ defmodule Arrays.Implementations.MapArray do
       contents[index + map_size(contents)]
     end
 
-    def set(array = %MapArray{contents: contents}, index, value) when index > 0 and index < map_size(contents) do
+    def set(array = %MapArray{contents: contents}, index, value) when index >= 0 and index < map_size(contents) do
       new_contents = Map.put(contents, index, value)
       %MapArray{array | contents: new_contents}
     end
@@ -86,7 +119,7 @@ defmodule Arrays.Implementations.MapArray do
       %MapArray{array | contents: new_contents}
     end
 
-    def reset(array = %MapArray{contents: contents, default: default}, index) when index > 0 and index < map_size(contents) do
+    def reset(array = %MapArray{contents: contents, default: default}, index) when index >= 0 and index < map_size(contents) do
       new_contents = Map.put(contents, index, default)
       %MapArray{array | contents: new_contents}
     end
