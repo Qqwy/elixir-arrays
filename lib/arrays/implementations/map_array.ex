@@ -4,7 +4,7 @@ defmodule Arrays.Implementations.MapArray do
   @moduledoc """
   An array implementation based on the built-in Map structure.
   """
-  defstruct [contents: %{}, default: default]
+  defstruct [contents: %{}, default: nil]
 
   def empty(options) do
     default = Keyword.get(options, :default, nil)
@@ -16,6 +16,24 @@ defmodule Arrays.Implementations.MapArray do
     (0..size) |> Enum.into(%{}, &{&1, default})
   end
 
+  use FunLand.Mappable
+
+  def map(array = %MapArray{contents: contents}, fun) do
+    new_contents = :maps.map(fun, contents)
+    %MapArray{array | contents: new_contents}
+  end
+
+  use FunLand.Reducable
+
+  def reduce(%MapArray{contents: contents}, acc, fun) do
+    reduce(contents, acc, fun, 0, :maps.size(contents))
+  end
+
+  defp reduce(_contents, acc, _fun, index, index), do: acc
+  defp reduce(contents, acc, fun, index, max_index) do
+    reduce(contents, fun.(contents[index], acc), fun, index + 1, max_index)
+  end
+
   defimpl Arrays.Protocol do
     alias Arrays.Implementations.MapArray
 
@@ -23,33 +41,38 @@ defmodule Arrays.Implementations.MapArray do
       map_size(contents)
     end
 
+    def map(array = %MapArray{contents: contents}, fun) do
+      new_contents = :maps.map(fun, contents)
+      %MapArray{array | contents: new_contents}
+    end
+
     def reduce(%MapArray{contents: contents}, acc, fun) do
       reduce(contents, acc, fun, 0, :maps.size(contents))
     end
 
-    defp reduce(contents, acc, fun, index, index), do: acc
+    defp reduce(_contents, acc, _fun, index, index), do: acc
     defp reduce(contents, acc, fun, index, max_index) do
       reduce(contents, fun.(contents[index], acc), fun, index + 1, max_index)
     end
 
     def reduce_left(%MapArray{contents: contents}, acc, fun) do
-      reduce(contents, acc, fun, :maps.size(contents))
+      reduce_left(contents, acc, fun, :maps.size(contents))
     end
 
-    defp reduce_left(contents, acc, fun, 0), do: acc
+    defp reduce_left(_contents, acc, _fun, 0), do: acc
     defp reduce_left(contents, acc, fun, index) do
-      reduce(contents, fun.(contents[index], acc), fun, index - 1)
+      reduce_left(contents, fun.(contents[index], acc), fun, index - 1)
     end
 
     def default(%MapArray{default: default}) do
       default
     end
 
-    def get(array = %MapArray{contents: contents}, index) when index > 0 and index < map_size(contents) do
+    def get(%MapArray{contents: contents}, index) when index > 0 and index < map_size(contents) do
       contents[index]
     end
 
-    def get(array = %MapArray{contents: contents}, index) when index < 0 and index > -map_size(contents) do
+    def get(%MapArray{contents: contents}, index) when index < 0 and index > -map_size(contents) do
       contents[index + map_size(contents)]
     end
 
@@ -58,7 +81,7 @@ defmodule Arrays.Implementations.MapArray do
       %MapArray{array | contents: new_contents}
     end
     def set(array = %MapArray{contents: contents}, index, value) when index < 0 and index > -(map_size(contents)) do
-      Map.put(contents, index + map_size(contents), value)
+      new_contents = Map.put(contents, index + map_size(contents), value)
       %MapArray{array | contents: new_contents}
     end
 
@@ -66,8 +89,8 @@ defmodule Arrays.Implementations.MapArray do
       new_contents = Map.put(contents, index, default)
       %MapArray{array | contents: new_contents}
     end
-    def reset(array = %MapArray{contents: contents, default: default}, index, value) when index < 0 and index > -(map_size(contents)) do
-                                                                                              Map.put(contents, index + map_size(contents), default)
+    def reset(array = %MapArray{contents: contents, default: default}, index) when index < 0 and index > -(map_size(contents)) do
+                                                                                              new_contents = Map.put(contents, index + map_size(contents), default)
                                                                                               %MapArray{array | contents: new_contents}
     end
 
@@ -78,10 +101,29 @@ defmodule Arrays.Implementations.MapArray do
 
     def resize(array = %MapArray{contents: contents, default: default}, size) do
       cur_size = map_size(contents)
-      if size > cur_size do
-        (cur_size..size) |> Enum.into(contents, &({&1, default}))
-      else
-        Map.drop(size..cur_size)
+      new_contents =
+        if size > cur_size do
+          (cur_size..size) |> Enum.into(contents, &({&1, default}))
+        else
+          Map.drop(contents, size..cur_size)
+        end
+      %MapArray{array | contents: new_contents}
+    end
+
+    def extract(array = %MapArray{contents: contents}) when map_size(contents) > 0 do
+      index = map_size(contents) - 1
+      elem = contents[index]
+      new_contents = Map.delete(contents, index)
+      new_array = %MapArray{array | contents: new_contents}
+      {:ok, {elem, new_array}}
+    end
+    def extract(%MapArray{contents: contents}) when map_size(contents) == 0 do
+      {:error, :empty}
+    end
+
+    def to_list(%MapArray{contents: contents}) do
+      for {_k, v} <- contents do
+        v
       end
     end
   end
