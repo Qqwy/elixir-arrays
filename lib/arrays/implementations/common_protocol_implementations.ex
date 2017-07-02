@@ -33,7 +33,7 @@ for module <- [
     end
 
     defimpl Enumerable, for: module do
-      def member?(array, item), do: {:ok, Arrays.Protocol.member?(array, item)}
+      def member?(_array, _item), do: {:error, unquote(module)}
 
       def count(array) do
         {:ok, Arrays.Protocol.size(array)}

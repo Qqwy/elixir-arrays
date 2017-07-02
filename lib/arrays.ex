@@ -1,4 +1,5 @@
 defmodule Arrays do
+  @default_array_implementation Arrays.Implementations.MapArray
   @moduledoc """
   Well-structured Arrays with fast random-element-access for Elixir, offering a common interface with multiple implementations with varying performance guarantees that can be switched in your configuration.
 
@@ -6,6 +7,18 @@ defmodule Arrays do
 
   @type array :: Arrays.Protocol.t
   @type index :: Arrays.Protocol.index
+
+  def empty(options \\ []) do
+    impl_module = Keyword.get(options, :implementation, Application.get_env(:arrays, :default_array_implementation, @default_array_implementation))
+
+    options = Keyword.delete(options, :implementation)
+    impl_module.empty(options)
+  end
+
+
+  def new(enumerable \\ [], options \\ []) do
+    Enum.into(enumerable, empty(options))
+  end
 
   @spec size(array) :: non_neg_integer
   defdelegate size(array), to: Arrays.Protocol
