@@ -59,10 +59,10 @@ defmodule Arrays.Implementations.ErlangArray do
       new_contents =
         case function.(value) do
           :pop ->
-            new_contents = :array.reset(contents, index)
+            new_contents = :array.reset(index, contents)
             {value, %ErlangArray{array | contents: new_contents}}
           {get, new_value} ->
-            new_contents = :array.set(contents, index, new_value)
+            new_contents = :array.set(index, new_value, contents)
             {get, %ErlangArray{array | contents: new_contents}}
         end
     end
@@ -79,15 +79,13 @@ defmodule Arrays.Implementations.ErlangArray do
   def pop(array = %ErlangArray{contents: contents},index) when index >= 0 do
     new_index = index + map_size(contents)
     value = :array.get(contents, new_index)
-    new_contents = :array.reset(contents, new_index)
+    new_contents = :array.reset(new_index, contents)
     {value, %ErlangArray{array | contents: new_contents}}
   end
 
   def pop(array = %ErlangArray{contents: contents}, index) when index < 0 do
     pop(array, index + :array.size(contents))
   end
-
-
 
   defimpl Arrays.Protocol do
     alias Arrays.Implementations.ErlangArray
@@ -124,9 +122,9 @@ defmodule Arrays.Implementations.ErlangArray do
     def set(array = %ErlangArray{contents: contents}, index, item) do
       new_contents =
         if index < 0 do
-          :array.set(contents, index + :array.size(contents), item)
+          :array.set(index + :array.size(contents), item, contents)
         else
-          :array.set(contents, index, item)
+          :array.set(index, item, contents)
         end
       %ErlangArray{array | contents: new_contents}
     end
@@ -134,15 +132,15 @@ defmodule Arrays.Implementations.ErlangArray do
     def reset(array = %ErlangArray{contents: contents}, index) do
       new_contents =
       if index < 0 do
-        :array.reset(contents, index + :array.size(contents))
+        :array.reset(index + :array.size(contents), contents)
       else
-        :array.reset(contents, index)
+        :array.reset(index, contents)
       end
       %ErlangArray{array | contents: new_contents}
     end
 
     def append(array = %ErlangArray{contents: contents}, item) do
-      new_contents = :array.set(contents, :array.size(contents), item)
+      new_contents = :array.set(:array.size(contents), item, contents)
       %ErlangArray{array | contents: new_contents}
     end
 
