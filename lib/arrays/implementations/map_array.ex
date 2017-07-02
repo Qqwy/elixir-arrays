@@ -45,13 +45,12 @@ defmodule Arrays.Implementations.MapArray do
   end
   def fetch(%MapArray{}, _index), do: :error
 
-  def get(%MapArray{contents: contents}, index, default) when index >= 0 and index < map_size(contents) do
-    Map.get(contents, index, default)
+  def get(array , index, default) do
+    case fetch(array, index) do
+      {:ok, value} -> value
+      :error -> default
+    end
   end
-  def get(%MapArray{contents: contents}, index, default) when index < 0 and index >= (-map_size(contents)) do
-    Map.get(contents, index, default)
-  end
-  def get(%MapArray{}, _index, default), do: default
 
   def get_and_update(array = %MapArray{contents: contents}, index, function) when index >= 0 and index < map_size(contents) do
     {value, new_contents} = Map.get_and_update(contents, index, function)
@@ -73,7 +72,6 @@ defmodule Arrays.Implementations.MapArray do
 
   def pop(array = %MapArray{contents: contents, default: default},index) when index < 0 and index >= (-map_size(contents)) do
     {value, new_contents} = Map.put(contents, index + map_size(contents), default)
-    %MapArray{array | contents: new_contents}
     {value, %MapArray{array | contents: new_contents}}
   end
 

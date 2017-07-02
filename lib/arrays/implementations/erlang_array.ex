@@ -10,7 +10,7 @@ defmodule Arrays.Implementations.ErlangArray do
 
   # {:default, val} and {:size, num} are forwarded to `:array`
   def empty(options) do
-    contents = :array.new([{:fixed, false} | options])
+    contents = :array.new([{:fixed, false} | options] ++ [default: nil])
     %ErlangArray{contents: contents}
   end
 
@@ -24,6 +24,70 @@ defmodule Arrays.Implementations.ErlangArray do
   def reduce(%ErlangArray{contents: contents}, acc, fun) do
     :array.foldr(fun, acc, contents)
   end
+
+  @behaviour Access
+
+  def fetch(%ErlangArray{contents: contents}, index) when index >= 0 do
+    if index >= :array.size(contents) do
+      :error
+    else
+      {:ok, :array.get(contents, index)}
+    end
+  end
+  def fetch(%ErlangArray{contents: contents}, index) when index < 0 do
+    size = :array.size(contents)
+    if index < (-size) do
+      :error
+    else
+      {:ok, :array.get(contents, index + size)}
+    end
+  end
+
+  def get(array , index, default) do
+    case fetch(array, index) do
+      {:ok, value} -> value
+      :error -> default
+    end
+  end
+
+  def get_and_update(array = %ErlangArray{contents: contents}, index, function) when index >= 0 do
+    if index >= :array.size(contents) do
+      {res, _} = function.(nil)
+      {res, array}
+    else
+      value = :array.get(contents, index)
+      new_contents =
+        case function.(value) do
+          :pop ->
+            new_contents = :array.reset(contents, index)
+            {value, %ErlangArray{array | contents: new_contents}}
+          {get, new_value} ->
+            new_contents = :array.set(contents, index, new_value)
+            {get, %ErlangArray{array | contents: new_contents}}
+        end
+    end
+  end
+  def get_and_update(array = %ErlangArray{contents: contents}, index, function) when index < 0 do
+    if index < (-:array.size(contents)) do
+      {res, _} = function.(nil)
+      {res, array}
+    else
+    get_and_update(array, index + :array.size(contents), function)
+    end
+  end
+
+  def pop(array = %ErlangArray{contents: contents},index) when index >= 0 do
+    new_index = index + map_size(contents)
+    value = :array.get(contents, new_index)
+    new_contents = :array.reset(contents, new_index)
+    {value, %ErlangArray{array | contents: new_contents}}
+  end
+
+  def pop(array = %ErlangArray{contents: contents}, index) when index < 0 do
+    pop(array, index + :array.size(contents))
+  end
+
+
 
   defimpl Arrays.Protocol do
     alias Arrays.Implementations.ErlangArray
