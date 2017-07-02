@@ -1,4 +1,6 @@
 defmodule Arrays.Implementations.MapArray do
+  alias __MODULE__
+
   @moduledoc """
   An array implementation based on the built-in Map structure.
   """
@@ -15,6 +17,8 @@ defmodule Arrays.Implementations.MapArray do
   end
 
   defimpl Arrays.Protocol do
+    alias Arrays.Implementations.MapArray
+
     def size(%MapArray{contents: contents}) do
       map_size(contents)
     end
@@ -41,10 +45,6 @@ defmodule Arrays.Implementations.MapArray do
       default
     end
 
-    def set_default(array = %MapArray{}, new_default) do
-      %MapArray{array | default: new_default}
-    end
-
     def get(array = %MapArray{contents: contents}, index) when index > 0 and index < map_size(contents) do
       contents[index]
     end
@@ -60,6 +60,15 @@ defmodule Arrays.Implementations.MapArray do
     def set(array = %MapArray{contents: contents}, index, value) when index < 0 and index > -(map_size(contents)) do
       Map.put(contents, index + map_size(contents), value)
       %MapArray{array | contents: new_contents}
+    end
+
+    def reset(array = %MapArray{contents: contents, default: default}, index) when index > 0 and index < map_size(contents) do
+      new_contents = Map.put(contents, index, default)
+      %MapArray{array | contents: new_contents}
+    end
+    def reset(array = %MapArray{contents: contents, default: default}, index, value) when index < 0 and index > -(map_size(contents)) do
+                                                                                              Map.put(contents, index + map_size(contents), default)
+                                                                                              %MapArray{array | contents: new_contents}
     end
 
     def append(array = %MapArray{contents: contents}, value) do
