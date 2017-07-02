@@ -12,6 +12,7 @@ defmodule Arrays.Implementations.MapArray do
     %MapArray{contents: construct(default, size), default: default}
   end
 
+  defp construct(default, 0), do: %{}
   defp construct(default, size) do
     (0..size) |> Enum.into(%{}, &{&1, default})
   end

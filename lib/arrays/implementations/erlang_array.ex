@@ -8,6 +8,7 @@ defmodule Arrays.Implementations.ErlangArray do
   """
   defstruct [:contents]
 
+  # {:default, val} and {:size, num} are forwarded to `:array`
   def empty(options) do
     contents = :array.new([{:fixed, false} | options])
     %ErlangArray{contents: contents}

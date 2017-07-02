@@ -5,8 +5,8 @@ for module <- [
     defimpl Inspect, for: module do
       import Inspect.Algebra
 
-      def inspect(set, opts) do
-        concat ["##{inspect(@for)}<", Inspect.List.inspect(Arrays.Protocol.to_list(set), opts ++ [charlists: :as_lists]) ,">"]
+      def inspect(array, opts) do
+        concat ["##{inspect(@for)}<", Inspect.List.inspect(Arrays.Protocol.to_list(array), opts) ,">"]
       end
     end
 
