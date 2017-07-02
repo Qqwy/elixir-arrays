@@ -15,7 +15,6 @@ defmodule Arrays do
     impl_module.empty(options)
   end
 
-
   def new(enumerable \\ [], options \\ []) do
     Enum.into(enumerable, empty(options))
   end
