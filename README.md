@@ -16,7 +16,7 @@ By default, Arrays ships with:
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
+Arrays is [available in Hex]((https://hex.pm/packages/arrays) and can be installed
 by adding `arrays` to your list of dependencies in `mix.exs`:
 
 ```elixir
