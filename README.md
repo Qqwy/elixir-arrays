@@ -14,6 +14,17 @@ By default, Arrays ships with:
 - `Arrays.Implementations.MapArray`: An array with amortized O(1) element access, insertion and removal by using integer keys in a hashmap.
 - `Arrays.Implementations.ErlangArray`: A relatively efficient purely functional implementation wrapping Erlang's `:array` library.
 
+## Protocols and Behaviours
+
+Array instances implement the following:
+
+- Inspect
+- Enumerable
+- Collectable
+- [Insertable](https://hex.pm/packages/insertable)
+- [Extractable](https://hex.pm/packages/extractable)
+- the Access behaviour
+
 ## Installation
 
 Arrays is [available in Hex](https://hex.pm/packages/arrays) and can be installed
