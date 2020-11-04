@@ -61,16 +61,15 @@ defmodule Arrays.Implementations.ErlangArray do
     else
       value = :array.get(contents, index)
 
-      new_contents =
-        case function.(value) do
-          :pop ->
-            new_contents = :array.reset(index, contents)
-            {value, %ErlangArray{array | contents: new_contents}}
+      case function.(value) do
+        :pop ->
+          new_contents = :array.reset(index, contents)
+          {value, %ErlangArray{array | contents: new_contents}}
 
-          {get, new_value} ->
-            new_contents = :array.set(index, new_value, contents)
-            {get, %ErlangArray{array | contents: new_contents}}
-        end
+        {get, new_value} ->
+          new_contents = :array.set(index, new_value, contents)
+          {get, %ErlangArray{array | contents: new_contents}}
+      end
     end
   end
 
