@@ -15,12 +15,14 @@ defmodule Arrays.Implementations.ErlangArray do
   end
 
   use FunLand.Mappable
+
   def map(array = %ErlangArray{contents: contents}, fun) do
     new_contents = :array.map(fun, contents)
     %ErlangArray{array | contents: new_contents}
   end
 
   use FunLand.Reducable
+
   def reduce(%ErlangArray{contents: contents}, acc, fun) do
     :array.foldr(fun, acc, contents)
   end
@@ -34,16 +36,18 @@ defmodule Arrays.Implementations.ErlangArray do
       {:ok, :array.get(contents, index)}
     end
   end
+
   def fetch(%ErlangArray{contents: contents}, index) when index < 0 do
     size = :array.size(contents)
-    if index < (-size) do
+
+    if index < -size do
       :error
     else
       {:ok, :array.get(contents, index + size)}
     end
   end
 
-  def get(array , index, default) do
+  def get(array, index, default) do
     case fetch(array, index) do
       {:ok, value} -> value
       :error -> default
@@ -56,27 +60,30 @@ defmodule Arrays.Implementations.ErlangArray do
       {res, array}
     else
       value = :array.get(contents, index)
+
       new_contents =
         case function.(value) do
           :pop ->
             new_contents = :array.reset(index, contents)
             {value, %ErlangArray{array | contents: new_contents}}
+
           {get, new_value} ->
             new_contents = :array.set(index, new_value, contents)
             {get, %ErlangArray{array | contents: new_contents}}
         end
     end
   end
+
   def get_and_update(array = %ErlangArray{contents: contents}, index, function) when index < 0 do
-    if index < (-:array.size(contents)) do
+    if index < -:array.size(contents) do
       {res, _} = function.(nil)
       {res, array}
     else
-    get_and_update(array, index + :array.size(contents), function)
+      get_and_update(array, index + :array.size(contents), function)
     end
   end
 
-  def pop(array = %ErlangArray{contents: contents},index) when index >= 0 do
+  def pop(array = %ErlangArray{contents: contents}, index) when index >= 0 do
     new_index = index + map_size(contents)
     value = :array.get(contents, new_index)
     new_contents = :array.reset(new_index, contents)
@@ -126,16 +133,18 @@ defmodule Arrays.Implementations.ErlangArray do
         else
           :array.set(index, item, contents)
         end
+
       %ErlangArray{array | contents: new_contents}
     end
 
     def reset(array = %ErlangArray{contents: contents}, index) do
       new_contents =
-      if index < 0 do
-        :array.reset(index + :array.size(contents), contents)
-      else
-        :array.reset(index, contents)
-      end
+        if index < 0 do
+          :array.reset(index + :array.size(contents), contents)
+        else
+          :array.reset(index, contents)
+        end
+
       %ErlangArray{array | contents: new_contents}
     end
 
@@ -151,7 +160,9 @@ defmodule Arrays.Implementations.ErlangArray do
 
     def extract(array = %ErlangArray{contents: contents}) do
       case :array.size(contents) do
-        0 -> {:error, :empty}
+        0 ->
+          {:error, :empty}
+
         size ->
           index = size - 1
           elem = :array.get(contents, index)
