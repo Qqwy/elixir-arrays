@@ -61,5 +61,10 @@ for module <- [
           reduce(array_rest, fun.(elem, acc), fun)
       end
     end
+
+    def slice(array) do
+      size = Arrays.Protocol.size(array)
+      {:ok, size, &Enumerable.List.slice(Arrays.Protocol.to_list(array), &1, &2, size)}
+    end
   end
 end
