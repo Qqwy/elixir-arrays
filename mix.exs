@@ -30,7 +30,7 @@ defmodule Arrays.Mixfile do
       {:extractable, "~> 0.2"},
       {:insertable, "~> 0.2"},
       {:fun_land, "~> 0.9.0"},
-      {:ex_doc, "~> 0.14", only: :dev}
+      {:ex_doc, "~> 0.18.0", only: :dev, runtime: false}
     ]
   end
 
