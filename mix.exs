@@ -6,7 +6,7 @@ defmodule Arrays.Mixfile do
       app: :arrays,
       version: "0.1.0",
       elixir: "~> 1.3",
-      start_permanent: Mix.env == :prod,
+      start_permanent: Mix.env() == :prod,
       deps: deps(),
       name: "Arrays",
       description: description(),
@@ -32,24 +32,21 @@ defmodule Arrays.Mixfile do
       {:fun_land, "~> 0.9.0"},
       {:ex_doc, "~> 0.14", only: :dev}
     ]
-end
+  end
 
+  defp description do
+    """
+    Well-structured Arrays with fast random-element-access for Elixir, offering a common interface with multiple implementations with varying performance guarantees that can be switched in your configuration.
+    """
+  end
 
- defp description do
-   """
-   Well-structured Arrays with fast random-element-access for Elixir, offering a common interface with multiple implementations with varying performance guarantees that can be switched in your configuration.
-   """
- end
-
- defp package() do
-   [
-     name: :arrays,
-     files: ["lib", "mix.exs", "README*"],
-       maintainers: ["Qqwy/Wiebe-Marten Wijnja"],
-       licenses: ["Apache 2.0"],
-       links: %{"GitHub" => "https://github.com/Qqwy/elixir-arrays"}
-   ]
- end
-
-
+  defp package() do
+    [
+      name: :arrays,
+      files: ["lib", "mix.exs", "README*"],
+      maintainers: ["Qqwy/Wiebe-Marten Wijnja"],
+      licenses: ["Apache 2.0"],
+      links: %{"GitHub" => "https://github.com/Qqwy/elixir-arrays"}
+    ]
+  end
 end

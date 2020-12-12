@@ -5,11 +5,16 @@ defmodule Arrays do
 
   """
 
-  @type array :: Arrays.Protocol.t
-  @type index :: Arrays.Protocol.index
+  @type array :: Arrays.Protocol.t()
+  @type index :: Arrays.Protocol.index()
 
   def empty(options \\ []) do
-    impl_module = Keyword.get(options, :implementation, Application.get_env(:arrays, :default_array_implementation, @default_array_implementation))
+    impl_module =
+      Keyword.get(
+        options,
+        :implementation,
+        Application.get_env(:arrays, :default_array_implementation, @default_array_implementation)
+      )
 
     options = Keyword.delete(options, :implementation)
     impl_module.empty(options)
