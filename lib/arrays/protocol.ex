@@ -21,8 +21,8 @@ defprotocol Arrays.Protocol do
   @spec get(array, index) :: any
   def get(array, index)
 
-  @spec set(array, index, item :: any) :: array
-  def set(array, index, item)
+  @spec replace(array, index, item :: any) :: array
+  def replace(array, index, item)
 
   @spec reset(array, index) :: any
   def reset(array, index)

@@ -133,13 +133,13 @@ defmodule Arrays.Implementations.MapArray do
       contents[index + map_size(contents)]
     end
 
-    def set(array = %MapArray{contents: contents}, index, value)
+    def replace(array = %MapArray{contents: contents}, index, value)
         when index >= 0 and index < map_size(contents) do
       new_contents = Map.put(contents, index, value)
       %MapArray{array | contents: new_contents}
     end
 
-    def set(array = %MapArray{contents: contents}, index, value)
+    def replace(array = %MapArray{contents: contents}, index, value)
         when index < 0 and index >= -map_size(contents) do
       new_contents = Map.put(contents, index + map_size(contents), value)
       %MapArray{array | contents: new_contents}
