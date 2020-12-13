@@ -42,8 +42,8 @@ defmodule Arrays do
   @spec get(array, index) :: any
   defdelegate get(array, index), to: Arrays.Protocol
 
-  @spec set(array, index, value :: any) :: array
-  defdelegate set(array, index, value), to: Arrays.Protocol
+  @spec replace(array, index, value :: any) :: array
+  defdelegate replace(array, index, value), to: Arrays.Protocol
 
   @spec reset(array, index) :: any
   defdelegate reset(array, index), to: Arrays.Protocol
