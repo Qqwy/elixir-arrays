@@ -12,8 +12,8 @@ defprotocol Arrays.Protocol do
   @spec reduce(array, acc :: any, (item :: any, acc :: any -> any)) :: array
   def reduce(array, acc, fun)
 
-  @spec reduce_left(array, acc :: any, (item :: any, acc :: any -> any)) :: array
-  def reduce_left(array, acc, fun)
+  @spec reduce_right(array, acc :: any, (item :: any, acc :: any -> any)) :: array
+  def reduce_right(array, acc, fun)
 
   @spec default(array) :: any
   def default(array)

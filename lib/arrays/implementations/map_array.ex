@@ -109,14 +109,14 @@ defmodule Arrays.Implementations.MapArray do
       reduce(contents, fun.(contents[index], acc), fun, index + 1, max_index)
     end
 
-    def reduce_left(%MapArray{contents: contents}, acc, fun) do
-      reduce_left(contents, acc, fun, :maps.size(contents))
+    def reduce_right(%MapArray{contents: contents}, acc, fun) do
+      reduce_right(contents, acc, fun, :maps.size(contents))
     end
 
-    defp reduce_left(_contents, acc, _fun, 0), do: acc
+    defp reduce_right(_contents, acc, _fun, 0), do: acc
 
-    defp reduce_left(contents, acc, fun, index) do
-      reduce_left(contents, fun.(contents[index], acc), fun, index - 1)
+    defp reduce_right(contents, acc, fun, index) do
+      reduce_right(contents, fun.(contents[index], acc), fun, index - 1)
     end
 
     def default(%MapArray{default: default}) do

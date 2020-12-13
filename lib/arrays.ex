@@ -34,9 +34,6 @@ defmodule Arrays do
   @spec reduce(array, acc :: any, (item :: any, acc :: any -> any)) :: array
   defdelegate reduce(array, acc, fun), to: Arrays.Protocol
 
-  @spec reduce_left(array, acc :: any, (item :: any, acc :: any -> any)) :: array
-  defdelegate reduce_left(array, acc, fun), to: Arrays.Protocol
-
   @spec default(array) :: any
   defdelegate default(array), to: Arrays.Protocol
 
