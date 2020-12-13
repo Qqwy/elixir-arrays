@@ -169,7 +169,7 @@ defmodule Arrays.Implementations.MapArray do
         if size > cur_size do
           cur_size..size |> Enum.into(contents, &{&1, default})
         else
-          Map.drop(contents, size..cur_size)
+          Map.drop(contents, Enum.to_list(size..cur_size))
         end
 
       %MapArray{array | contents: new_contents}
