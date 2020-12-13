@@ -77,13 +77,13 @@ defmodule Arrays.Implementations.MapArray do
 
   def pop(array = %MapArray{contents: contents, default: default}, index)
       when index >= 0 and index < map_size(contents) do
-    {value, new_contents} = Map.put(contents, index, default)
+    {value, new_contents} = Map.pop(contents, index, default)
     {value, %MapArray{array | contents: new_contents}}
   end
 
   def pop(array = %MapArray{contents: contents, default: default}, index)
       when index < 0 and index >= -map_size(contents) do
-    {value, new_contents} = Map.put(contents, index + map_size(contents), default)
+    {value, new_contents} = Map.pop(contents, index + map_size(contents), default)
     {value, %MapArray{array | contents: new_contents}}
   end
 
