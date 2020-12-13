@@ -7,6 +7,7 @@ defmodule Arrays do
 
   @type array :: Arrays.Protocol.t()
   @type index :: Arrays.Protocol.index()
+  @type value :: Arrays.Protocol.value()
 
   def empty(options \\ []) do
     impl_module =
@@ -27,7 +28,7 @@ defmodule Arrays do
   @spec size(array) :: non_neg_integer
   defdelegate size(array), to: Arrays.Protocol
 
-  @spec map(array, (any -> any)) :: array
+  @spec map(array, (index, current_value :: value -> updated_value :: value)) :: array
   defdelegate map(array, fun), to: Arrays.Protocol
 
   @spec reduce(array, acc :: any, (item :: any, acc :: any -> any)) :: array

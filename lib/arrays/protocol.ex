@@ -1,11 +1,12 @@
 defprotocol Arrays.Protocol do
   @type array :: t
   @type index :: integer
+  @type value :: any
 
   @spec size(array) :: non_neg_integer
   def size(array)
 
-  @spec map(array, ({any, any} -> any)) :: array
+  @spec map(array, (index, current_value :: value -> updated_value :: value) :: array
   def map(array, fun)
 
   @spec reduce(array, acc :: any, (item :: any, acc :: any -> any)) :: array
