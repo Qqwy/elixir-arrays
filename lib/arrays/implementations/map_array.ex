@@ -15,14 +15,13 @@ defmodule Arrays.Implementations.MapArray do
   defp construct(_default, 0), do: %{}
 
   defp construct(default, size) do
-    0..size |> Enum.into(%{}, &{&1, default})
+    Enum.into(0..(size - 1), %{}, &{&1, default})
   end
 
   use FunLand.Mappable
 
   def map(array = %MapArray{contents: contents}, fun) do
-    new_contents = :maps.map(fun, contents)
-    %MapArray{array | contents: new_contents}
+    %MapArray{array | contents: :maps.map(fun, contents)}
   end
 
   use FunLand.Reducable
@@ -162,16 +161,25 @@ defmodule Arrays.Implementations.MapArray do
       %MapArray{array | contents: new_contents}
     end
 
-    def resize(array = %MapArray{contents: contents, default: default}, size) do
+    def resize(%MapArray{default: default}, 0) do
+      MapArray.empty(default: default)
+    end
+
+    def resize(array = %MapArray{contents: contents}, size) when map_size(contents) == size do
+      array
+    end
+
+    def resize(array = %MapArray{contents: contents, default: default}, new_size)
+        when new_size > map_size(contents) do
       cur_size = map_size(contents)
+      new_contents = Enum.into(cur_size..(new_size - 1), contents, &{&1, default})
+      %MapArray{array | contents: new_contents}
+    end
 
-      new_contents =
-        if size > cur_size do
-          cur_size..size |> Enum.into(contents, &{&1, default})
-        else
-          Map.drop(contents, Enum.to_list(size..cur_size))
-        end
-
+    def resize(array = %MapArray{contents: contents}, new_size)
+        when new_size < map_size(contents) do
+      cur_size = map_size(contents)
+      new_contents = Map.drop(contents, Enum.to_list(new_size..(cur_size - 1)))
       %MapArray{array | contents: new_contents}
     end
 
@@ -188,9 +196,7 @@ defmodule Arrays.Implementations.MapArray do
     end
 
     def to_list(%MapArray{contents: contents}) do
-      for {_k, v} <- contents do
-        v
-      end
+      :maps.values(contents)
     end
   end
 end

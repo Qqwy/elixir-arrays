@@ -21,8 +21,34 @@ defmodule Arrays do
     impl_module.empty(options)
   end
 
+  @spec new(Enum.t(), keyword) :: array()
   def new(enumerable \\ [], options \\ []) do
-    Enum.into(enumerable, empty(options))
+    default = Keyword.get(options, :default, nil)
+    size = Keyword.get(options, :size, nil)
+
+    if size == nil do
+      new_empty(enumerable, default)
+    else
+      count = Enum.count(enumerable)
+
+      cond do
+        count == 0 ->
+          new_empty([], default)
+
+        count == size ->
+          new_empty(enumerable, default)
+
+        count > size ->
+          new_empty(Enum.slice(enumerable, 0, size), default)
+
+        count < size ->
+          resize(new_empty(enumerable, default), size)
+      end
+    end
+  end
+
+  defp new_empty(enumerable, default) do
+    Enum.into(enumerable, empty(default: default))
   end
 
   @spec size(array) :: non_neg_integer
