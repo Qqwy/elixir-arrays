@@ -25,12 +25,12 @@ defmodule Arrays.Mixfile do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      # {:dep_from_hexpm, "~> 0.3.0"},
-      # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"},
       {:extractable, "~> 0.2"},
       {:insertable, "~> 0.2"},
-      {:fun_land, "~> 0.9.0"},
-      {:ex_doc, "~> 0.18.0", only: :dev, runtime: false}
+      {:fun_land, "~> 0.10.0"},
+      {:ex_doc, "~> 0.23", only: :dev, runtime: false},
+      {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
+      {:credo, "~> 1.5", only: [:dev, :test], runtime: false}
     ]
   end
 

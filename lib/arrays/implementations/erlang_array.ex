@@ -21,7 +21,7 @@ defmodule Arrays.Implementations.ErlangArray do
     %ErlangArray{array | contents: new_contents}
   end
 
-  use FunLand.Reducable
+  use FunLand.Reducible
 
   def reduce(%ErlangArray{contents: contents}, acc, fun) do
     :array.foldr(fun, acc, contents)

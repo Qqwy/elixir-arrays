@@ -24,7 +24,7 @@ defmodule Arrays.Implementations.MapArray do
     %MapArray{array | contents: :maps.map(fun, contents)}
   end
 
-  use FunLand.Reducable
+  use FunLand.Reducible
 
   def reduce(%MapArray{contents: contents}, acc, fun) do
     reduce(contents, acc, fun, 0, :maps.size(contents))
