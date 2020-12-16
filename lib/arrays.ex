@@ -32,9 +32,6 @@ defmodule Arrays do
       count = Enum.count(enumerable)
 
       cond do
-        count == 0 ->
-          new_empty([], default)
-
         count == size ->
           new_empty(enumerable, default)
 
