@@ -6,6 +6,8 @@ defmodule Arrays.Implementations.MapArray do
   """
   defstruct contents: %{}, default: nil
 
+  @behaviour Arrays.Behaviour
+
   def empty(options) do
     default = Keyword.get(options, :default, nil)
     size = Keyword.get(options, :size, 0)
