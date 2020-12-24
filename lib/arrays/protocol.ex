@@ -2,6 +2,10 @@ defprotocol Arrays.Protocol do
   @type array :: t
   @type index :: integer
   @type value :: any
+  @type option :: {:default, any} | {atom, any}
+  @type options :: [option]
+
+  @callback empty(options) :: t()
 
   @spec size(array) :: non_neg_integer
   def size(array)
