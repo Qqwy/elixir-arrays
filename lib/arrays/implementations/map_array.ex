@@ -52,13 +52,6 @@ defmodule Arrays.Implementations.MapArray do
 
   def fetch(%MapArray{}, _index), do: :error
 
-  def get(array, index, default) do
-    case fetch(array, index) do
-      {:ok, value} -> value
-      :error -> default
-    end
-  end
-
   @impl Access
   def get_and_update(array = %MapArray{contents: contents}, index, function)
       when index >= 0 and index < map_size(contents) do
