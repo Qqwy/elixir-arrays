@@ -48,13 +48,6 @@ defmodule Arrays.Implementations.ErlangArray do
     end
   end
 
-  def get(array, index, default) do
-    case fetch(array, index) do
-      {:ok, value} -> value
-      :error -> default
-    end
-  end
-
   @impl Access
   def get_and_update(array = %ErlangArray{contents: contents}, index, function) when index >= 0 do
     if index >= :array.size(contents) do
