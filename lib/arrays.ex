@@ -152,27 +152,120 @@ defmodule Arrays do
   @spec map(array, (index, current_value :: value -> updated_value :: value)) :: array
   defdelegate map(array, fun), to: Arrays.Protocol
 
+  @doc """
+  Reduce an array to a single value, by calling the provided accumulation function.
+
+  If the array is empty, the accumulator argument `acc` is returned as result immediately.
+  Otherwise, the function is called on all elements in the array, in order, with `acc` as second argument.
+  The result of each of these function calls creates the new accumulator passed to the next invocation.
+
+      iex> Arrays.new([1, 2, 3]) |> Arrays.reduce(0, fn val, sum -> sum + val end)
+      6
+      iex> Arrays.new(["the", "quick", "brown", "fox"]) |> Arrays.reduce("", fn val, result -> result <> " " <> val end)
+      " the quick brown fox"
+  """
   @spec reduce(array, acc :: any, (item :: any, acc :: any -> any)) :: array
   defdelegate reduce(array, acc, fun), to: Arrays.Protocol
 
+  @doc """
+  Returns which value is currently used as 'default' for elements that have no value of their own.
+
+  Common array definitions use a 'sparse' implementation where elements not explicitly having a different value, are assumed to have this 'default' value.
+  The particular default value can be set by passing the related option when calling `new/2` or `empty/1`.
+  If no other default element is set, it will be `nil`.
+  """
   @spec default(array) :: any
   defdelegate default(array), to: Arrays.Protocol
 
+  @doc """
+  The value stored in `array` of the element at `index`.
+
+  Array indexes start at *zero*.
+
+      iex> Arrays.new([3, 6, 9]) |> Arrays.get(0)
+      3
+      iex> Arrays.new([3, 6, 9]) |> Arrays.get(1)
+      6
+
+  As Array types also implement the `Access` behaviour,
+  the `[]` (square-bracket) syntactic sugar can also be used:
+
+      iex> myarray = Arrays.new([2, 4, 8])
+      iex> myarray[0]
+      2
+      iex> myarray[1]
+      4
+
+  ## Negative indexes
+
+  It is also possible to use negative indexes, to read elements starting from the right side of the array.
+  For example, index `-1` works equivalently to `size - 1`, if your array has `size`  elements.
+
+
+      iex> names = Arrays.new(["Alice", "Bob", "Charlie", "David"])
+      iex> Arrays.get(names, -2)
+      "Charlie"
+      iex> names[-1]
+      "David"
+
+  """
   @spec get(array, index) :: any
   defdelegate get(array, index), to: Arrays.Protocol
 
   @spec replace(array, index, value :: any) :: array
   defdelegate replace(array, index, value), to: Arrays.Protocol
 
+  @doc """
+  Removes an element from the array `array`, resetting the element at `index` to the array's default value.
+  """
   @spec reset(array, index) :: any
   defdelegate reset(array, index), to: Arrays.Protocol
 
+  @doc """
+  Appends ('pushes') a single element to the end of the array.
+
+      iex> Arrays.new([1,2,3]) |> Arrays.append(4)
+      #Arrays.Implementations.MapArray<[1, 2, 3, 4]>
+
+  See also `extract/1`.
+  """
   @spec append(array, item :: any) :: array
   defdelegate append(array, item), to: Arrays.Protocol
 
+  @doc """
+  Extracts ('pops') a single element from the end of the array.
+
+  Returns `{:ok, item_that_was_removed, array_without_item}` if the array was non-empty.
+  When called on an empty array, `{:error, :empty}` is returned.
+
+      iex> {:ok, {elem, arr}} = Arrays.new([1,2,3,4]) |> Arrays.extract()
+      iex> elem
+      4
+      iex> arr
+      #Arrays.Implementations.MapArray<[1, 2, 3]>
+
+      iex> Arrays.new([]) |> Arrays.extract()
+      {:error, :empty}
+
+  See also `append/2`.
+  """
   @spec extract(array) :: {:ok, {item :: any, array}} | {:error, :empty}
   defdelegate extract(array), to: Arrays.Protocol
 
+  @doc """
+  Changes the size of the array()
+
+  When the array becomes larger, new elements at the end will al receive the `default` value.
+  When the array becomes smaller, elements larger than the new `size` will be dropped.
+
+      iex> Arrays.new([1,2,3]) |> Arrays.resize(6)
+      #Arrays.Implementations.MapArray<[1, 2, 3, nil, nil, nil]>
+      iex> Arrays.new([1,2,3], default: 42) |> Arrays.resize(5)
+      #Arrays.Implementations.MapArray<[1, 2, 3, 42, 42]>
+      iex> Arrays.new([1,2,3]) |> Arrays.resize(1)
+      #Arrays.Implementations.MapArray<[1]>
+
+  """
   @spec resize(array, size :: non_neg_integer) :: array
   defdelegate resize(array, size), to: Arrays.Protocol
 
