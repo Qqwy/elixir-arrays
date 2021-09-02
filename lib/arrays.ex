@@ -48,7 +48,6 @@ defmodule Arrays do
 
   @doc """
   Creates a new, empty, array.
-  Optionally accepts a list of options.
 
       iex> Arrays.empty()
       #Arrays.Implementations.MapArray<[]>
@@ -108,6 +107,7 @@ defmodule Arrays do
 
   @doc """
   Creates a new array, receiving its elements from the given `Enumerable`, with the given options.
+
   Accepts the same options as `empty/1`.
   """
   @spec new(Enum.t(), keyword) :: array()
@@ -139,6 +139,8 @@ defmodule Arrays do
 
   @doc """
   The number of elements in the array.
+
+  See also `resize/2`.
   """
   @spec size(array) :: non_neg_integer
   defdelegate size(array), to: Arrays.Protocol
@@ -209,22 +211,35 @@ defmodule Arrays do
       "David"
 
   """
+  # TODO implement negative indexes here rather than impl-defined.
   @spec get(array, index) :: any
   defdelegate get(array, index), to: Arrays.Protocol
 
+  @doc """
+  Replaces the element in array `array` at index `index` with `value`.
+
+
+     iex> Arrays.new([4, 5, 6]) |> Arrays.replace(1, 69)
+     #Arrays.Implementations.MapArray<[4, 69, 6]>
+  """
+  # TODO implement negative indexes here rather than impl-defined.
   @spec replace(array, index, value :: any) :: array
   defdelegate replace(array, index, value), to: Arrays.Protocol
 
   @doc """
   Removes an element from the array `array`, resetting the element at `index` to the array's default value.
+
+      iex> Arrays.new([7, 8, 9]) |> Arrays.reset(2)
+      #Arrays.Implementations.MapArray<[7, 8, nil]>
   """
+  # TODO implement negative indexes here rather than impl-defined.
   @spec reset(array, index) :: any
   defdelegate reset(array, index), to: Arrays.Protocol
 
   @doc """
   Appends ('pushes') a single element to the end of the array.
 
-      iex> Arrays.new([1,2,3]) |> Arrays.append(4)
+      iex> Arrays.new([1, 2, 3]) |> Arrays.append(4)
       #Arrays.Implementations.MapArray<[1, 2, 3, 4]>
 
   See also `extract/1`.
@@ -253,22 +268,31 @@ defmodule Arrays do
   defdelegate extract(array), to: Arrays.Protocol
 
   @doc """
-  Changes the size of the array()
+  Changes the size of the array.
 
   When the array becomes larger, new elements at the end will al receive the `default` value.
   When the array becomes smaller, elements larger than the new `size` will be dropped.
 
-      iex> Arrays.new([1,2,3]) |> Arrays.resize(6)
+      iex> Arrays.new([1, 2, 3]) |> Arrays.resize(6)
       #Arrays.Implementations.MapArray<[1, 2, 3, nil, nil, nil]>
-      iex> Arrays.new([1,2,3], default: 42) |> Arrays.resize(5)
+
+      iex> Arrays.new([1, 2, 3], default: 42) |> Arrays.resize(5)
       #Arrays.Implementations.MapArray<[1, 2, 3, 42, 42]>
-      iex> Arrays.new([1,2,3]) |> Arrays.resize(1)
+
+      iex> Arrays.new([1, 2, 3]) |> Arrays.resize(1)
       #Arrays.Implementations.MapArray<[1]>
 
+  See also `size/1`.
   """
   @spec resize(array, size :: non_neg_integer) :: array
   defdelegate resize(array, size), to: Arrays.Protocol
 
+  @doc """
+  Transforms the array into a list.
+
+      iex> Arrays.new([1, 2, 3]) |> Arrays.to_list
+      [1, 2, 3]
+  """
   @spec to_list(array) :: list
   defdelegate to_list(array), to: Arrays.Protocol
 end
