@@ -3,27 +3,43 @@ defmodule Arrays do
   @moduledoc """
   Well-structured Arrays with fast random-element-access for Elixir, offering a common interface with multiple implementations with varying performance guarantees that can be switched in your configuration.
 
+  ## Using `Arrays`
 
-  ## Implementing for new types
+  The general idea is that algorithms that use arrays can be used while abstracting away from the underlying representation.
+  Which array implementation/representation is actually used, can then later be configured/compared, to make a trade-off between ease-of-use and time/memory efficiency.
 
-  To create a new implementation, two things are required:
+  `Arrays` itself comes with two built-in implementations:
 
-  - Add an implementation for the `Arrays.Protocol` protocol.
-  - Add `@behaviour Arrays.Behaviour` to your datatype's module, and implement a sensible definition for `empty/1`.
+  - `Arrays.Implementations.ErlangArray` wraps the Erlang `:array` module, allowing this time-tested implementation to be used with all common Elixir protocols and syntactic sugar.
+  - `Arrays.Implementations.MapArray` is a simple implementation that uses a map with sequential integers as keys.
 
-  Besides these, you probably want to implement:
+  By default, #{@default_array_implementation} is used when creating new array objects, but this can be configured by either changing the default in your whole application, or by passing an option to a specific invocation of [`new/0-2`](`new/0`), or [`empty/0-1`](`empty/0`).
+
+  ### Protocols
+
+  Besides being able to use all functions in this module,
+  one can use the following protocols and behaviours with them:
 
   - From Elixir's standard library:
-    - `Enumerable`
-    - `Collectable`
-    - the `Access` behaviour
-  - From common container libraries:
-    - `Insertable`
-    - `Extractable`
-    - `FunLand.Mappable`
-    - `FunLand.Reducible`
+    - `Enumerable`: Iterating over arrays
+    - `Collectable`: Creating arrays from collections
+    - the `Access` behaviour: access a particular element using square brackets, `put_in` etc.
 
-  You can look at the source code of 'lib/arrays/implementations/common_protocol_implementations.ex' for some hints as to how those protocols can be easily implemented on top of the calls that the `Arrays.Protocol` protocol itself already provides.
+  - From common container libraries:
+    - `Insertable`: Append a single item from the end of an array
+    - `Extractable`: Take a single item from the end of an array
+    - `FunLand.Mappable`: Map a function over each element in the array, creating a new array with the results
+    - `FunLand.Reducible`: Reduce an array to a single value.
+
+  ## Implementing a new Array type
+
+  To add array-functionality to a custom datastructure, two things are required:
+
+  - Add an implementation for the `Arrays.Protocol` protocol.
+  - Add the `Arrays.Behaviour` to your datatype's module (`@behaviour Arrays.Behaviour`), and implement a sensible definition for `c:Arrays.Behaviour.empty/1`.
+
+  Besides these, you probably want to implement the above-mentioned protocols as well.
+  You can look at the source code of `Arrays.CommonProtocolImplementations` for some hints as to how those protocols can be easily implemented on top of the calls that the `Arrays.Protocol` protocol itself already provides.
   """
 
   @type array :: Arrays.Protocol.t()
@@ -44,11 +60,11 @@ defmodule Arrays do
        - When not specified, will use the implementation which is configured in `:arrays, :default_array_implementation`,
        - When no configuration is specified either, #{@default_array_implementation} will be used by default.
 
-      iex> Arrays.empty([implementation: Arrays.Implementations.MapArray])
-      #Arrays.Implementations.MapArray<[]>
+        iex> Arrays.empty([implementation: Arrays.Implementations.MapArray])
+        #Arrays.Implementations.MapArray<[]>
 
-      iex> Arrays.empty([implementation: Arrays.Implementations.ErlangArray])
-      #Arrays.Implementations.ErlangArray<[]>
+        iex> Arrays.empty([implementation: Arrays.Implementations.ErlangArray])
+        #Arrays.Implementations.ErlangArray<[]>
 
   Any other option is passed on to the particular array implementation.
   Not all array implementations recognize all options.
@@ -57,12 +73,13 @@ defmodule Arrays do
   - `default:` Value that empty elements should start with. (Default: `nil`)
   - `size:` Size of the array at start. (Default: 0)
 
+        # Using the MapArray
+        iex> Arrays.empty([default: 42, size: 5, implementation: Arrays.Implementations.MapArray])
+        #Arrays.Implementations.MapArray<[42, 42, 42, 42, 42]>
 
-  iex> Arrays.empty([default: 42, size: 5, implementation: Arrays.Implementations.MapArray])
-  #Arrays.Implementations.MapArray<[42, 42, 42, 42, 42]>
-
-  iex> Arrays.empty([default: "Empty" , size: 1, implementation: Arrays.Implementations.ErlangArray])
-  #Arrays.Implementations.ErlangArray<["Empty"]>
+        # Using the ErlangArray
+        iex> Arrays.empty([default: "Empty" , size: 1, implementation: Arrays.Implementations.ErlangArray])
+        #Arrays.Implementations.ErlangArray<["Empty"]>
 
   """
   def empty(options \\ []) do
