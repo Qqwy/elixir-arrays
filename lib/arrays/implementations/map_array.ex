@@ -94,7 +94,7 @@ defmodule Arrays.Implementations.MapArray do
 
     @impl true
     def map(array = %MapArray{contents: contents}, fun) do
-      new_contents = :maps.map(fun, contents)
+      new_contents = :maps.map(fn _key, value -> fun.(value) end, contents)
       %MapArray{array | contents: new_contents}
     end
 

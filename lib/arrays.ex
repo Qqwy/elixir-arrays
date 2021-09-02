@@ -22,12 +22,49 @@ defmodule Arrays do
     - `Extractable`
     - `FunLand.Mappable`
     - `FunLand.Reducible`
+
+  You can look at the source code of 'lib/arrays/implementations/common_protocol_implementations.ex' for some hints as to how those protocols can be easily implemented on top of the calls that the `Arrays.Protocol` protocol itself already provides.
   """
 
   @type array :: Arrays.Protocol.t()
   @type index :: Arrays.Protocol.index()
   @type value :: Arrays.Protocol.value()
 
+  @doc """
+  Creates a new, empty, array.
+  Optionally accepts a list of options.
+
+      iex> Arrays.empty()
+      #Arrays.Implementations.MapArray<[]>
+
+
+  # Options
+
+  - `implementation:` Module name of array-implementation to use.
+       - When not specified, will use the implementation which is configured in `:arrays, :default_array_implementation`,
+       - When no configuration is specified either, #{@default_array_implementation} will be used by default.
+
+      iex> Arrays.empty([implementation: Arrays.Implementations.MapArray])
+      #Arrays.Implementations.MapArray<[]>
+
+      iex> Arrays.empty([implementation: Arrays.Implementations.ErlangArray])
+      #Arrays.Implementations.ErlangArray<[]>
+
+  Any other option is passed on to the particular array implementation.
+  Not all array implementations recognize all options.
+  However, the following two options are very common (and supported by both built-in implementations, `Arrays.Implementations.ErlangArray` and `Arrays.Implementations.MapArray`):
+
+  - `default:` Value that empty elements should start with. (Default: `nil`)
+  - `size:` Size of the array at start. (Default: 0)
+
+
+  iex> Arrays.empty([default: 42, size: 5, implementation: Arrays.Implementations.MapArray])
+  #Arrays.Implementations.MapArray<[42, 42, 42, 42, 42]>
+
+  iex> Arrays.empty([default: "Empty" , size: 1, implementation: Arrays.Implementations.ErlangArray])
+  #Arrays.Implementations.ErlangArray<["Empty"]>
+
+  """
   def empty(options \\ []) do
     impl_module =
       Keyword.get(
@@ -40,8 +77,24 @@ defmodule Arrays do
     impl_module.empty(options)
   end
 
+  @doc """
+  Creates a new, empty array with default options.
+  """
+  @spec new() :: array()
+  def new(), do: new([], [])
+
+  @doc """
+  Creates a new array, receiving its elements from the given `Enumerable`, with default options.
+  """
+  @spec new(Enum.t()) :: array()
+  def new(enumerable), do: new(enumerable, [])
+
+  @doc """
+  Creates a new array, receiving its elements from the given `Enumerable`, with the given options.
+  Accepts the same options as `empty/1`.
+  """
   @spec new(Enum.t(), keyword) :: array()
-  def new(enumerable \\ [], options \\ []) do
+  def new(enumerable, options) do
     default = Keyword.get(options, :default, nil)
     size = Keyword.get(options, :size, nil)
 
@@ -67,9 +120,18 @@ defmodule Arrays do
     Enum.into(enumerable, empty(default: default))
   end
 
+  @doc """
+  The number of elements in the array.
+  """
   @spec size(array) :: non_neg_integer
   defdelegate size(array), to: Arrays.Protocol
 
+  @doc """
+  Maps a function over an array, returning a new array.
+
+      iex> Arrays.new([1,2,3]) |> Arrays.map(fn val -> val * 2 end)
+      #Arrays.Implementations.MapArray<[2, 4, 6]>
+  """
   @spec map(array, (index, current_value :: value -> updated_value :: value)) :: array
   defdelegate map(array, fun), to: Arrays.Protocol
 

@@ -14,7 +14,7 @@ defmodule Arrays.Implementations.ErlangArray do
   @impl Arrays.Behaviour
   # {:default, val} and {:size, num} are forwarded to `:array`
   def empty(options) do
-    contents = :array.new([{:fixed, false} | options] ++ [default: nil])
+    contents = :array.new([fixed: false, default: nil] ++ options)
     %ErlangArray{contents: contents}
   end
 

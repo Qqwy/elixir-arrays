@@ -8,7 +8,7 @@ for module <- [
     def inspect(array, opts) do
       concat([
         "##{inspect(@for)}<",
-        Inspect.List.inspect(Arrays.Protocol.to_list(array), opts),
+        Inspect.List.inspect(Arrays.Protocol.to_list(array), %{opts | charlists: :as_lists}),
         ">"
       ])
     end
