@@ -31,6 +31,24 @@ defmodule Arrays do
     - `FunLand.Mappable`: Map a function over each element in the array, creating a new array with the results
     - `FunLand.Reducible`: Reduce an array to a single value.
 
+
+  ## Arrays vs Lists
+
+  Elixir widely uses `List` as default collection type.
+  Arrays have the folowing differences:
+
+  - Arrays keep track of their size. The size of a list needs to be computed.
+  - Arrays allow fast¹ element indexing. Indexing later elements in a list slows down linearly in the size of the list.
+  - Pushing a single element to the _end_ of an array is fast¹. Pushing a single element to the end of a list is very slow, taking linear time.
+  - Pushing a single element to the _start_ of an array is slow, taking linear time. Pushing a single element to the head of a list is fast, taking constant time.
+  - Appending of arrays takes time proportional to the size of the second array. Appending two lists takes time proportional to the length of the first list. This means that repeated appending
+  - Lists are allowed to be improper. Arrays can never be improper.
+  - Many common operations in Elixir transform an enumerable into a list automatically. Arrays are made using `Arrays.new/0`, `Arrays.new/1` `Arrays.empty/0`, the `into:` option on a `for`, or `Enum.into`.
+
+  ¹: Depending on the implementation, 'fast' is either _O(1)_ (constant time, regardless of array size) or _O(log(n))_ (logarithmic time, becoming a constant amount slower each time the array doubles in size.)
+
+  The linear time many operations on lists take, means that the operation becomes twice as slow when the list doubles in size.
+
   ## Implementing a new Array type
 
   To add array-functionality to a custom datastructure, two things are required:
@@ -53,7 +71,7 @@ defmodule Arrays do
       #Arrays.Implementations.MapArray<[]>
 
 
-  # Options
+  ### Options
 
   - `implementation:` Module name of array-implementation to use.
        - When not specified, will use the implementation which is configured in `:arrays, :default_array_implementation`,
@@ -219,8 +237,8 @@ defmodule Arrays do
   Replaces the element in array `array` at index `index` with `value`.
 
 
-     iex> Arrays.new([4, 5, 6]) |> Arrays.replace(1, 69)
-     #Arrays.Implementations.MapArray<[4, 69, 6]>
+      iex> Arrays.new([4, 5, 6]) |> Arrays.replace(1, 69)
+      #Arrays.Implementations.MapArray<[4, 69, 6]>
   """
   # TODO implement negative indexes here rather than impl-defined.
   @spec replace(array, index, value :: any) :: array
