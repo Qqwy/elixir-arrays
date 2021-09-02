@@ -3,6 +3,25 @@ defmodule Arrays do
   @moduledoc """
   Well-structured Arrays with fast random-element-access for Elixir, offering a common interface with multiple implementations with varying performance guarantees that can be switched in your configuration.
 
+
+  ## Implementing for new types
+
+  To create a new implementation, two things are required:
+
+  - Add an implementation for the `Arrays.Protocol` protocol.
+  - Add `@behaviour Arrays.Behaviour` to your datatype's module, and implement a sensible definition for `empty/1`.
+
+  Besides these, you probably want to implement:
+
+  - From Elixir's standard library:
+    - `Enumerable`
+    - `Collectable`
+    - the `Access` behaviour
+  - From common container libraries:
+    - `Insertable`
+    - `Extractable`
+    - `FunLand.Mappable`
+    - `FunLand.Reducible`
   """
 
   @type array :: Arrays.Protocol.t()
