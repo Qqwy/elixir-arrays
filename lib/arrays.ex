@@ -294,6 +294,11 @@ defmodule Arrays do
 
       iex> Arrays.new([4, 5, 6]) |> Arrays.replace(1, 69)
       #Arrays.Implementations.MapArray<[4, 69, 6]>
+
+      Just like `get/2`, negative indices are supported.
+
+      iex> Arrays.new([7, 8, 9]) |> Arrays.replace(-1, 33)
+      #Arrays.Implementations.MapArray<[7, 8, 33]>
   """
   # TODO implement negative indexes here rather than impl-defined.
   @spec replace(array, index, value :: any) :: array
@@ -304,6 +309,11 @@ defmodule Arrays do
 
       iex> Arrays.new([7, 8, 9]) |> Arrays.reset(2)
       #Arrays.Implementations.MapArray<[7, 8, nil]>
+
+  Just like `get/2`, negative indices are supported.
+
+      iex> Arrays.new([7, 8, 9]) |> Arrays.reset(-2)
+      #Arrays.Implementations.MapArray<[7, nil, 9]>
   """
   # TODO implement negative indexes here rather than impl-defined.
   @spec reset(array, index) :: any
@@ -354,6 +364,12 @@ defmodule Arrays do
 
       iex> Arrays.new([1, 2, 3]) |> Arrays.resize(1)
       #Arrays.Implementations.MapArray<[1]>
+
+      iex> Arrays.new([1, 2, 3]) |> Arrays.resize(0)
+      #Arrays.Implementations.MapArray<[]>
+
+      iex> Arrays.new([1, 2, 3]) |> Arrays.resize(3)
+      #Arrays.Implementations.MapArray<[1, 2, 3]>
 
   See also `size/1`.
   """
