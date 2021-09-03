@@ -62,7 +62,7 @@ defmodule Arrays.Implementations.MapArray do
   @impl Access
   def get_and_update(array = %MapArray{contents: contents}, index, function)
       when index < 0 and index >= -map_size(contents) do
-    {value, new_contents} = Map.get_and_update(contents, index, function)
+    {value, new_contents} = Map.get_and_update(contents, index + map_size(contents), function)
     {value, %MapArray{array | contents: new_contents}}
   end
 

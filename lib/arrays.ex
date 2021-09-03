@@ -49,9 +49,33 @@ defmodule Arrays do
 
   #### Access
 
-      iex> myarray = Arrays.new([1, 2, 3, 4])
-      iex> put_in(myarray[2], 33)
+      iex> arr = Arrays.new([1, 2, 3, 4])
+      iex> arr = put_in(arr[2], 33)
       #Arrays.Implementations.MapArray<[1, 2, 33, 4]>
+      iex> arr = update_in(arr[1], (&(&1 * -2)))
+      #Arrays.Implementations.MapArray<[1, -4, 33, 4]>
+      iex> arr = update_in(arr[-1], (&(&1 + 1)))
+      #Arrays.Implementations.MapArray<[1, -4, 33, 5]>
+      iex> {1, arr} = pop_in(arr[0])
+      iex> arr
+      #Arrays.Implementations.MapArray<[-4, 33, 5]>
+
+
+  #### Insertable
+
+      iex> arr = Arrays.new()
+      iex> {:ok, arr} = Insertable.insert(arr, 42)
+      iex> {:ok, arr} = Insertable.insert(arr, 100)
+      iex> arr
+      #Arrays.Implementations.MapArray<[42, 100]>
+
+  #### Extractable
+
+      iex> Extractable.extract(Arrays.new())
+      {:error, :empty}
+      iex> {:ok, {3, arr}} = Extractable.extract(Arrays.new([1, 2, 3]))
+      iex> arr
+      #Arrays.Implementations.MapArray<[1, 2]>
 
   ## Arrays vs Lists
 
