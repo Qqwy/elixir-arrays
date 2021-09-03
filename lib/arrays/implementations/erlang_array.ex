@@ -36,7 +36,7 @@ defmodule Arrays.Implementations.ErlangArray do
     if index >= :array.size(contents) do
       :error
     else
-      {:ok, :array.get(contents, index)}
+      {:ok, :array.get(index, contents)}
     end
   end
 
@@ -46,7 +46,7 @@ defmodule Arrays.Implementations.ErlangArray do
     if index < -size do
       :error
     else
-      {:ok, :array.get(contents, index + size)}
+      {:ok, :array.get(index + size, contents)}
     end
   end
 
@@ -56,7 +56,7 @@ defmodule Arrays.Implementations.ErlangArray do
       {res, _} = function.(nil)
       {res, array}
     else
-      value = :array.get(contents, index)
+      value = :array.get(index, contents)
 
       case function.(value) do
         :pop ->
@@ -83,7 +83,7 @@ defmodule Arrays.Implementations.ErlangArray do
   @impl Access
   def pop(array = %ErlangArray{contents: contents}, index) when index >= 0 do
     new_index = index + map_size(contents)
-    value = :array.get(contents, new_index)
+    value = :array.get(new_index, contents)
     new_contents = :array.reset(new_index, contents)
     {value, %ErlangArray{array | contents: new_contents}}
   end
@@ -124,9 +124,9 @@ defmodule Arrays.Implementations.ErlangArray do
     @impl true
     def get(%ErlangArray{contents: contents}, index) do
       if index < 0 do
-        :array.get(contents, index + :array.size(contents))
+        :array.get(index + :array.size(contents), contents)
       else
-        :array.get(contents, index)
+        :array.get(index, contents)
       end
     end
 
@@ -177,7 +177,7 @@ defmodule Arrays.Implementations.ErlangArray do
 
         size ->
           index = size - 1
-          elem = :array.get(contents, index)
+          elem = :array.get(index, contents)
           contents_rest = :array.resize(index, contents)
           array_rest = %ErlangArray{array | contents: contents_rest}
           {:ok, {elem, array_rest}}
