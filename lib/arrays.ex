@@ -34,54 +34,55 @@ contents = quote do
 
   #### Enumerable
 
-  iex> myarray = Arrays.new([2, 1, 4, 2, 0])
-  iex> Enum.sort(myarray)
-  [0, 1, 2, 2, 4]
-  iex> Enum.count(myarray)
-  5
-  iex> Enum.with_index(myarray)
-  [{0, 0}, {2, 1}, {4, 2}, {1, 3}, {2, 4}]
+      iex> myarray = Arrays.new([2, 1, 4, 2, 0])
+      iex> Enum.sort(myarray)
+      [0, 1, 2, 2, 4]
+      iex> Enum.count(myarray)
+      5
+      iex> Enum.with_index(myarray)
+      [{0, 0}, {2, 1}, {4, 2}, {1, 3}, {2, 4}]
 
   #### Collectable
 
-  iex> [10, 20, 30, 40] |> Enum.into(Arrays.new())
-  ##{@current_default_array}<[10, 20, 30, 40]>
+      iex> [10, 20, 30, 40] |> Enum.into(Arrays.new())
+      ##{@current_default_array}<[10, 20, 30, 40]>
 
 
   #### Access
 
-  iex> arr = Arrays.new([1, 2, 3, 4])
-  iex> arr = put_in(arr[2], 33)
-  ##{@current_default_array}<[1, 2, 33, 4]>
-  iex> arr = update_in(arr[1], (&(&1 * -2)))
-  ##{@current_default_array}<[1, -4, 33, 4]>
-  iex> arr = update_in(arr[-1], (&(&1 + 1)))
-  ##{@current_default_array}<[1, -4, 33, 5]>
-  iex> {1, arr} = pop_in(arr[0])
-  iex> arr
-  ##{@current_default_array}<[-4, 33, 5]>
-  iex> {5, arr} = pop_in(arr[-1])
-  iex> arr
-  ##{@current_default_array}<[-4, 33]>
+      iex> arr = Arrays.new([1, 2, 3, 4])
+      iex> arr = put_in(arr[2], 33)
+      ##{@current_default_array}<[1, 2, 33, 4]>
+      iex> arr = update_in(arr[1], (&(&1 * -2)))
+      ##{@current_default_array}<[1, -4, 33, 4]>
+      iex> arr = update_in(arr[-1], (&(&1 + 1)))
+      ##{@current_default_array}<[1, -4, 33, 5]>
+      iex> {1, arr} = pop_in(arr[0])
+      iex> arr
+      ##{@current_default_array}<[-4, 33, 5]>
+      iex> {5, arr} = pop_in(arr[-1])
+      iex> arr
+      ##{@current_default_array}<[-4, 33]>
 
   square-bracket access, `get_in`, `put_in` and `update_in` are very fast operations.
-  `pop_in` is a very slow operation, as it requires moving of all elements after the given index in the array.
+  Unless `pop`/`pop_in` is used for the last element in the array, is a very slow operation,
+  as it requires moving of all elements after the given index in the array.
 
   #### Insertable
 
-  iex> arr = Arrays.new()
-  iex> {:ok, arr} = Insertable.insert(arr, 42)
-  iex> {:ok, arr} = Insertable.insert(arr, 100)
-  iex> arr
-  ##{@current_default_array}<[42, 100]>
+      iex> arr = Arrays.new()
+      iex> {:ok, arr} = Insertable.insert(arr, 42)
+      iex> {:ok, arr} = Insertable.insert(arr, 100)
+      iex> arr
+      ##{@current_default_array}<[42, 100]>
 
   #### Extractable
 
-  iex> Extractable.extract(Arrays.new())
-  {:error, :empty}
-  iex> {:ok, {3, arr}} = Extractable.extract(Arrays.new([1, 2, 3]))
-  iex> arr
-  ##{@current_default_array}<[1, 2]>
+      iex> Extractable.extract(Arrays.new())
+      {:error, :empty}
+      iex> {:ok, {3, arr}} = Extractable.extract(Arrays.new([1, 2, 3]))
+      iex> arr
+      ##{@current_default_array}<[1, 2]>
 
   ## Arrays vs Lists
 
