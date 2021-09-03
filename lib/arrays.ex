@@ -31,6 +31,27 @@ defmodule Arrays do
     - `FunLand.Mappable`: Map a function over each element in the array, creating a new array with the results
     - `FunLand.Reducible`: Reduce an array to a single value.
 
+  #### Enumerable
+
+      iex> myarray = Arrays.new([2, 1, 4, 2, 0])
+      iex> Enum.sort(myarray)
+      [0, 1, 2, 2, 4]
+      iex> Enum.count(myarray)
+      5
+      iex> Enum.with_index(myarray)
+      [{0, 0}, {2, 1}, {4, 2}, {1, 3}, {2, 4}]
+
+  #### Collectable
+
+      iex> [10, 20, 30, 40] |> Enum.into(Arrays.new())
+      #Arrays.Implementations.MapArray<[10, 20, 30, 40]>
+
+
+  #### Access
+
+      iex> myarray = Arrays.new([1, 2, 3, 4])
+      iex> put_in(myarray[2], 33)
+      #Arrays.Implementations.MapArray<[1, 2, 33, 4]>
 
   ## Arrays vs Lists
 
@@ -266,7 +287,7 @@ defmodule Arrays do
   defdelegate default(array), to: Arrays.Protocol
 
   @doc """
-  The value stored in `array` of the element at `index`.
+  Retrieves the value stored in `array` of the element at `index`.
 
   Array indexes start at *zero*.
 
