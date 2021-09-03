@@ -192,19 +192,49 @@ defmodule Arrays do
   defdelegate map(array, fun), to: Arrays.Protocol
 
   @doc """
-  Reduce an array to a single value, by calling the provided accumulation function.
+  Reduce an array to a single value, by calling the provided accumulation function for each element, left-to-right.
 
   If the array is empty, the accumulator argument `acc` is returned as result immediately.
-  Otherwise, the function is called on all elements in the array, in order, with `acc` as second argument.
+  Otherwise, the function is called on all elements in the array, in order, with `acc` as *second* argument.
   The result of each of these function calls creates the new accumulator passed to the next invocation.
 
       iex> Arrays.new([1, 2, 3]) |> Arrays.reduce(0, fn val, sum -> sum + val end)
       6
+
       iex> Arrays.new(["the", "quick", "brown", "fox"]) |> Arrays.reduce("", fn val, result -> result <> " " <> val end)
       " the quick brown fox"
+
+      iex> Arrays.new([]) |> Arrays.reduce(1234, fn val, mul -> mul * val end)
+      1234
+
+  See also `reduce_right/3`.
   """
   @spec reduce(array, acc :: any, (item :: any, acc :: any -> any)) :: array
   defdelegate reduce(array, acc, fun), to: Arrays.Protocol
+
+  @doc """
+  Reduce an array to a single value, by calling the provided accumulation function for each element, right-to-left.
+
+
+  If the array is empty, the accumulator argument `acc` is returned as result immediately.
+  Otherwise, the function is called on all elements in the array, in reverse (right-to-left) order, with `acc` as *first* argument.
+  The result of each of these function calls creates the new accumulator passed to the next invocation.
+
+      iex> Arrays.new([1, 2, 3]) |> Arrays.reduce_right(0, fn sum, val -> sum + val end)
+      6
+
+      iex> Arrays.new(["the", "quick", "brown", "fox"]) |> Arrays.reduce_right("", fn result, val -> result <> " " <> val end)
+      " fox brown quick the"
+
+      iex> Arrays.new([]) |> Arrays.reduce_right(1234, fn mul, val -> mul * val end)
+      1234
+
+
+  See also `reduce/3`.
+
+  """
+  @spec reduce_right(array, acc :: any, (acc :: any, item :: any -> any)) :: array
+  defdelegate reduce_right(array, acc, fun),to: Arrays.Protocol
 
   @doc """
   Returns which value is currently used as 'default' for elements that have no value of their own.

@@ -117,7 +117,7 @@ defmodule Arrays.Implementations.MapArray do
     defp reduce_right(_contents, acc, _fun, 0), do: acc
 
     defp reduce_right(contents, acc, fun, index) do
-      reduce_right(contents, fun.(contents[index], acc), fun, index - 1)
+      reduce_right(contents, fun.(acc, contents[index - 1]), fun, index - 1)
     end
 
     @impl true
