@@ -46,7 +46,7 @@ defmodule Arrays.Implementations.MapArray do
   end
 
   def fetch(%MapArray{contents: contents}, index)
-      when index < 0 and index >= -map_size(contents) do
+      when index < 0 and index >= (-map_size(contents)) do
     Map.fetch(contents, index + map_size(contents))
   end
 

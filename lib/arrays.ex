@@ -57,16 +57,41 @@ contents = quote do
       ##{@current_default_array}<[1, -4, 33, 4]>
       iex> arr = update_in(arr[-1], (&(&1 + 1)))
       ##{@current_default_array}<[1, -4, 33, 5]>
-      iex> {1, arr} = pop_in(arr[0])
-      iex> arr
-      ##{@current_default_array}<[-4, 33, 5]>
       iex> {5, arr} = pop_in(arr[-1])
       iex> arr
+      ##{@current_default_array}<[1, -4, 33]>
+      iex> {1, arr} = pop_in(arr[0])
+      iex> arr
       ##{@current_default_array}<[-4, 33]>
+
 
   square-bracket access, `get_in`, `put_in` and `update_in` are very fast operations.
   Unless `pop`/`pop_in` is used for the last element in the array, is a very slow operation,
   as it requires moving of all elements after the given index in the array.
+
+  Both positive indexes (counting from zero) and negative indexes
+  (`-1` is the last element, `-2` the second-to-last element, etc.) are supported.
+
+  However, if `positive_index > Arrays.size(array)` or `negative_index < -Arrays.size(array)`,
+  an ArgumentError is raised:
+
+      iex> arr = Arrays.new([1,2,3,4])
+      iex> pop_in(arr[4])
+      ** (ArgumentError) argument error
+
+      iex> arr = Arrays.new([1,2,3,4])
+      iex> pop_in(arr[-5])
+      ** (ArgumentError) argument error
+
+      iex> arr = Arrays.new([1,2,3,4])
+      iex> Access.fetch(arr, 4)
+      :error
+      iex> Access.fetch(arr, -5)
+      :error
+
+      iex> arr = Arrays.new([1,2,3,4])
+      iex> update_in(arr[8], fn x -> x * 2 end)
+      ** (ArgumentError) argument error
 
   #### Insertable
 

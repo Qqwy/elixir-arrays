@@ -43,7 +43,7 @@ defmodule Arrays.Implementations.ErlangArray do
   def fetch(%ErlangArray{contents: contents}, index) when index < 0 do
     size = :array.size(contents)
 
-    if index < -size do
+    if index < (-size) do
       :error
     else
       {:ok, :array.get(index + size, contents)}
@@ -53,8 +53,7 @@ defmodule Arrays.Implementations.ErlangArray do
   @impl Access
   def get_and_update(array = %ErlangArray{contents: contents}, index, function) when index >= 0 do
     if index >= :array.size(contents) do
-      {res, _} = function.(nil)
-      {res, array}
+      raise ArgumentError
     else
       value = :array.get(index, contents)
 
@@ -72,9 +71,8 @@ defmodule Arrays.Implementations.ErlangArray do
 
   @impl Access
   def get_and_update(array = %ErlangArray{contents: contents}, index, function) when index < 0 do
-    if index < -:array.size(contents) do
-      {res, _} = function.(nil)
-      {res, array}
+    if index < (-:array.size(contents)) do
+      raise ArgumentError
     else
       get_and_update(array, index + :array.size(contents), function)
     end
@@ -82,21 +80,28 @@ defmodule Arrays.Implementations.ErlangArray do
 
   @impl Access
   def pop(array = %ErlangArray{contents: contents}, index) when index >= 0 do
-    if(index == :array.size(contents) - 1) do
-      # Fast implementation
-      value = :array.get(index, contents)
-      new_contents = :array.resize(index, contents)
-      {value, %ErlangArray{array | contents: new_contents}}
-    else
-      # Slow implementation
-      value = :array.get(index, contents)
-      new_contents = fix_contents_after_pop(contents, index, :array.default(contents))
-      {value, %ErlangArray{array | contents: new_contents}}
+    cond do
+      (index > :array.size(contents)) ->
+        raise ArgumentError
+      (index == :array.size(contents) - 1) ->
+        # Fast implementation
+        value = :array.get(index, contents)
+        new_contents = :array.resize(index, contents)
+        {value, %ErlangArray{array | contents: new_contents}}
+      true ->
+        # Slow implementation
+        value = :array.get(index, contents)
+        new_contents = fix_contents_after_pop(contents, index, :array.default(contents))
+        {value, %ErlangArray{array | contents: new_contents}}
     end
   end
 
   def pop(array = %ErlangArray{contents: contents}, index) when index < 0 do
-    pop(array, index + :array.size(contents))
+    if (index < (-:array.size(contents) - 1)) do
+      raise ArgumentError
+    else
+      pop(array, index + :array.size(contents))
+    end
   end
 
   defp fix_contents_after_pop(contents, index, default) do
