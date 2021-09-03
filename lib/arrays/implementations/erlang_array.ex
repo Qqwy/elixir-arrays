@@ -108,12 +108,12 @@ defmodule Arrays.Implementations.ErlangArray do
 
     @impl true
     def reduce(%ErlangArray{contents: contents}, acc, fun) do
-      :array.foldl(fun, acc, contents)
+      :array.foldl(fn _index, val, acc -> fun.(val, acc) end, acc, contents)
     end
 
     @impl true
     def reduce_right(%ErlangArray{contents: contents}, acc, fun) do
-      :array.foldr(fun, acc, contents)
+      :array.foldr(fn _index, val, acc -> fun.(acc, val) end, acc, contents)
     end
 
     @impl true
