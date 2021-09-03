@@ -81,7 +81,7 @@ defmodule Arrays.Implementations.ErlangArray do
   @impl Access
   def pop(array = %ErlangArray{contents: contents}, index) when index >= 0 do
     cond do
-      (index > :array.size(contents)) ->
+      (index >= :array.size(contents)) ->
         raise ArgumentError
       (index == :array.size(contents) - 1) ->
         # Fast implementation
@@ -97,7 +97,7 @@ defmodule Arrays.Implementations.ErlangArray do
   end
 
   def pop(array = %ErlangArray{contents: contents}, index) when index < 0 do
-    if (index < (-:array.size(contents) - 1)) do
+    if (index < (-:array.size(contents))) do
       raise ArgumentError
     else
       pop(array, index + :array.size(contents))

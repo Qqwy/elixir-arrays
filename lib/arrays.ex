@@ -57,12 +57,15 @@ contents = quote do
       ##{@current_default_array}<[1, -4, 33, 4]>
       iex> arr = update_in(arr[-1], (&(&1 + 1)))
       ##{@current_default_array}<[1, -4, 33, 5]>
-      iex> {5, arr} = pop_in(arr[-1])
+      iex> {33, arr} = pop_in(arr[-2])
       iex> arr
-      ##{@current_default_array}<[1, -4, 33]>
+      ##{@current_default_array}<[1, -4, 5]>
       iex> {1, arr} = pop_in(arr[0])
       iex> arr
-      ##{@current_default_array}<[-4, 33]>
+      ##{@current_default_array}<[-4, 5]>
+      iex> {5, arr} = pop_in(arr[-1])
+      ##{@current_default_array}<[-4]>
+
 
 
   square-bracket access, `get_in`, `put_in` and `update_in` are very fast operations.
@@ -91,6 +94,10 @@ contents = quote do
 
       iex> arr = Arrays.new([1,2,3,4])
       iex> update_in(arr[8], fn x -> x * 2 end)
+      ** (ArgumentError) argument error
+
+      iex> arr = Arrays.new([1,2,3,4])
+      iex> update_in(arr[-8], fn x -> x * 2 end)
       ** (ArgumentError) argument error
 
   #### Insertable
