@@ -164,7 +164,8 @@ defmodule Arrays.Implementations.ErlangArray do
 
     @impl true
     def resize(array = %ErlangArray{contents: contents}, new_size) do
-      new_contents = :array.resize(contents, new_size)
+      IO.inspect({contents, new_size}, label: :resize_erlang_array)
+      new_contents = :array.resize(new_size, contents)
       %ErlangArray{array | contents: new_contents}
     end
 
@@ -177,7 +178,7 @@ defmodule Arrays.Implementations.ErlangArray do
         size ->
           index = size - 1
           elem = :array.get(contents, index)
-          contents_rest = :array.resize(contents, index)
+          contents_rest = :array.resize(index, contents)
           array_rest = %ErlangArray{array | contents: contents_rest}
           {:ok, {elem, array_rest}}
       end
