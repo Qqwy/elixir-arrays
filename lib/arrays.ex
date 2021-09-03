@@ -113,6 +113,9 @@ defmodule Arrays do
 
   @doc """
   Creates a new, empty array with default options.
+
+      iex> Arrays.new()
+      #Arrays.Implementations.MapArray<[]>
   """
   @spec new() :: array()
   def new(), do: new([], [])
@@ -127,6 +130,16 @@ defmodule Arrays do
   Creates a new array, receiving its elements from the given `Enumerable`, with the given options.
 
   Accepts the same options as `empty/1`.
+
+      iex> Arrays.new([], size: 3)
+      #Arrays.Implementations.MapArray<[nil, nil, nil]>
+
+      iex> Arrays.new(["Hello"], size: 1)
+      #Arrays.Implementations.MapArray<["Hello"]>
+
+      iex> Arrays.new(["this", "will", "not", "fit"], size: 2)
+      #Arrays.Implementations.MapArray<["this", "will"]>
+
   """
   @spec new(Enum.t(), keyword) :: array()
   def new(enumerable, options) do
@@ -157,6 +170,12 @@ defmodule Arrays do
 
   @doc """
   The number of elements in the array.
+
+      iex> Arrays.new([2, 4, 6]) |> Arrays.size()
+      3
+
+      iex> Arrays.new([]) |> Arrays.size()
+      0
 
   See also `resize/2`.
   """
@@ -193,6 +212,12 @@ defmodule Arrays do
   Common array definitions use a 'sparse' implementation where elements not explicitly having a different value, are assumed to have this 'default' value.
   The particular default value can be set by passing the related option when calling `new/2` or `empty/1`.
   If no other default element is set, it will be `nil`.
+
+      iex> Arrays.new([2, 4, 6]) |> Arrays.default()
+      nil
+      iex> Arrays.new([2, 4, 6], default: 42) |> Arrays.default()
+      42
+
   """
   @spec default(array) :: any
   defdelegate default(array), to: Arrays.Protocol
