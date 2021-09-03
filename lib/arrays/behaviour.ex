@@ -15,4 +15,13 @@ defmodule Arrays.Behaviour do
   @type option :: {:default, any} | {atom, any}
   @type options :: [option]
   @callback empty(options) :: Arrays.Protocol.t()
+
+
+  @default_array_implementation Arrays.Implementations.MapArray
+
+  # Implemented here so other modules can refer to it in their module-bodies:
+  @doc false
+  def default_array_implementation do
+    Application.get_env(:arrays, :default_array_implementation, @default_array_implementation)
+  end
 end

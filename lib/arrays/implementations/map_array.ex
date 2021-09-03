@@ -75,13 +75,23 @@ defmodule Arrays.Implementations.MapArray do
   def pop(array = %MapArray{contents: contents, default: default}, index)
       when index >= 0 and index < map_size(contents) do
     {value, new_contents} = Map.pop(contents, index, default)
-    {value, %MapArray{array | contents: new_contents}}
+    {value, %MapArray{array | contents: fix_contents_after_pop(new_contents, index)}}
   end
 
   def pop(array = %MapArray{contents: contents, default: default}, index)
       when index < 0 and index >= -map_size(contents) do
     {value, new_contents} = Map.pop(contents, index + map_size(contents), default)
-    {value, %MapArray{array | contents: new_contents}}
+    {value, %MapArray{array | contents: fix_contents_after_pop(new_contents, index)}}
+  end
+
+  defp fix_contents_after_pop(contents, index) do
+    for {key, value} <- contents, into: %{} do
+      if key > index do
+        {key - 1, value}
+      else
+        {key, value}
+      end
+    end
   end
 
   defimpl Arrays.Protocol do

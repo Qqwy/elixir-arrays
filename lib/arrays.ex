@@ -1,5 +1,7 @@
 defmodule Arrays do
   @default_array_implementation Arrays.Implementations.MapArray
+  @current_default_array inspect(Arrays.Behaviour.default_array_implementation())
+
   @moduledoc """
   Well-structured Arrays with fast random-element-access for Elixir, offering a common interface with multiple implementations with varying performance guarantees that can be switched in your configuration.
 
@@ -44,21 +46,24 @@ defmodule Arrays do
   #### Collectable
 
       iex> [10, 20, 30, 40] |> Enum.into(Arrays.new())
-      #Arrays.Implementations.MapArray<[10, 20, 30, 40]>
+      ##{@current_default_array}<[10, 20, 30, 40]>
 
 
   #### Access
 
       iex> arr = Arrays.new([1, 2, 3, 4])
       iex> arr = put_in(arr[2], 33)
-      #Arrays.Implementations.MapArray<[1, 2, 33, 4]>
+      ##{@current_default_array}<[1, 2, 33, 4]>
       iex> arr = update_in(arr[1], (&(&1 * -2)))
-      #Arrays.Implementations.MapArray<[1, -4, 33, 4]>
+      ##{@current_default_array}<[1, -4, 33, 4]>
       iex> arr = update_in(arr[-1], (&(&1 + 1)))
-      #Arrays.Implementations.MapArray<[1, -4, 33, 5]>
+      ##{@current_default_array}<[1, -4, 33, 5]>
       iex> {1, arr} = pop_in(arr[0])
       iex> arr
-      #Arrays.Implementations.MapArray<[-4, 33, 5]>
+      ##{@current_default_array}<[-4, 33, 5]>
+      iex> {5, arr} = pop_in(arr[-1])
+      iex> arr
+      ##{@current_default_array}<[-4, 33]>
 
 
   #### Insertable
@@ -67,7 +72,7 @@ defmodule Arrays do
       iex> {:ok, arr} = Insertable.insert(arr, 42)
       iex> {:ok, arr} = Insertable.insert(arr, 100)
       iex> arr
-      #Arrays.Implementations.MapArray<[42, 100]>
+      ##{@current_default_array}<[42, 100]>
 
   #### Extractable
 
@@ -75,7 +80,7 @@ defmodule Arrays do
       {:error, :empty}
       iex> {:ok, {3, arr}} = Extractable.extract(Arrays.new([1, 2, 3]))
       iex> arr
-      #Arrays.Implementations.MapArray<[1, 2]>
+      ##{@current_default_array}<[1, 2]>
 
   ## Arrays vs Lists
 
@@ -126,7 +131,7 @@ defmodule Arrays do
   Creates a new, empty, array.
 
       iex> Arrays.empty()
-      #Arrays.Implementations.MapArray<[]>
+      ##{@current_default_array}<[]>
 
 
   ### Options
@@ -136,7 +141,7 @@ defmodule Arrays do
        - When no configuration is specified either, #{@default_array_implementation} will be used by default.
 
         iex> Arrays.empty([implementation: Arrays.Implementations.MapArray])
-        #Arrays.Implementations.MapArray<[]>
+        ##{@current_default_array}<[]>
 
         iex> Arrays.empty([implementation: Arrays.Implementations.ErlangArray])
         #Arrays.Implementations.ErlangArray<[]>
@@ -150,7 +155,7 @@ defmodule Arrays do
 
         # Using the MapArray
         iex> Arrays.empty([default: 42, size: 5, implementation: Arrays.Implementations.MapArray])
-        #Arrays.Implementations.MapArray<[42, 42, 42, 42, 42]>
+        ##{@current_default_array}<[42, 42, 42, 42, 42]>
 
         # Using the ErlangArray
         iex> Arrays.empty([default: "Empty" , size: 1, implementation: Arrays.Implementations.ErlangArray])
@@ -162,18 +167,22 @@ defmodule Arrays do
       Keyword.get(
         options,
         :implementation,
-        Application.get_env(:arrays, :default_array_implementation, @default_array_implementation)
+        default_array_implementation()
       )
 
     options = Keyword.delete(options, :implementation)
     impl_module.empty(options)
   end
 
+  defp default_array_implementation() do
+    Application.get_env(:arrays, :default_array_implementation, @default_array_implementation)
+  end
+
   @doc """
   Creates a new, empty array with default options.
 
       iex> Arrays.new()
-      #Arrays.Implementations.MapArray<[]>
+      ##{@current_default_array}<[]>
   """
   @spec new() :: array()
   def new(), do: new([], [])
@@ -190,13 +199,13 @@ defmodule Arrays do
   Accepts the same options as `empty/1`.
 
       iex> Arrays.new([], size: 3)
-      #Arrays.Implementations.MapArray<[nil, nil, nil]>
+      ##{@current_default_array}<[nil, nil, nil]>
 
       iex> Arrays.new(["Hello"], size: 1)
-      #Arrays.Implementations.MapArray<["Hello"]>
+      ##{@current_default_array}<["Hello"]>
 
       iex> Arrays.new(["this", "will", "not", "fit"], size: 2)
-      #Arrays.Implementations.MapArray<["this", "will"]>
+      ##{@current_default_array}<["this", "will"]>
 
   """
   @spec new(Enum.t(), keyword) :: array()
@@ -244,7 +253,7 @@ defmodule Arrays do
   Maps a function over an array, returning a new array.
 
       iex> Arrays.new([1,2,3]) |> Arrays.map(fn val -> val * 2 end)
-      #Arrays.Implementations.MapArray<[2, 4, 6]>
+      ##{@current_default_array}<[2, 4, 6]>
   """
   @spec map(array, (index, current_value :: value -> updated_value :: value)) :: array
   defdelegate map(array, fun), to: Arrays.Protocol
@@ -351,12 +360,12 @@ defmodule Arrays do
 
 
       iex> Arrays.new([4, 5, 6]) |> Arrays.replace(1, 69)
-      #Arrays.Implementations.MapArray<[4, 69, 6]>
+      ##{@current_default_array}<[4, 69, 6]>
 
       Just like `get/2`, negative indices are supported.
 
       iex> Arrays.new([7, 8, 9]) |> Arrays.replace(-1, 33)
-      #Arrays.Implementations.MapArray<[7, 8, 33]>
+      ##{@current_default_array}<[7, 8, 33]>
   """
   # TODO implement negative indexes here rather than impl-defined.
   @spec replace(array, index, value :: any) :: array
@@ -366,12 +375,12 @@ defmodule Arrays do
   Removes an element from the array `array`, resetting the element at `index` to the array's default value.
 
       iex> Arrays.new([7, 8, 9]) |> Arrays.reset(2)
-      #Arrays.Implementations.MapArray<[7, 8, nil]>
+      ##{@current_default_array}<[7, 8, nil]>
 
   Just like `get/2`, negative indices are supported.
 
       iex> Arrays.new([7, 8, 9]) |> Arrays.reset(-2)
-      #Arrays.Implementations.MapArray<[7, nil, 9]>
+      ##{@current_default_array}<[7, nil, 9]>
   """
   # TODO implement negative indexes here rather than impl-defined.
   @spec reset(array, index) :: any
@@ -381,7 +390,7 @@ defmodule Arrays do
   Appends ('pushes') a single element to the end of the array.
 
       iex> Arrays.new([1, 2, 3]) |> Arrays.append(4)
-      #Arrays.Implementations.MapArray<[1, 2, 3, 4]>
+      ##{@current_default_array}<[1, 2, 3, 4]>
 
   See also `extract/1`.
   """
@@ -398,7 +407,7 @@ defmodule Arrays do
       iex> elem
       4
       iex> arr
-      #Arrays.Implementations.MapArray<[1, 2, 3]>
+      ##{@current_default_array}<[1, 2, 3]>
 
       iex> Arrays.new([]) |> Arrays.extract()
       {:error, :empty}
@@ -415,19 +424,19 @@ defmodule Arrays do
   When the array becomes smaller, elements larger than the new `size` will be dropped.
 
       iex> Arrays.new([1, 2, 3]) |> Arrays.resize(6)
-      #Arrays.Implementations.MapArray<[1, 2, 3, nil, nil, nil]>
+      ##{@current_default_array}<[1, 2, 3, nil, nil, nil]>
 
       iex> Arrays.new([1, 2, 3], default: 42) |> Arrays.resize(5)
-      #Arrays.Implementations.MapArray<[1, 2, 3, 42, 42]>
+      ##{@current_default_array}<[1, 2, 3, 42, 42]>
 
       iex> Arrays.new([1, 2, 3]) |> Arrays.resize(1)
-      #Arrays.Implementations.MapArray<[1]>
+      ##{@current_default_array}<[1]>
 
       iex> Arrays.new([1, 2, 3]) |> Arrays.resize(0)
-      #Arrays.Implementations.MapArray<[]>
+      ##{@current_default_array}<[]>
 
       iex> Arrays.new([1, 2, 3]) |> Arrays.resize(3)
-      #Arrays.Implementations.MapArray<[1, 2, 3]>
+      ##{@current_default_array}<[1, 2, 3]>
 
   See also `size/1`.
   """
