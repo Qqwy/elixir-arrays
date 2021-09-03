@@ -1,6 +1,19 @@
 defprotocol Arrays.Protocol do
+  @typedoc """
+  Any datatype implementing the `Arrays.Protocol` as well as the `Arrays.Behaviour`.
+  """
   @type array :: t
+
+  @typedoc """
+  An array index can be either a nonnegative index (up to the size of the array),
+  or a negative index (then we count backwards from the size.)
+  """
   @type index :: integer
+
+  @typedoc """
+  Type of the kind of value stored in the array.
+  In practice, arrays can store anything so this is an alias for `any`.
+  """
   @type value :: any
 
   @spec size(array) :: non_neg_integer

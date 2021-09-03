@@ -60,8 +60,21 @@ defmodule Arrays do
   You can look at the source code of `Arrays.CommonProtocolImplementations` for some hints as to how those protocols can be easily implemented on top of the calls that the `Arrays.Protocol` protocol itself already provides.
   """
 
+  @typedoc """
+  Any datatype implementing the `Arrays.Protocol` as well as the `Arrays.Behaviour`.
+  """
   @type array :: Arrays.Protocol.t()
+
+  @typedoc """
+  An array index can be either a nonnegative index (up to the size of the array),
+  or a negative index (then we count backwards from the size.)
+  """
   @type index :: Arrays.Protocol.index()
+
+  @typedoc """
+  Type of the kind of value stored in the array.
+  In practice, arrays can store anything so this is an alias for `any`.
+  """
   @type value :: Arrays.Protocol.value()
 
   @doc """
