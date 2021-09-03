@@ -12,7 +12,23 @@ defmodule Arrays.Behaviour do
   This means that besides implementing `Arrays.Protocol`, types should also add
   `@behaviour Arrays.Behaviour` to their module, and add a sensible definition for `empty/1`.
   """
+  @typedoc """
+  Option passed to `c:empty/1`.
+
+  The option `:default` is recognized by all array implementations.
+  A particular array implementation might recognize other specialized options.
+  """
   @type option :: {:default, any} | {atom, any}
+
+  @typedoc """
+  A list of options passed to `c:empty/1`
+  """
   @type options :: [option]
+
+  @doc """
+  Creates a new instance of your custom array type.
+
+  This is called internally by functions such as `Arrays.new/0` and `Arrays.empty/1`.
+  """
   @callback empty(options) :: Arrays.Protocol.t()
 end
