@@ -361,7 +361,7 @@ contents = quote do
   defdelegate get(array, index), to: Arrays.Protocol
 
   @doc """
-  Replaces the element in array `array` at index `index` with `value`.
+  Replaces the element in `array` at `index` with `value`.
 
 
       iex> Arrays.new([4, 5, 6]) |> Arrays.replace(1, 69)
