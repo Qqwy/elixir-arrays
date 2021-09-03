@@ -82,14 +82,34 @@ defmodule Arrays.Implementations.ErlangArray do
 
   @impl Access
   def pop(array = %ErlangArray{contents: contents}, index) when index >= 0 do
-    new_index = index + map_size(contents)
-    value = :array.get(new_index, contents)
-    new_contents = :array.reset(new_index, contents)
+    value = :array.get(index, contents)
+    new_contents = fix_contents_after_pop(contents, index, :array.default(contents))
     {value, %ErlangArray{array | contents: new_contents}}
   end
 
   def pop(array = %ErlangArray{contents: contents}, index) when index < 0 do
     pop(array, index + :array.size(contents))
+  end
+
+  defp fix_contents_after_pop(contents, index, default) do
+    contents
+    |> do_foldl([], fn key, value, acc ->
+      cond do
+        key > index ->
+          [{key - 1, value} | acc]
+        key == index ->
+          acc # Leave out popped element
+        key < index ->
+          [{key, value} | acc]
+      end
+    end)
+    |> Enum.reverse()
+    |> IO.inspect(label: :before_orddict)
+    |> :array.from_orddict(default)
+  end
+
+  defp do_foldl(arr, acc, fun) do
+    :array.foldl(fun, acc, arr)
   end
 
   defimpl Arrays.Protocol do
