@@ -65,6 +65,8 @@ defmodule Arrays do
       iex> arr
       ##{@current_default_array}<[-4, 33]>
 
+  square-bracket access, `get_in`, `put_in` and `update_in` are very fast operations.
+  `pop_in` is a very slow operation, as it requires moving of all elements after the given index in the array.
 
   #### Insertable
 
