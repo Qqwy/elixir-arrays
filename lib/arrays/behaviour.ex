@@ -26,7 +26,7 @@ defmodule Arrays.Behaviour do
   @type options :: [option]
 
   @doc """
-  Creates a new instance of your custom array type.
+  Should create a new instance of your custom array type.
 
   This is called internally by functions such as `Arrays.new/0` and `Arrays.empty/1`.
   """
