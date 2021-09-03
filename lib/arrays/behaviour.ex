@@ -23,5 +23,6 @@ defmodule Arrays.Behaviour do
   @doc false
   def default_array_implementation do
     Application.get_env(:arrays, :default_array_implementation, @default_array_implementation)
+    |> IO.inspect(label: "default_array_implementation")
   end
 end

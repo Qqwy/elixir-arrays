@@ -171,13 +171,14 @@ defmodule Arrays do
         :implementation,
         default_array_implementation()
       )
+    IO.inspect(impl_module, label: "impl_module")
 
     options = Keyword.delete(options, :implementation)
     impl_module.empty(options)
   end
 
   defp default_array_implementation() do
-    Application.get_env(:arrays, :default_array_implementation, @default_array_implementation)
+    Arrays.Behaviour.default_array_implementation()
   end
 
   @doc """
