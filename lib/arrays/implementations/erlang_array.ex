@@ -2,7 +2,9 @@ defmodule Arrays.Implementations.ErlangArray do
   @moduledoc """
   Wraps the Erlang `:array` module.
 
-  (See: http://erlang.org/doc/man/array.html)
+  See http://erlang.org/doc/man/array.html for more information about its internals.
+
+
   """
 
   @behaviour Arrays.Behaviour
@@ -100,7 +102,7 @@ defmodule Arrays.Implementations.ErlangArray do
 
     @impl true
     def map(array = %ErlangArray{contents: contents}, fun) do
-      new_contents = :array.map(fun, contents)
+      new_contents = :array.map(fn _index, val -> fun.(val) end, contents)
       %ErlangArray{array | contents: new_contents}
     end
 
