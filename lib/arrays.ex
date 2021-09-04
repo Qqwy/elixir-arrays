@@ -22,7 +22,7 @@ contents = quote do
 
   By using `Collectable`:
 
-      iex> [1, 2, 3] |> Enum.into(Arrays.empty())
+      iex> [1, 2, 3] |> Enum.into(Arrays.new())
       ##{@current_default_array}<[1, 2, 3]>
       iex> for x <- 1..2, y <- 4..5, into: Arrays.new(), do: {x, y}
       ##{@current_default_array}<[{1, 4}, {1, 5}, {2, 4}, {2, 5}]>

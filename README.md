@@ -45,7 +45,7 @@ By calling `Arrays.new` or `Arrays.empty`:
 By using `Collectable`:
 
 ```elixir
-    iex> [1, 2, 3] |> Enum.into(Arrays.empty())
+    iex> [1, 2, 3] |> Enum.into(Arrays.new())
     #Arrays.Implementations.MapArray<[1, 2, 3]>
     iex> for x <- 1..2, y <- 4..5, into: Arrays.new(), do: {x, y}
     #Arrays.Implementations.MapArray<[{1, 4}, {1, 5}, {2, 4}, {2, 5}]>
@@ -96,8 +96,8 @@ Which array implementation/representation is actually used, can then later be co
 By default, the MapArray implementation is used when creating new array objects, but this can be configured by either changing the default in your whole application, or by passing an option to a specific invocation of [`new/0-2`](`new/0`), or [`empty/0-1`](`empty/0`).
 
 ```elixir
-iex> words = Arrays.new(["the", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog"])
-#
+    iex> words = Arrays.new(["the", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog"])
+    #Arrays.Implementations.MapArray<["the", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog"]>
 ```
 
 ### Protocols
