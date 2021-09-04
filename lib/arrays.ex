@@ -29,9 +29,9 @@ contents = quote do
 
   #### Some common array operations:
 
-  Indexing is constant-time,
-  the full Access calls are supported,
-  and variants of many common functions known from `Enum`, but that keep the result an array, are available.
+  - Indexing is fast.
+  - The full Access calls are supported,
+  - Variants of many common `Enum`-like functions that keep the result an array (rather than turning it into a list), are available.
 
       iex> words = Arrays.new(["the", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog"])
       ##{@current_default_array}<["the", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog"]>
