@@ -212,7 +212,7 @@ an ArgumentError is raised:
 
 #### Insertable
 
-```
+```elixir
     iex> arr = Arrays.new()
     iex> {:ok, arr} = Insertable.insert(arr, 42)
     iex> {:ok, arr} = Insertable.insert(arr, 100)
