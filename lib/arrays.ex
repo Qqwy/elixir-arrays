@@ -651,6 +651,28 @@ contents = quote do
       iex> Arrays.slice(Arrays.new([1, 2, 3, 4, 5, 6]), 10, 20)
       ##{@current_default_array}<[]>
 
+      iex> Arrays.slice(Arrays.new(1..100), 5, 10)
+      ##{@current_default_array}<[6, 7, 8, 9, 10, 11, 12, 13, 14, 15]>
+
+      # amount to take is greater than the number of elements
+      iex> Arrays.slice(Arrays.new(1..10), 5, 100)
+      ##{@current_default_array}<[6, 7, 8, 9, 10]>
+
+      iex> Arrays.slice(Arrays.new(1..10), 5, 0)
+      ##{@current_default_array}<[]>
+
+      # using a negative start index
+      iex> Arrays.slice(Arrays.new(1..10), -6, 3)
+      ##{@current_default_array}<[5, 6, 7]>
+
+      # out of bound start index (positive)
+      iex> Arrays.slice(Arrays.new(1..10), 10, 5)
+      ##{@current_default_array}<[]>
+
+      # out of bound start index (negative)
+      iex> Arrays.slice(Arrays.new(1..10), -11, 5)
+      ##{@current_default_array}<[]>
+
   See also `slice/2`.
 
   Compare with `Enum.slice/3`.
@@ -697,10 +719,14 @@ contents = quote do
     slice_any(array, start_index, amount)
   end
 
-  defp slice_any(array, start, amount) when start < 0 do
+  defp slice_any(array = %impl{}, start, amount) when start < 0 do
     count = Arrays.Protocol.size(array)
     start = count + start
-    Arrays.Protocol.slice(array, start, min(amount, count - start))
+    if start >= 0 do
+      Arrays.Protocol.slice(array, start, min(amount, count - start))
+    else
+      Arrays.empty(implementation: impl)
+    end
   end
 
   defp slice_any(array = %impl{}, start, amount) when start >= 0 do
