@@ -52,22 +52,26 @@ defmodule Arrays.CommonProtocolImplementations do
           {:ok, Arrays.Protocol.size(array)}
         end
 
-        def reduce(_, {:halt, acc}, _) do
+        def reduce(array, acc, fun) do
+          size = Arrays.Protocol.size(array)
+          do_reduce(array, acc, fun, 0, size)
+        end
+
+        defp do_reduce(_, {:halt, acc}, _, _, _) do
           {:halted, acc}
         end
 
-        def reduce(array, {:suspend, acc}, fun) do
-          {:suspended, acc, &reduce(array, &1, fun)}
+        defp do_reduce(array, {:suspend, acc}, fun, index, size) do
+          {:suspended, acc, &do_reduce(array, &1, fun, index, size)}
         end
 
-        def reduce(array, {:cont, acc}, fun) do
-          case Arrays.Protocol.extract(array) do
-            {:error, :empty} ->
-              {:done, acc}
+        defp do_reduce(_array, {:cont, acc}, _fun, index, index) do
+          {:done, acc}
+        end
 
-            {:ok, {elem, array_rest}} ->
-              reduce(array_rest, fun.(elem, acc), fun)
-          end
+        defp do_reduce(array, {:cont, acc}, fun, index, size) do
+          elem = Arrays.Protocol.get(array, index)
+          do_reduce(array, fun.(elem, acc), fun, index + 1, size)
         end
 
         def slice(array) do
