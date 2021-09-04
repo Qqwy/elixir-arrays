@@ -29,6 +29,10 @@ contents = quote do
 
   #### Some common array operations:
 
+  Indexing is constant-time,
+  the full Access calls are supported,
+  and variants of many common functions known from `Enum`, but that keep the result an array, are available.
+
       iex> words = Arrays.new(["the", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog"])
       ##{@current_default_array}<["the", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog"]>
       iex> Arrays.size(words) # Runs in constant-time
@@ -37,7 +41,6 @@ contents = quote do
       "fox"
       iex> words = put_in(words[2], "purple") # All of `Access` is supported
       ##{@current_default_array}<["the", "quick", "purple", "fox", "jumps", "over", "the", "lazy", "dog"]>
-      iex> # Common operations are available without having to turn the array back into a list (as `Enum` functions would do):
       iex> Arrays.map(words, &String.upcase/1) # Map a function, keep result an array
       ##{@current_default_array}<["THE", "QUICK", "PURPLE", "FOX", "JUMPS", "OVER", "THE", "LAZY", "DOG"]>
       iex> lengths = Arrays.map(words, &String.length/1)

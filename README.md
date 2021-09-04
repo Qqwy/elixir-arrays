@@ -50,6 +50,10 @@ By using `Collectable`:
 
 #### Some common array operations:
 
+  Indexing is constant-time,
+  the full Access calls are supported,
+  and variants of many common functions known from `Enum`, but that keep the result an array, are available.
+
 ```elixir
     iex> words = Arrays.new(["the", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog"])
     #Arrays.Implementations.MapArray<["the", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog"]>
