@@ -1,5 +1,6 @@
 defmodule Arrays.Mixfile do
   use Mix.Project
+  @source_url "https://github.com/Qqwy/elixir-arrays"
 
   def project do
     [
@@ -11,7 +12,7 @@ defmodule Arrays.Mixfile do
       deps: deps(),
       name: "Arrays",
       description: description(),
-      source_url: "https://github.com/Qqwy/elixir-arrays",
+      source_url: @source_url,
       package: package(),
       test_coverage: [tool: ExCoveralls],
       preferred_cli_env: [
@@ -59,14 +60,14 @@ defmodule Arrays.Mixfile do
       files: ["lib", "mix.exs", "README*"],
       maintainers: ["Qqwy/Wiebe-Marten Wijnja"],
       licenses: ["Apache 2.0"],
-      links: %{"GitHub" => "https://github.com/Qqwy/elixir-arrays"}
+      links: %{"GitHub" => @source_url}
     ]
   end
 
   defp docs() do
     [
       main: "Arrays",
-      # logo: "media/type_check_logo_icon_flat_small.svg",
+      logo: "brand/logo_text.png",
       groups_for_modules: [
         Main: [Arrays],
         "Implementations": ~r{^Arrays.Implementations},

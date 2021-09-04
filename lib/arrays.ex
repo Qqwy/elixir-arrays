@@ -521,14 +521,14 @@ contents = quote do
   Transforms the array into a list.
 
       iex> Arrays.new([1, 2, 3]) |> Arrays.to_list
-      [1, 2, 3]
+      [1, 2, 4]
   """
   @spec to_list(array) :: list
   defdelegate to_list(array), to: Arrays.Protocol
 end
 
 Module.create(Arrays,
-  quote do
+  quote [location: :keep] do
     @default_array_implementation Arrays.Implementations.MapArray
     unquote(contents)
 

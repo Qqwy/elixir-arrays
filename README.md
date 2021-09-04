@@ -1,13 +1,14 @@
 # Arrays
+![](https://raw.githubusercontent.com/Qqwy/elixir_arrays/master/brand/logo_text.png)
 
 
+`Arrays` is a library to work with well-structured Arrays with fast random-element-access for Elixir, offering a common interface with multiple implementations with varying performance guarantees that can be switched in your configuration.
 
 [![hex.pm version](https://img.shields.io/hexpm/v/arrays.svg)](https://hex.pm/packages/arrays)
 [![Documentation](https://img.shields.io/badge/hexdocs-latest-blue.svg)](https://hexdocs.pm/arrays/index.html)
 [![ci](https://github.com/Qqwy/elixir-arrays/actions/workflows/ci.yml/badge.svg)](https://github.com/Qqwy/elixir-arrays/actions/workflows/ci.yml)
 [![Coverage Status](https://coveralls.io/repos/github/Qqwy/elixir-arrays/badge.svg?branch=master)](https://coveralls.io/github/Qqwy/elixir-arrays?branch=master)
 
-  Well-structured Arrays with fast random-element-access for Elixir, offering a common interface with multiple implementations with varying performance guarantees that can be switched in your configuration.
 
 ## Installation
 

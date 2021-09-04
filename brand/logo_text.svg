@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="257.92529mm"
+   height="102.60749mm"
+   viewBox="0 0 257.9253 102.60749"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1 (c4e8f9ed74, 2021-05-24)"
+   sodipodi:docname="logo_text.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     fit-margin-top="10"
+     fit-margin-left="10"
+     fit-margin-right="10"
+     fit-margin-bottom="10"
+     inkscape:zoom="0.5"
+     inkscape:cx="273"
+     inkscape:cy="335"
+     inkscape:window-width="1920"
+     inkscape:window-height="1051"
+     inkscape:window-x="1919"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1847"
+       id="linearGradient2324"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-150.95844,-91.333763)"
+       x1="252.41277"
+       y1="137.48972"
+       x2="306.40985"
+       y2="291.43698" />
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient1847">
+      <stop
+         style="stop-color:#ff0097;stop-opacity:1"
+         offset="0"
+         id="stop1843" />
+      <stop
+         style="stop-color:#ffe100;stop-opacity:1"
+         offset="1"
+         id="stop1845" />
+    </linearGradient>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-4.0616493,-61.847696)">
+    <text
+       xml:space="preserve"
+       style="font-style:italic;font-variant:normal;font-weight:200;font-stretch:condensed;font-size:81.7896px;line-height:1.25;font-family:'Fira Sans Condensed';-inkscape-font-specification:'Fira Sans Condensed, Ultra-Light Italic Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:url(#linearGradient2324);fill-opacity:0.741176;stroke:none;stroke-width:23.1239"
+       x="8.0092192"
+       y="137.77011"
+       id="text2088"><tspan
+         sodipodi:role="line"
+         id="tspan2086"
+         x="8.0092192"
+         y="137.77011"
+         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:condensed;font-size:81.7896px;font-family:'Fira Sans Condensed';-inkscape-font-specification:'Fira Sans Condensed,  Light Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:url(#linearGradient2324);fill-opacity:0.741176;stroke-width:23.1239">[Arrays]</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:10.5833px;line-height:1.25;font-family:'Alegreya Sans SC';-inkscape-font-specification:'Alegreya Sans SC';text-align:center;text-anchor:middle;stroke-width:0.264583"
+       x="24.083136"
+       y="125.04987"
+       id="text2523"><tspan
+         sodipodi:role="line"
+         id="tspan2521"
+         style="stroke-width:0.264583"
+         x="24.083136"
+         y="125.04987"></tspan></text>
+  </g>
+</svg>
