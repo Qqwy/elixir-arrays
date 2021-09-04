@@ -134,7 +134,7 @@ Note: `FunLand` is an optional dependency of this library, so its functionality 
 
     iex> names = Arrays.new(["Ernie", "Bert", "Kermit"])
     iex> names |> Stream.map(&String.upcase/1) |> Enum.into(Arrays.new())
-    ##{@current_default_array}<["ERNIE", "BERT", "KERMIT"]>
+    #Arrays.Implementations.MapArray<["ERNIE", "BERT", "KERMIT"]>
 
     iex> foods = Arrays.new(["Cheese", "Strawberries", "Cookies"])
     iex> foods |> Enum.take(2)
