@@ -22,11 +22,11 @@ defmodule Arrays.Implementations.ErlangArray do
 
   use FunLand.Mappable
 
-  use FunLand.Reducible
+  use FunLand.Reducible, auto_enumerable: false
 
   @impl FunLand.Reducible
-  def reduce(%ErlangArray{contents: contents}, acc, fun) do
-    :array.foldr(fun, acc, contents)
+  def reduce(array = %ErlangArray{}, acc, fun) do
+    Arrays.Protocol.reduce(array, acc, fun)
   end
 
   @behaviour Access

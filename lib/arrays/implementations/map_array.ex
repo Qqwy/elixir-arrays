@@ -24,7 +24,7 @@ defmodule Arrays.Implementations.MapArray do
 
   use FunLand.Mappable
 
-  use FunLand.Reducible
+  use FunLand.Reducible, auto_enumerable: false
 
   @impl FunLand.Reducible
   def reduce(%MapArray{contents: contents}, acc, fun) do
