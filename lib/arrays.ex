@@ -656,7 +656,9 @@ contents = quote do
 
   See also `slice/3`.
 
-  There are two reasons to use this function over `Enum.slice/2`.
+  This function is similar to `Enum.slice/2`, but will always return an array (whereas `Enum.slice` will return a list).
+
+  Slicing on arrays is significantly faster than slicing on plain lists or maps, as there is no need to iterate over all elements we're going to skip since we can index them directly.
   """
   @doc since: "1.1.0"
   @spec slice(array, Range.t()) :: array
@@ -706,7 +708,9 @@ contents = quote do
 
   See also `slice/2`.
 
-  Compare with `Enum.slice/3`.
+  This function is similar to `Enum.slice/3`, but will always return an array (whereas `Enum.slice` will return a list).
+
+  Slicing on arrays is significantly faster than slicing on plain lists or maps, as there is no need to iterate over all elements we're going to skip since we can index them directly.
   """
   @doc since: "1.1.0"
   @spec slice(array, index, non_neg_integer) :: array
