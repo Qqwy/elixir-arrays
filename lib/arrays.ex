@@ -133,6 +133,12 @@ contents = quote do
       iex> arr
       ##{@current_default_array}<[1, 2]>
 
+
+  #### FunLand.Reducible
+
+      iex> Arrays.new([1,2,3,4]) |> FunLand.reduce(0, &(&1+&2))
+      10
+
   ## Arrays vs Lists
 
   Elixir widely uses `List` as default collection type.

@@ -12,7 +12,14 @@ defmodule Arrays.Mixfile do
       name: "Arrays",
       description: description(),
       source_url: "https://github.com/Qqwy/elixir-arrays",
-      package: package()
+      package: package(),
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: [
+        coveralls: :test,
+        "coveralls.detail": :test,
+        "coveralls.post": :test,
+        "coveralls.html": :test
+      ]
     ]
   end
 
@@ -34,7 +41,8 @@ defmodule Arrays.Mixfile do
       {:fun_land, "~> 0.10.0"},
       {:ex_doc, "~> 0.23", only: :dev, runtime: false},
       {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
-      {:credo, "~> 1.5", only: [:dev, :test], runtime: false}
+      {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
+      {:excoveralls, "~> 0.13", only: [:test]}
     ]
   end
 
