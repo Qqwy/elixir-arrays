@@ -11,7 +11,49 @@ contents = quote do
 
   ## Using `Arrays`
 
-  The general idea is that algorithms that use arrays can be used while abstracting away from the underlying representation.
+  ### Some simple examples:
+
+  #### Constructing Arrays
+
+  By calling `Arrays.new` or `Arrays.empty`:
+
+      iex> Arrays.new(["Dvorak", "Tchaikovsky", "Bruch"])
+      ##{@current_default_array}<["Dvorak", "Tchaikovsky", "Bruch"]>
+
+  By using `Collectable`:
+
+      iex> [1, 2, 3] |> Enum.into(Arrays.empty())
+      ##{@current_default_array}<[1, 2, 3]>
+      iex> for x <- 1..2, y <- 4..5, into: Arrays.new(), do: {x, y}
+      ##{@current_default_array}<[{1, 4}, {1, 5}, {2, 4}, {2, 5}]>
+
+  #### Some common array operations:
+
+      iex> words = Arrays.new(["the", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog"])
+      ##{@current_default_array}<["the", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog"]>
+      iex> Arrays.size(words) # Runs in constant-time
+      9
+      iex> words[3] # Indexing is fast
+      "fox"
+      iex> words = put_in(words[2], "purple") # All of `Access` is supported
+      ##{@current_default_array}<["the", "quick", "purple", "fox", "jumps", "over", "the", "lazy", "dog"]>
+      iex> # Common operations are available without having to turn the array back into a list (as `Enum` functions would do):
+      iex> Arrays.map(words, &String.upcase/1) # Map a function, keep result an array
+      ##{@current_default_array}<["THE", "QUICK", "PURPLE", "FOX", "JUMPS", "OVER", "THE", "LAZY", "DOG"]>
+      iex> lengths = Arrays.map(words, &String.length/1)
+      ##{@current_default_array}<[3, 5, 6, 3, 5, 4, 3, 4, 3]>
+      iex> Arrays.reduce(lengths, 0, &Kernel.+/2) # `reduce_right` is supported as well.
+      36
+
+  Concatenating arrays:
+
+      iex> Arrays.new([1, 2, 3]) |> Arrays.concat(Arrays.new([4, 5, 6]))
+      ##{@current_default_array}<[1, 2, 3, 4, 5, 6]>
+
+  ### Rationale
+
+
+  Algorithms that use arrays can be used while abstracting away from the underlying representation.
   Which array implementation/representation is actually used, can then later be configured/compared, to make a trade-off between ease-of-use and time/memory efficiency.
 
   `Arrays` itself comes with two built-in implementations:
@@ -20,6 +62,7 @@ contents = quote do
   - `Arrays.Implementations.MapArray` is a simple implementation that uses a map with sequential integers as keys.
 
   By default, #{@default_array_implementation} is used when creating new array objects, but this can be configured by either changing the default in your whole application, or by passing an option to a specific invocation of [`new/0-2`](`new/0`), or [`empty/0-1`](`empty/0`).
+
 
   ### Protocols
 
@@ -161,9 +204,9 @@ contents = quote do
 
   - Arrays keep track of their size. The size of a list needs to be computed.
   - Arrays allow fast¹ element indexing. Indexing later elements in a list slows down linearly in the size of the list.
-  - Pushing a single element to the _end_ of an array is fast¹. Pushing a single element to the end of a list is very slow, taking linear time.
-  - Pushing a single element to the _start_ of an array is slow, taking linear time. Pushing a single element to the head of a list is fast, taking constant time.
-  - Appending of arrays takes time proportional to the size of the second array. Appending two lists takes time proportional to the length of the first list. This means that repeated appending
+  - Pushing a single element to the _end_ of an array is fast¹. Pushing a single element to the end of a list is very slow (the whole list needs to be copied), taking linear time.
+  - Pushing a single element to the _start_ of an array is slow, taking linear time (the whole array needs to be moved around). Pushing a single element to the head of a list is fast, taking constant time.
+  - Concatenating arrays takes time proportional to the size of the second array (individual elements are pushed to the end). Concatenating two lists takes time proportional to the length of the first list. This means that repeated appending
   - Lists are allowed to be improper. Arrays can never be improper.
   - Many common operations in Elixir transform an enumerable into a list automatically. Arrays are made using `Arrays.new/0`, `Arrays.new/1` `Arrays.empty/0`, the `into:` option on a `for`, or `Enum.into`.
 
@@ -521,10 +564,42 @@ contents = quote do
   Transforms the array into a list.
 
       iex> Arrays.new([1, 2, 3]) |> Arrays.to_list
-      [1, 2, 4]
+      [1, 2, 3]
   """
   @spec to_list(array) :: list
   defdelegate to_list(array), to: Arrays.Protocol
+
+
+  @doc """
+  Returns an array where all elements of `right` are added to the end of `left`.
+
+  `left` should be an array. `right` can be either an array or any other enumerable.
+
+  Takes time proportional to the number of elements in `right`.
+  Essentially, each element in `right` is appended to `left` in turn.
+
+      iex> Arrays.new([1, 2, 3]) |> Arrays.concat(Arrays.new([4, 5, 6]))
+      ##{@current_default_array}<[1, 2, 3, 4, 5, 6]>
+
+      iex> Arrays.new([1, 2, 3]) |> Arrays.concat((1..10))
+      ##{@current_default_array}<[1, 2, 3, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]>
+
+  """
+  @spec concat(array(), array() | Enumerable.t()) :: array()
+  def concat(left, right) do
+    Enum.into(right, left)
+  end
+
+  @doc """
+  Turns an array of arrays (or other enumerable of enumerables) into a single array.
+
+  See also `concat/2`.
+  """
+  @spec concat(Enumerable.t()) :: array()
+  def concat(enumerable_of_enumerables) do
+    enumerable_of_enumerables
+    |> Enum.reduce(Arrays.new(), &Enum.into/2)
+  end
 end
 
 Module.create(Arrays,

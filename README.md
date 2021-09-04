@@ -28,8 +28,57 @@ Documentation can be found at [https://hexdocs.pm/arrays](https://hexdocs.pm/arr
 ----
 
 ## Using `Arrays`
+### Some simple examples:
 
-The general idea is that algorithms that use arrays can be used while abstracting away from the underlying representation.
+#### Constructing Arrays
+
+By calling `Arrays.new` or `Arrays.empty`:
+
+```elixir
+    iex> Arrays.new(["Dvorak", "Tchaikovsky", "Bruch"])
+    #Arrays.Implementations.MapArray<["Dvorak", "Tchaikovsky", "Bruch"]>
+```
+
+By using `Collectable`:
+
+```elixir
+    iex> [1, 2, 3] |> Enum.into(Arrays.empty())
+    #Arrays.Implementations.MapArray<[1, 2, 3]>
+    iex> for x <- 1..2, y <- 4..5, into: Arrays.new(), do: {x, y}
+    #Arrays.Implementations.MapArray<[{1, 4}, {1, 5}, {2, 4}, {2, 5}]>
+```
+
+#### Some common array operations:
+
+```elixir
+    iex> words = Arrays.new(["the", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog"])
+    #Arrays.Implementations.MapArray<["the", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog"]>
+    iex> Arrays.size(words) # Runs in constant-time
+    9
+    iex> words[3] # Indexing is fast
+    "fox"
+    iex> words = put_in(words[2], "purple") # All of `Access` is supported
+    #Arrays.Implementations.MapArray<["the", "quick", "purple", "fox", "jumps", "over", "the", "lazy", "dog"]>
+    iex> # Common operations are available without having to turn the array back into a list (as `Enum` functions would do):
+    iex> Arrays.map(words, &String.upcase/1) # Map a function, keep result an array
+    #Arrays.Implementations.MapArray<["THE", "QUICK", "PURPLE", "FOX", "JUMPS", "OVER", "THE", "LAZY", "DOG"]>
+    iex> lengths = Arrays.map(words, &String.length/1)
+    #Arrays.Implementations.MapArray<[3, 5, 6, 3, 5, 4, 3, 4, 3]>
+    iex> Arrays.reduce(lengths, 0, &Kernel.+/2) # `reduce_right` is supported as well.
+    36
+```
+
+Concatenating arrays:
+
+```elixir
+    iex> Arrays.new([1, 2, 3]) |> Arrays.concat(Arrays.new([4, 5, 6]))
+    #Arrays.Implementations.MapArray<[1, 2, 3, 4, 5, 6]>
+```
+
+### Rationale
+
+
+Algorithms that use arrays can be used while abstracting away from the underlying representation.
 Which array implementation/representation is actually used, can then later be configured/compared, to make a trade-off between ease-of-use and time/memory efficiency.
 
 `Arrays` itself comes with two built-in implementations:
@@ -37,7 +86,12 @@ Which array implementation/representation is actually used, can then later be co
 - `Arrays.Implementations.ErlangArray` wraps the Erlang `:array` module, allowing this time-tested implementation to be used with all common Elixir protocols and syntactic sugar.
 - `Arrays.Implementations.MapArray` is a simple implementation that uses a map with sequential integers as keys.
 
-By default, #{@default_array_implementation} is used when creating new array objects, but this can be configured by either changing the default in your whole application, or by passing an option to a specific invocation of [`new/0-2`](`new/0`), or [`empty/0-1`](`empty/0`).
+By default, the MapArray implementation is used when creating new array objects, but this can be configured by either changing the default in your whole application, or by passing an option to a specific invocation of [`new/0-2`](`new/0`), or [`empty/0-1`](`empty/0`).
+
+```elixir
+iex> words = Arrays.new(["the", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog"])
+#
+```
 
 ### Protocols
 
