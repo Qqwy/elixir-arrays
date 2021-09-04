@@ -3,7 +3,7 @@ defmodule ArraysTest do
 
     doctest Arrays
 
-    describe "Doctest Arrays module with ErlangArray as implementation" do
+    describe "Arrays module (with ErlangArray as implementation)" do
       alias Arrays.Test.Support.Arrays.DoctestErlangArray, as: Arrays
       doctest Arrays, except: [empty: 1]
     end

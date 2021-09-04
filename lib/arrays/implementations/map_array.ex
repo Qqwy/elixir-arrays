@@ -66,9 +66,8 @@ defmodule Arrays.Implementations.MapArray do
     {value, %MapArray{array | contents: new_contents}}
   end
 
-  def get_and_update(array = %MapArray{}, _index, function) do
-    {res, _} = function.(nil)
-    {res, array}
+  def get_and_update(%MapArray{}, _index, _function) do
+    raise ArgumentError
   end
 
   @impl Access
@@ -78,11 +77,12 @@ defmodule Arrays.Implementations.MapArray do
     {value, %MapArray{array | contents: fix_contents_after_pop(new_contents, index)}}
   end
 
-  def pop(array = %MapArray{contents: contents, default: default}, index)
+  def pop(array = %MapArray{contents: contents}, index)
       when index < 0 and index >= -map_size(contents) do
-    {value, new_contents} = Map.pop(contents, index + map_size(contents), default)
-    {value, %MapArray{array | contents: fix_contents_after_pop(new_contents, index)}}
+    pop(array, index + map_size(contents))
   end
+
+  def pop(%MapArray{}, _index), do: raise ArgumentError
 
   defp fix_contents_after_pop(contents, index) do
     for {key, value} <- contents, into: %{} do

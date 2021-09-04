@@ -59,7 +59,8 @@ defmodule Arrays.Implementations.ErlangArray do
 
       case function.(value) do
         :pop ->
-          new_contents = :array.reset(index, contents)
+          value = :array.get(index, contents)
+          new_contents = fix_contents_after_pop(contents, index, :array.default(contents))
           {value, %ErlangArray{array | contents: new_contents}}
 
         {get, new_value} ->

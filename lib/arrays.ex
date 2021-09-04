@@ -64,7 +64,13 @@ contents = quote do
       iex> arr
       ##{@current_default_array}<[-4, 5]>
       iex> {5, arr} = pop_in(arr[-1])
+      iex> arr
       ##{@current_default_array}<[-4]>
+
+      iex> arr2 = Arrays.new([10, 20, 30])
+      iex> {20, arr2} = get_and_update_in(arr2[1], fn _ -> :pop end)
+      iex> arr2
+      ##{@current_default_array}<[10, 30]>
 
 
 
