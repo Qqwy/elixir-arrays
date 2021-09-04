@@ -22,19 +22,31 @@ defmodule Arrays.Implementations.MapArray do
     Enum.into(0..(size - 1), %{}, &{&1, default})
   end
 
-  use FunLand.Mappable
+  if Code.ensure_loaded?(FunLand.Mappable) do
+    Module.eval_quoted(__MODULE__,
+      quote do
+        use FunLand.Mappable
 
-  use FunLand.Reducible, auto_enumerable: false
-
-  @impl FunLand.Reducible
-  def reduce(%MapArray{contents: contents}, acc, fun) do
-    reduce(contents, acc, fun, 0, :maps.size(contents))
+        def map(array, fun), do: Arrays.Protocol.map(array, fun)
+    end)
   end
 
-  defp reduce(_contents, acc, _fun, index, index), do: acc
+  if Code.ensure_loaded?(FunLand.Reducible) do
+    Module.eval_quoted(__MODULE__,
+      quote do
+        use FunLand.Reducible, auto_enumerable: false
 
-  defp reduce(contents, acc, fun, index, max_index) do
-    reduce(contents, fun.(contents[index], acc), fun, index + 1, max_index)
+        @impl FunLand.Reducible
+        def reduce(%MapArray{contents: contents}, acc, fun) do
+          reduce(contents, acc, fun, 0, :maps.size(contents))
+        end
+
+        defp reduce(_contents, acc, _fun, index, index), do: acc
+
+        defp reduce(contents, acc, fun, index, max_index) do
+          reduce(contents, fun.(contents[index], acc), fun, index + 1, max_index)
+        end
+      end)
   end
 
   @behaviour Access

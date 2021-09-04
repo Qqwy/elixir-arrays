@@ -38,7 +38,7 @@ defmodule Arrays.Mixfile do
     [
       {:extractable, "~> 0.2"},
       {:insertable, "~> 0.2"},
-      {:fun_land, "~> 0.10.0"},
+      {:fun_land, "~> 0.10.0", optional: true},
       {:ex_doc, "~> 0.23", only: :dev, runtime: false},
       {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
       {:credo, "~> 1.5", only: [:dev, :test], runtime: false},

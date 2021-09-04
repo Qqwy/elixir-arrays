@@ -23,13 +23,24 @@ defmodule Arrays.Implementations.ErlangArray do
     %ErlangArray{contents: contents}
   end
 
-  use FunLand.Mappable
+  if Code.ensure_loaded?(FunLand.Mappable) do
+    Module.eval_quoted(__MODULE__,
+      quote do
+        use FunLand.Mappable
+        def map(array, fun), do: Arrays.Protocol.map(array, fun)
+    end)
+  end
 
-  use FunLand.Reducible, auto_enumerable: false
+  if Code.ensure_loaded?(FunLand.Reducible) do
+    Module.eval_quoted(__MODULE__,
+      quote do
+        use FunLand.Reducible, auto_enumerable: false
 
-  @impl FunLand.Reducible
-  def reduce(array = %ErlangArray{}, acc, fun) do
-    Arrays.Protocol.reduce(array, acc, fun)
+        @impl FunLand.Reducible
+        def reduce(array = %ErlangArray{}, acc, fun) do
+          Arrays.Protocol.reduce(array, acc, fun)
+        end
+      end)
   end
 
   @behaviour Access

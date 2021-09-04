@@ -37,6 +37,9 @@ contents = quote do
   - `FunLand.Mappable`: Map a function over each element in the array, creating a new array with the results
   - `FunLand.Reducible`: Reduce an array to a single value.
 
+
+  Note: `FunLand` is an optional dependency of this library, so its functionality will only be available if `:fun_land` is also added to your `mix.exs` dependencies list.
+
   #### Enumerable
 
       iex> myarray = Arrays.new([2, 1, 4, 2, 0])
@@ -141,8 +144,15 @@ contents = quote do
 
   #### FunLand.Reducible
 
+  Note: `FunLand` is an optional dependency of this library.
+
       iex> Arrays.new([1,2,3,4]) |> FunLand.reduce(0, &(&1+&2))
       10
+
+  #### FunLand.Mappable
+
+      iex> Arrays.new([1, 2, 3, 4]) |> FunLand.Mappable.map(fn x -> x * 2 end)
+      ##{@current_default_array}<[2, 4, 6, 8]>
 
   ## Arrays vs Lists
 
