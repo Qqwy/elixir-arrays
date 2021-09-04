@@ -2,7 +2,7 @@
 
 
 [![hex.pm version](https://img.shields.io/hexpm/v/arrays.svg)](https://hex.pm/packages/arrays)
-[![Build Status](https://travis-ci.org/Qqwy/elixir-arrays.svg?branch=master)](https://travis-ci.org/Qqwy/elixir-arrays)
+[![Build Status](https://travis-ci.com/Qqwy/elixir-arrays.svg?branch=master)](https://travis-ci.com/Qqwy/elixir-arrays)
 
 Well-structured Arrays with fast random-element-access for Elixir, offering a common interface with multiple implementations with varying performance guarantees that can be switched in your configuration.
 
