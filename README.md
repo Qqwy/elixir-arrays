@@ -38,7 +38,7 @@ By calling `Arrays.new` or `Arrays.empty`:
     iex> Arrays.new(["Dvorak", "Tchaikovsky", "Bruch"])
     #Arrays.Implementations.MapArray<["Dvorak", "Tchaikovsky", "Bruch"]>
 
-    iex> Arrays.new(["Dvorak", "Tchaikovsky", "Bruch"], implementation; Arrays.Implementations.ErlangArray)
+    iex> Arrays.new(["Dvorak", "Tchaikovsky", "Bruch"], implementation: Arrays.Implementations.ErlangArray)
     #Arrays.Implementations.ErlangArray<["Dvorak", "Tchaikovsky", "Bruch"]>
 ```
 
