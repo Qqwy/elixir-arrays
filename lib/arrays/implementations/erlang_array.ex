@@ -149,6 +149,13 @@ defmodule Arrays.Implementations.ErlangArray do
     :array.foldl(fun, acc, arr)
   end
 
+  @doc false
+  def build_slice(%ErlangArray{contents: contents}, start, length, into) do
+    for index <- start..(start + length - 1), into: into do
+      :array.get(index, contents)
+    end
+  end
+
   defimpl Arrays.Protocol do
     alias Arrays.Implementations.ErlangArray
 
@@ -243,6 +250,11 @@ defmodule Arrays.Implementations.ErlangArray do
     @impl true
     def to_list(%ErlangArray{contents: contents}) do
       :array.to_list(contents)
+    end
+
+    @impl true
+    def slice(array = %ErlangArray{}, start, amount) do
+      @for.build_slice(array, start, amount, @for.empty(default: :array.default(array.contents)))
     end
   end
 end

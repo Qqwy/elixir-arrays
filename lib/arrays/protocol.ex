@@ -5,7 +5,6 @@ defprotocol Arrays.Protocol do
   Do not call functions in this module directly if you want to use an array in your code.
   Instead, use the functions in the `Arrays` module, which will use the methods of this protocol
   (as well as the `Arrays.Behaviour` behaviour) internally.
-
   """
   @typedoc """
   Any datatype implementing the `Arrays.Protocol` as well as the `Arrays.Behaviour`.
@@ -123,4 +122,14 @@ defprotocol Arrays.Protocol do
   """
   @spec to_list(array) :: list
   def to_list(array)
+
+  @doc """
+  Return a contiguous slice of some elements in the array.
+
+  Handling of bounds is handled in the `Arrays` module,
+  so we know for certain that `0 <= start_index < size(array)`
+  and `start_index + length < size(array)`.
+  """
+  @spec slice(array, index, non_neg_integer) :: array
+  def slice(array, start_index, amount)
 end

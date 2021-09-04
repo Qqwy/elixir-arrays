@@ -603,6 +603,102 @@ contents = quote do
     enumerable_of_enumerables
     |> Enum.reduce(Arrays.new(), &Enum.into/2)
   end
+
+  @doc """
+  Returns a sub-array of the given array by `index_range`.
+
+  `index_range` must be a `Range`. Given an array, it drops elements before
+  `index_range.first` (zero-based), then it takes elements until element
+  `index_range.last` (inclusively).
+
+  Indexes are normalized, meaning that negative indexes will be counted from the
+  end (for example, -1 means the last element of the array).
+
+  If `index_range.last` is out of bounds, then it is assigned as the index of the
+  last element.
+
+  If the normalized `index_range.first` is out of bounds of the given array,
+  or if it is is greater than the normalized `index_range.last`,
+  then an empty array is returned.
+
+      iex> Arrays.slice(Arrays.new([1, 2, 3, 4, 5, 6]), 2..4)
+      ##{@current_default_array}<[3, 4, 5]>
+
+  See also `slice/3`.
+
+  Compare with `Enum.slice/2`.
+  """
+  @spec slice(array, Range.t()) :: array
+  def slice(array, index_range)
+
+  @doc """
+  Returns a sub-array of the given array, from `start_index` (zero-based)
+  with `amount` number of elements if available.
+
+  Given an array, it skips elements right before element `start_index`; then,
+  it takes `amount` of elements, returning as many elements as possible if there
+  are not enough elements.
+
+  A negative `start_index` can be passed, which means the array is enumerated
+  once and the index is counted from the end (for example, -1 starts slicing from
+  the last element).
+
+  It returns an empty array if `amount` is 0 or if `start_index` is out of bounds.
+
+
+  See also `slice/2`.
+
+  Compare with `Enum.slice/3`.
+  """
+  @spec slice(array, index, non_neg_integer) :: array
+  def slice(array, start_index, amount)
+
+  # NOTE: we are not using the new range step syntax here
+  # for backwards-compatibility with older Elixir versions.
+  def slice(array, index_range = %{first: first, last: last, step: step}) do
+    if step == 1 or (step == -1 and first > last) do
+      slice(array, first, last)
+    else
+        raise ArgumentError,
+          "Arrays.slice/2 does not accept ranges with custom steps, got: #{inspect(index_range)}"
+    end
+  end
+  def slice(array, index_range = %{__struct__: Range, first: first, last: last}) do
+    step = if first <= last, do: 1, else: -1
+    slice(array, Map.put(index_range, :step, step))
+  end
+
+  def slice(array, first, last) when last >= first and last >= 0 and first >= 0 do
+    slice_any(array, first, last - first + 1)
+  end
+
+  def slice(array, first, last) do
+    count = Arrays.Protocol.size(array)
+    first = if first >= 0, do: first, else: first + count
+    last = if last >= 0, do: last, else: last + count
+    amount = last - first + 1
+
+    if first >= 0 and first < count and amount > 0 do
+      Arrays.Protocol.slice(array, first, min(amount, count - first))
+    else
+      Arrays.new()
+    end
+  end
+
+  defp slice_any(array, start, amount) when start < 0 do
+    count = Arrays.Protocol.size(array)
+    start = count + start
+    Arrays.Protocol.slice(array, start, min(amount, count - start))
+  end
+
+  defp slice_any(array, start, amount) when start >= 0 do
+    count = Arrays.Protocol.size(array)
+    if start >= count do
+      Arrays.new()
+    else
+      Arrays.Protocol.slice(array, start, min(amount, count - start))
+    end
+  end
 end
 
 Module.create(Arrays,

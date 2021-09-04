@@ -116,6 +116,13 @@ defmodule Arrays.Implementations.MapArray do
     end
   end
 
+  @doc false
+  def build_slice(%MapArray{contents: contents}, start, length, into) do
+    for index <- start..(start + length - 1), into: into do
+      contents[index]
+    end
+  end
+
   defimpl Arrays.Protocol do
     alias Arrays.Implementations.MapArray
 
@@ -239,6 +246,11 @@ defmodule Arrays.Implementations.MapArray do
     @impl true
     def to_list(%MapArray{contents: contents}) do
       :maps.values(contents)
+    end
+
+    @impl true
+    def slice(array = %MapArray{}, start, amount) do
+      @for.build_slice(array, start, amount, @for.empty(default: array.default))
     end
   end
 end

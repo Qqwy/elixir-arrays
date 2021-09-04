@@ -75,10 +75,11 @@ defmodule Arrays.CommonProtocolImplementations do
         end
 
         def slice(array) do
-          # size = Arrays.Protocol.size(array)
+          size = Arrays.Protocol.size(array)
           # {:ok, size, &Enumerable.List.slice(Arrays.Protocol.to_list(array), &1, &2, size)}
           # TODO write a faster implementation that is correct
-          {:error, __MODULE__}
+          # {:error, __MODULE__}
+          {:ok, size, &@for.build_slice(array, &1, &2, [])}
         end
       end
   end
