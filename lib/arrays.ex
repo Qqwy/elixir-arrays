@@ -41,6 +41,17 @@ contents = quote do
       5
       iex> Enum.with_index(myarray)
       [{0, 0}, {2, 1}, {4, 2}, {1, 3}, {2, 4}]
+      iex> Enum.slice(myarray, 1, 3)
+      [1, 4, 2]
+
+      iex> names = Arrays.new(["Ernie", "Bert", "Kermit"])
+      iex> names |> Stream.map(&String.upcase/1) |> Stream.run
+      ##{@current_default_array}<["ERNIE", "BERT", "KERMIT"]>
+
+      iex> foods = Arrays.new(["Cheese", "Strawberries", "Cookies"])
+      iex> foods |> Enum.take(2)
+      ##{@current_default_array}<["Cheese", "Strawberries"]>
+
 
   #### Collectable
 
