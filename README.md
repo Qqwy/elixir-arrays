@@ -146,7 +146,7 @@ Note: `FunLand` is an optional dependency of this library, so its functionality 
 
 ```elixir
     iex> [10, 20, 30, 40] |> Enum.into(Arrays.new())
-    ##{@current_default_array}<[10, 20, 30, 40]>
+    #Arrays.Implementations.MapArray<[10, 20, 30, 40]>
 ```
 
 #### Access
@@ -154,25 +154,25 @@ Note: `FunLand` is an optional dependency of this library, so its functionality 
 ```elixir
     iex> arr = Arrays.new([1, 2, 3, 4])
     iex> arr = put_in(arr[2], 33)
-    ##{@current_default_array}<[1, 2, 33, 4]>
+    #Arrays.Implementations.MapArray<[1, 2, 33, 4]>
     iex> arr = update_in(arr[1], (&(&1 * -2)))
-    ##{@current_default_array}<[1, -4, 33, 4]>
+    #Arrays.Implementations.MapArray<[1, -4, 33, 4]>
     iex> arr = update_in(arr[-1], (&(&1 + 1)))
-    ##{@current_default_array}<[1, -4, 33, 5]>
+    #Arrays.Implementations.MapArray<[1, -4, 33, 5]>
     iex> {33, arr} = pop_in(arr[-2])
     iex> arr
-    ##{@current_default_array}<[1, -4, 5]>
+    #Arrays.Implementations.MapArray<[1, -4, 5]>
     iex> {1, arr} = pop_in(arr[0])
     iex> arr
-    ##{@current_default_array}<[-4, 5]>
+    #Arrays.Implementations.MapArray<[-4, 5]>
     iex> {5, arr} = pop_in(arr[-1])
     iex> arr
-    ##{@current_default_array}<[-4]>
+    #Arrays.Implementations.MapArray<[-4]>
 
     iex> arr2 = Arrays.new([10, 20, 30])
     iex> {20, arr2} = get_and_update_in(arr2[1], fn _ -> :pop end)
     iex> arr2
-    ##{@current_default_array}<[10, 30]>
+    #Arrays.Implementations.MapArray<[10, 30]>
 ```
 
 
@@ -217,7 +217,7 @@ an ArgumentError is raised:
     iex> {:ok, arr} = Insertable.insert(arr, 42)
     iex> {:ok, arr} = Insertable.insert(arr, 100)
     iex> arr
-    ##{@current_default_array}<[42, 100]>
+    #Arrays.Implementations.MapArray<[42, 100]>
 ```
 
 #### Extractable
@@ -227,7 +227,7 @@ an ArgumentError is raised:
     {:error, :empty}
     iex> {:ok, {3, arr}} = Extractable.extract(Arrays.new([1, 2, 3]))
     iex> arr
-    ##{@current_default_array}<[1, 2]>
+    #Arrays.Implementations.MapArray<[1, 2]>
 ```
 
 #### FunLand.Reducible
@@ -243,7 +243,7 @@ Note: `FunLand` is an optional dependency of this library.
 
 ```elixir
     iex> Arrays.new([1, 2, 3, 4]) |> FunLand.Mappable.map(fn x -> x * 2 end)
-    ##{@current_default_array}<[2, 4, 6, 8]>
+    #Arrays.Implementations.MapArray<[2, 4, 6, 8]>
 ```
 
 ## Arrays vs Lists
