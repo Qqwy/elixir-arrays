@@ -112,6 +112,9 @@ contents = quote do
       iex> foods |> Enum.take(2)
       ["Cheese", "Strawberries"]
 
+      iex> Arrays.new([1, 2, 3]) |> Stream.zip(Arrays.new([4, 5, 6])) |> Enum.take(2)
+      [{1, 4}, {2, 5}]
+
 
   #### Collectable
 
