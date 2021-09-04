@@ -203,14 +203,15 @@ contents = quote do
   ## Arrays vs Lists
 
   Elixir widely uses `List` as default collection type.
-  Arrays have the folowing differences:
+  Compared to lists, Arrays have the folowing differences:
 
-  - Arrays keep track of their size. The size of a list needs to be computed.
-  - Arrays allow fast¹ element indexing. Indexing later elements in a list slows down linearly in the size of the list.
+  - Arrays keep track of their *size*. The size of a list needs to be computed.
+  - Arrays allow fast¹ element *indexing*. Indexing later elements in a list slows down linearly in the size of the list.
+  - Arrays allow fast *slicing*. For lists, this slows down the further away from the head of the list we are.
   - Pushing a single element to the _end_ of an array is fast¹. Pushing a single element to the end of a list is very slow (the whole list needs to be copied), taking linear time.
-  - Pushing a single element to the _start_ of an array is slow, taking linear time (the whole array needs to be moved around). Pushing a single element to the head of a list is fast, taking constant time.
-  - Concatenating arrays takes time proportional to the size of the second array (individual elements are pushed to the end). Concatenating two lists takes time proportional to the length of the first list. This means that repeated appending
-  - Lists are allowed to be improper. Arrays can never be improper.
+  - *Pushing* a single element to the _start_ of an array is slow, taking linear time (the whole array needs to be moved around). Pushing a single element to the head of a list is fast, taking constant time.
+  - *Concatenating* arrays takes time proportional to the size of the second array (individual elements are pushed to the end). Concatenating two lists takes time proportional to the length of the first list. This means that repeated appending
+  - Arrays are always well-formed. In certain cases, Lists are allowed to be improper.
   - Many common operations in Elixir transform an enumerable into a list automatically. Arrays are made using `Arrays.new/0`, `Arrays.new/1` `Arrays.empty/0`, the `into:` option on a `for`, or `Enum.into`.
 
   ¹: Depending on the implementation, 'fast' is either _O(1)_ (constant time, regardless of array size) or _O(log(n))_ (logarithmic time, becoming a constant amount slower each time the array doubles in size.)
@@ -355,6 +356,8 @@ contents = quote do
 
   @doc """
   The number of elements in the array.
+
+  Looking up the size of an array is fast: this function runs in constant time.
 
       iex> Arrays.new([2, 4, 6]) |> Arrays.size()
       3
@@ -647,7 +650,7 @@ contents = quote do
 
   See also `slice/3`.
 
-  Compare with `Enum.slice/2`.
+  There are two reasons to use this function over `Enum.slice/2`.
   """
   @doc since: "1.1.0"
   @spec slice(array, Range.t()) :: array
