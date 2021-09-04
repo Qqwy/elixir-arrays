@@ -612,6 +612,8 @@ Module.create(Arrays,
 
     # This is only relevant in the testing environment.
     # On normal compilation, we do not need to make the compiled module larger.
+
+    # coveralls-ignore-start
     if Mix.env() == :test do
       @internal_module_contents unquote(Macro.escape(contents))
       @doc false
@@ -619,6 +621,7 @@ Module.create(Arrays,
         @internal_module_contents
       end
     end
+    # coveralls-ignore-stop
   end, Macro.Env.location(__ENV__)
 )
 
