@@ -1,5 +1,5 @@
 # Arrays
-![](https://raw.githubusercontent.com/Qqwy/elixir_arrays/master/brand/logo_text.png)
+![](https://raw.githubusercontent.com/Qqwy/elixir-arrays/master/brand/logo_text.png)
 
 
 `Arrays` is a library to work with well-structured Arrays with fast random-element-access for Elixir, offering a common interface with multiple implementations with varying performance guarantees that can be switched in your configuration.
