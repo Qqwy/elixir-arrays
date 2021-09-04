@@ -1,8 +1,11 @@
 # Arrays
 
 
+
 [![hex.pm version](https://img.shields.io/hexpm/v/arrays.svg)](https://hex.pm/packages/arrays)
 [![.github/workflows/ci.yml](https://github.com/Qqwy/elixir-arrays/actions/workflows/ci.yml/badge.svg)](https://github.com/Qqwy/elixir-arrays/actions/workflows/ci.yml)
+
+  Well-structured Arrays with fast random-element-access for Elixir, offering a common interface with multiple implementations with varying performance guarantees that can be switched in your configuration.
 
 ## Installation
 
