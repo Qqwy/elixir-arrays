@@ -645,6 +645,11 @@ contents = quote do
 
   It returns an empty array if `amount` is 0 or if `start_index` is out of bounds.
 
+      iex> Arrays.slice(Arrays.new([1, 2, 3, 4, 5, 6]), 2, 4)
+      ##{@current_default_array}<[3, 4, 5, 6]>
+
+      iex> Arrays.slice(Arrays.new([1, 2, 3, 4, 5, 6]), 10, 20)
+      ##{@current_default_array}<[]>
 
   See also `slice/2`.
 
@@ -657,7 +662,7 @@ contents = quote do
   # for backwards-compatibility with older Elixir versions.
   def slice(array, index_range = %{first: first, last: last, step: step}) do
     if step == 1 or (step == -1 and first > last) do
-      slice(array, first, last)
+      slice_range(array, first, last)
     else
         raise ArgumentError,
           "Arrays.slice/2 does not accept ranges with custom steps, got: #{inspect(index_range)}"
@@ -668,11 +673,11 @@ contents = quote do
     slice(array, Map.put(index_range, :step, step))
   end
 
-  def slice(array, first, last) when last >= first and last >= 0 and first >= 0 do
+  def slice_range(array, first, last) when last >= first and last >= 0 and first >= 0 do
     slice_any(array, first, last - first + 1)
   end
 
-  def slice(array, first, last) do
+  def slice_range(array = %impl{}, first, last) do
     count = Arrays.Protocol.size(array)
     first = if first >= 0, do: first, else: first + count
     last = if last >= 0, do: last, else: last + count
@@ -681,8 +686,15 @@ contents = quote do
     if first >= 0 and first < count and amount > 0 do
       Arrays.Protocol.slice(array, first, min(amount, count - first))
     else
-      Arrays.new()
+      Arrays.empty(implementation: impl)
     end
+  end
+
+  def slice(array = %impl{}, start_index, 0) when is_integer(start_index), do: Arrays.empty(implementation: impl)
+
+  def slice(array, start_index, amount)
+    when is_integer(start_index) and is_integer(amount) and amount >= 0 do
+    slice_any(array, start_index, amount)
   end
 
   defp slice_any(array, start, amount) when start < 0 do
@@ -691,10 +703,10 @@ contents = quote do
     Arrays.Protocol.slice(array, start, min(amount, count - start))
   end
 
-  defp slice_any(array, start, amount) when start >= 0 do
+  defp slice_any(array = %impl{}, start, amount) when start >= 0 do
     count = Arrays.Protocol.size(array)
     if start >= count do
-      Arrays.new()
+      Arrays.empty(implementation: impl)
     else
       Arrays.Protocol.slice(array, start, min(amount, count - start))
     end
