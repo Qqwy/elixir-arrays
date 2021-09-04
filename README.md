@@ -19,6 +19,7 @@ end
 
 Documentation can be found at [https://hexdocs.pm/arrays](https://hexdocs.pm/arrays).
 
+----
 
 ## Using `Arrays`
 
@@ -206,3 +207,10 @@ Besides these, you probably want to implement the above-mentioned protocols as w
 You can look at the source code of `Arrays.CommonProtocolImplementations` for some hints as to how those protocols can be easily implemented on top of the calls that the `Arrays.Protocol` protocol itself already provides.
 
 
+----
+
+
+## Changelog
+
+- 1.0.0 - Stable release. Mayor overhaul, 100% test coverage, 100% documentation. 
+- 0.1.0 - Initial version.
