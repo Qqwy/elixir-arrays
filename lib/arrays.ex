@@ -212,11 +212,11 @@ contents = quote do
   - When not specified, will use the implementation which is configured in `:arrays, :default_array_implementation`,
   - When no configuration is specified either, #{@default_array_implementation} will be used by default.
 
-      iex> Arrays.empty([implementation: Arrays.Implementations.MapArray])
-      #Arrays.Implementations.MapArray<[]>
+        iex> Arrays.empty([implementation: Arrays.Implementations.MapArray])
+        #Arrays.Implementations.MapArray<[]>
 
-      iex> Arrays.empty([implementation: Arrays.Implementations.ErlangArray])
-      #Arrays.Implementations.ErlangArray<[]>
+        iex> Arrays.empty([implementation: Arrays.Implementations.ErlangArray])
+        #Arrays.Implementations.ErlangArray<[]>
 
   Any other option is passed on to the particular array implementation.
   Not all array implementations recognize all options.
@@ -225,11 +225,11 @@ contents = quote do
   - `default:` Value that empty elements should start with. (Default: `nil`)
   - `size:` Size of the array at start. (Default: 0)
 
-  # Using the MapArray
+  #### Using the MapArray
       iex> Arrays.empty([default: 42, size: 5, implementation: Arrays.Implementations.MapArray])
       ##{@current_default_array}<[42, 42, 42, 42, 42]>
 
-  # Using the ErlangArray
+  #### Using the ErlangArray
       iex> Arrays.empty([default: "Empty" , size: 1, implementation: Arrays.Implementations.ErlangArray])
       #Arrays.Implementations.ErlangArray<["Empty"]>
 
