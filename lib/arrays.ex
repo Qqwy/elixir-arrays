@@ -588,6 +588,7 @@ contents = quote do
       ##{@current_default_array}<[1, 2, 3, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]>
 
   """
+  @doc since: "1.1.0"
   @spec concat(array(), array() | Enumerable.t()) :: array()
   def concat(left, right) do
     Enum.into(right, left)
@@ -598,6 +599,7 @@ contents = quote do
 
   See also `concat/2`.
   """
+  @doc since: "1.1.0"
   @spec concat(Enumerable.t()) :: array()
   def concat(enumerable_of_enumerables) do
     enumerable_of_enumerables
@@ -628,6 +630,7 @@ contents = quote do
 
   Compare with `Enum.slice/2`.
   """
+  @doc since: "1.1.0"
   @spec slice(array, Range.t()) :: array
   def slice(array, index_range)
 
@@ -677,6 +680,7 @@ contents = quote do
 
   Compare with `Enum.slice/3`.
   """
+  @doc since: "1.1.0"
   @spec slice(array, index, non_neg_integer) :: array
   def slice(array, start_index, amount)
 

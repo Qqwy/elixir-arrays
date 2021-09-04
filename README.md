@@ -280,6 +280,6 @@ You can look at the source code of `Arrays.CommonProtocolImplementations` for so
 
 ## Changelog
 
-- 1.1.0 - Improved README and general usage examples. Introduces `Arrays.concat/1`, `Arrays.concat/2`.
+- 1.1.0 - Improved README and general usage examples. Introduces `Arrays.concat/1`, `Arrays.concat/2`, `Arrays.slice/2`, `Arrays.slice/3`.
 - 1.0.0 - Stable release. Mayor overhaul, 100% test coverage, 100% documentation. 
 - 0.1.0 - Initial version.
