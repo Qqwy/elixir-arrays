@@ -1,8 +1,11 @@
 defmodule Arrays.Implementations.ErlangArray do
   @moduledoc """
-  Wraps the Erlang `:array` module.
+  Wraps the Erlang [`:array`](http://erlang.org/doc/man/array.html) module.
 
-  See http://erlang.org/doc/man/array.html for more information about its internals.
+  These kinds of arrays use a 'functional tree' format,
+  with a leaf size of 10 nodes wide ([ref.](https://github.com/erlang/otp/blob/maint/lib/stdlib/src/array.erl#L108)).
+
+  Common operations like element access thus take O(log10(n)) time.
 
 
   """
