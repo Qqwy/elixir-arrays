@@ -83,6 +83,14 @@ Concatenating arrays:
     #Arrays.Implementations.MapArray<[1, 2, 3, 4, 5, 6]>
 ```
 
+Slicing arrays:
+
+```elixir
+    iex> ints = Arrays.new(1..100)
+    iex> Arrays.slice(ints, 9..19)
+    #Arrays.Implementations.MapArray<[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]>
+```
+
 ### Rationale
 
 

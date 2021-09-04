@@ -53,6 +53,12 @@ contents = quote do
       iex> Arrays.new([1, 2, 3]) |> Arrays.concat(Arrays.new([4, 5, 6]))
       ##{@current_default_array}<[1, 2, 3, 4, 5, 6]>
 
+  Slicing arrays:
+
+      iex> ints = Arrays.new(1..100)
+      iex> Arrays.slice(ints, 9..19)
+      ##{@current_default_array}<[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]>
+
   ### Rationale
 
 
