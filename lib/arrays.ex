@@ -699,11 +699,11 @@ contents = quote do
     slice(array, Map.put(index_range, :step, step))
   end
 
-  def slice_range(array, first, last) when last >= first and last >= 0 and first >= 0 do
+  defp slice_range(array, first, last) when last >= first and last >= 0 and first >= 0 do
     slice_any(array, first, last - first + 1)
   end
 
-  def slice_range(array = %impl{}, first, last) do
+  defp slice_range(array = %impl{}, first, last) do
     count = Arrays.Protocol.size(array)
     first = if first >= 0, do: first, else: first + count
     last = if last >= 0, do: last, else: last + count
