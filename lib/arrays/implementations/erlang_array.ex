@@ -118,7 +118,6 @@ defmodule Arrays.Implementations.ErlangArray do
       end
     end)
     |> Enum.reverse()
-    |> IO.inspect(label: :before_orddict)
     |> :array.from_orddict(default)
   end
 
@@ -198,7 +197,6 @@ defmodule Arrays.Implementations.ErlangArray do
 
     @impl true
     def resize(array = %ErlangArray{contents: contents}, new_size) do
-      IO.inspect({contents, new_size}, label: :resize_erlang_array)
       new_contents = :array.resize(new_size, contents)
       %ErlangArray{array | contents: new_contents}
     end

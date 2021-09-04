@@ -226,7 +226,6 @@ contents = quote do
         :implementation,
         default_array_implementation()
       )
-    # IO.inspect(impl_module, label: "impl_module")
 
     options = Keyword.delete(options, :implementation)
     impl_module.empty(options)
