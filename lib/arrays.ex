@@ -262,29 +262,29 @@ contents = quote do
   """
   @spec new(Enum.t(), keyword) :: array()
   def new(enumerable, options) do
-    default = Keyword.get(options, :default, nil)
     size = Keyword.get(options, :size, nil)
+    options = Keyword.delete(options, :size)
 
     if size == nil do
-      new_empty(enumerable, default)
+      new_empty(enumerable, options)
     else
       count = Enum.count(enumerable)
 
       cond do
         count == size ->
-          new_empty(enumerable, default)
+          new_empty(enumerable, options)
 
         count > size ->
-          new_empty(Enum.slice(enumerable, 0, size), default)
+          new_empty(Enum.slice(enumerable, 0, size), options)
 
         count < size ->
-          resize(new_empty(enumerable, default), size)
+          resize(new_empty(enumerable, options), size)
       end
     end
   end
 
-  defp new_empty(enumerable, default) do
-    Enum.into(enumerable, empty(default: default))
+  defp new_empty(enumerable, options) do
+    Enum.into(enumerable, empty(options))
   end
 
   @doc """
