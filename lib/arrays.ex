@@ -626,6 +626,25 @@ contents = quote do
       iex> Arrays.slice(Arrays.new([1, 2, 3, 4, 5, 6]), 2..4)
       ##{@current_default_array}<[3, 4, 5]>
 
+      iex> Arrays.slice(Arrays.new(1..100), 5..10)
+      ##{@current_default_array}<[6, 7, 8, 9, 10, 11]>
+
+      iex> Arrays.slice(Arrays.new(1..10), 5..20)
+      ##{@current_default_array}<[6, 7, 8, 9, 10]>
+
+      # last five elements (negative indexes)
+      iex> Arrays.slice(Arrays.new(1..30), -5..-1)
+      ##{@current_default_array}<[26, 27, 28, 29, 30]>
+
+  If values are out of bounds, it returns an empty array:
+
+      iex> Arrays.slice(Arrays.new(1..10), 11..20)
+      ##{@current_default_array}<[]>
+
+      # first is greater than last
+      iex> Arrays.slice(Arrays.new(1..10), 6..5)
+      ##{@current_default_array}<[]>
+
   See also `slice/3`.
 
   Compare with `Enum.slice/2`.
