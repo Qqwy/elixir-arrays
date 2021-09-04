@@ -19,7 +19,8 @@ defmodule Arrays.Mixfile do
         "coveralls.detail": :test,
         "coveralls.post": :test,
         "coveralls.html": :test
-      ]
+      ],
+      docs: docs()
     ]
   end
 
@@ -59,6 +60,20 @@ defmodule Arrays.Mixfile do
       maintainers: ["Qqwy/Wiebe-Marten Wijnja"],
       licenses: ["Apache 2.0"],
       links: %{"GitHub" => "https://github.com/Qqwy/elixir-arrays"}
+    ]
+  end
+
+  defp docs() do
+    [
+      main: "Arrays",
+      # logo: "media/type_check_logo_icon_flat_small.svg",
+      groups_for_modules: [
+        Main: [Arrays],
+        "Implementations": ~r{^Arrays.Implementations},
+        "For Implementers": [Arrays.Protocol, Arrays.Behaviour, Arrays.CommonProtocolImplementations],
+        Other: ~r"^.*"
+      ],
+      nest_modules_by_prefix: [Arrays, Arrays.Implementations],
     ]
   end
 end

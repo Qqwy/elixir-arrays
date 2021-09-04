@@ -27,6 +27,11 @@ defmodule Arrays.Implementations.ErlangArray do
     Module.eval_quoted(__MODULE__,
       quote do
         use FunLand.Mappable
+        @doc """
+        Implementation for `FunLand.Mappable.map`.
+
+        Note that `FunLand` is an optional dependency of `Arrays` so you need to add it to your `mix.exs` dependencies manually to use it.
+        """
         def map(array, fun), do: Arrays.Protocol.map(array, fun)
     end)
   end
@@ -37,6 +42,11 @@ defmodule Arrays.Implementations.ErlangArray do
         use FunLand.Reducible, auto_enumerable: false
 
         @impl FunLand.Reducible
+        @doc """
+        Implementation for `FunLand.Reducible.reduce`.
+
+        Note that `FunLand` is an optional dependency of `Arrays` so you need to add it to your `mix.exs` dependencies manually to use it.
+        """
         def reduce(array = %ErlangArray{}, acc, fun) do
           Arrays.Protocol.reduce(array, acc, fun)
         end
