@@ -1,3 +1,8 @@
+# NOTE: We store the AST of the body of the module separately
+# such that we can compile it one more time in the thest environment,
+# but then with `ErlangArray` as default representation.
+#
+# This allows us to re-use all doctests for the ErlangArray as well as the MapArray.
 contents = quote do
   @current_default_array inspect(@default_array_implementation)
 
@@ -517,10 +522,14 @@ Module.create(Arrays,
     @default_array_implementation Arrays.Implementations.MapArray
     unquote(contents)
 
-    @internal_module_contents unquote(Macro.escape(contents))
-    @doc false
-    def __internal_module_contents__ do
-      @internal_module_contents
+    # This is only relevant in the testing environment.
+    # On normal compilation, we do not need to make the compiled module larger.
+    if Mix.env() == :test do
+      @internal_module_contents unquote(Macro.escape(contents))
+      @doc false
+      def __internal_module_contents__ do
+        @internal_module_contents
+      end
     end
   end, Macro.Env.location(__ENV__)
 )

@@ -1,4 +1,4 @@
-# Copy of `Arrays` module with different default
+# Copy of `Arrays` module with different default representation
 # so that we can re-use the doctests for `ErlangArray`.
 Module.create(Arrays.Test.Support.Arrays.DoctestErlangArray,
   quote do
