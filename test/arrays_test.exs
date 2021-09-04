@@ -9,7 +9,7 @@ defmodule ArraysTest do
     end
 
     test "Enumerable reduce suspended (MapArray)" do
-      {:suspended, val, fun} =
+      {:suspended, 42, fun} =
         Arrays.new([1, 2, 3, 4], implementation: Arrays.Implementations.MapArray)
         |> Enumerable.reduce({:suspend, 42}, fn val, acc -> {:cont, val + acc} end)
 
@@ -17,7 +17,7 @@ defmodule ArraysTest do
     end
 
     test "Enumerable reduce suspended (ErlangArray)" do
-      {:suspended, val, fun} =
+      {:suspended, 42, fun} =
         Arrays.new([1, 2, 3, 4], implementation: Arrays.Implementations.ErlangArray)
         |> Enumerable.reduce({:suspend, 42}, fn val, acc -> {:cont, val + acc} end)
 
