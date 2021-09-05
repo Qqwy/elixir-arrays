@@ -14,29 +14,26 @@ defmodule Benchmarks do
     end)
   )
 
-
-  def concat(range, impl) do
-    Arrays.concat(Arrays.new(implementation: impl), (range))
-  end
-
-  def concat_lists(range) do
-    Enum.concat([], (range))
+  def run_benchmarks() do
+    concat_benchmark()
+    random_access_benchmark()
+    random_update_benchmark()
   end
 
   def concat_benchmark do
     Benchee.run(
       %{
-        "Arrays.concat (MapArray)" =>
+        "Arrays.concat/2 (MapArray)" =>
           fn range ->
-            concat(range, Arrays.Implementations.MapArray)
+            Arrays.concat(Arrays.new(implementation: Arrays.Implementations.MapArray), range)
           end,
-        "Arrays.concat (ErlangArray)" =>
+        "Arrays.concat/2 (ErlangArray)" =>
         fn range ->
-          concat(range, Arrays.Implementations.ErlangArray)
+          Arrays.concat(Arrays.new(implementation: Arrays.Implementations.ErlangArray), range)
         end,
-        "Enum.concat (list)" =>
+        "Enum.concat/2 (list)" =>
         fn range->
-          concat_lists(range)
+          Enum.concat([], range)
         end
       },
       after_each: fn _ -> :erlang.garbage_collect() end, # make garbage collection unlikely to occur _during_ benchmark.
@@ -124,21 +121,77 @@ defmodule Benchmarks do
     )
   end
 
-  # # useful to skip implementations that get ridiculously slow at larger sizes
-  # # and change their implementation to a still slow but less memory-intensive no-op.
-  # def skip_if_too_large(fun) do
-  #   fn input = %{range: 1..size} ->
-  #     if(size > 1000) do
-  #       Process.sleep(1)
-  #     else
-  #       fun.(input)
-  #     end
-  #   end
-  # end
+  def random_update_benchmark() do
+    Benchee.run(
+      %{
+        "Arrays.replace/3 (MapArray)" =>
+          {fn input ->
+            Arrays.replace(input.array, input.index, input.value)
+          end,
+           before_scenario: fn range ->
+             %{range: range, array: Arrays.new(range, implementation: Arrays.Implementations.MapArray)}
+           end,
+          },
+        "Arrays.replace/3 (ErlangArray)" =>
+          {fn input ->
+            Arrays.replace(input.array, input.index, input.value)
+          end,
+           before_scenario: fn range ->
+             %{range: range, array: Arrays.new(range, implementation: Arrays.Implementations.MapArray)}
+           end,
+          },
+        "put_in/2 (MapArray)" =>
+          {fn input ->
+            put_in(input.array[input.index], input.value)
+          end,
+          before_scenario: fn range ->
+            %{range: range, array: Arrays.new(range, implementation: Arrays.Implementations.MapArray)}
+          end,
+          },
+        "put_in/2 (ErlangArray)" =>
+          {fn input ->
+            put_in(input.array[input.index], input.value)
+          end,
+          before_scenario: fn range ->
+            %{range: range, array: Arrays.new(range, implementation: Arrays.Implementations.MapArray)}
+          end,
+          },
+        "List.replace_at/3" =>
+          {fn input ->
+            List.replace_at(input.list, input.index, input.value)
+          end,
+           before_scenario: fn range ->
+             %{range: range, list: Enum.into(range, [])}
+           end,
+          }
+      },
+      before_each: fn input ->
+        Map.put(input, :index, :rand.uniform(input.range.last) - input.range.first, value: :rand.uniform())
+      end,
+      after_each: fn _ -> :erlang.garbage_collect() end, # make garbage collection unlikely to occur _during_ benchmark.
+      inputs: @inputs,
+      warmup: @warmup,
+      time: @time,
+      parallel: @parallel,
+      memory_time: @memory_time,
+      formatters: [
+        Benchee.Formatters.Console,
+        {Benchee.Formatters.HTML, file: "benchmark_runs/random_access.html", auto_open: false},
+        {Benchee.Formatters.Markdown, file: "benchmark_runs/random_access.md", description: """
+        Compares random element replacement.
 
-  def run_benchmarks() do
-    # concat_benchmark()
-    random_access_benchmark()
+        For arrays, we check `Arrays.replace/3`.
+        Note that this is used under the hood by the Access protocol.
+
+        For lists, `Enum.fetch(list, index)` is used.
+
+        Note that we do not check for a collection with more than 10_000 elements,
+        as lists will be so slow at that time,
+        that I cannot finish its benchmark on my computer.
+        """
+        }
+      ]
+    )
   end
 end
 
