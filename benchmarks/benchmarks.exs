@@ -235,7 +235,7 @@ defmodule Benchmarks do
          Map.put(input, :collection, input.range |> Enum.shuffle |> Enum.into([]))
        end
       },
-        "[val | list] (list, interpreted backwards)" =>
+        "[val | list] (list, backwards)" =>
       {fn input ->
         [input.value | input.collection]
       end,
