@@ -1,12 +1,17 @@
 defmodule Benchmarks do
   @warmup 0.5
   @time 0.5
+  @memory_time 0.5
   @parallel 1
+
   @inputs (
-    (5..20)
+    (5..22)
     |> Enum.map(&Integer.pow(2, &1))
     |> Enum.map(&(1..&1))
-    |> Enum.map(&({inspect(&1), &1}))
+    |> Enum.map(fn range ->
+      name = range.last |> Integer.to_string |> String.pad_leading(10, "0")
+      {"#{name} elements", range}
+    end)
   )
 
 
@@ -38,10 +43,10 @@ defmodule Benchmarks do
       inputs: @inputs,
       warmup: @warmup,
       time: @time,
-      # memory_time: 2,
+      memory_time: @memory_time,
       formatters: [
         Benchee.Formatters.Console,
-        # {Benchee.Formatters.HTML, file: "benchmark_runs/concat.html", auto_open: false},
+        {Benchee.Formatters.HTML, file: "benchmark_runs/concat.html", auto_open: false},
         {Benchee.Formatters.Markdown, file: "benchmark_runs/concat.md", description: """
         Comparing `Arrays.concat` with `Enum.concat` (which concatenates plain lists).
 
@@ -99,10 +104,10 @@ defmodule Benchmarks do
       warmup: @warmup,
       time: @time,
       parallel: @parallel,
-      # memory_time: 2,
+      memory_time: @memory_time,
       formatters: [
         Benchee.Formatters.Console,
-        # {Benchee.Formatters.HTML, file: "benchmark_runs/random_access.html", auto_open: false},
+        {Benchee.Formatters.HTML, file: "benchmark_runs/random_access.html", auto_open: false},
         {Benchee.Formatters.Markdown, file: "benchmark_runs/random_access.md", description: """
         Compares random element access (for reading).
 
