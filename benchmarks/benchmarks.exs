@@ -101,7 +101,7 @@ defmodule Benchmarks do
       warmup: @warmup,
       time: @time,
       parallel: @parallel,
-      memory_time: @memory_time,
+      # memory_time: @memory_time,
       formatters: [
         Benchee.Formatters.Console,
         {Benchee.Formatters.HTML, file: "benchmark_runs/random_access.html", auto_open: false},
@@ -111,10 +111,6 @@ defmodule Benchmarks do
         For arrays, `Arrays.get(myarray, index)` function can be used (myarray[index] will behave similarly as it uses `get` internally.)
 
         For lists, `Enum.fetch(list, index)` is used.
-
-        Note that we do not check for a collection with more than 10_000 elements,
-        as lists will be so slow at that time,
-        that I cannot finish its benchmark on my computer.
         """
         }
       ]
@@ -166,28 +162,26 @@ defmodule Benchmarks do
           }
       },
       before_each: fn input ->
-        Map.put(input, :index, :rand.uniform(input.range.last) - input.range.first, value: :rand.uniform())
+        input
+        |> Map.put(:index, :rand.uniform(input.range.last) - input.range.first)
+        |> Map.put(:value, :rand.uniform())
       end,
       after_each: fn _ -> :erlang.garbage_collect() end, # make garbage collection unlikely to occur _during_ benchmark.
       inputs: @inputs,
       warmup: @warmup,
       time: @time,
       parallel: @parallel,
-      memory_time: @memory_time,
+      # memory_time: @memory_time,
       formatters: [
         Benchee.Formatters.Console,
         {Benchee.Formatters.HTML, file: "benchmark_runs/random_access.html", auto_open: false},
         {Benchee.Formatters.Markdown, file: "benchmark_runs/random_access.md", description: """
         Compares random element replacement.
 
-        For arrays, we check `Arrays.replace/3`.
-        Note that this is used under the hood by the Access protocol.
+        For arrays, we check `Arrays.replace/3` as well as Access' `put_in`.
+        These are similar but slightly different APIs for element replacement.
 
-        For lists, `Enum.fetch(list, index)` is used.
-
-        Note that we do not check for a collection with more than 10_000 elements,
-        as lists will be so slow at that time,
-        that I cannot finish its benchmark on my computer.
+        For lists, `List.replace_at(list, index)` is used.
         """
         }
       ]
