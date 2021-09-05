@@ -302,8 +302,8 @@ which will also output the HTML format with nice graphs.
 
 From below benchmarks, we know (caveat emptor):
 - For collections smaller than ~100-200 elements, there is no pronounced difference between using lists and arrays.
-- For collections with more than ~100-200, but fewer than fewer than ~10_000-20_000, ErlangArray is a small constant amount faster than MapArray for updates, and other operations perform similarly.
-- For collections with more than ~10_000-20_000, MapArray is usually a small constant amount faster than ErlangArray.
+- For collections with more than ~100-200, but fewer than fewer than ~10_000-20_000 elements, ErlangArray is a small constant amount faster than MapArray for updates, and other operations perform similarly.
+- For collections with more than ~10_000-20_000 elements, MapArray is usually a small constant amount faster than ErlangArray.
 
 
 ### [Append a single element](https://github.com/Qqwy/elixir-arrays/blob/master/benchmark_runs/append.md)
