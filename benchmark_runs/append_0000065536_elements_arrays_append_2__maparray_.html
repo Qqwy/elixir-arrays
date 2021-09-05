@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>Benchee Report</title>
+  <meta charset="utf-8">
+  <meta http-equiv="content-type" content="text/html; charset=utf8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+    <link rel="stylesheet" type="text/css" href="assets/stylesheets/benchee.css">
+    <link rel="stylesheet" type="text/css" href="assets/fontello/css/fontello.css">
+  
+</head>
+
+  <body>
+
+    <div class="header">
+  <h1>benchee report</h1>
+  
+  <span class="input-label">
+    0000065536 elements
+  </span>
+
+
+  <span class="version-note">
+  <a href="javascript:toggleSystemDataInfo();" title="Click to toggle system info">System info</a>
+</span>
+
+</div>
+
+
+    <article id="system-info" class="benchee-systeminfo" >
+  <h3>System info</h3>
+  <ul class="benchee-systeminfo-list">
+    <li>Elixir: 1.12.2</li>
+    <li>Erlang: 24.0.1</li>
+    <li>Operating system: Linux</li>
+    <li>Available memory: 7.60 GB</li>
+    <li>CPU Information: Intel(R) Core(TM) i7-6700HQ CPU @ 2.60GHz</li>
+    <li>Number of Available Cores: 8</li>
+  </ul>
+</article>
+
+
+    
+      <article>
+        <h2>
+          <a name="run_time" href="#run_time">Arrays.append/2 (MapArray) Run Time</a>
+          <a href="https://github.com/PragTob/benchee_html/wiki/Chart-Types#individual">
+            <i
+              class="benchee-help-icon icon-question-circle-o"
+              title="Graphs showing the individual run time distribution for Arrays.append/2 (MapArray).
+  Run Times Histogram shows the distribution of occurrences of specific run times in buckets.
+  Raw Run Times shows all individual recorded run times in the order they were recorded in."
+            ></i>
+          </a>
+        </h2>
+
+        <section>
+          <table>
+  <thead>
+    <tr>
+      <th class="text-left">Name</th>
+      
+        <th>Iterations per Second</th>
+      
+      <th>Average</th>
+      <th>Deviation</th>
+      <th>Median</th>
+      <th>Mode</th>
+      <th>Minimum</th>
+      <th>Maximum</th>
+      <th>Sample size</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+      
+      <tr>
+        
+          <td class="text-left">Arrays.append/2 (MapArray)</td>
+        
+        
+          <td>693.82 K</td>
+          <td>1.44 μs</td>
+          <td>±14.27%</td>
+          <td>1.35 μs</td>
+          <td>none</td>
+          <td>1.22 μs</td>
+          <td>1.80 μs</td>
+        
+        <td>7</td>
+      </tr>
+    
+  </tbody>
+</table>
+
+        </section>
+
+        <section class="benchee-plot-container">
+          <div id="run-times-histogram" class="plot"></div>
+        </section>
+        <section class="benchee-plot-container">
+          <div id="raw-run-times" class="plot"></div>
+        </section>
+      </article>
+    
+
+    
+      <article>
+        <h2>
+          <a name="memory" href="#memory">Arrays.append/2 (MapArray) Memory</a>
+          <a href="https://github.com/PragTob/benchee_html/wiki/Chart-Types#individual">
+            <i
+              class="benchee-help-icon icon-question-circle-o"
+              title="Graphs showing the individual memory usage distribution for Arrays.append/2 (MapArray).
+  Run Times Histogram shows the distribution of occurrences of specific run times in buckets.
+  Raw Run Times shows all individual recorded run times in the order they were recorded in."
+            ></i>
+          </a>
+        </h2>
+
+        <section>
+          <table>
+  <thead>
+    <tr>
+      <th class="text-left">Name</th>
+      
+      <th>Average</th>
+      <th>Deviation</th>
+      <th>Median</th>
+      <th>Mode</th>
+      <th>Minimum</th>
+      <th>Maximum</th>
+      <th>Sample size</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+      
+      <tr>
+        
+          <td class="text-left">Arrays.append/2 (MapArray)</td>
+        
+        
+          <td>600 B</td>
+          <td>±0.00%</td>
+          <td>600 B</td>
+          <td>600 B</td>
+          <td>600 B</td>
+          <td>600 B</td>
+        
+        <td>6</td>
+      </tr>
+    
+  </tbody>
+</table>
+
+        </section>
+
+        
+      </article>
+    
+
+    <footer>
+      <a href="https://github.com/PragTob/benchee" target="blank">benchee version: 1.0.1 </a>
+<br/>
+<a href="https://github.com/PragTob/benchee_html" target="blank">benchee_html version: 1.0.0</a>
+
+
+    </footer>
+
+    
+  <script src="assets/javascripts/plotly-1.30.1.min.js"></script>
+  <script src="assets/javascripts/benchee.js"></script>
+
+
+
+    <script>
+      var scenario = {"name":"Arrays.append/2 (MapArray)","job_name":"Arrays.append/2 (MapArray)","input_name":"0000065536 elements","run_time_data":{"statistics":{"absolute_difference":608.1948051948051,"average":1441.2857142857142,"ips":693824.9578749134,"maximum":1803.0,"median":1354.0,"minimum":1222.0,"mode":null,"percentiles":{"50":1354.0,"99":1803.0},"relative_less":0.5780192649059732,"relative_more":1.7300461432936334,"sample_size":7,"std_dev":205.69047481245073,"std_dev_ips":99017.96958609743,"std_dev_ratio":0.14271318502201955},"samples":[1222.0,1596.0,1509.0,1354.0,1291.0,1314.0,1803.0]},"memory_usage_data":{"statistics":{"absolute_difference":584.0,"average":600.0,"ips":null,"maximum":600,"median":600.0,"minimum":600,"mode":600,"percentiles":{"50":600.0,"99":600.0},"relative_less":0.02666666666666667,"relative_more":37.5,"sample_size":6,"std_dev":0.0,"std_dev_ips":null,"std_dev_ratio":0.0},"samples":[600,600,600,600,600,600]},"tag":null};
+
+      var inputHeadline = " (0000065536 elements)"
+
+      
+        drawRunTimeHistogram(scenario, inputHeadline);
+        drawRawRunTimeChart(scenario, inputHeadline);
+      
+
+      
+        if (scenario.memory_usage_data.statistics.std_dev !== 0) {
+          drawMemoryHistogram(scenario, inputHeadline);
+          drawRawMemoryChart(scenario, inputHeadline);
+        };
+      
+    </script>
+  </body>
+</html>

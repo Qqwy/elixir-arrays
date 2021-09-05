@@ -30,8 +30,8 @@ defmodule Benchmarks do
         end,
          before_each: fn range ->
            %{range: range,
-             lhs: range |> Enum.shuffle() |> Arrays.new(range, implementation: Arrays.Implementations.MapArray),
-             rhs: range |> Enum.shuffle() |> Arrays.new(range, implementation: Arrays.Implementations.MapArray)
+             lhs: range |> Enum.shuffle() |> Arrays.new(implementation: Arrays.Implementations.MapArray),
+             rhs: range |> Enum.shuffle() |> Arrays.new(implementation: Arrays.Implementations.MapArray)
             }
          end
         },
@@ -194,8 +194,8 @@ defmodule Benchmarks do
       # memory_time: @memory_time,
       formatters: [
         Benchee.Formatters.Console,
-        {Benchee.Formatters.HTML, file: "benchmark_runs/random_access.html", auto_open: false},
-        {Benchee.Formatters.Markdown, file: "benchmark_runs/random_access.md", description: """
+        {Benchee.Formatters.HTML, file: "benchmark_runs/random_update.html", auto_open: false},
+        {Benchee.Formatters.Markdown, file: "benchmark_runs/random_update.md", description: """
         Compares random element replacement.
 
         For arrays, we check `Arrays.replace/3` as well as Access' `put_in`.
@@ -215,45 +215,37 @@ defmodule Benchmarks do
         {fn input ->
           Arrays.append(input.collection, input.value)
         end,
-         before_each: fn range ->
-           %{range: range,
-             collection: range |> Enum.shuffle |> Arrays.new(implementation: Arrays.Implementations.MapArray)
-            }
+         before_each: fn input ->
+             Map.put(input, :collection, input.range |> Enum.shuffle |> Arrays.new(implementation: Arrays.Implementations.MapArray))
          end
         },
-        "Arrays.concat/2 (ErlangArray)" =>
+        "Arrays.append/2 (ErlangArray)" =>
       {fn input ->
         Arrays.append(input.collection, input.value)
       end,
-       before_each: fn range ->
-         %{range: range,
-           collection: range |> Enum.shuffle |> Arrays.new(implementation: Arrays.Implementations.ErlangArray)
-          }
+       before_each: fn input ->
+           Map.put(input, :collection, input.range |> Enum.shuffle |> Arrays.new(implementation: Arrays.Implementations.ErlangArray))
        end
       },
         "list ++ [val] (list)" =>
       {fn input ->
-        input.collection ++ [val]
+        input.collection ++ [input.value]
       end,
-       before_scenario: fn range ->
-         %{range: range,
-           collection: range |> Enum.shuffle |> Enum.into([])
-          }
+       before_each: fn input ->
+         Map.put(input, :collection, input.range |> Enum.shuffle |> Enum.into([]))
        end
       },
         "[val | list] (list, interpreted backwards)" =>
       {fn input ->
-        [val | input.collection]
+        [input.value | input.collection]
       end,
-       before_each: fn range ->
-         %{range: range,
-           collection: range |> Enum.shuffle |> Enum.into([])
-          }
+       before_each: fn input ->
+           Map.put(input, :collection, input.range |> Enum.shuffle |> Enum.into([]))
        end
       }
       },
-      before_each: fn input ->
-        Map.put(input, :value, :random.uniform(input.range.last))
+      before_each: fn range ->
+        %{range: range, value: :rand.uniform(range.last)}
       end,
       after_each: fn _ -> :erlang.garbage_collect() end, # make garbage collection unlikely to occur _during_ benchmark.
       inputs: @inputs,
@@ -264,10 +256,9 @@ defmodule Benchmarks do
       pre_check: true,
       formatters: [
         Benchee.Formatters.Console,
-        {Benchee.Formatters.HTML, file: "benchmark_runs/concat.html", auto_open: false},
-        {Benchee.Formatters.Markdown, file: "benchmark_runs/concat.md", description: """
-        Comparing `Arrays.concat` with `Kernel.++`,
-        by concatenating two collections of the same size.
+        {Benchee.Formatters.HTML, file: "benchmark_runs/append.html", auto_open: false},
+        {Benchee.Formatters.Markdown, file: "benchmark_runs/append.md", description: """
+        Comparing `Arrays.append` with appending a value to a list.
         """
         }
       ]
