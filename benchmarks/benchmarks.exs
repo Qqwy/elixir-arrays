@@ -46,6 +46,16 @@ defmodule Benchmarks do
           }
        end
       },
+        "Arrays.concat/2 (PersistentVector)" =>
+      {fn input ->
+        Arrays.concat(input.lhs, input.rhs)
+      end,
+       before_each: fn range ->
+         %{range: range,
+           lhs: range |> Enum.shuffle() |> Arrays.new(implementation: PersistentVector),
+           rhs: range |> Enum.shuffle() |> Arrays.new(implementation: PersistentVector)
+          }
+       end
         "Kernel.++/2 (list)" =>
       {fn input ->
         input.lhs ++ input.rhs
@@ -102,6 +112,17 @@ defmodule Benchmarks do
          Map.put(input, :index, :rand.uniform(input.range.last) - input.range.first)
        end
       },
+        "Arrays.get/2 (PersistentVector)" =>
+      {fn input ->
+        Arrays.get(input.array, input.index)
+      end,
+       before_scenario: fn range ->
+         %{range: range, array: Arrays.new(range, implementation: PersistentVector)}
+       end,
+       before_each: fn input ->
+         Map.put(input, :index, :rand.uniform(input.range.last) - input.range.first)
+       end
+      },
         "Enum.fetch/2 (list)" =>
       {fn input ->
         Enum.fetch!(input.list, input.index)
@@ -152,7 +173,15 @@ defmodule Benchmarks do
         Arrays.replace(input.array, input.index, input.value)
       end,
        before_scenario: fn range ->
-         %{range: range, array: Arrays.new(range, implementation: Arrays.Implementations.MapArray)}
+         %{range: range, array: Arrays.new(range, implementation: Arrays.Implementations.ErlangArray)}
+       end,
+      },
+        "Arrays.replace/3 (PersistentVector)" =>
+      {fn input ->
+        Arrays.replace(input.array, input.index, input.value)
+      end,
+       before_scenario: fn range ->
+         %{range: range, array: Arrays.new(range, implementation: PersistentVector)}
        end,
       },
         "put_in/2 (MapArray)" =>
@@ -168,7 +197,7 @@ defmodule Benchmarks do
         put_in(input.array[input.index], input.value)
       end,
        before_scenario: fn range ->
-         %{range: range, array: Arrays.new(range, implementation: Arrays.Implementations.MapArray)}
+         %{range: range, array: Arrays.new(range, implementation: Arrays.Implementations.ErlangArray)}
        end,
       },
         "List.replace_at/3" =>
@@ -225,6 +254,14 @@ defmodule Benchmarks do
       end,
        before_each: fn input ->
            Map.put(input, :collection, input.range |> Enum.shuffle |> Arrays.new(implementation: Arrays.Implementations.ErlangArray))
+       end
+      },
+        "Arrays.append/2 (PersistentVector)" =>
+      {fn input ->
+        Arrays.append(input.collection, input.value)
+      end,
+       before_each: fn input ->
+         Map.put(input, :collection, input.range |> Enum.shuffle |> Arrays.new(implementation: PersistentVector))
        end
       },
         "list ++ [val] (list)" =>
