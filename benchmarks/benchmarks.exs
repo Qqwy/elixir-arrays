@@ -1,6 +1,9 @@
 defmodule Benchmarks do
+  @warmup 0.5
+  @time 1
   @inputs (
-    [10, 100, 1000, 10_000, 100_000]
+    (5..10)
+    |> Enum.map(&Integer.pow(2, &1))
     |> Enum.map(&(1..&1))
     |> Enum.map(&({inspect(&1), &1}))
   )
@@ -31,10 +34,12 @@ defmodule Benchmarks do
         end
       },
       inputs: @inputs,
-      memory_time: 2,
+      warmup: @warmup,
+      time: @time,
+      # memory_time: 2,
       formatters: [
         Benchee.Formatters.Console,
-        {Benchee.Formatters.HTML, file: "benchmark_runs/concat.html", auto_open: false},
+        # {Benchee.Formatters.HTML, file: "benchmark_runs/concat.html", auto_open: false},
         {Benchee.Formatters.Markdown, file: "benchmark_runs/concat.md", description: """
         Comparing `Arrays.concat` with `Enum.concat` (which concatenates plain lists).
 
@@ -61,7 +66,7 @@ defmodule Benchmarks do
              %{range: range, array: Arrays.new(range, implementation: Arrays.Implementations.MapArray)}
            end,
            before_each: fn input ->
-             Map.put(input, :index, :random.uniform(input.range.last) - input.range.first)
+             Map.put(input, :index, :rand.uniform(input.range.last) - input.range.first)
            end
           },
         "Arrays.get/2 (ErlangArray)" =>
@@ -72,27 +77,29 @@ defmodule Benchmarks do
              %{range: range, array: Arrays.new(range, implementation: Arrays.Implementations.MapArray)}
            end,
            before_each: fn input ->
-             Map.put(input, :index, :random.uniform(input.range.last) - input.range.first)
+             Map.put(input, :index, :rand.uniform(input.range.last) - input.range.first)
            end
           },
         "Enum.fetch/2 (list)" =>
-          {skip_if_too_large(fn input ->
+          {fn input ->
             Enum.fetch!(input.list, input.index)
-          end),
+          end,
            before_scenario: fn range ->
              %{range: range, list: Enum.into(range, [])}
            end,
            before_each: fn input ->
-             Map.put(input, :index, :random.uniform(input.range.last) - input.range.first)
+             Map.put(input, :index, :rand.uniform(input.range.last) - input.range.first)
            end
           }
       },
       inputs: @inputs,
+      warmup: @warmup,
+      time: @time,
       # memory_time: 2,
       formatters: [
         Benchee.Formatters.Console,
-        {Benchee.Formatters.HTML, file: "benchmark_runs/concat.html", auto_open: false},
-        {Benchee.Formatters.Markdown, file: "benchmark_runs/concat.md", description: """
+        # {Benchee.Formatters.HTML, file: "benchmark_runs/random_access.html", auto_open: false},
+        {Benchee.Formatters.Markdown, file: "benchmark_runs/random_access.md", description: """
         Compares random element access (for reading).
 
         For arrays, `Arrays.get(myarray, index)` function can be used (myarray[index] will behave similarly as it uses `get` internally.)
@@ -111,7 +118,7 @@ defmodule Benchmarks do
   # useful to skip implementations that get ridiculously slow at larger sizes
   # and change their implementation to a still slow but less memory-intensive no-op.
   def skip_if_too_large(fun) do
-    fn input = 1..size ->
+    fn input = %{range: 1..size} ->
       if(size > 1000) do
         Process.sleep(1)
       else
@@ -119,7 +126,6 @@ defmodule Benchmarks do
       end
     end
   end
-
 
   def run_benchmarks() do
     # concat_benchmark()
