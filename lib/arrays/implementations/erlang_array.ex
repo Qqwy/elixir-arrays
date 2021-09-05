@@ -278,5 +278,11 @@ defmodule Arrays.Implementations.ErlangArray do
     def slice(array = %ErlangArray{}, start, amount) do
       @for.build_slice(array, start, amount, @for.empty(default: :array.default(array.contents)))
     end
+
+    @impl true
+    def empty(options) when is_list(options) do
+      contents = :array.new([default: nil] ++ options)
+      %ErlangArray{contents: contents}
+    end
   end
 end

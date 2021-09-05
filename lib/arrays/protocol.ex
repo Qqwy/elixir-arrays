@@ -132,4 +132,30 @@ defprotocol Arrays.Protocol do
   """
   @spec slice(array, index, non_neg_integer) :: array
   def slice(array, start_index, amount)
+
+  @typedoc """
+  Option passed to `c:empty/1`.
+
+  The option `:default` is recognized by all array implementations.
+  A particular array implementation might recognize other specialized options.
+  """
+  @type option :: {:default, any} | {atom, any}
+
+  @typedoc """
+  A list of options passed to `c:empty/1`
+  """
+  @type options :: [option]
+
+
+  @doc """
+  Should create a new instance of your custom array type.
+
+  This is called internally by functions such as `Arrays.new/0` and `Arrays.empty/1`.
+
+  NOTE: This function will not be dispatched by normal protocol handling, but rather directly.
+  The first (and only) parameter will be a list of options.
+
+  c.f. `t:options`.
+  """
+  def empty(options)
 end

@@ -16,9 +16,10 @@ defmodule Arrays.Implementations.MapArray do
     %MapArray{contents: construct(default, size), default: default}
   end
 
-  defp construct(_default, 0), do: %{}
+  @doc false
+  def construct(_default, 0), do: %{}
 
-  defp construct(default, size) do
+  def construct(default, size) do
     Enum.into(0..(size - 1), %{}, &{&1, default})
   end
 
@@ -251,6 +252,13 @@ defmodule Arrays.Implementations.MapArray do
     @impl true
     def slice(array = %MapArray{}, start, amount) do
       @for.build_slice(array, start, amount, @for.empty(default: array.default))
+    end
+
+    @impl true
+    def empty(options) when is_list(options) do
+      default = Keyword.get(options, :default, nil)
+      size = Keyword.get(options, :size, 0)
+      %MapArray{contents: MapArray.construct(default, size), default: default}
     end
   end
 end
