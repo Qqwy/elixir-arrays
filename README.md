@@ -301,10 +301,10 @@ which will also output the HTML format with nice graphs.
 
 
 
-### [Append a single element](https://github.com/Qqwy/elixir-arrays/blob/benchmarks/benchmark_runs/append.md)
+### [Append a single element](https://github.com/Qqwy/elixir-arrays/blob/master/benchmark_runs/append.md)
 Appending a single element is very fast on arrays, even as sizes grow. MapArray slightly outperforms ErlangArray.
 
-### [Random element access](https://github.com/Qqwy/elixir-arrays/blob/benchmarks/benchmark_runs/random_access.md)
+### [Random element access](https://github.com/Qqwy/elixir-arrays/blob/master/benchmark_runs/random_access.md)
 Accessing a random element is very fast on arrays, even as sizes grow. 
 
 Arrays start beating lists significantly once the collection has more than 256 elements.
@@ -315,7 +315,7 @@ For medium sizes they seem roughly equally fast.
 
 For very large sizes, ErlangArray seems to be a factor ~2 slower than MapArray again.
 
-### [Random element update](https://github.com/Qqwy/elixir-arrays/blob/benchmarks/benchmark_runs/random_update.md)
+### [Random element update](https://github.com/Qqwy/elixir-arrays/blob/master/benchmark_runs/random_update.md)
 
 Arrays start beating lists once the collection has more than 128 elements.
 
@@ -326,7 +326,7 @@ It seems like `put_in` has some overhead w.r.t. calling `Arrays.replace`.
 This warrants more investigation. Maybe `Access` has some overhead for its calls, 
 or maybe the implementations of `get_and_update_in` could be further optimized.
 
-### [Concatenate two equally-large collections](https://github.com/Qqwy/elixir-arrays/blob/benchmarks/benchmark_runs/concat.md)
+### [Concatenate two equally-large collections](https://github.com/Qqwy/elixir-arrays/blob/master/benchmark_runs/concat.md)
 Strangely, concatenation of large collections is very fast on lists. 
 Probably because all of it happens in a single built-in function?
 
