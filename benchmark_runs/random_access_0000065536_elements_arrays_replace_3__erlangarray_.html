@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>Benchee Report</title>
+  <meta charset="utf-8">
+  <meta http-equiv="content-type" content="text/html; charset=utf8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+    <link rel="stylesheet" type="text/css" href="assets/stylesheets/benchee.css">
+    <link rel="stylesheet" type="text/css" href="assets/fontello/css/fontello.css">
+  
+</head>
+
+  <body>
+
+    <div class="header">
+  <h1>benchee report</h1>
+  
+  <span class="input-label">
+    0000065536 elements
+  </span>
+
+
+  <span class="version-note">
+  <a href="javascript:toggleSystemDataInfo();" title="Click to toggle system info">System info</a>
+</span>
+
+</div>
+
+
+    <article id="system-info" class="benchee-systeminfo" >
+  <h3>System info</h3>
+  <ul class="benchee-systeminfo-list">
+    <li>Elixir: 1.12.2</li>
+    <li>Erlang: 24.0.1</li>
+    <li>Operating system: Linux</li>
+    <li>Available memory: 7.60 GB</li>
+    <li>CPU Information: Intel(R) Core(TM) i7-6700HQ CPU @ 2.60GHz</li>
+    <li>Number of Available Cores: 8</li>
+  </ul>
+</article>
+
+
+    
+      <article>
+        <h2>
+          <a name="run_time" href="#run_time">Arrays.replace/3 (ErlangArray) Run Time</a>
+          <a href="https://github.com/PragTob/benchee_html/wiki/Chart-Types#individual">
+            <i
+              class="benchee-help-icon icon-question-circle-o"
+              title="Graphs showing the individual run time distribution for Arrays.replace/3 (ErlangArray).
+  Run Times Histogram shows the distribution of occurrences of specific run times in buckets.
+  Raw Run Times shows all individual recorded run times in the order they were recorded in."
+            ></i>
+          </a>
+        </h2>
+
+        <section>
+          <table>
+  <thead>
+    <tr>
+      <th class="text-left">Name</th>
+      
+        <th>Iterations per Second</th>
+      
+      <th>Average</th>
+      <th>Deviation</th>
+      <th>Median</th>
+      <th>Mode</th>
+      <th>Minimum</th>
+      <th>Maximum</th>
+      <th>Sample size</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+      
+      <tr>
+        
+          <td class="text-left">Arrays.replace/3 (ErlangArray)</td>
+        
+        
+          <td>165.10 K</td>
+          <td>6.06 μs</td>
+          <td>±130.06%</td>
+          <td>3.63 μs</td>
+          <td>4.10 μs, 2.88 μs, 1.68 μs, 3.42 μs</td>
+          <td>0.78 μs</td>
+          <td>72.49 μs</td>
+        
+        <td>252</td>
+      </tr>
+    
+  </tbody>
+</table>
+
+        </section>
+
+        <section class="benchee-plot-container">
+          <div id="run-times-histogram" class="plot"></div>
+        </section>
+        <section class="benchee-plot-container">
+          <div id="raw-run-times" class="plot"></div>
+        </section>
+      </article>
+    
+
+    
+
+    <footer>
+      <a href="https://github.com/PragTob/benchee" target="blank">benchee version: 1.0.1 </a>
+<br/>
+<a href="https://github.com/PragTob/benchee_html" target="blank">benchee_html version: 1.0.0</a>
+
+
+    </footer>
+
+    
+  <script src="assets/javascripts/plotly-1.30.1.min.js"></script>
+  <script src="assets/javascripts/benchee.js"></script>
+
+
+
+    <script>
+      var scenario = {"name":"Arrays.replace/3 (ErlangArray)","job_name":"Arrays.replace/3 (ErlangArray)","input_name":"0000065536 elements","run_time_data":{"statistics":{"absolute_difference":1175.180402930403,"average":6056.988095238095,"ips":165098.55794271472,"maximum":72490.0,"median":3632.5,"minimum":775.0,"mode":[4101.0,2882.0,1682.0,3424.0],"percentiles":{"50":3632.5,"99":45127.29999999999},"relative_less":0.805979410153652,"relative_more":1.2407264843271366,"sample_size":252,"std_dev":7877.629190891154,"std_dev_ips":214724.74420843963,"std_dev_ratio":1.300585219423564},"samples":[22901.0,13308.0,8455.0,16937.0,22699.0,13389.0,7667.0,4048.0,5378.0,4192.0,3758.0,5246.0,5843.0,17108.0,4838.0,5983.0,3534.0,5517.0,3101.0,4667.0,5601.0,4147.0,3479.0,10438.0,7829.0,8566.0,25688.0,25673.0,7950.0,9847.0,36533.0,8143.0,6251.0,1.02e4,9798.0,51058.0,11517.0,14196.0,20453.0,20474.0,7389.0,6548.0,5707.0,7280.0,7690.0,5880.0,4983.0,6509.0,5323.0,4692.0,8671.0,4455.0,3258.0,7469.0,5044.0,4893.0,6944.0,3739.0,4649.0,11579.0,4397.0,9384.0,12413.0,7012.0,20035.0,6448.0,5197.0,5998.0,6945.0,6162.0,5621.0,6366.0,7243.0,4376.0,15029.0,5186.0,6811.0,4014.0,3863.0,6351.0,4297.0,5372.0,4615.0,5050.0,11767.0,20031.0,8740.0,5607.0,7092.0,8843.0,72490.0,26062.0,22994.0,6896.0,6591.0,3164.0,8629.0,4780.0,3531.0,2501.0,2333.0,4101.0,4525.0,5041.0,5977.0,3417.0,4027.0,1927.0,3265.0,2009.0,3316.0,2445.0,2517.0,2319.0,1486.0,4130.0,1436.0,1623.0,3555.0,1547.0,1331.0,14392.0,9878.0,2551.0,21782.0,5806.0,3504.0,2658.0,2499.0,7868.0,3612.0,2536.0,1861.0,1793.0,1835.0,1225.0,1952.0,1462.0,2.5e3,1682.0,1585.0,1114.0,1552.0,877.0,2513.0,1150.0,1521.0,1066.0,1073.0,2046.0,2084.0,5558.0,2154.0,4416.0,3424.0,3424.0,2512.0,3513.0,3242.0,3253.0,3514.0,1999.0,3362.0,2042.0,3496.0,2308.0,1948.0,1925.0,3256.0,2867.0,1929.0,2363.0,2391.0,3991.0,3326.0,2882.0,2956.0,2958.0,3138.0,3786.0,3837.0,4101.0,3724.0,3559.0,3859.0,4803.0,3723.0,39868.0,4367.0,20758.0,20527.0,26935.0,6368.0,3207.0,6502.0,2650.0,3377.0,2894.0,1774.0,1322.0,3653.0,1843.0,3115.0,2380.0,1179.0,1170.0,1424.0,1081.0,3455.0,2623.0,3929.0,3.0e3,2565.0,2882.0,2178.0,2119.0,2419.0,3725.0,1702.0,2353.0,1130.0,1118.0,1548.0,3097.0,2875.0,1682.0,1782.0,883.0,1062.0,1705.0,1563.0,1041.0,925.0,893.0,952.0,1725.0,1474.0,1429.0,949.0,1796.0,1632.0,1040.0,1544.0,808.0,1669.0,775.0,18011.0,796.0,1419.0,895.0,1577.0,4364.0]},"memory_usage_data":{"statistics":{"absolute_difference":null,"average":null,"ips":null,"maximum":null,"median":null,"minimum":null,"mode":null,"percentiles":null,"relative_less":null,"relative_more":null,"sample_size":0,"std_dev":null,"std_dev_ips":null,"std_dev_ratio":null},"samples":[]},"tag":null};
+
+      var inputHeadline = " (0000065536 elements)"
+
+      
+        drawRunTimeHistogram(scenario, inputHeadline);
+        drawRawRunTimeChart(scenario, inputHeadline);
+      
+
+      
+    </script>
+  </body>
+</html>

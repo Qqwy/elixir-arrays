@@ -5,7 +5,7 @@ defmodule Benchmarks do
   @parallel 1
 
   @inputs (
-  (5..22)
+  (5..20)
   |> Enum.map(&Integer.pow(2, &1))
   |> Enum.map(&(1..&1))
   |> Enum.map(fn range ->
@@ -18,6 +18,7 @@ defmodule Benchmarks do
     concat_benchmark()
     random_access_benchmark()
     random_update_benchmark()
+    append_benchmark()
   end
 
   def concat_benchmark do
@@ -27,10 +28,10 @@ defmodule Benchmarks do
         {fn input ->
           Arrays.concat(input.lhs, input.rhs)
         end,
-         before_scenario: fn range ->
+         before_each: fn range ->
            %{range: range,
-             lhs: Arrays.new(range, implementation: Arrays.Implementations.MapArray),
-             rhs: Arrays.new(range, implementation: Arrays.Implementations.MapArray)
+             lhs: range |> Enum.shuffle() |> Arrays.new(range, implementation: Arrays.Implementations.MapArray),
+             rhs: range |> Enum.shuffle() |> Arrays.new(range, implementation: Arrays.Implementations.MapArray)
             }
          end
         },
@@ -38,10 +39,10 @@ defmodule Benchmarks do
       {fn input ->
         Arrays.concat(input.lhs, input.rhs)
       end,
-       before_scenario: fn range ->
+       before_each: fn range ->
          %{range: range,
-           lhs: Arrays.new(range, implementation: Arrays.Implementations.ErlangArray),
-           rhs: Arrays.new(range, implementation: Arrays.Implementations.ErlangArray)
+           lhs: range |> Enum.shuffle() |> Arrays.new(implementation: Arrays.Implementations.ErlangArray),
+           rhs: range |> Enum.shuffle() |> Arrays.new(implementation: Arrays.Implementations.ErlangArray)
           }
        end
       },
@@ -49,10 +50,10 @@ defmodule Benchmarks do
       {fn input ->
         input.lhs ++ input.rhs
       end,
-       before_scenario: fn range ->
+       before_each: fn range ->
          %{range: range,
-           lhs: Enum.into([], range),
-           rhs: Enum.into([], range)
+           lhs: range |> Enum.shuffle(),
+           rhs: range |> Enum.shuffle()
           }
        end
       }
@@ -62,6 +63,8 @@ defmodule Benchmarks do
       warmup: @warmup,
       time: @time,
       memory_time: @memory_time,
+      parallel: @parallel,
+      pre_check: true,
       formatters: [
         Benchee.Formatters.Console,
         {Benchee.Formatters.HTML, file: "benchmark_runs/concat.html", auto_open: false},
@@ -116,6 +119,7 @@ defmodule Benchmarks do
       warmup: @warmup,
       time: @time,
       parallel: @parallel,
+      pre_check: true,
       # memory_time: @memory_time,
       formatters: [
         Benchee.Formatters.Console,
@@ -186,6 +190,7 @@ defmodule Benchmarks do
       warmup: @warmup,
       time: @time,
       parallel: @parallel,
+      pre_check: true,
       # memory_time: @memory_time,
       formatters: [
         Benchee.Formatters.Console,
@@ -197,6 +202,72 @@ defmodule Benchmarks do
         These are similar but slightly different APIs for element replacement.
 
         For lists, `List.replace_at(list, index)` is used.
+        """
+        }
+      ]
+    )
+  end
+
+  def append_benchmark do
+    Benchee.run(
+      %{
+        "Arrays.append/2 (MapArray)" =>
+        {fn input ->
+          Arrays.append(input.collection, input.value)
+        end,
+         before_each: fn range ->
+           %{range: range,
+             collection: range |> Enum.shuffle |> Arrays.new(implementation: Arrays.Implementations.MapArray)
+            }
+         end
+        },
+        "Arrays.concat/2 (ErlangArray)" =>
+      {fn input ->
+        Arrays.append(input.collection, input.value)
+      end,
+       before_each: fn range ->
+         %{range: range,
+           collection: range |> Enum.shuffle |> Arrays.new(implementation: Arrays.Implementations.ErlangArray)
+          }
+       end
+      },
+        "list ++ [val] (list)" =>
+      {fn input ->
+        input.collection ++ [val]
+      end,
+       before_scenario: fn range ->
+         %{range: range,
+           collection: range |> Enum.shuffle |> Enum.into([])
+          }
+       end
+      },
+        "[val | list] (list, interpreted backwards)" =>
+      {fn input ->
+        [val | input.collection]
+      end,
+       before_each: fn range ->
+         %{range: range,
+           collection: range |> Enum.shuffle |> Enum.into([])
+          }
+       end
+      }
+      },
+      before_each: fn input ->
+        Map.put(input, :value, :random.uniform(input.range.last))
+      end,
+      after_each: fn _ -> :erlang.garbage_collect() end, # make garbage collection unlikely to occur _during_ benchmark.
+      inputs: @inputs,
+      warmup: @warmup,
+      time: @time,
+      memory_time: @memory_time,
+      parallel: @parallel,
+      pre_check: true,
+      formatters: [
+        Benchee.Formatters.Console,
+        {Benchee.Formatters.HTML, file: "benchmark_runs/concat.html", auto_open: false},
+        {Benchee.Formatters.Markdown, file: "benchmark_runs/concat.md", description: """
+        Comparing `Arrays.concat` with `Kernel.++`,
+        by concatenating two collections of the same size.
         """
         }
       ]

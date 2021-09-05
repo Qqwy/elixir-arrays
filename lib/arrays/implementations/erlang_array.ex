@@ -14,10 +14,9 @@ defmodule Arrays.Implementations.ErlangArray do
 
   alias __MODULE__
 
-  defstruct [:contents]
+  defstruct contents: :array.new([fixed: false, default: nil])
 
   @impl Arrays.Behaviour
-  # {:default, val} and {:size, num} are forwarded to `:array`
   def empty(options) do
     contents = :array.new([fixed: false, default: nil] ++ options)
     %ErlangArray{contents: contents}
