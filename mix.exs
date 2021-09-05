@@ -50,7 +50,8 @@ defmodule Arrays.Mixfile do
 
       {:benchee, "~> 1.0", only: :dev},
       {:benchee_markdown, "~> 0.2", only: :dev},
-      {:benchee_html, "~> 1.0", only: :dev}
+      {:benchee_html, "~> 1.0", only: :dev},
+      {:benchee_csv, "~> 1.0", only: :dev}
     ]
   end
 
