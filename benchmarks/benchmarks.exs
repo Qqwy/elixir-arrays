@@ -1,8 +1,9 @@
 defmodule Benchmarks do
   @warmup 0.5
-  @time 1
+  @time 0.5
+  @parallel 1
   @inputs (
-    (5..10)
+    (5..20)
     |> Enum.map(&Integer.pow(2, &1))
     |> Enum.map(&(1..&1))
     |> Enum.map(&({inspect(&1), &1}))
@@ -33,6 +34,7 @@ defmodule Benchmarks do
           concat_lists(range)
         end
       },
+      after_each: fn _ -> :erlang.garbage_collect() end, # make garbage collection unlikely to occur _during_ benchmark.
       inputs: @inputs,
       warmup: @warmup,
       time: @time,
@@ -92,9 +94,11 @@ defmodule Benchmarks do
            end
           }
       },
+      after_each: fn _ -> :erlang.garbage_collect() end, # make garbage collection unlikely to occur _during_ benchmark.
       inputs: @inputs,
       warmup: @warmup,
       time: @time,
+      parallel: @parallel,
       # memory_time: 2,
       formatters: [
         Benchee.Formatters.Console,
@@ -115,17 +119,17 @@ defmodule Benchmarks do
     )
   end
 
-  # useful to skip implementations that get ridiculously slow at larger sizes
-  # and change their implementation to a still slow but less memory-intensive no-op.
-  def skip_if_too_large(fun) do
-    fn input = %{range: 1..size} ->
-      if(size > 1000) do
-        Process.sleep(1)
-      else
-        fun.(input)
-      end
-    end
-  end
+  # # useful to skip implementations that get ridiculously slow at larger sizes
+  # # and change their implementation to a still slow but less memory-intensive no-op.
+  # def skip_if_too_large(fun) do
+  #   fn input = %{range: 1..size} ->
+  #     if(size > 1000) do
+  #       Process.sleep(1)
+  #     else
+  #       fun.(input)
+  #     end
+  #   end
+  # end
 
   def run_benchmarks() do
     # concat_benchmark()
