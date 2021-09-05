@@ -56,6 +56,7 @@ defmodule Benchmarks do
            rhs: range |> Enum.shuffle() |> Arrays.new(implementation: PersistentVector)
           }
        end
+      },
         "Kernel.++/2 (list)" =>
       {fn input ->
         input.lhs ++ input.rhs

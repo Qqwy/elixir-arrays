@@ -62,16 +62,12 @@ if Code.ensure_loaded?(PersistentVector) do
     @impl true
     def extract(array = %PersistentVector{}) do
       # PersistentVector.pop(array, PersistentVector.count(array) - 1)
-      case PersistentVector.count(array) do
-        0 ->
-          {:error, :empty}
-
-        size ->
-
-          index = size - 1
-          elem = array[index]
-          array_rest = PersistentVector.remove_last(array)
-          {:ok, {elem, array_rest}}
+      if PersistentVector.empty?(array) do
+        {:error, :empty}
+      else
+        elem = PersistentVector.last(array)
+        array_rest = PersistentVector.remove_last(array)
+        {:ok, {elem, array_rest}}
       end
     end
 

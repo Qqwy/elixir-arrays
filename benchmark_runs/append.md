@@ -67,39 +67,48 @@ Run Time
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">[val | list] (list, interpreted backwards)</td>
-    <td style="white-space: nowrap; text-align: right">22.60 M</td>
-    <td style="white-space: nowrap; text-align: right">44.25 ns</td>
-    <td style="white-space: nowrap; text-align: right">±1637.95%</td>
-    <td style="white-space: nowrap; text-align: right">17 ns</td>
-    <td style="white-space: nowrap; text-align: right">260 ns</td>
+    <td style="white-space: nowrap">[val | list] (list, backwards)</td>
+    <td style="white-space: nowrap; text-align: right">29.92 M</td>
+    <td style="white-space: nowrap; text-align: right">33.42 ns</td>
+    <td style="white-space: nowrap; text-align: right">±2811.85%</td>
+    <td style="white-space: nowrap; text-align: right">11 ns</td>
+    <td style="white-space: nowrap; text-align: right">43 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">3.37 M</td>
-    <td style="white-space: nowrap; text-align: right">296.76 ns</td>
-    <td style="white-space: nowrap; text-align: right">±519.19%</td>
-    <td style="white-space: nowrap; text-align: right">170 ns</td>
-    <td style="white-space: nowrap; text-align: right">941.72 ns</td>
+    <td style="white-space: nowrap; text-align: right">4.45 M</td>
+    <td style="white-space: nowrap; text-align: right">224.91 ns</td>
+    <td style="white-space: nowrap; text-align: right">±571.48%</td>
+    <td style="white-space: nowrap; text-align: right">140 ns</td>
+    <td style="white-space: nowrap; text-align: right">558 ns</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.append/2 (PersistentVector)</td>
+    <td style="white-space: nowrap; text-align: right">3.61 M</td>
+    <td style="white-space: nowrap; text-align: right">276.87 ns</td>
+    <td style="white-space: nowrap; text-align: right">±711.54%</td>
+    <td style="white-space: nowrap; text-align: right">165 ns</td>
+    <td style="white-space: nowrap; text-align: right">469.25 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">list ++ [val] (list)</td>
-    <td style="white-space: nowrap; text-align: right">2.41 M</td>
-    <td style="white-space: nowrap; text-align: right">414.65 ns</td>
-    <td style="white-space: nowrap; text-align: right">±843.73%</td>
-    <td style="white-space: nowrap; text-align: right">114 ns</td>
-    <td style="white-space: nowrap; text-align: right">3978 ns</td>
+    <td style="white-space: nowrap; text-align: right">3.02 M</td>
+    <td style="white-space: nowrap; text-align: right">331.28 ns</td>
+    <td style="white-space: nowrap; text-align: right">±843.52%</td>
+    <td style="white-space: nowrap; text-align: right">116 ns</td>
+    <td style="white-space: nowrap; text-align: right">2254.48 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.append/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">0.148 M</td>
-    <td style="white-space: nowrap; text-align: right">6767.04 ns</td>
-    <td style="white-space: nowrap; text-align: right">±179.75%</td>
-    <td style="white-space: nowrap; text-align: right">4771 ns</td>
-    <td style="white-space: nowrap; text-align: right">57050.10 ns</td>
+    <td style="white-space: nowrap; text-align: right">0.39 M</td>
+    <td style="white-space: nowrap; text-align: right">2569.36 ns</td>
+    <td style="white-space: nowrap; text-align: right">±128.65%</td>
+    <td style="white-space: nowrap; text-align: right">2086 ns</td>
+    <td style="white-space: nowrap; text-align: right">20996.72 ns</td>
   </tr>
 
 </table>
@@ -113,27 +122,33 @@ Comparison
     <th style="text-align: right">IPS</th>
     <th style="text-align: right">Slower</th>
   <tr>
-    <td style="white-space: nowrap">[val | list] (list, interpreted backwards)</td>
-    <td style="white-space: nowrap;text-align: right">22.60 M</td>
+    <td style="white-space: nowrap">[val | list] (list, backwards)</td>
+    <td style="white-space: nowrap;text-align: right">29.92 M</td>
     <td>&nbsp;</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">3.37 M</td>
-    <td style="white-space: nowrap; text-align: right">6.71x</td>
+    <td style="white-space: nowrap; text-align: right">4.45 M</td>
+    <td style="white-space: nowrap; text-align: right">6.73x</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.append/2 (PersistentVector)</td>
+    <td style="white-space: nowrap; text-align: right">3.61 M</td>
+    <td style="white-space: nowrap; text-align: right">8.28x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">list ++ [val] (list)</td>
-    <td style="white-space: nowrap; text-align: right">2.41 M</td>
-    <td style="white-space: nowrap; text-align: right">9.37x</td>
+    <td style="white-space: nowrap; text-align: right">3.02 M</td>
+    <td style="white-space: nowrap; text-align: right">9.91x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.append/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">0.148 M</td>
-    <td style="white-space: nowrap; text-align: right">152.92x</td>
+    <td style="white-space: nowrap; text-align: right">0.39 M</td>
+    <td style="white-space: nowrap; text-align: right">76.88x</td>
   </tr>
 
 </table>
@@ -149,7 +164,7 @@ Memory Usage
 <th style="text-align: right">Factor</th>
   </tr>
   <tr>
-    <td style="white-space: nowrap">[val | list] (list, interpreted backwards)</td>
+    <td style="white-space: nowrap">[val | list] (list, backwards)</td>
     <td style="white-space: nowrap">16 B</td>
 <td>&nbsp;</td>
   </tr>
@@ -158,6 +173,12 @@ Memory Usage
     <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
     <td style="white-space: nowrap">272 B</td>
     <td>17.0x</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.append/2 (PersistentVector)</td>
+    <td style="white-space: nowrap">120 B</td>
+    <td>7.5x</td>
   </tr>
 
   <tr>
@@ -193,39 +214,48 @@ Run Time
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">[val | list] (list, interpreted backwards)</td>
-    <td style="white-space: nowrap; text-align: right">21.40 M</td>
-    <td style="white-space: nowrap; text-align: right">46.72 ns</td>
-    <td style="white-space: nowrap; text-align: right">±1070.87%</td>
-    <td style="white-space: nowrap; text-align: right">21 ns</td>
-    <td style="white-space: nowrap; text-align: right">342 ns</td>
+    <td style="white-space: nowrap">[val | list] (list, backwards)</td>
+    <td style="white-space: nowrap; text-align: right">24.58 M</td>
+    <td style="white-space: nowrap; text-align: right">40.68 ns</td>
+    <td style="white-space: nowrap; text-align: right">±2356.37%</td>
+    <td style="white-space: nowrap; text-align: right">14 ns</td>
+    <td style="white-space: nowrap; text-align: right">45 ns</td>
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">4.52 M</td>
-    <td style="white-space: nowrap; text-align: right">221.22 ns</td>
-    <td style="white-space: nowrap; text-align: right">±653.28%</td>
-    <td style="white-space: nowrap; text-align: right">148 ns</td>
-    <td style="white-space: nowrap; text-align: right">550 ns</td>
-  </tr>
-
-  <tr>
-    <td style="white-space: nowrap">list ++ [val] (list)</td>
-    <td style="white-space: nowrap; text-align: right">1.75 M</td>
-    <td style="white-space: nowrap; text-align: right">571.48 ns</td>
-    <td style="white-space: nowrap; text-align: right">±536.74%</td>
-    <td style="white-space: nowrap; text-align: right">194 ns</td>
-    <td style="white-space: nowrap; text-align: right">11763.60 ns</td>
+    <td style="white-space: nowrap">Arrays.append/2 (PersistentVector)</td>
+    <td style="white-space: nowrap; text-align: right">4.95 M</td>
+    <td style="white-space: nowrap; text-align: right">202.12 ns</td>
+    <td style="white-space: nowrap; text-align: right">±406.75%</td>
+    <td style="white-space: nowrap; text-align: right">164 ns</td>
+    <td style="white-space: nowrap; text-align: right">410.95 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.append/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">1.52 M</td>
-    <td style="white-space: nowrap; text-align: right">659.84 ns</td>
-    <td style="white-space: nowrap; text-align: right">±520.83%</td>
-    <td style="white-space: nowrap; text-align: right">440 ns</td>
-    <td style="white-space: nowrap; text-align: right">2560.90 ns</td>
+    <td style="white-space: nowrap; text-align: right">4.90 M</td>
+    <td style="white-space: nowrap; text-align: right">203.90 ns</td>
+    <td style="white-space: nowrap; text-align: right">±561.85%</td>
+    <td style="white-space: nowrap; text-align: right">138 ns</td>
+    <td style="white-space: nowrap; text-align: right">354 ns</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
+    <td style="white-space: nowrap; text-align: right">4.20 M</td>
+    <td style="white-space: nowrap; text-align: right">238.16 ns</td>
+    <td style="white-space: nowrap; text-align: right">±609.02%</td>
+    <td style="white-space: nowrap; text-align: right">141 ns</td>
+    <td style="white-space: nowrap; text-align: right">575 ns</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">list ++ [val] (list)</td>
+    <td style="white-space: nowrap; text-align: right">1.74 M</td>
+    <td style="white-space: nowrap; text-align: right">573.48 ns</td>
+    <td style="white-space: nowrap; text-align: right">±678.44%</td>
+    <td style="white-space: nowrap; text-align: right">207 ns</td>
+    <td style="white-space: nowrap; text-align: right">11363.18 ns</td>
   </tr>
 
 </table>
@@ -239,27 +269,33 @@ Comparison
     <th style="text-align: right">IPS</th>
     <th style="text-align: right">Slower</th>
   <tr>
-    <td style="white-space: nowrap">[val | list] (list, interpreted backwards)</td>
-    <td style="white-space: nowrap;text-align: right">21.40 M</td>
+    <td style="white-space: nowrap">[val | list] (list, backwards)</td>
+    <td style="white-space: nowrap;text-align: right">24.58 M</td>
     <td>&nbsp;</td>
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">4.52 M</td>
-    <td style="white-space: nowrap; text-align: right">4.73x</td>
-  </tr>
-
-  <tr>
-    <td style="white-space: nowrap">list ++ [val] (list)</td>
-    <td style="white-space: nowrap; text-align: right">1.75 M</td>
-    <td style="white-space: nowrap; text-align: right">12.23x</td>
+    <td style="white-space: nowrap">Arrays.append/2 (PersistentVector)</td>
+    <td style="white-space: nowrap; text-align: right">4.95 M</td>
+    <td style="white-space: nowrap; text-align: right">4.97x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.append/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">1.52 M</td>
-    <td style="white-space: nowrap; text-align: right">14.12x</td>
+    <td style="white-space: nowrap; text-align: right">4.90 M</td>
+    <td style="white-space: nowrap; text-align: right">5.01x</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
+    <td style="white-space: nowrap; text-align: right">4.20 M</td>
+    <td style="white-space: nowrap; text-align: right">5.85x</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">list ++ [val] (list)</td>
+    <td style="white-space: nowrap; text-align: right">1.74 M</td>
+    <td style="white-space: nowrap; text-align: right">14.1x</td>
   </tr>
 
 </table>
@@ -275,9 +311,21 @@ Memory Usage
 <th style="text-align: right">Factor</th>
   </tr>
   <tr>
-    <td style="white-space: nowrap">[val | list] (list, interpreted backwards)</td>
+    <td style="white-space: nowrap">[val | list] (list, backwards)</td>
     <td style="white-space: nowrap">16 B</td>
 <td>&nbsp;</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.append/2 (PersistentVector)</td>
+    <td style="white-space: nowrap">128 B</td>
+    <td>8.0x</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.append/2 (MapArray)</td>
+    <td style="white-space: nowrap">232 B</td>
+    <td>14.5x</td>
   </tr>
 
   <tr>
@@ -290,12 +338,6 @@ Memory Usage
     <td style="white-space: nowrap">list ++ [val] (list)</td>
     <td style="white-space: nowrap">448 B</td>
     <td>28.0x</td>
-  </tr>
-
-  <tr>
-    <td style="white-space: nowrap">Arrays.append/2 (MapArray)</td>
-    <td style="white-space: nowrap">232 B</td>
-    <td>14.5x</td>
   </tr>
 
 </table>
@@ -319,39 +361,48 @@ Run Time
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">[val | list] (list, interpreted backwards)</td>
-    <td style="white-space: nowrap; text-align: right">19.03 M</td>
-    <td style="white-space: nowrap; text-align: right">52.56 ns</td>
-    <td style="white-space: nowrap; text-align: right">±1346.38%</td>
-    <td style="white-space: nowrap; text-align: right">19 ns</td>
-    <td style="white-space: nowrap; text-align: right">192.27 ns</td>
+    <td style="white-space: nowrap">[val | list] (list, backwards)</td>
+    <td style="white-space: nowrap; text-align: right">23.98 M</td>
+    <td style="white-space: nowrap; text-align: right">41.70 ns</td>
+    <td style="white-space: nowrap; text-align: right">±1444.94%</td>
+    <td style="white-space: nowrap; text-align: right">18 ns</td>
+    <td style="white-space: nowrap; text-align: right">74.91 ns</td>
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">3.09 M</td>
-    <td style="white-space: nowrap; text-align: right">323.21 ns</td>
-    <td style="white-space: nowrap; text-align: right">±365.43%</td>
-    <td style="white-space: nowrap; text-align: right">213 ns</td>
-    <td style="white-space: nowrap; text-align: right">1952.28 ns</td>
+    <td style="white-space: nowrap">Arrays.append/2 (PersistentVector)</td>
+    <td style="white-space: nowrap; text-align: right">4.88 M</td>
+    <td style="white-space: nowrap; text-align: right">205.08 ns</td>
+    <td style="white-space: nowrap; text-align: right">±382.02%</td>
+    <td style="white-space: nowrap; text-align: right">169 ns</td>
+    <td style="white-space: nowrap; text-align: right">271.47 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.append/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">2.48 M</td>
-    <td style="white-space: nowrap; text-align: right">403.59 ns</td>
-    <td style="white-space: nowrap; text-align: right">±637.46%</td>
-    <td style="white-space: nowrap; text-align: right">201 ns</td>
-    <td style="white-space: nowrap; text-align: right">3715.80 ns</td>
+    <td style="white-space: nowrap; text-align: right">4.46 M</td>
+    <td style="white-space: nowrap; text-align: right">224.39 ns</td>
+    <td style="white-space: nowrap; text-align: right">±419.03%</td>
+    <td style="white-space: nowrap; text-align: right">159 ns</td>
+    <td style="white-space: nowrap; text-align: right">613.10 ns</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
+    <td style="white-space: nowrap; text-align: right">3.59 M</td>
+    <td style="white-space: nowrap; text-align: right">278.39 ns</td>
+    <td style="white-space: nowrap; text-align: right">±384.80%</td>
+    <td style="white-space: nowrap; text-align: right">193 ns</td>
+    <td style="white-space: nowrap; text-align: right">1705.54 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">list ++ [val] (list)</td>
-    <td style="white-space: nowrap; text-align: right">1.01 M</td>
-    <td style="white-space: nowrap; text-align: right">987.13 ns</td>
-    <td style="white-space: nowrap; text-align: right">±379.42%</td>
-    <td style="white-space: nowrap; text-align: right">363 ns</td>
-    <td style="white-space: nowrap; text-align: right">22465.40 ns</td>
+    <td style="white-space: nowrap; text-align: right">1.06 M</td>
+    <td style="white-space: nowrap; text-align: right">945.59 ns</td>
+    <td style="white-space: nowrap; text-align: right">±374.12%</td>
+    <td style="white-space: nowrap; text-align: right">385 ns</td>
+    <td style="white-space: nowrap; text-align: right">18911.93 ns</td>
   </tr>
 
 </table>
@@ -365,27 +416,33 @@ Comparison
     <th style="text-align: right">IPS</th>
     <th style="text-align: right">Slower</th>
   <tr>
-    <td style="white-space: nowrap">[val | list] (list, interpreted backwards)</td>
-    <td style="white-space: nowrap;text-align: right">19.03 M</td>
+    <td style="white-space: nowrap">[val | list] (list, backwards)</td>
+    <td style="white-space: nowrap;text-align: right">23.98 M</td>
     <td>&nbsp;</td>
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">3.09 M</td>
-    <td style="white-space: nowrap; text-align: right">6.15x</td>
+    <td style="white-space: nowrap">Arrays.append/2 (PersistentVector)</td>
+    <td style="white-space: nowrap; text-align: right">4.88 M</td>
+    <td style="white-space: nowrap; text-align: right">4.92x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.append/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">2.48 M</td>
-    <td style="white-space: nowrap; text-align: right">7.68x</td>
+    <td style="white-space: nowrap; text-align: right">4.46 M</td>
+    <td style="white-space: nowrap; text-align: right">5.38x</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
+    <td style="white-space: nowrap; text-align: right">3.59 M</td>
+    <td style="white-space: nowrap; text-align: right">6.68x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">list ++ [val] (list)</td>
-    <td style="white-space: nowrap; text-align: right">1.01 M</td>
-    <td style="white-space: nowrap; text-align: right">18.78x</td>
+    <td style="white-space: nowrap; text-align: right">1.06 M</td>
+    <td style="white-space: nowrap; text-align: right">22.68x</td>
   </tr>
 
 </table>
@@ -401,21 +458,27 @@ Memory Usage
 <th style="text-align: right">Factor</th>
   </tr>
   <tr>
-    <td style="white-space: nowrap">[val | list] (list, interpreted backwards)</td>
+    <td style="white-space: nowrap">[val | list] (list, backwards)</td>
     <td style="white-space: nowrap">16 B</td>
 <td>&nbsp;</td>
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
-    <td style="white-space: nowrap">368 B</td>
-    <td>23.0x</td>
+    <td style="white-space: nowrap">Arrays.append/2 (PersistentVector)</td>
+    <td style="white-space: nowrap">144 B</td>
+    <td>9.0x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.append/2 (MapArray)</td>
     <td style="white-space: nowrap">272 B</td>
     <td>17.0x</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
+    <td style="white-space: nowrap">368 B</td>
+    <td>23.0x</td>
   </tr>
 
   <tr>
@@ -445,39 +508,48 @@ Run Time
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">[val | list] (list, interpreted backwards)</td>
-    <td style="white-space: nowrap; text-align: right">20.57 M</td>
-    <td style="white-space: nowrap; text-align: right">48.61 ns</td>
-    <td style="white-space: nowrap; text-align: right">±668.41%</td>
-    <td style="white-space: nowrap; text-align: right">32 ns</td>
-    <td style="white-space: nowrap; text-align: right">253.61 ns</td>
+    <td style="white-space: nowrap">[val | list] (list, backwards)</td>
+    <td style="white-space: nowrap; text-align: right">28.73 M</td>
+    <td style="white-space: nowrap; text-align: right">34.81 ns</td>
+    <td style="white-space: nowrap; text-align: right">±1306.09%</td>
+    <td style="white-space: nowrap; text-align: right">21 ns</td>
+    <td style="white-space: nowrap; text-align: right">68 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">3.80 M</td>
-    <td style="white-space: nowrap; text-align: right">263.09 ns</td>
-    <td style="white-space: nowrap; text-align: right">±273.43%</td>
-    <td style="white-space: nowrap; text-align: right">223 ns</td>
-    <td style="white-space: nowrap; text-align: right">592.40 ns</td>
+    <td style="white-space: nowrap; text-align: right">4.56 M</td>
+    <td style="white-space: nowrap; text-align: right">219.47 ns</td>
+    <td style="white-space: nowrap; text-align: right">±149.01%</td>
+    <td style="white-space: nowrap; text-align: right">201 ns</td>
+    <td style="white-space: nowrap; text-align: right">420.76 ns</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.append/2 (PersistentVector)</td>
+    <td style="white-space: nowrap; text-align: right">4.28 M</td>
+    <td style="white-space: nowrap; text-align: right">233.73 ns</td>
+    <td style="white-space: nowrap; text-align: right">±148.25%</td>
+    <td style="white-space: nowrap; text-align: right">197 ns</td>
+    <td style="white-space: nowrap; text-align: right">1775.25 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.append/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">3.52 M</td>
-    <td style="white-space: nowrap; text-align: right">284.19 ns</td>
-    <td style="white-space: nowrap; text-align: right">±170.68%</td>
-    <td style="white-space: nowrap; text-align: right">236 ns</td>
-    <td style="white-space: nowrap; text-align: right">867.40 ns</td>
+    <td style="white-space: nowrap; text-align: right">3.38 M</td>
+    <td style="white-space: nowrap; text-align: right">296.09 ns</td>
+    <td style="white-space: nowrap; text-align: right">±276.90%</td>
+    <td style="white-space: nowrap; text-align: right">203 ns</td>
+    <td style="white-space: nowrap; text-align: right">6649.87 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">list ++ [val] (list)</td>
-    <td style="white-space: nowrap; text-align: right">0.56 M</td>
-    <td style="white-space: nowrap; text-align: right">1770.73 ns</td>
-    <td style="white-space: nowrap; text-align: right">±235.47%</td>
-    <td style="white-space: nowrap; text-align: right">703 ns</td>
-    <td style="white-space: nowrap; text-align: right">25160.78 ns</td>
+    <td style="white-space: nowrap; text-align: right">0.58 M</td>
+    <td style="white-space: nowrap; text-align: right">1735.97 ns</td>
+    <td style="white-space: nowrap; text-align: right">±241.76%</td>
+    <td style="white-space: nowrap; text-align: right">740 ns</td>
+    <td style="white-space: nowrap; text-align: right">25864.62 ns</td>
   </tr>
 
 </table>
@@ -491,27 +563,33 @@ Comparison
     <th style="text-align: right">IPS</th>
     <th style="text-align: right">Slower</th>
   <tr>
-    <td style="white-space: nowrap">[val | list] (list, interpreted backwards)</td>
-    <td style="white-space: nowrap;text-align: right">20.57 M</td>
+    <td style="white-space: nowrap">[val | list] (list, backwards)</td>
+    <td style="white-space: nowrap;text-align: right">28.73 M</td>
     <td>&nbsp;</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">3.80 M</td>
-    <td style="white-space: nowrap; text-align: right">5.41x</td>
+    <td style="white-space: nowrap; text-align: right">4.56 M</td>
+    <td style="white-space: nowrap; text-align: right">6.3x</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.append/2 (PersistentVector)</td>
+    <td style="white-space: nowrap; text-align: right">4.28 M</td>
+    <td style="white-space: nowrap; text-align: right">6.71x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.append/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">3.52 M</td>
-    <td style="white-space: nowrap; text-align: right">5.85x</td>
+    <td style="white-space: nowrap; text-align: right">3.38 M</td>
+    <td style="white-space: nowrap; text-align: right">8.51x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">list ++ [val] (list)</td>
-    <td style="white-space: nowrap; text-align: right">0.56 M</td>
-    <td style="white-space: nowrap; text-align: right">36.42x</td>
+    <td style="white-space: nowrap; text-align: right">0.58 M</td>
+    <td style="white-space: nowrap; text-align: right">49.87x</td>
   </tr>
 
 </table>
@@ -527,7 +605,7 @@ Memory Usage
 <th style="text-align: right">Factor</th>
   </tr>
   <tr>
-    <td style="white-space: nowrap">[val | list] (list, interpreted backwards)</td>
+    <td style="white-space: nowrap">[val | list] (list, backwards)</td>
     <td style="white-space: nowrap">16 B</td>
 <td>&nbsp;</td>
   </tr>
@@ -536,6 +614,12 @@ Memory Usage
     <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
     <td style="white-space: nowrap">368 B</td>
     <td>23.0x</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.append/2 (PersistentVector)</td>
+    <td style="white-space: nowrap">176 B</td>
+    <td>11.0x</td>
   </tr>
 
   <tr>
@@ -571,39 +655,48 @@ Run Time
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">[val | list] (list, interpreted backwards)</td>
-    <td style="white-space: nowrap; text-align: right">15.07 M</td>
-    <td style="white-space: nowrap; text-align: right">66.36 ns</td>
-    <td style="white-space: nowrap; text-align: right">±591.91%</td>
-    <td style="white-space: nowrap; text-align: right">45 ns</td>
-    <td style="white-space: nowrap; text-align: right">305.88 ns</td>
+    <td style="white-space: nowrap">[val | list] (list, backwards)</td>
+    <td style="white-space: nowrap; text-align: right">31.89 M</td>
+    <td style="white-space: nowrap; text-align: right">31.36 ns</td>
+    <td style="white-space: nowrap; text-align: right">±174.18%</td>
+    <td style="white-space: nowrap; text-align: right">27 ns</td>
+    <td style="white-space: nowrap; text-align: right">78 ns</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.append/2 (PersistentVector)</td>
+    <td style="white-space: nowrap; text-align: right">3.98 M</td>
+    <td style="white-space: nowrap; text-align: right">251.15 ns</td>
+    <td style="white-space: nowrap; text-align: right">±66.34%</td>
+    <td style="white-space: nowrap; text-align: right">231 ns</td>
+    <td style="white-space: nowrap; text-align: right">644.80 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">2.03 M</td>
-    <td style="white-space: nowrap; text-align: right">491.86 ns</td>
-    <td style="white-space: nowrap; text-align: right">±219.16%</td>
-    <td style="white-space: nowrap; text-align: right">237 ns</td>
-    <td style="white-space: nowrap; text-align: right">4617.08 ns</td>
+    <td style="white-space: nowrap; text-align: right">3.30 M</td>
+    <td style="white-space: nowrap; text-align: right">302.85 ns</td>
+    <td style="white-space: nowrap; text-align: right">±118.96%</td>
+    <td style="white-space: nowrap; text-align: right">218 ns</td>
+    <td style="white-space: nowrap; text-align: right">1949 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.append/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">1.69 M</td>
-    <td style="white-space: nowrap; text-align: right">591.48 ns</td>
-    <td style="white-space: nowrap; text-align: right">±366.88%</td>
-    <td style="white-space: nowrap; text-align: right">268 ns</td>
-    <td style="white-space: nowrap; text-align: right">12094.91 ns</td>
+    <td style="white-space: nowrap; text-align: right">2.66 M</td>
+    <td style="white-space: nowrap; text-align: right">375.83 ns</td>
+    <td style="white-space: nowrap; text-align: right">±402.39%</td>
+    <td style="white-space: nowrap; text-align: right">212 ns</td>
+    <td style="white-space: nowrap; text-align: right">10003.78 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">list ++ [val] (list)</td>
-    <td style="white-space: nowrap; text-align: right">0.38 M</td>
-    <td style="white-space: nowrap; text-align: right">2611.77 ns</td>
-    <td style="white-space: nowrap; text-align: right">±156.59%</td>
-    <td style="white-space: nowrap; text-align: right">1381 ns</td>
-    <td style="white-space: nowrap; text-align: right">19545.00 ns</td>
+    <td style="white-space: nowrap; text-align: right">0.48 M</td>
+    <td style="white-space: nowrap; text-align: right">2077.60 ns</td>
+    <td style="white-space: nowrap; text-align: right">±94.84%</td>
+    <td style="white-space: nowrap; text-align: right">1461 ns</td>
+    <td style="white-space: nowrap; text-align: right">8688.67 ns</td>
   </tr>
 
 </table>
@@ -617,27 +710,33 @@ Comparison
     <th style="text-align: right">IPS</th>
     <th style="text-align: right">Slower</th>
   <tr>
-    <td style="white-space: nowrap">[val | list] (list, interpreted backwards)</td>
-    <td style="white-space: nowrap;text-align: right">15.07 M</td>
+    <td style="white-space: nowrap">[val | list] (list, backwards)</td>
+    <td style="white-space: nowrap;text-align: right">31.89 M</td>
     <td>&nbsp;</td>
   </tr>
 
   <tr>
+    <td style="white-space: nowrap">Arrays.append/2 (PersistentVector)</td>
+    <td style="white-space: nowrap; text-align: right">3.98 M</td>
+    <td style="white-space: nowrap; text-align: right">8.01x</td>
+  </tr>
+
+  <tr>
     <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">2.03 M</td>
-    <td style="white-space: nowrap; text-align: right">7.41x</td>
+    <td style="white-space: nowrap; text-align: right">3.30 M</td>
+    <td style="white-space: nowrap; text-align: right">9.66x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.append/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">1.69 M</td>
-    <td style="white-space: nowrap; text-align: right">8.91x</td>
+    <td style="white-space: nowrap; text-align: right">2.66 M</td>
+    <td style="white-space: nowrap; text-align: right">11.98x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">list ++ [val] (list)</td>
-    <td style="white-space: nowrap; text-align: right">0.38 M</td>
-    <td style="white-space: nowrap; text-align: right">39.36x</td>
+    <td style="white-space: nowrap; text-align: right">0.48 M</td>
+    <td style="white-space: nowrap; text-align: right">66.25x</td>
   </tr>
 
 </table>
@@ -653,9 +752,15 @@ Memory Usage
 <th style="text-align: right">Factor</th>
   </tr>
   <tr>
-    <td style="white-space: nowrap">[val | list] (list, interpreted backwards)</td>
+    <td style="white-space: nowrap">[val | list] (list, backwards)</td>
     <td style="white-space: nowrap">16 B</td>
 <td>&nbsp;</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.append/2 (PersistentVector)</td>
+    <td style="white-space: nowrap">240 B</td>
+    <td>15.0x</td>
   </tr>
 
   <tr>
@@ -697,39 +802,48 @@ Run Time
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">[val | list] (list, interpreted backwards)</td>
-    <td style="white-space: nowrap; text-align: right">15.47 M</td>
-    <td style="white-space: nowrap; text-align: right">0.0646 μs</td>
-    <td style="white-space: nowrap; text-align: right">±142.01%</td>
-    <td style="white-space: nowrap; text-align: right">0.0520 μs</td>
-    <td style="white-space: nowrap; text-align: right">0.43 μs</td>
+    <td style="white-space: nowrap">[val | list] (list, backwards)</td>
+    <td style="white-space: nowrap; text-align: right">15.01 M</td>
+    <td style="white-space: nowrap; text-align: right">66.60 ns</td>
+    <td style="white-space: nowrap; text-align: right">±897.59%</td>
+    <td style="white-space: nowrap; text-align: right">34 ns</td>
+    <td style="white-space: nowrap; text-align: right">240.30 ns</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.append/2 (PersistentVector)</td>
+    <td style="white-space: nowrap; text-align: right">2.85 M</td>
+    <td style="white-space: nowrap; text-align: right">350.45 ns</td>
+    <td style="white-space: nowrap; text-align: right">±211.78%</td>
+    <td style="white-space: nowrap; text-align: right">296 ns</td>
+    <td style="white-space: nowrap; text-align: right">2087.69 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">2.00 M</td>
-    <td style="white-space: nowrap; text-align: right">0.50 μs</td>
-    <td style="white-space: nowrap; text-align: right">±141.05%</td>
-    <td style="white-space: nowrap; text-align: right">0.28 μs</td>
-    <td style="white-space: nowrap; text-align: right">4.70 μs</td>
+    <td style="white-space: nowrap; text-align: right">2.68 M</td>
+    <td style="white-space: nowrap; text-align: right">372.49 ns</td>
+    <td style="white-space: nowrap; text-align: right">±93.66%</td>
+    <td style="white-space: nowrap; text-align: right">288 ns</td>
+    <td style="white-space: nowrap; text-align: right">1983.09 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.append/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">0.73 M</td>
-    <td style="white-space: nowrap; text-align: right">1.37 μs</td>
-    <td style="white-space: nowrap; text-align: right">±339.09%</td>
-    <td style="white-space: nowrap; text-align: right">0.31 μs</td>
-    <td style="white-space: nowrap; text-align: right">20.19 μs</td>
+    <td style="white-space: nowrap; text-align: right">0.35 M</td>
+    <td style="white-space: nowrap; text-align: right">2890.35 ns</td>
+    <td style="white-space: nowrap; text-align: right">±244.77%</td>
+    <td style="white-space: nowrap; text-align: right">252 ns</td>
+    <td style="white-space: nowrap; text-align: right">22905 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">list ++ [val] (list)</td>
-    <td style="white-space: nowrap; text-align: right">0.123 M</td>
-    <td style="white-space: nowrap; text-align: right">8.14 μs</td>
-    <td style="white-space: nowrap; text-align: right">±114.85%</td>
-    <td style="white-space: nowrap; text-align: right">3.00 μs</td>
-    <td style="white-space: nowrap; text-align: right">40.46 μs</td>
+    <td style="white-space: nowrap; text-align: right">0.130 M</td>
+    <td style="white-space: nowrap; text-align: right">7702.63 ns</td>
+    <td style="white-space: nowrap; text-align: right">±98.23%</td>
+    <td style="white-space: nowrap; text-align: right">2931 ns</td>
+    <td style="white-space: nowrap; text-align: right">27021.43 ns</td>
   </tr>
 
 </table>
@@ -743,27 +857,33 @@ Comparison
     <th style="text-align: right">IPS</th>
     <th style="text-align: right">Slower</th>
   <tr>
-    <td style="white-space: nowrap">[val | list] (list, interpreted backwards)</td>
-    <td style="white-space: nowrap;text-align: right">15.47 M</td>
+    <td style="white-space: nowrap">[val | list] (list, backwards)</td>
+    <td style="white-space: nowrap;text-align: right">15.01 M</td>
     <td>&nbsp;</td>
   </tr>
 
   <tr>
+    <td style="white-space: nowrap">Arrays.append/2 (PersistentVector)</td>
+    <td style="white-space: nowrap; text-align: right">2.85 M</td>
+    <td style="white-space: nowrap; text-align: right">5.26x</td>
+  </tr>
+
+  <tr>
     <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">2.00 M</td>
-    <td style="white-space: nowrap; text-align: right">7.73x</td>
+    <td style="white-space: nowrap; text-align: right">2.68 M</td>
+    <td style="white-space: nowrap; text-align: right">5.59x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.append/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">0.73 M</td>
-    <td style="white-space: nowrap; text-align: right">21.16x</td>
+    <td style="white-space: nowrap; text-align: right">0.35 M</td>
+    <td style="white-space: nowrap; text-align: right">43.4x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">list ++ [val] (list)</td>
-    <td style="white-space: nowrap; text-align: right">0.123 M</td>
-    <td style="white-space: nowrap; text-align: right">125.89x</td>
+    <td style="white-space: nowrap; text-align: right">0.130 M</td>
+    <td style="white-space: nowrap; text-align: right">115.65x</td>
   </tr>
 
 </table>
@@ -779,9 +899,15 @@ Memory Usage
 <th style="text-align: right">Factor</th>
   </tr>
   <tr>
-    <td style="white-space: nowrap">[val | list] (list, interpreted backwards)</td>
+    <td style="white-space: nowrap">[val | list] (list, backwards)</td>
     <td style="white-space: nowrap">16 B</td>
 <td>&nbsp;</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.append/2 (PersistentVector)</td>
+    <td style="white-space: nowrap">368 B</td>
+    <td>23.0x</td>
   </tr>
 
   <tr>
@@ -823,39 +949,48 @@ Run Time
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">[val | list] (list, interpreted backwards)</td>
-    <td style="white-space: nowrap; text-align: right">13.53 M</td>
-    <td style="white-space: nowrap; text-align: right">0.0739 μs</td>
-    <td style="white-space: nowrap; text-align: right">±130.11%</td>
-    <td style="white-space: nowrap; text-align: right">0.0545 μs</td>
-    <td style="white-space: nowrap; text-align: right">0.58 μs</td>
+    <td style="white-space: nowrap">[val | list] (list, backwards)</td>
+    <td style="white-space: nowrap; text-align: right">15.29 M</td>
+    <td style="white-space: nowrap; text-align: right">65.38 ns</td>
+    <td style="white-space: nowrap; text-align: right">±50.23%</td>
+    <td style="white-space: nowrap; text-align: right">58 ns</td>
+    <td style="white-space: nowrap; text-align: right">218.35 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.append/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">1.85 M</td>
-    <td style="white-space: nowrap; text-align: right">0.54 μs</td>
-    <td style="white-space: nowrap; text-align: right">±364.62%</td>
-    <td style="white-space: nowrap; text-align: right">0.32 μs</td>
-    <td style="white-space: nowrap; text-align: right">4.54 μs</td>
+    <td style="white-space: nowrap; text-align: right">3.14 M</td>
+    <td style="white-space: nowrap; text-align: right">318.74 ns</td>
+    <td style="white-space: nowrap; text-align: right">±237.87%</td>
+    <td style="white-space: nowrap; text-align: right">271 ns</td>
+    <td style="white-space: nowrap; text-align: right">607.72 ns</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.append/2 (PersistentVector)</td>
+    <td style="white-space: nowrap; text-align: right">2.38 M</td>
+    <td style="white-space: nowrap; text-align: right">420.98 ns</td>
+    <td style="white-space: nowrap; text-align: right">±75.73%</td>
+    <td style="white-space: nowrap; text-align: right">354 ns</td>
+    <td style="white-space: nowrap; text-align: right">2185.75 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">0.95 M</td>
-    <td style="white-space: nowrap; text-align: right">1.06 μs</td>
-    <td style="white-space: nowrap; text-align: right">±206.34%</td>
-    <td style="white-space: nowrap; text-align: right">0.33 μs</td>
-    <td style="white-space: nowrap; text-align: right">19.23 μs</td>
+    <td style="white-space: nowrap; text-align: right">1.29 M</td>
+    <td style="white-space: nowrap; text-align: right">774.78 ns</td>
+    <td style="white-space: nowrap; text-align: right">±104.81%</td>
+    <td style="white-space: nowrap; text-align: right">321 ns</td>
+    <td style="white-space: nowrap; text-align: right">2699 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">list ++ [val] (list)</td>
-    <td style="white-space: nowrap; text-align: right">0.0658 M</td>
-    <td style="white-space: nowrap; text-align: right">15.20 μs</td>
-    <td style="white-space: nowrap; text-align: right">±82.29%</td>
-    <td style="white-space: nowrap; text-align: right">6.47 μs</td>
-    <td style="white-space: nowrap; text-align: right">65.10 μs</td>
+    <td style="white-space: nowrap; text-align: right">0.0681 M</td>
+    <td style="white-space: nowrap; text-align: right">14673.78 ns</td>
+    <td style="white-space: nowrap; text-align: right">±85.20%</td>
+    <td style="white-space: nowrap; text-align: right">5850 ns</td>
+    <td style="white-space: nowrap; text-align: right">61890.13 ns</td>
   </tr>
 
 </table>
@@ -869,27 +1004,33 @@ Comparison
     <th style="text-align: right">IPS</th>
     <th style="text-align: right">Slower</th>
   <tr>
-    <td style="white-space: nowrap">[val | list] (list, interpreted backwards)</td>
-    <td style="white-space: nowrap;text-align: right">13.53 M</td>
+    <td style="white-space: nowrap">[val | list] (list, backwards)</td>
+    <td style="white-space: nowrap;text-align: right">15.29 M</td>
     <td>&nbsp;</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.append/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">1.85 M</td>
-    <td style="white-space: nowrap; text-align: right">7.3x</td>
+    <td style="white-space: nowrap; text-align: right">3.14 M</td>
+    <td style="white-space: nowrap; text-align: right">4.88x</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.append/2 (PersistentVector)</td>
+    <td style="white-space: nowrap; text-align: right">2.38 M</td>
+    <td style="white-space: nowrap; text-align: right">6.44x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">0.95 M</td>
-    <td style="white-space: nowrap; text-align: right">14.3x</td>
+    <td style="white-space: nowrap; text-align: right">1.29 M</td>
+    <td style="white-space: nowrap; text-align: right">11.85x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">list ++ [val] (list)</td>
-    <td style="white-space: nowrap; text-align: right">0.0658 M</td>
-    <td style="white-space: nowrap; text-align: right">205.68x</td>
+    <td style="white-space: nowrap; text-align: right">0.0681 M</td>
+    <td style="white-space: nowrap; text-align: right">224.43x</td>
   </tr>
 
 </table>
@@ -905,13 +1046,19 @@ Memory Usage
 <th style="text-align: right">Factor</th>
   </tr>
   <tr>
-    <td style="white-space: nowrap">[val | list] (list, interpreted backwards)</td>
+    <td style="white-space: nowrap">[val | list] (list, backwards)</td>
     <td style="white-space: nowrap">16 B</td>
 <td>&nbsp;</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.append/2 (MapArray)</td>
+    <td style="white-space: nowrap">416 B</td>
+    <td>26.0x</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.append/2 (PersistentVector)</td>
     <td style="white-space: nowrap">416 B</td>
     <td>26.0x</td>
   </tr>
@@ -949,39 +1096,48 @@ Run Time
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">[val | list] (list, interpreted backwards)</td>
-    <td style="white-space: nowrap; text-align: right">5139.04 K</td>
-    <td style="white-space: nowrap; text-align: right">0.195 μs</td>
-    <td style="white-space: nowrap; text-align: right">±471.72%</td>
-    <td style="white-space: nowrap; text-align: right">0.111 μs</td>
-    <td style="white-space: nowrap; text-align: right">1.34 μs</td>
-  </tr>
-
-  <tr>
-    <td style="white-space: nowrap">Arrays.append/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">374.81 K</td>
-    <td style="white-space: nowrap; text-align: right">2.67 μs</td>
-    <td style="white-space: nowrap; text-align: right">±328.97%</td>
-    <td style="white-space: nowrap; text-align: right">0.37 μs</td>
-    <td style="white-space: nowrap; text-align: right">44.89 μs</td>
+    <td style="white-space: nowrap">[val | list] (list, backwards)</td>
+    <td style="white-space: nowrap; text-align: right">12.22 M</td>
+    <td style="white-space: nowrap; text-align: right">81.86 ns</td>
+    <td style="white-space: nowrap; text-align: right">±54.49%</td>
+    <td style="white-space: nowrap; text-align: right">74 ns</td>
+    <td style="white-space: nowrap; text-align: right">224.10 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">304.38 K</td>
-    <td style="white-space: nowrap; text-align: right">3.29 μs</td>
-    <td style="white-space: nowrap; text-align: right">±151.79%</td>
-    <td style="white-space: nowrap; text-align: right">1.99 μs</td>
-    <td style="white-space: nowrap; text-align: right">35.06 μs</td>
+    <td style="white-space: nowrap; text-align: right">2.60 M</td>
+    <td style="white-space: nowrap; text-align: right">384.89 ns</td>
+    <td style="white-space: nowrap; text-align: right">±87.11%</td>
+    <td style="white-space: nowrap; text-align: right">343 ns</td>
+    <td style="white-space: nowrap; text-align: right">3264.04 ns</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.append/2 (PersistentVector)</td>
+    <td style="white-space: nowrap; text-align: right">1.81 M</td>
+    <td style="white-space: nowrap; text-align: right">551.83 ns</td>
+    <td style="white-space: nowrap; text-align: right">±210.72%</td>
+    <td style="white-space: nowrap; text-align: right">487 ns</td>
+    <td style="white-space: nowrap; text-align: right">863.27 ns</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.append/2 (MapArray)</td>
+    <td style="white-space: nowrap; text-align: right">0.30 M</td>
+    <td style="white-space: nowrap; text-align: right">3308 ns</td>
+    <td style="white-space: nowrap; text-align: right">±284.26%</td>
+    <td style="white-space: nowrap; text-align: right">306 ns</td>
+    <td style="white-space: nowrap; text-align: right">32953.64 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">list ++ [val] (list)</td>
-    <td style="white-space: nowrap; text-align: right">27.95 K</td>
-    <td style="white-space: nowrap; text-align: right">35.77 μs</td>
-    <td style="white-space: nowrap; text-align: right">±74.51%</td>
-    <td style="white-space: nowrap; text-align: right">24.82 μs</td>
-    <td style="white-space: nowrap; text-align: right">133.90 μs</td>
+    <td style="white-space: nowrap; text-align: right">0.0322 M</td>
+    <td style="white-space: nowrap; text-align: right">31091.69 ns</td>
+    <td style="white-space: nowrap; text-align: right">±57.87%</td>
+    <td style="white-space: nowrap; text-align: right">24658.50 ns</td>
+    <td style="white-space: nowrap; text-align: right">83821 ns</td>
   </tr>
 
 </table>
@@ -995,27 +1151,33 @@ Comparison
     <th style="text-align: right">IPS</th>
     <th style="text-align: right">Slower</th>
   <tr>
-    <td style="white-space: nowrap">[val | list] (list, interpreted backwards)</td>
-    <td style="white-space: nowrap;text-align: right">5139.04 K</td>
+    <td style="white-space: nowrap">[val | list] (list, backwards)</td>
+    <td style="white-space: nowrap;text-align: right">12.22 M</td>
     <td>&nbsp;</td>
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">Arrays.append/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">374.81 K</td>
-    <td style="white-space: nowrap; text-align: right">13.71x</td>
+    <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
+    <td style="white-space: nowrap; text-align: right">2.60 M</td>
+    <td style="white-space: nowrap; text-align: right">4.7x</td>
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">304.38 K</td>
-    <td style="white-space: nowrap; text-align: right">16.88x</td>
+    <td style="white-space: nowrap">Arrays.append/2 (PersistentVector)</td>
+    <td style="white-space: nowrap; text-align: right">1.81 M</td>
+    <td style="white-space: nowrap; text-align: right">6.74x</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.append/2 (MapArray)</td>
+    <td style="white-space: nowrap; text-align: right">0.30 M</td>
+    <td style="white-space: nowrap; text-align: right">40.41x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">list ++ [val] (list)</td>
-    <td style="white-space: nowrap; text-align: right">27.95 K</td>
-    <td style="white-space: nowrap; text-align: right">183.84x</td>
+    <td style="white-space: nowrap; text-align: right">0.0322 M</td>
+    <td style="white-space: nowrap; text-align: right">379.8x</td>
   </tr>
 
 </table>
@@ -1031,21 +1193,27 @@ Memory Usage
 <th style="text-align: right">Factor</th>
   </tr>
   <tr>
-    <td style="white-space: nowrap">[val | list] (list, interpreted backwards)</td>
+    <td style="white-space: nowrap">[val | list] (list, backwards)</td>
     <td style="white-space: nowrap">16 B</td>
 <td>&nbsp;</td>
-  </tr>
-
-  <tr>
-    <td style="white-space: nowrap">Arrays.append/2 (MapArray)</td>
-    <td style="white-space: nowrap">408 B</td>
-    <td>25.5x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
     <td style="white-space: nowrap">464 B</td>
     <td>29.0x</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.append/2 (PersistentVector)</td>
+    <td style="white-space: nowrap">432 B</td>
+    <td>27.0x</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.append/2 (MapArray)</td>
+    <td style="white-space: nowrap">408 B</td>
+    <td>25.5x</td>
   </tr>
 
   <tr>
@@ -1075,39 +1243,48 @@ Run Time
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">[val | list] (list, interpreted backwards)</td>
-    <td style="white-space: nowrap; text-align: right">4.56 M</td>
-    <td style="white-space: nowrap; text-align: right">0.22 μs</td>
-    <td style="white-space: nowrap; text-align: right">±157.55%</td>
-    <td style="white-space: nowrap; text-align: right">0.128 μs</td>
-    <td style="white-space: nowrap; text-align: right">2.55 μs</td>
+    <td style="white-space: nowrap">[val | list] (list, backwards)</td>
+    <td style="white-space: nowrap; text-align: right">7.80 M</td>
+    <td style="white-space: nowrap; text-align: right">128.17 ns</td>
+    <td style="white-space: nowrap; text-align: right">±38.66%</td>
+    <td style="white-space: nowrap; text-align: right">123 ns</td>
+    <td style="white-space: nowrap; text-align: right">437.12 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">1.38 M</td>
-    <td style="white-space: nowrap; text-align: right">0.72 μs</td>
-    <td style="white-space: nowrap; text-align: right">±69.23%</td>
-    <td style="white-space: nowrap; text-align: right">0.61 μs</td>
-    <td style="white-space: nowrap; text-align: right">3.45 μs</td>
+    <td style="white-space: nowrap; text-align: right">2.37 M</td>
+    <td style="white-space: nowrap; text-align: right">421.51 ns</td>
+    <td style="white-space: nowrap; text-align: right">±29.21%</td>
+    <td style="white-space: nowrap; text-align: right">392 ns</td>
+    <td style="white-space: nowrap; text-align: right">1144 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.append/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">0.91 M</td>
-    <td style="white-space: nowrap; text-align: right">1.10 μs</td>
-    <td style="white-space: nowrap; text-align: right">±71.85%</td>
-    <td style="white-space: nowrap; text-align: right">0.91 μs</td>
-    <td style="white-space: nowrap; text-align: right">4.74 μs</td>
+    <td style="white-space: nowrap; text-align: right">1.89 M</td>
+    <td style="white-space: nowrap; text-align: right">529.56 ns</td>
+    <td style="white-space: nowrap; text-align: right">±97.65%</td>
+    <td style="white-space: nowrap; text-align: right">426.50 ns</td>
+    <td style="white-space: nowrap; text-align: right">4532 ns</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.append/2 (PersistentVector)</td>
+    <td style="white-space: nowrap; text-align: right">1.61 M</td>
+    <td style="white-space: nowrap; text-align: right">620.74 ns</td>
+    <td style="white-space: nowrap; text-align: right">±19.94%</td>
+    <td style="white-space: nowrap; text-align: right">601.50 ns</td>
+    <td style="white-space: nowrap; text-align: right">1086 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">list ++ [val] (list)</td>
-    <td style="white-space: nowrap; text-align: right">0.0133 M</td>
-    <td style="white-space: nowrap; text-align: right">75.46 μs</td>
-    <td style="white-space: nowrap; text-align: right">±81.01%</td>
-    <td style="white-space: nowrap; text-align: right">102.41 μs</td>
-    <td style="white-space: nowrap; text-align: right">367.58 μs</td>
+    <td style="white-space: nowrap; text-align: right">0.0146 M</td>
+    <td style="white-space: nowrap; text-align: right">68336.81 ns</td>
+    <td style="white-space: nowrap; text-align: right">±65.88%</td>
+    <td style="white-space: nowrap; text-align: right">104221 ns</td>
+    <td style="white-space: nowrap; text-align: right">179172.80 ns</td>
   </tr>
 
 </table>
@@ -1121,27 +1298,33 @@ Comparison
     <th style="text-align: right">IPS</th>
     <th style="text-align: right">Slower</th>
   <tr>
-    <td style="white-space: nowrap">[val | list] (list, interpreted backwards)</td>
-    <td style="white-space: nowrap;text-align: right">4.56 M</td>
+    <td style="white-space: nowrap">[val | list] (list, backwards)</td>
+    <td style="white-space: nowrap;text-align: right">7.80 M</td>
     <td>&nbsp;</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">1.38 M</td>
+    <td style="white-space: nowrap; text-align: right">2.37 M</td>
     <td style="white-space: nowrap; text-align: right">3.29x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.append/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">0.91 M</td>
-    <td style="white-space: nowrap; text-align: right">5.03x</td>
+    <td style="white-space: nowrap; text-align: right">1.89 M</td>
+    <td style="white-space: nowrap; text-align: right">4.13x</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.append/2 (PersistentVector)</td>
+    <td style="white-space: nowrap; text-align: right">1.61 M</td>
+    <td style="white-space: nowrap; text-align: right">4.84x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">list ++ [val] (list)</td>
-    <td style="white-space: nowrap; text-align: right">0.0133 M</td>
-    <td style="white-space: nowrap; text-align: right">344.05x</td>
+    <td style="white-space: nowrap; text-align: right">0.0146 M</td>
+    <td style="white-space: nowrap; text-align: right">533.19x</td>
   </tr>
 
 </table>
@@ -1157,7 +1340,7 @@ Memory Usage
 <th style="text-align: right">Factor</th>
   </tr>
   <tr>
-    <td style="white-space: nowrap">[val | list] (list, interpreted backwards)</td>
+    <td style="white-space: nowrap">[val | list] (list, backwards)</td>
     <td style="white-space: nowrap">16 B</td>
 <td>&nbsp;</td>
   </tr>
@@ -1172,6 +1355,12 @@ Memory Usage
     <td style="white-space: nowrap">Arrays.append/2 (MapArray)</td>
     <td style="white-space: nowrap">496 B</td>
     <td>31.0x</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.append/2 (PersistentVector)</td>
+    <td style="white-space: nowrap">464 B</td>
+    <td>29.0x</td>
   </tr>
 
   <tr>
@@ -1201,39 +1390,48 @@ Run Time
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">[val | list] (list, interpreted backwards)</td>
-    <td style="white-space: nowrap; text-align: right">1752.63 K</td>
-    <td style="white-space: nowrap; text-align: right">0.57 μs</td>
-    <td style="white-space: nowrap; text-align: right">±93.32%</td>
-    <td style="white-space: nowrap; text-align: right">0.41 μs</td>
-    <td style="white-space: nowrap; text-align: right">3.43 μs</td>
+    <td style="white-space: nowrap">[val | list] (list, backwards)</td>
+    <td style="white-space: nowrap; text-align: right">2.23 M</td>
+    <td style="white-space: nowrap; text-align: right">448.33 ns</td>
+    <td style="white-space: nowrap; text-align: right">±26.01%</td>
+    <td style="white-space: nowrap; text-align: right">418.50 ns</td>
+    <td style="white-space: nowrap; text-align: right">830 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.append/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">824.49 K</td>
-    <td style="white-space: nowrap; text-align: right">1.21 μs</td>
-    <td style="white-space: nowrap; text-align: right">±32.15%</td>
-    <td style="white-space: nowrap; text-align: right">1.13 μs</td>
-    <td style="white-space: nowrap; text-align: right">2.77 μs</td>
+    <td style="white-space: nowrap; text-align: right">1.19 M</td>
+    <td style="white-space: nowrap; text-align: right">837.81 ns</td>
+    <td style="white-space: nowrap; text-align: right">±29.87%</td>
+    <td style="white-space: nowrap; text-align: right">777.50 ns</td>
+    <td style="white-space: nowrap; text-align: right">1835 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">203.71 K</td>
-    <td style="white-space: nowrap; text-align: right">4.91 μs</td>
-    <td style="white-space: nowrap; text-align: right">±53.75%</td>
-    <td style="white-space: nowrap; text-align: right">4.02 μs</td>
-    <td style="white-space: nowrap; text-align: right">11.11 μs</td>
+    <td style="white-space: nowrap; text-align: right">1.07 M</td>
+    <td style="white-space: nowrap; text-align: right">931.02 ns</td>
+    <td style="white-space: nowrap; text-align: right">±14.65%</td>
+    <td style="white-space: nowrap; text-align: right">927.50 ns</td>
+    <td style="white-space: nowrap; text-align: right">1366 ns</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.append/2 (PersistentVector)</td>
+    <td style="white-space: nowrap; text-align: right">0.48 M</td>
+    <td style="white-space: nowrap; text-align: right">2094.55 ns</td>
+    <td style="white-space: nowrap; text-align: right">±117.72%</td>
+    <td style="white-space: nowrap; text-align: right">1469 ns</td>
+    <td style="white-space: nowrap; text-align: right">12951 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">list ++ [val] (list)</td>
-    <td style="white-space: nowrap; text-align: right">4.38 K</td>
-    <td style="white-space: nowrap; text-align: right">228.14 μs</td>
-    <td style="white-space: nowrap; text-align: right">±80.21%</td>
-    <td style="white-space: nowrap; text-align: right">308.70 μs</td>
-    <td style="white-space: nowrap; text-align: right">801.61 μs</td>
+    <td style="white-space: nowrap; text-align: right">0.00557 M</td>
+    <td style="white-space: nowrap; text-align: right">179505.01 ns</td>
+    <td style="white-space: nowrap; text-align: right">±74.42%</td>
+    <td style="white-space: nowrap; text-align: right">71524 ns</td>
+    <td style="white-space: nowrap; text-align: right">350540 ns</td>
   </tr>
 
 </table>
@@ -1247,27 +1445,33 @@ Comparison
     <th style="text-align: right">IPS</th>
     <th style="text-align: right">Slower</th>
   <tr>
-    <td style="white-space: nowrap">[val | list] (list, interpreted backwards)</td>
-    <td style="white-space: nowrap;text-align: right">1752.63 K</td>
+    <td style="white-space: nowrap">[val | list] (list, backwards)</td>
+    <td style="white-space: nowrap;text-align: right">2.23 M</td>
     <td>&nbsp;</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.append/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">824.49 K</td>
-    <td style="white-space: nowrap; text-align: right">2.13x</td>
+    <td style="white-space: nowrap; text-align: right">1.19 M</td>
+    <td style="white-space: nowrap; text-align: right">1.87x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">203.71 K</td>
-    <td style="white-space: nowrap; text-align: right">8.6x</td>
+    <td style="white-space: nowrap; text-align: right">1.07 M</td>
+    <td style="white-space: nowrap; text-align: right">2.08x</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.append/2 (PersistentVector)</td>
+    <td style="white-space: nowrap; text-align: right">0.48 M</td>
+    <td style="white-space: nowrap; text-align: right">4.67x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">list ++ [val] (list)</td>
-    <td style="white-space: nowrap; text-align: right">4.38 K</td>
-    <td style="white-space: nowrap; text-align: right">399.84x</td>
+    <td style="white-space: nowrap; text-align: right">0.00557 M</td>
+    <td style="white-space: nowrap; text-align: right">400.38x</td>
   </tr>
 
 </table>
@@ -1283,7 +1487,7 @@ Memory Usage
 <th style="text-align: right">Factor</th>
   </tr>
   <tr>
-    <td style="white-space: nowrap">[val | list] (list, interpreted backwards)</td>
+    <td style="white-space: nowrap">[val | list] (list, backwards)</td>
     <td style="white-space: nowrap">16 B</td>
 <td>&nbsp;</td>
   </tr>
@@ -1298,6 +1502,12 @@ Memory Usage
     <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
     <td style="white-space: nowrap">560 B</td>
     <td>35.0x</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.append/2 (PersistentVector)</td>
+    <td style="white-space: nowrap">528 B</td>
+    <td>33.0x</td>
   </tr>
 
   <tr>
@@ -1327,39 +1537,48 @@ Run Time
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">[val | list] (list, interpreted backwards)</td>
-    <td style="white-space: nowrap; text-align: right">1096.49 K</td>
-    <td style="white-space: nowrap; text-align: right">0.91 μs</td>
-    <td style="white-space: nowrap; text-align: right">±26.75%</td>
-    <td style="white-space: nowrap; text-align: right">0.85 μs</td>
-    <td style="white-space: nowrap; text-align: right">2.01 μs</td>
-  </tr>
-
-  <tr>
-    <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">663.79 K</td>
-    <td style="white-space: nowrap; text-align: right">1.51 μs</td>
-    <td style="white-space: nowrap; text-align: right">±61.91%</td>
-    <td style="white-space: nowrap; text-align: right">1.24 μs</td>
-    <td style="white-space: nowrap; text-align: right">4.81 μs</td>
+    <td style="white-space: nowrap">[val | list] (list, backwards)</td>
+    <td style="white-space: nowrap; text-align: right">1681.40 K</td>
+    <td style="white-space: nowrap; text-align: right">0.59 μs</td>
+    <td style="white-space: nowrap; text-align: right">±17.33%</td>
+    <td style="white-space: nowrap; text-align: right">0.56 μs</td>
+    <td style="white-space: nowrap; text-align: right">0.89 μs</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.append/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">650.83 K</td>
-    <td style="white-space: nowrap; text-align: right">1.54 μs</td>
-    <td style="white-space: nowrap; text-align: right">±44.33%</td>
-    <td style="white-space: nowrap; text-align: right">1.21 μs</td>
-    <td style="white-space: nowrap; text-align: right">3.16 μs</td>
+    <td style="white-space: nowrap; text-align: right">1062.89 K</td>
+    <td style="white-space: nowrap; text-align: right">0.94 μs</td>
+    <td style="white-space: nowrap; text-align: right">±9.79%</td>
+    <td style="white-space: nowrap; text-align: right">0.91 μs</td>
+    <td style="white-space: nowrap; text-align: right">1.16 μs</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
+    <td style="white-space: nowrap; text-align: right">988.92 K</td>
+    <td style="white-space: nowrap; text-align: right">1.01 μs</td>
+    <td style="white-space: nowrap; text-align: right">±6.75%</td>
+    <td style="white-space: nowrap; text-align: right">1.00 μs</td>
+    <td style="white-space: nowrap; text-align: right">1.12 μs</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.append/2 (PersistentVector)</td>
+    <td style="white-space: nowrap; text-align: right">513.76 K</td>
+    <td style="white-space: nowrap; text-align: right">1.95 μs</td>
+    <td style="white-space: nowrap; text-align: right">±4.54%</td>
+    <td style="white-space: nowrap; text-align: right">1.94 μs</td>
+    <td style="white-space: nowrap; text-align: right">2.09 μs</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">list ++ [val] (list)</td>
-    <td style="white-space: nowrap; text-align: right">2.55 K</td>
-    <td style="white-space: nowrap; text-align: right">392.14 μs</td>
-    <td style="white-space: nowrap; text-align: right">±78.26%</td>
-    <td style="white-space: nowrap; text-align: right">446.11 μs</td>
-    <td style="white-space: nowrap; text-align: right">1195.97 μs</td>
+    <td style="white-space: nowrap; text-align: right">3.16 K</td>
+    <td style="white-space: nowrap; text-align: right">316.95 μs</td>
+    <td style="white-space: nowrap; text-align: right">±78.46%</td>
+    <td style="white-space: nowrap; text-align: right">110.70 μs</td>
+    <td style="white-space: nowrap; text-align: right">736.71 μs</td>
   </tr>
 
 </table>
@@ -1373,27 +1592,33 @@ Comparison
     <th style="text-align: right">IPS</th>
     <th style="text-align: right">Slower</th>
   <tr>
-    <td style="white-space: nowrap">[val | list] (list, interpreted backwards)</td>
-    <td style="white-space: nowrap;text-align: right">1096.49 K</td>
+    <td style="white-space: nowrap">[val | list] (list, backwards)</td>
+    <td style="white-space: nowrap;text-align: right">1681.40 K</td>
     <td>&nbsp;</td>
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">663.79 K</td>
-    <td style="white-space: nowrap; text-align: right">1.65x</td>
+    <td style="white-space: nowrap">Arrays.append/2 (MapArray)</td>
+    <td style="white-space: nowrap; text-align: right">1062.89 K</td>
+    <td style="white-space: nowrap; text-align: right">1.58x</td>
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">Arrays.append/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">650.83 K</td>
-    <td style="white-space: nowrap; text-align: right">1.68x</td>
+    <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
+    <td style="white-space: nowrap; text-align: right">988.92 K</td>
+    <td style="white-space: nowrap; text-align: right">1.7x</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.append/2 (PersistentVector)</td>
+    <td style="white-space: nowrap; text-align: right">513.76 K</td>
+    <td style="white-space: nowrap; text-align: right">3.27x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">list ++ [val] (list)</td>
-    <td style="white-space: nowrap; text-align: right">2.55 K</td>
-    <td style="white-space: nowrap; text-align: right">429.98x</td>
+    <td style="white-space: nowrap; text-align: right">3.16 K</td>
+    <td style="white-space: nowrap; text-align: right">532.92x</td>
   </tr>
 
 </table>
@@ -1409,9 +1634,15 @@ Memory Usage
 <th style="text-align: right">Factor</th>
   </tr>
   <tr>
-    <td style="white-space: nowrap">[val | list] (list, interpreted backwards)</td>
+    <td style="white-space: nowrap">[val | list] (list, backwards)</td>
     <td style="white-space: nowrap">16 B</td>
 <td>&nbsp;</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.append/2 (MapArray)</td>
+    <td style="white-space: nowrap">560 B</td>
+    <td>35.0x</td>
   </tr>
 
   <tr>
@@ -1421,9 +1652,9 @@ Memory Usage
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">Arrays.append/2 (MapArray)</td>
-    <td style="white-space: nowrap">560 B</td>
-    <td>35.0x</td>
+    <td style="white-space: nowrap">Arrays.append/2 (PersistentVector)</td>
+    <td style="white-space: nowrap">656 B</td>
+    <td>41.0x</td>
   </tr>
 
   <tr>
@@ -1453,39 +1684,48 @@ Run Time
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">626.51 K</td>
-    <td style="white-space: nowrap; text-align: right">1.60 μs</td>
-    <td style="white-space: nowrap; text-align: right">±38.71%</td>
-    <td style="white-space: nowrap; text-align: right">1.33 μs</td>
-    <td style="white-space: nowrap; text-align: right">2.95 μs</td>
+    <td style="white-space: nowrap">[val | list] (list, backwards)</td>
+    <td style="white-space: nowrap; text-align: right">1253.00 K</td>
+    <td style="white-space: nowrap; text-align: right">0.80 μs</td>
+    <td style="white-space: nowrap; text-align: right">±15.44%</td>
+    <td style="white-space: nowrap; text-align: right">0.78 μs</td>
+    <td style="white-space: nowrap; text-align: right">1.13 μs</td>
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">[val | list] (list, interpreted backwards)</td>
-    <td style="white-space: nowrap; text-align: right">530.56 K</td>
-    <td style="white-space: nowrap; text-align: right">1.88 μs</td>
-    <td style="white-space: nowrap; text-align: right">±166.24%</td>
-    <td style="white-space: nowrap; text-align: right">0.85 μs</td>
-    <td style="white-space: nowrap; text-align: right">10.79 μs</td>
+    <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
+    <td style="white-space: nowrap; text-align: right">976.92 K</td>
+    <td style="white-space: nowrap; text-align: right">1.02 μs</td>
+    <td style="white-space: nowrap; text-align: right">±3.58%</td>
+    <td style="white-space: nowrap; text-align: right">1.03 μs</td>
+    <td style="white-space: nowrap; text-align: right">1.07 μs</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.append/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">417.51 K</td>
-    <td style="white-space: nowrap; text-align: right">2.40 μs</td>
-    <td style="white-space: nowrap; text-align: right">±81.48%</td>
-    <td style="white-space: nowrap; text-align: right">1.34 μs</td>
-    <td style="white-space: nowrap; text-align: right">6.14 μs</td>
+    <td style="white-space: nowrap; text-align: right">814.24 K</td>
+    <td style="white-space: nowrap; text-align: right">1.23 μs</td>
+    <td style="white-space: nowrap; text-align: right">±10.22%</td>
+    <td style="white-space: nowrap; text-align: right">1.20 μs</td>
+    <td style="white-space: nowrap; text-align: right">1.49 μs</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.append/2 (PersistentVector)</td>
+    <td style="white-space: nowrap; text-align: right">437.37 K</td>
+    <td style="white-space: nowrap; text-align: right">2.29 μs</td>
+    <td style="white-space: nowrap; text-align: right">±21.00%</td>
+    <td style="white-space: nowrap; text-align: right">2.12 μs</td>
+    <td style="white-space: nowrap; text-align: right">3.58 μs</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">list ++ [val] (list)</td>
-    <td style="white-space: nowrap; text-align: right">3.21 K</td>
-    <td style="white-space: nowrap; text-align: right">311.64 μs</td>
-    <td style="white-space: nowrap; text-align: right">±68.98%</td>
-    <td style="white-space: nowrap; text-align: right">256.52 μs</td>
-    <td style="white-space: nowrap; text-align: right">957.55 μs</td>
+    <td style="white-space: nowrap; text-align: right">3.32 K</td>
+    <td style="white-space: nowrap; text-align: right">301.00 μs</td>
+    <td style="white-space: nowrap; text-align: right">±61.17%</td>
+    <td style="white-space: nowrap; text-align: right">242.76 μs</td>
+    <td style="white-space: nowrap; text-align: right">884.32 μs</td>
   </tr>
 
 </table>
@@ -1499,27 +1739,33 @@ Comparison
     <th style="text-align: right">IPS</th>
     <th style="text-align: right">Slower</th>
   <tr>
-    <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
-    <td style="white-space: nowrap;text-align: right">626.51 K</td>
+    <td style="white-space: nowrap">[val | list] (list, backwards)</td>
+    <td style="white-space: nowrap;text-align: right">1253.00 K</td>
     <td>&nbsp;</td>
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">[val | list] (list, interpreted backwards)</td>
-    <td style="white-space: nowrap; text-align: right">530.56 K</td>
-    <td style="white-space: nowrap; text-align: right">1.18x</td>
+    <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
+    <td style="white-space: nowrap; text-align: right">976.92 K</td>
+    <td style="white-space: nowrap; text-align: right">1.28x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.append/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">417.51 K</td>
-    <td style="white-space: nowrap; text-align: right">1.5x</td>
+    <td style="white-space: nowrap; text-align: right">814.24 K</td>
+    <td style="white-space: nowrap; text-align: right">1.54x</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.append/2 (PersistentVector)</td>
+    <td style="white-space: nowrap; text-align: right">437.37 K</td>
+    <td style="white-space: nowrap; text-align: right">2.86x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">list ++ [val] (list)</td>
-    <td style="white-space: nowrap; text-align: right">3.21 K</td>
-    <td style="white-space: nowrap; text-align: right">195.25x</td>
+    <td style="white-space: nowrap; text-align: right">3.32 K</td>
+    <td style="white-space: nowrap; text-align: right">377.16x</td>
   </tr>
 
 </table>
@@ -1535,27 +1781,33 @@ Memory Usage
 <th style="text-align: right">Factor</th>
   </tr>
   <tr>
-    <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
-    <td style="white-space: nowrap">560 B</td>
+    <td style="white-space: nowrap">[val | list] (list, backwards)</td>
+    <td style="white-space: nowrap">16 B</td>
 <td>&nbsp;</td>
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">[val | list] (list, interpreted backwards)</td>
-    <td style="white-space: nowrap">16 B</td>
-    <td>0.03x</td>
+    <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
+    <td style="white-space: nowrap">560 B</td>
+    <td>35.0x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.append/2 (MapArray)</td>
     <td style="white-space: nowrap">600 B</td>
-    <td>1.07x</td>
+    <td>37.5x</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.append/2 (PersistentVector)</td>
+    <td style="white-space: nowrap">704 B</td>
+    <td>44.0x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">list ++ [val] (list)</td>
     <td style="white-space: nowrap">524224 B</td>
-    <td>936.11x</td>
+    <td>32764.0x</td>
   </tr>
 
 </table>
@@ -1579,39 +1831,48 @@ Run Time
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">[val | list] (list, interpreted backwards)</td>
-    <td style="white-space: nowrap; text-align: right">1006.29 K</td>
-    <td style="white-space: nowrap; text-align: right">0.99 μs</td>
-    <td style="white-space: nowrap; text-align: right">±18.05%</td>
-    <td style="white-space: nowrap; text-align: right">0.91 μs</td>
-    <td style="white-space: nowrap; text-align: right">1.26 μs</td>
-  </tr>
-
-  <tr>
-    <td style="white-space: nowrap">Arrays.append/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">715.99 K</td>
-    <td style="white-space: nowrap; text-align: right">1.40 μs</td>
-    <td style="white-space: nowrap; text-align: right">±5.27%</td>
-    <td style="white-space: nowrap; text-align: right">1.42 μs</td>
-    <td style="white-space: nowrap; text-align: right">1.46 μs</td>
+    <td style="white-space: nowrap">[val | list] (list, backwards)</td>
+    <td style="white-space: nowrap; text-align: right">1137.92 K</td>
+    <td style="white-space: nowrap; text-align: right">0.88 μs</td>
+    <td style="white-space: nowrap; text-align: right">±10.97%</td>
+    <td style="white-space: nowrap; text-align: right">0.85 μs</td>
+    <td style="white-space: nowrap; text-align: right">1.04 μs</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">235.57 K</td>
-    <td style="white-space: nowrap; text-align: right">4.25 μs</td>
-    <td style="white-space: nowrap; text-align: right">±95.68%</td>
-    <td style="white-space: nowrap; text-align: right">4.25 μs</td>
-    <td style="white-space: nowrap; text-align: right">7.12 μs</td>
+    <td style="white-space: nowrap; text-align: right">904.36 K</td>
+    <td style="white-space: nowrap; text-align: right">1.11 μs</td>
+    <td style="white-space: nowrap; text-align: right">±5.60%</td>
+    <td style="white-space: nowrap; text-align: right">1.11 μs</td>
+    <td style="white-space: nowrap; text-align: right">1.18 μs</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.append/2 (MapArray)</td>
+    <td style="white-space: nowrap; text-align: right">784.52 K</td>
+    <td style="white-space: nowrap; text-align: right">1.27 μs</td>
+    <td style="white-space: nowrap; text-align: right">±10.97%</td>
+    <td style="white-space: nowrap; text-align: right">1.21 μs</td>
+    <td style="white-space: nowrap; text-align: right">1.44 μs</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.append/2 (PersistentVector)</td>
+    <td style="white-space: nowrap; text-align: right">471.88 K</td>
+    <td style="white-space: nowrap; text-align: right">2.12 μs</td>
+    <td style="white-space: nowrap; text-align: right">±2.98%</td>
+    <td style="white-space: nowrap; text-align: right">2.15 μs</td>
+    <td style="white-space: nowrap; text-align: right">2.16 μs</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">list ++ [val] (list)</td>
-    <td style="white-space: nowrap; text-align: right">0.97 K</td>
-    <td style="white-space: nowrap; text-align: right">1036.17 μs</td>
-    <td style="white-space: nowrap; text-align: right">±99.94%</td>
-    <td style="white-space: nowrap; text-align: right">566.63 μs</td>
-    <td style="white-space: nowrap; text-align: right">2888.22 μs</td>
+    <td style="white-space: nowrap; text-align: right">1.16 K</td>
+    <td style="white-space: nowrap; text-align: right">865.56 μs</td>
+    <td style="white-space: nowrap; text-align: right">±76.66%</td>
+    <td style="white-space: nowrap; text-align: right">572.86 μs</td>
+    <td style="white-space: nowrap; text-align: right">2052.24 μs</td>
   </tr>
 
 </table>
@@ -1625,27 +1886,33 @@ Comparison
     <th style="text-align: right">IPS</th>
     <th style="text-align: right">Slower</th>
   <tr>
-    <td style="white-space: nowrap">[val | list] (list, interpreted backwards)</td>
-    <td style="white-space: nowrap;text-align: right">1006.29 K</td>
+    <td style="white-space: nowrap">[val | list] (list, backwards)</td>
+    <td style="white-space: nowrap;text-align: right">1137.92 K</td>
     <td>&nbsp;</td>
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">Arrays.append/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">715.99 K</td>
-    <td style="white-space: nowrap; text-align: right">1.41x</td>
+    <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
+    <td style="white-space: nowrap; text-align: right">904.36 K</td>
+    <td style="white-space: nowrap; text-align: right">1.26x</td>
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">235.57 K</td>
-    <td style="white-space: nowrap; text-align: right">4.27x</td>
+    <td style="white-space: nowrap">Arrays.append/2 (MapArray)</td>
+    <td style="white-space: nowrap; text-align: right">784.52 K</td>
+    <td style="white-space: nowrap; text-align: right">1.45x</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.append/2 (PersistentVector)</td>
+    <td style="white-space: nowrap; text-align: right">471.88 K</td>
+    <td style="white-space: nowrap; text-align: right">2.41x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">list ++ [val] (list)</td>
-    <td style="white-space: nowrap; text-align: right">0.97 K</td>
-    <td style="white-space: nowrap; text-align: right">1042.69x</td>
+    <td style="white-space: nowrap; text-align: right">1.16 K</td>
+    <td style="white-space: nowrap; text-align: right">984.93x</td>
   </tr>
 
 </table>
@@ -1661,9 +1928,15 @@ Memory Usage
 <th style="text-align: right">Factor</th>
   </tr>
   <tr>
-    <td style="white-space: nowrap">[val | list] (list, interpreted backwards)</td>
+    <td style="white-space: nowrap">[val | list] (list, backwards)</td>
     <td style="white-space: nowrap">16 B</td>
 <td>&nbsp;</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
+    <td style="white-space: nowrap">656 B</td>
+    <td>41.0x</td>
   </tr>
 
   <tr>
@@ -1673,9 +1946,9 @@ Memory Usage
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
-    <td style="white-space: nowrap">656 B</td>
-    <td>41.0x</td>
+    <td style="white-space: nowrap">Arrays.append/2 (PersistentVector)</td>
+    <td style="white-space: nowrap">720 B</td>
+    <td>45.0x</td>
   </tr>
 
   <tr>
@@ -1705,39 +1978,48 @@ Run Time
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">Arrays.append/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">634.92 K</td>
-    <td style="white-space: nowrap; text-align: right">1.57 μs</td>
-    <td style="white-space: nowrap; text-align: right">±0.00%</td>
-    <td style="white-space: nowrap; text-align: right">1.57 μs</td>
-    <td style="white-space: nowrap; text-align: right">1.57 μs</td>
+    <td style="white-space: nowrap">[val | list] (list, backwards)</td>
+    <td style="white-space: nowrap; text-align: right">913.24 K</td>
+    <td style="white-space: nowrap; text-align: right">1.09 μs</td>
+    <td style="white-space: nowrap; text-align: right">±23.12%</td>
+    <td style="white-space: nowrap; text-align: right">1.09 μs</td>
+    <td style="white-space: nowrap; text-align: right">1.27 μs</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">344.83 K</td>
-    <td style="white-space: nowrap; text-align: right">2.90 μs</td>
-    <td style="white-space: nowrap; text-align: right">±79.34%</td>
-    <td style="white-space: nowrap; text-align: right">2.90 μs</td>
-    <td style="white-space: nowrap; text-align: right">4.53 μs</td>
+    <td style="white-space: nowrap; text-align: right">907.85 K</td>
+    <td style="white-space: nowrap; text-align: right">1.10 μs</td>
+    <td style="white-space: nowrap; text-align: right">±1.35%</td>
+    <td style="white-space: nowrap; text-align: right">1.10 μs</td>
+    <td style="white-space: nowrap; text-align: right">1.11 μs</td>
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">[val | list] (list, interpreted backwards)</td>
-    <td style="white-space: nowrap; text-align: right">311.28 K</td>
-    <td style="white-space: nowrap; text-align: right">3.21 μs</td>
-    <td style="white-space: nowrap; text-align: right">±71.91%</td>
-    <td style="white-space: nowrap; text-align: right">3.21 μs</td>
-    <td style="white-space: nowrap; text-align: right">4.85 μs</td>
+    <td style="white-space: nowrap">Arrays.append/2 (MapArray)</td>
+    <td style="white-space: nowrap; text-align: right">701.75 K</td>
+    <td style="white-space: nowrap; text-align: right">1.43 μs</td>
+    <td style="white-space: nowrap; text-align: right">±14.69%</td>
+    <td style="white-space: nowrap; text-align: right">1.43 μs</td>
+    <td style="white-space: nowrap; text-align: right">1.57 μs</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.append/2 (PersistentVector)</td>
+    <td style="white-space: nowrap; text-align: right">434.12 K</td>
+    <td style="white-space: nowrap; text-align: right">2.30 μs</td>
+    <td style="white-space: nowrap; text-align: right">±5.25%</td>
+    <td style="white-space: nowrap; text-align: right">2.30 μs</td>
+    <td style="white-space: nowrap; text-align: right">2.39 μs</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">list ++ [val] (list)</td>
-    <td style="white-space: nowrap; text-align: right">0.27 K</td>
-    <td style="white-space: nowrap; text-align: right">3704.19 μs</td>
-    <td style="white-space: nowrap; text-align: right">±15.64%</td>
-    <td style="white-space: nowrap; text-align: right">3704.19 μs</td>
-    <td style="white-space: nowrap; text-align: right">4113.82 μs</td>
+    <td style="white-space: nowrap; text-align: right">0.196 K</td>
+    <td style="white-space: nowrap; text-align: right">5113.04 μs</td>
+    <td style="white-space: nowrap; text-align: right">±3.91%</td>
+    <td style="white-space: nowrap; text-align: right">5113.04 μs</td>
+    <td style="white-space: nowrap; text-align: right">5254.29 μs</td>
   </tr>
 
 </table>
@@ -1751,27 +2033,33 @@ Comparison
     <th style="text-align: right">IPS</th>
     <th style="text-align: right">Slower</th>
   <tr>
-    <td style="white-space: nowrap">Arrays.append/2 (MapArray)</td>
-    <td style="white-space: nowrap;text-align: right">634.92 K</td>
+    <td style="white-space: nowrap">[val | list] (list, backwards)</td>
+    <td style="white-space: nowrap;text-align: right">913.24 K</td>
     <td>&nbsp;</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">344.83 K</td>
-    <td style="white-space: nowrap; text-align: right">1.84x</td>
+    <td style="white-space: nowrap; text-align: right">907.85 K</td>
+    <td style="white-space: nowrap; text-align: right">1.01x</td>
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">[val | list] (list, interpreted backwards)</td>
-    <td style="white-space: nowrap; text-align: right">311.28 K</td>
-    <td style="white-space: nowrap; text-align: right">2.04x</td>
+    <td style="white-space: nowrap">Arrays.append/2 (MapArray)</td>
+    <td style="white-space: nowrap; text-align: right">701.75 K</td>
+    <td style="white-space: nowrap; text-align: right">1.3x</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.append/2 (PersistentVector)</td>
+    <td style="white-space: nowrap; text-align: right">434.12 K</td>
+    <td style="white-space: nowrap; text-align: right">2.1x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">list ++ [val] (list)</td>
-    <td style="white-space: nowrap; text-align: right">0.27 K</td>
-    <td style="white-space: nowrap; text-align: right">2351.87x</td>
+    <td style="white-space: nowrap; text-align: right">0.196 K</td>
+    <td style="white-space: nowrap; text-align: right">4669.44x</td>
   </tr>
 
 </table>
@@ -1787,27 +2075,33 @@ Memory Usage
 <th style="text-align: right">Factor</th>
   </tr>
   <tr>
-    <td style="white-space: nowrap">Arrays.append/2 (MapArray)</td>
-    <td style="white-space: nowrap">632 B</td>
+    <td style="white-space: nowrap">[val | list] (list, backwards)</td>
+    <td style="white-space: nowrap">16 B</td>
 <td>&nbsp;</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
     <td style="white-space: nowrap">656 B</td>
-    <td>1.04x</td>
+    <td>41.0x</td>
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">[val | list] (list, interpreted backwards)</td>
-    <td style="white-space: nowrap">16 B</td>
-    <td>0.03x</td>
+    <td style="white-space: nowrap">Arrays.append/2 (MapArray)</td>
+    <td style="white-space: nowrap">632 B</td>
+    <td>39.5x</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.append/2 (PersistentVector)</td>
+    <td style="white-space: nowrap">752 B</td>
+    <td>47.0x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">list ++ [val] (list)</td>
     <td style="white-space: nowrap">2469504 B</td>
-    <td>3907.44x</td>
+    <td>154344.0x</td>
   </tr>
 
 </table>
@@ -1831,39 +2125,48 @@ Run Time
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">[val | list] (list, interpreted backwards)</td>
-    <td style="white-space: nowrap; text-align: right">1193.32 K</td>
-    <td style="white-space: nowrap; text-align: right">0.84 μs</td>
+    <td style="white-space: nowrap">[val | list] (list, backwards)</td>
+    <td style="white-space: nowrap; text-align: right">1278.77 K</td>
+    <td style="white-space: nowrap; text-align: right">0.78 μs</td>
     <td style="white-space: nowrap; text-align: right">±0.00%</td>
-    <td style="white-space: nowrap; text-align: right">0.84 μs</td>
-    <td style="white-space: nowrap; text-align: right">0.84 μs</td>
+    <td style="white-space: nowrap; text-align: right">0.78 μs</td>
+    <td style="white-space: nowrap; text-align: right">0.78 μs</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">807.10 K</td>
-    <td style="white-space: nowrap; text-align: right">1.24 μs</td>
+    <td style="white-space: nowrap; text-align: right">819.67 K</td>
+    <td style="white-space: nowrap; text-align: right">1.22 μs</td>
     <td style="white-space: nowrap; text-align: right">±0.00%</td>
-    <td style="white-space: nowrap; text-align: right">1.24 μs</td>
-    <td style="white-space: nowrap; text-align: right">1.24 μs</td>
+    <td style="white-space: nowrap; text-align: right">1.22 μs</td>
+    <td style="white-space: nowrap; text-align: right">1.22 μs</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.append/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">663.13 K</td>
-    <td style="white-space: nowrap; text-align: right">1.51 μs</td>
+    <td style="white-space: nowrap; text-align: right">738.01 K</td>
+    <td style="white-space: nowrap; text-align: right">1.36 μs</td>
     <td style="white-space: nowrap; text-align: right">±0.00%</td>
-    <td style="white-space: nowrap; text-align: right">1.51 μs</td>
-    <td style="white-space: nowrap; text-align: right">1.51 μs</td>
+    <td style="white-space: nowrap; text-align: right">1.36 μs</td>
+    <td style="white-space: nowrap; text-align: right">1.36 μs</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.append/2 (PersistentVector)</td>
+    <td style="white-space: nowrap; text-align: right">486.14 K</td>
+    <td style="white-space: nowrap; text-align: right">2.06 μs</td>
+    <td style="white-space: nowrap; text-align: right">±0.00%</td>
+    <td style="white-space: nowrap; text-align: right">2.06 μs</td>
+    <td style="white-space: nowrap; text-align: right">2.06 μs</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">list ++ [val] (list)</td>
-    <td style="white-space: nowrap; text-align: right">0.44 K</td>
-    <td style="white-space: nowrap; text-align: right">2271.53 μs</td>
+    <td style="white-space: nowrap; text-align: right">0.45 K</td>
+    <td style="white-space: nowrap; text-align: right">2207.27 μs</td>
     <td style="white-space: nowrap; text-align: right">±0.00%</td>
-    <td style="white-space: nowrap; text-align: right">2271.53 μs</td>
-    <td style="white-space: nowrap; text-align: right">2271.53 μs</td>
+    <td style="white-space: nowrap; text-align: right">2207.27 μs</td>
+    <td style="white-space: nowrap; text-align: right">2207.27 μs</td>
   </tr>
 
 </table>
@@ -1877,27 +2180,33 @@ Comparison
     <th style="text-align: right">IPS</th>
     <th style="text-align: right">Slower</th>
   <tr>
-    <td style="white-space: nowrap">[val | list] (list, interpreted backwards)</td>
-    <td style="white-space: nowrap;text-align: right">1193.32 K</td>
+    <td style="white-space: nowrap">[val | list] (list, backwards)</td>
+    <td style="white-space: nowrap;text-align: right">1278.77 K</td>
     <td>&nbsp;</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">807.10 K</td>
-    <td style="white-space: nowrap; text-align: right">1.48x</td>
+    <td style="white-space: nowrap; text-align: right">819.67 K</td>
+    <td style="white-space: nowrap; text-align: right">1.56x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.append/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">663.13 K</td>
-    <td style="white-space: nowrap; text-align: right">1.8x</td>
+    <td style="white-space: nowrap; text-align: right">738.01 K</td>
+    <td style="white-space: nowrap; text-align: right">1.73x</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.append/2 (PersistentVector)</td>
+    <td style="white-space: nowrap; text-align: right">486.14 K</td>
+    <td style="white-space: nowrap; text-align: right">2.63x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">list ++ [val] (list)</td>
-    <td style="white-space: nowrap; text-align: right">0.44 K</td>
-    <td style="white-space: nowrap; text-align: right">2710.65x</td>
+    <td style="white-space: nowrap; text-align: right">0.45 K</td>
+    <td style="white-space: nowrap; text-align: right">2822.59x</td>
   </tr>
 
 </table>
@@ -1913,7 +2222,7 @@ Memory Usage
 <th style="text-align: right">Factor</th>
   </tr>
   <tr>
-    <td style="white-space: nowrap">[val | list] (list, interpreted backwards)</td>
+    <td style="white-space: nowrap">[val | list] (list, backwards)</td>
     <td style="white-space: nowrap">16 B</td>
 <td>&nbsp;</td>
   </tr>
@@ -1928,6 +2237,12 @@ Memory Usage
     <td style="white-space: nowrap">Arrays.append/2 (MapArray)</td>
     <td style="white-space: nowrap">656 B</td>
     <td>41.0x</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.append/2 (PersistentVector)</td>
+    <td style="white-space: nowrap">816 B</td>
+    <td>51.0x</td>
   </tr>
 
   <tr>
@@ -1957,39 +2272,48 @@ Run Time
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">[val | list] (list, interpreted backwards)</td>
-    <td style="white-space: nowrap; text-align: right">819.67 K</td>
-    <td style="white-space: nowrap; text-align: right">1.22 μs</td>
+    <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
+    <td style="white-space: nowrap; text-align: right">910.75 K</td>
+    <td style="white-space: nowrap; text-align: right">1.10 μs</td>
     <td style="white-space: nowrap; text-align: right">±0.00%</td>
-    <td style="white-space: nowrap; text-align: right">1.22 μs</td>
-    <td style="white-space: nowrap; text-align: right">1.22 μs</td>
+    <td style="white-space: nowrap; text-align: right">1.10 μs</td>
+    <td style="white-space: nowrap; text-align: right">1.10 μs</td>
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">693.96 K</td>
-    <td style="white-space: nowrap; text-align: right">1.44 μs</td>
+    <td style="white-space: nowrap">[val | list] (list, backwards)</td>
+    <td style="white-space: nowrap; text-align: right">668.45 K</td>
+    <td style="white-space: nowrap; text-align: right">1.50 μs</td>
     <td style="white-space: nowrap; text-align: right">±0.00%</td>
-    <td style="white-space: nowrap; text-align: right">1.44 μs</td>
-    <td style="white-space: nowrap; text-align: right">1.44 μs</td>
+    <td style="white-space: nowrap; text-align: right">1.50 μs</td>
+    <td style="white-space: nowrap; text-align: right">1.50 μs</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.append/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">526.04 K</td>
-    <td style="white-space: nowrap; text-align: right">1.90 μs</td>
+    <td style="white-space: nowrap; text-align: right">524.66 K</td>
+    <td style="white-space: nowrap; text-align: right">1.91 μs</td>
     <td style="white-space: nowrap; text-align: right">±0.00%</td>
-    <td style="white-space: nowrap; text-align: right">1.90 μs</td>
-    <td style="white-space: nowrap; text-align: right">1.90 μs</td>
+    <td style="white-space: nowrap; text-align: right">1.91 μs</td>
+    <td style="white-space: nowrap; text-align: right">1.91 μs</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.append/2 (PersistentVector)</td>
+    <td style="white-space: nowrap; text-align: right">523.01 K</td>
+    <td style="white-space: nowrap; text-align: right">1.91 μs</td>
+    <td style="white-space: nowrap; text-align: right">±0.00%</td>
+    <td style="white-space: nowrap; text-align: right">1.91 μs</td>
+    <td style="white-space: nowrap; text-align: right">1.91 μs</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">list ++ [val] (list)</td>
-    <td style="white-space: nowrap; text-align: right">0.135 K</td>
-    <td style="white-space: nowrap; text-align: right">7412.01 μs</td>
+    <td style="white-space: nowrap; text-align: right">0.20 K</td>
+    <td style="white-space: nowrap; text-align: right">4997.97 μs</td>
     <td style="white-space: nowrap; text-align: right">±0.00%</td>
-    <td style="white-space: nowrap; text-align: right">7412.01 μs</td>
-    <td style="white-space: nowrap; text-align: right">7412.01 μs</td>
+    <td style="white-space: nowrap; text-align: right">4997.97 μs</td>
+    <td style="white-space: nowrap; text-align: right">4997.97 μs</td>
   </tr>
 
 </table>
@@ -2003,27 +2327,33 @@ Comparison
     <th style="text-align: right">IPS</th>
     <th style="text-align: right">Slower</th>
   <tr>
-    <td style="white-space: nowrap">[val | list] (list, interpreted backwards)</td>
-    <td style="white-space: nowrap;text-align: right">819.67 K</td>
+    <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
+    <td style="white-space: nowrap;text-align: right">910.75 K</td>
     <td>&nbsp;</td>
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">693.96 K</td>
-    <td style="white-space: nowrap; text-align: right">1.18x</td>
+    <td style="white-space: nowrap">[val | list] (list, backwards)</td>
+    <td style="white-space: nowrap; text-align: right">668.45 K</td>
+    <td style="white-space: nowrap; text-align: right">1.36x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.append/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">526.04 K</td>
-    <td style="white-space: nowrap; text-align: right">1.56x</td>
+    <td style="white-space: nowrap; text-align: right">524.66 K</td>
+    <td style="white-space: nowrap; text-align: right">1.74x</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.append/2 (PersistentVector)</td>
+    <td style="white-space: nowrap; text-align: right">523.01 K</td>
+    <td style="white-space: nowrap; text-align: right">1.74x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">list ++ [val] (list)</td>
-    <td style="white-space: nowrap; text-align: right">0.135 K</td>
-    <td style="white-space: nowrap; text-align: right">6075.42x</td>
+    <td style="white-space: nowrap; text-align: right">0.20 K</td>
+    <td style="white-space: nowrap; text-align: right">4551.88x</td>
   </tr>
 
 </table>
@@ -2039,27 +2369,33 @@ Memory Usage
 <th style="text-align: right">Factor</th>
   </tr>
   <tr>
-    <td style="white-space: nowrap">[val | list] (list, interpreted backwards)</td>
-    <td style="white-space: nowrap">16 B</td>
+    <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
+    <td style="white-space: nowrap">752 B</td>
 <td>&nbsp;</td>
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">Arrays.append/2 (ErlangArray)</td>
-    <td style="white-space: nowrap">752 B</td>
-    <td>47.0x</td>
+    <td style="white-space: nowrap">[val | list] (list, backwards)</td>
+    <td style="white-space: nowrap">16 B</td>
+    <td>0.02x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.append/2 (MapArray)</td>
     <td style="white-space: nowrap">712 B</td>
-    <td>44.5x</td>
+    <td>0.95x</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.append/2 (PersistentVector)</td>
+    <td style="white-space: nowrap">944 B</td>
+    <td>1.26x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">list ++ [val] (list)</td>
     <td style="white-space: nowrap">3121584 B</td>
-    <td>195099.0x</td>
+    <td>4151.04x</td>
   </tr>
 
 </table>
