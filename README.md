@@ -288,10 +288,32 @@ You can look at the source code of `Arrays.CommonProtocolImplementations` for so
 
 ## Changelog
 
+- 1.2.0 - Adds `ErlangArray.from_raw/1` and `ErlangArray.to_raw/1` for interop with `:array`-records created/consumed by other code.
 - 1.1.0 - Improved README and general usage examples. Introduces `Arrays.concat/1`, `Arrays.concat/2`, `Arrays.slice/2`, `Arrays.slice/3`.
 - 1.0.0 - Stable release. Mayor overhaul, 100% test coverage, 100% documentation. 
 - 0.1.0 - Initial version.
 
+## Roadmap
+
+- [x] Add some simple benchmarks
+  - [x] Appending a single element
+  - [x] Random element access
+  - [x] Random element update
+  - [x] Concatenate two collections
+- [x] Add `from_raw` and `to_raw` functions to ErlangArray to work with pre-existing code that operates on the raw `:array` record itself.
+- [ ] Add more benchmarks:
+  - [ ] Resizing collection (smaller)
+  - [ ] Resizing collection (larger)
+  - [ ] Removing a single element
+  - [ ] Removing all elements one-by-one until the array is empty
+- [ ] Potentially add more helper functionality to `Arrays`, such as `sort`, `swap`, `shuffle`, `split`.
+- [ ] Look into adding a [persistent bit-partitioned vector trie ('Hickey trie')](https://hypirion.com/musings/understanding-persistent-vector-pt-1) 
+implementation (potentially based on [persistent_vector](https://github.com/dimagog/persistent_vector)).
+- [ ] Look into adding a NIF-based immutable array implementation, 
+  such as [im-rs](immutable.rs)'s [RRB-Vector](https://docs.rs/im/15.0.0/im/struct.Vector.html), 
+  where besides being extra performant because of being close to the metal, having access to the reference-count might allow extra optimizations ([in-place mutation](https://docs.rs/im/15.0.0/im/#in-place-mutation) is possible when you know that there is only one variable referencing the array). This is a bit of a long shot, but it might be very worthwhile.
+  
+  
 ----
 
 ## Benchmarks

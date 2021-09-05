@@ -33,20 +33,20 @@ contents = quote do
   - The full Access calls are supported,
   - Variants of many common `Enum`-like functions that keep the result an array (rather than turning it into a list), are available.
 
-      iex> words = Arrays.new(["the", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog"])
-      ##{@current_default_array}<["the", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog"]>
-      iex> Arrays.size(words) # Runs in constant-time
-      9
-      iex> words[3] # Indexing is fast
-      "fox"
-      iex> words = put_in(words[2], "purple") # All of `Access` is supported
-      ##{@current_default_array}<["the", "quick", "purple", "fox", "jumps", "over", "the", "lazy", "dog"]>
-      iex> Arrays.map(words, &String.upcase/1) # Map a function, keep result an array
-      ##{@current_default_array}<["THE", "QUICK", "PURPLE", "FOX", "JUMPS", "OVER", "THE", "LAZY", "DOG"]>
-      iex> lengths = Arrays.map(words, &String.length/1)
-      ##{@current_default_array}<[3, 5, 6, 3, 5, 4, 3, 4, 3]>
-      iex> Arrays.reduce(lengths, 0, &Kernel.+/2) # `reduce_right` is supported as well.
-      36
+        iex> words = Arrays.new(["the", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog"])
+        ##{@current_default_array}<["the", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog"]>
+        iex> Arrays.size(words) # Runs in constant-time
+        9
+        iex> words[3] # Indexing is fast
+        "fox"
+        iex> words = put_in(words[2], "purple") # All of `Access` is supported
+        ##{@current_default_array}<["the", "quick", "purple", "fox", "jumps", "over", "the", "lazy", "dog"]>
+        iex> Arrays.map(words, &String.upcase/1) # Map a function, keep result an array
+        ##{@current_default_array}<["THE", "QUICK", "PURPLE", "FOX", "JUMPS", "OVER", "THE", "LAZY", "DOG"]>
+        iex> lengths = Arrays.map(words, &String.length/1)
+        ##{@current_default_array}<[3, 5, 6, 3, 5, 4, 3, 4, 3]>
+        iex> Arrays.reduce(lengths, 0, &Kernel.+/2) # `reduce_right` is supported as well.
+        36
 
   Concatenating arrays:
 

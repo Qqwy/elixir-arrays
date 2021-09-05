@@ -8,18 +8,41 @@ defmodule Arrays.Implementations.ErlangArray do
   Common operations like element access thus take O(log10(n)) time.
 
 
+  Note that when no custom default value is specified,
+  `nil` will be used, rather than `:array`'s default of `:undefined`.
   """
 
   @behaviour Arrays.Behaviour
 
   alias __MODULE__
 
-  defstruct contents: :array.new([fixed: false, default: nil])
+  defstruct contents: :array.new([default: nil])
 
   @impl Arrays.Behaviour
   def empty(options) do
-    contents = :array.new([fixed: false, default: nil] ++ options)
+    contents = :array.new([default: nil] ++ options)
     %ErlangArray{contents: contents}
+  end
+
+  @doc """
+  Create an `%ErlangArray{}`-struct from an `:array`-record.
+
+
+      iex> :array.new([]) |> ErlangArray.from_raw()
+      #Arrays.Implementations.ErlangArray<[]>
+  """
+  def from_raw(raw_array) do
+    %ErlangArray{contents: raw_array}
+  end
+
+  @doc """
+  Turn an %ErlangArray{}-struct back into an `:array`-record.
+
+        iex> Arrays.new([1, 2, 3], implementation: Arrays.Implementations.ErlangArray) |> ErlangArray.to_raw()
+        {:array, 3, 10, nil, {1, 2, 3, nil, nil, nil, nil, nil, nil, nil}}
+  """
+  def to_raw(%ErlangArray{contents: contents}) do
+    contents
   end
 
   if Code.ensure_loaded?(FunLand.Mappable) do
