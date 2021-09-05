@@ -291,3 +291,45 @@ You can look at the source code of `Arrays.CommonProtocolImplementations` for so
 - 1.1.0 - Improved README and general usage examples. Introduces `Arrays.concat/1`, `Arrays.concat/2`, `Arrays.slice/2`, `Arrays.slice/3`.
 - 1.0.0 - Stable release. Mayor overhaul, 100% test coverage, 100% documentation. 
 - 0.1.0 - Initial version.
+
+----
+
+## Benchmarks
+
+You can run the benchmarks locally by running `mix run benchmarks/benchmarks.exs`,
+which will also output the HTML format with nice graphs.
+
+
+
+### [Append a single element](https://github.com/Qqwy/elixir-arrays/blob/benchmarks/benchmark_runs/append.md)
+Appending a single element is very fast on arrays, even as sizes grow. MapArray slightly outperforms ErlangArray.
+
+### [Random element access](https://github.com/Qqwy/elixir-arrays/blob/benchmarks/benchmark_runs/random_access.md)
+Accessing a random element is very fast on arrays, even as sizes grow. 
+
+Arrays start beating lists significantly once the collection has more than 256 elements.
+
+For very small sizes, MapArray outperforms ErlangArray. 
+
+For medium sizes they seem roughly equally fast.
+
+For very large sizes, ErlangArray seems to be a factor ~2 slower than MapArray again.
+
+### [Random element update](https://github.com/Qqwy/elixir-arrays/blob/benchmarks/benchmark_runs/random_update.md)
+
+Arrays start beating lists once the collection has more than 128 elements.
+
+For sizes up to 131072 elements, MapArray seems to be between 100% and 30% slower.
+For longer arrays, MapArray wins out, with ErlangArray being ~30% slower.
+
+It seems like `put_in` has some overhead w.r.t. calling `Arrays.replace`.
+This warrants more investigation. Maybe `Access` has some overhead for its calls, 
+or maybe the implementations of `get_and_update_in` could be further optimized.
+
+### [Concatenate two equally-large collections](https://github.com/Qqwy/elixir-arrays/blob/benchmarks/benchmark_runs/concat.md)
+Strangely, concatenation of large collections is very fast on lists. 
+Probably because all of it happens in a single built-in function?
+
+Lists outperform arrays 20x-100x for this task.
+
+Between ErlangArray and MapArray, ErlangArray seems to handle this task 50% faster when concatenating two 4068-element arrays, and twice as fast for larger collections.
