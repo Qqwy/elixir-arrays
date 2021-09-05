@@ -300,26 +300,37 @@ You can run the benchmarks locally by running `mix run benchmarks/benchmarks.exs
 which will also output the HTML format with nice graphs.
 
 
+From below benchmarks, we know (caveat emptor):
+- For collections smaller than ~100-200 elements, there is no pronounced difference between using lists and arrays.
+- For collections with more than ~100-200, but fewer than fewer than ~10_000-20_000, ErlangArray is a small constant amount faster than MapArray for updates, and other operations perform similarly.
+- For collections with more than ~10_000-20_000, MapArray is usually a small constant amount faster than ErlangArray.
+
 
 ### [Append a single element](https://github.com/Qqwy/elixir-arrays/blob/master/benchmark_runs/append.md)
-Appending a single element is very fast on arrays, even as sizes grow. MapArray slightly outperforms ErlangArray.
+Appending a single element is very fast on arrays, even as sizes grow. 
+MapArray and ErlangArray perform similarly. 
+
+For extra comparison, we look at lists both to see how slow `list ++ [val]` becomes as baseline,
+but also how fast `[val | list]` still is:
+
+In certain situations where a list can be treated as 'backwards', this can be a very simple way to append elements.
+As doing this is built-in, it will always be faster than our arrays.
+Thus, it serves as a 'maxline'.
 
 ### [Random element access](https://github.com/Qqwy/elixir-arrays/blob/master/benchmark_runs/random_access.md)
 Accessing a random element is very fast on arrays, even as sizes grow. 
 
 Arrays start beating lists significantly once the collection has more than 256 elements.
 
-For very small sizes, MapArray outperforms ErlangArray. 
+MapArray and ErlangArray seem to perform similarly < 8192 elements.
 
-For medium sizes they seem roughly equally fast.
-
-For very large sizes, ErlangArray seems to be a factor ~2 slower than MapArray again.
+For larger sizes, ErlangArray seems to be a factor ~2 slower than MapArray again.
 
 ### [Random element update](https://github.com/Qqwy/elixir-arrays/blob/master/benchmark_runs/random_update.md)
 
 Arrays start beating lists once the collection has more than 128 elements.
 
-For sizes up to 131072 elements, MapArray seems to be between 100% and 30% slower.
+For sizes up to 131072 elements, MapArray seems to be between 100% and 30% slower than ErlangArray.
 For longer arrays, MapArray wins out, with ErlangArray being ~30% slower.
 
 It seems like `put_in` has some overhead w.r.t. calling `Arrays.replace`.
