@@ -5,13 +5,13 @@ defmodule Benchmarks do
   @parallel 1
 
   @inputs (
-    (5..22)
-    |> Enum.map(&Integer.pow(2, &1))
-    |> Enum.map(&(1..&1))
-    |> Enum.map(fn range ->
-      name = range.last |> Integer.to_string |> String.pad_leading(10, "0")
-      {"#{name} elements", range}
-    end)
+  (5..22)
+  |> Enum.map(&Integer.pow(2, &1))
+  |> Enum.map(&(1..&1))
+  |> Enum.map(fn range ->
+    name = range.last |> Integer.to_string |> String.pad_leading(10, "0")
+    {"#{name} elements", range}
+  end)
   )
 
   def run_benchmarks() do
@@ -24,17 +24,38 @@ defmodule Benchmarks do
     Benchee.run(
       %{
         "Arrays.concat/2 (MapArray)" =>
-          fn range ->
-            Arrays.concat(Arrays.new(implementation: Arrays.Implementations.MapArray), range)
-          end,
-        "Arrays.concat/2 (ErlangArray)" =>
-        fn range ->
-          Arrays.concat(Arrays.new(implementation: Arrays.Implementations.ErlangArray), range)
+        {fn input ->
+          Arrays.concat(input.lhs, input.rhs)
         end,
-        "Enum.concat/2 (list)" =>
-        fn range->
-          Enum.concat([], range)
-        end
+         before_scenario: fn range ->
+           %{range: range,
+             lhs: Arrays.new(range, implementation: Arrays.Implementations.MapArray),
+             rhs: Arrays.new(range, implementation: Arrays.Implementations.MapArray)
+            }
+         end
+        },
+        "Arrays.concat/2 (ErlangArray)" =>
+      {fn input ->
+        Arrays.concat(input.lhs, input.rhs)
+      end,
+       before_scenario: fn range ->
+         %{range: range,
+           lhs: Arrays.new(range, implementation: Arrays.Implementations.ErlangArray),
+           rhs: Arrays.new(range, implementation: Arrays.Implementations.ErlangArray)
+          }
+       end
+      },
+        "Kernel.++/2 (list)" =>
+      {fn input ->
+        input.lhs ++ input.rhs
+      end,
+       before_scenario: fn range ->
+         %{range: range,
+           lhs: Enum.into([], range),
+           rhs: Enum.into([], range)
+          }
+       end
+      }
       },
       after_each: fn _ -> :erlang.garbage_collect() end, # make garbage collection unlikely to occur _during_ benchmark.
       inputs: @inputs,
@@ -45,14 +66,8 @@ defmodule Benchmarks do
         Benchee.Formatters.Console,
         {Benchee.Formatters.HTML, file: "benchmark_runs/concat.html", auto_open: false},
         {Benchee.Formatters.Markdown, file: "benchmark_runs/concat.md", description: """
-        Comparing `Arrays.concat` with `Enum.concat` (which concatenates plain lists).
-
-        Lists will probably always win out, as
-        concatenating many elements to the end of a list can be done
-        in a very fast way by building the list up in reverse (and reversing it at the end).
-
-        However, it is a good baseline to see how much overhead the array implementations bring
-        w.r.t. lists for this kind of operation.
+        Comparing `Arrays.concat` with `Kernel.++`,
+        by concatenating two collections of the same size.
         """
         }
       ]
@@ -63,38 +78,38 @@ defmodule Benchmarks do
     Benchee.run(
       %{
         "Arrays.get/2 (MapArray)" =>
-          {fn input ->
-            Arrays.get(input.array, input.index)
-          end,
-           before_scenario: fn range ->
-             %{range: range, array: Arrays.new(range, implementation: Arrays.Implementations.MapArray)}
-           end,
-           before_each: fn input ->
-             Map.put(input, :index, :rand.uniform(input.range.last) - input.range.first)
-           end
-          },
+        {fn input ->
+          Arrays.get(input.array, input.index)
+        end,
+         before_scenario: fn range ->
+           %{range: range, array: Arrays.new(range, implementation: Arrays.Implementations.MapArray)}
+         end,
+         before_each: fn input ->
+           Map.put(input, :index, :rand.uniform(input.range.last) - input.range.first)
+         end
+        },
         "Arrays.get/2 (ErlangArray)" =>
-          {fn input ->
-            Arrays.get(input.array, input.index)
-          end,
-           before_scenario: fn range ->
-             %{range: range, array: Arrays.new(range, implementation: Arrays.Implementations.MapArray)}
-           end,
-           before_each: fn input ->
-             Map.put(input, :index, :rand.uniform(input.range.last) - input.range.first)
-           end
-          },
+      {fn input ->
+        Arrays.get(input.array, input.index)
+      end,
+       before_scenario: fn range ->
+         %{range: range, array: Arrays.new(range, implementation: Arrays.Implementations.MapArray)}
+       end,
+       before_each: fn input ->
+         Map.put(input, :index, :rand.uniform(input.range.last) - input.range.first)
+       end
+      },
         "Enum.fetch/2 (list)" =>
-          {fn input ->
-            Enum.fetch!(input.list, input.index)
-          end,
-           before_scenario: fn range ->
-             %{range: range, list: Enum.into(range, [])}
-           end,
-           before_each: fn input ->
-             Map.put(input, :index, :rand.uniform(input.range.last) - input.range.first)
-           end
-          }
+      {fn input ->
+        Enum.fetch!(input.list, input.index)
+      end,
+       before_scenario: fn range ->
+         %{range: range, list: Enum.into(range, [])}
+       end,
+       before_each: fn input ->
+         Map.put(input, :index, :rand.uniform(input.range.last) - input.range.first)
+       end
+      }
       },
       after_each: fn _ -> :erlang.garbage_collect() end, # make garbage collection unlikely to occur _during_ benchmark.
       inputs: @inputs,
@@ -121,45 +136,45 @@ defmodule Benchmarks do
     Benchee.run(
       %{
         "Arrays.replace/3 (MapArray)" =>
-          {fn input ->
-            Arrays.replace(input.array, input.index, input.value)
-          end,
-           before_scenario: fn range ->
-             %{range: range, array: Arrays.new(range, implementation: Arrays.Implementations.MapArray)}
-           end,
-          },
+        {fn input ->
+          Arrays.replace(input.array, input.index, input.value)
+        end,
+         before_scenario: fn range ->
+           %{range: range, array: Arrays.new(range, implementation: Arrays.Implementations.MapArray)}
+         end,
+        },
         "Arrays.replace/3 (ErlangArray)" =>
-          {fn input ->
-            Arrays.replace(input.array, input.index, input.value)
-          end,
-           before_scenario: fn range ->
-             %{range: range, array: Arrays.new(range, implementation: Arrays.Implementations.MapArray)}
-           end,
-          },
+      {fn input ->
+        Arrays.replace(input.array, input.index, input.value)
+      end,
+       before_scenario: fn range ->
+         %{range: range, array: Arrays.new(range, implementation: Arrays.Implementations.MapArray)}
+       end,
+      },
         "put_in/2 (MapArray)" =>
-          {fn input ->
-            put_in(input.array[input.index], input.value)
-          end,
-          before_scenario: fn range ->
-            %{range: range, array: Arrays.new(range, implementation: Arrays.Implementations.MapArray)}
-          end,
-          },
+      {fn input ->
+        put_in(input.array[input.index], input.value)
+      end,
+       before_scenario: fn range ->
+         %{range: range, array: Arrays.new(range, implementation: Arrays.Implementations.MapArray)}
+       end,
+      },
         "put_in/2 (ErlangArray)" =>
-          {fn input ->
-            put_in(input.array[input.index], input.value)
-          end,
-          before_scenario: fn range ->
-            %{range: range, array: Arrays.new(range, implementation: Arrays.Implementations.MapArray)}
-          end,
-          },
+      {fn input ->
+        put_in(input.array[input.index], input.value)
+      end,
+       before_scenario: fn range ->
+         %{range: range, array: Arrays.new(range, implementation: Arrays.Implementations.MapArray)}
+       end,
+      },
         "List.replace_at/3" =>
-          {fn input ->
-            List.replace_at(input.list, input.index, input.value)
-          end,
-           before_scenario: fn range ->
-             %{range: range, list: Enum.into(range, [])}
-           end,
-          }
+      {fn input ->
+        List.replace_at(input.list, input.index, input.value)
+      end,
+       before_scenario: fn range ->
+         %{range: range, list: Enum.into(range, [])}
+       end,
+      }
       },
       before_each: fn input ->
         input
