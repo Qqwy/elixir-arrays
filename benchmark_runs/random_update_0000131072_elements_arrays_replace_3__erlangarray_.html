@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>Benchee Report</title>
+  <meta charset="utf-8">
+  <meta http-equiv="content-type" content="text/html; charset=utf8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+    <link rel="stylesheet" type="text/css" href="assets/stylesheets/benchee.css">
+    <link rel="stylesheet" type="text/css" href="assets/fontello/css/fontello.css">
+  
+</head>
+
+  <body>
+
+    <div class="header">
+  <h1>benchee report</h1>
+  
+  <span class="input-label">
+    0000131072 elements
+  </span>
+
+
+  <span class="version-note">
+  <a href="javascript:toggleSystemDataInfo();" title="Click to toggle system info">System info</a>
+</span>
+
+</div>
+
+
+    <article id="system-info" class="benchee-systeminfo" >
+  <h3>System info</h3>
+  <ul class="benchee-systeminfo-list">
+    <li>Elixir: 1.12.2</li>
+    <li>Erlang: 24.0.1</li>
+    <li>Operating system: Linux</li>
+    <li>Available memory: 7.60 GB</li>
+    <li>CPU Information: Intel(R) Core(TM) i7-6700HQ CPU @ 2.60GHz</li>
+    <li>Number of Available Cores: 8</li>
+  </ul>
+</article>
+
+
+    
+      <article>
+        <h2>
+          <a name="run_time" href="#run_time">Arrays.replace/3 (ErlangArray) Run Time</a>
+          <a href="https://github.com/PragTob/benchee_html/wiki/Chart-Types#individual">
+            <i
+              class="benchee-help-icon icon-question-circle-o"
+              title="Graphs showing the individual run time distribution for Arrays.replace/3 (ErlangArray).
+  Run Times Histogram shows the distribution of occurrences of specific run times in buckets.
+  Raw Run Times shows all individual recorded run times in the order they were recorded in."
+            ></i>
+          </a>
+        </h2>
+
+        <section>
+          <table>
+  <thead>
+    <tr>
+      <th class="text-left">Name</th>
+      
+        <th>Iterations per Second</th>
+      
+      <th>Average</th>
+      <th>Deviation</th>
+      <th>Median</th>
+      <th>Mode</th>
+      <th>Minimum</th>
+      <th>Maximum</th>
+      <th>Sample size</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+      
+      <tr>
+        
+          <td class="text-left">Arrays.replace/3 (ErlangArray)</td>
+        
+        
+          <td>145.22 K</td>
+          <td>6.89 μs</td>
+          <td>±123.61%</td>
+          <td>3.61 μs</td>
+          <td>3.25 μs, 3.61 μs, 3.16 μs</td>
+          <td>2.02 μs</td>
+          <td>52.63 μs</td>
+        
+        <td>131</td>
+      </tr>
+    
+  </tbody>
+</table>
+
+        </section>
+
+        <section class="benchee-plot-container">
+          <div id="run-times-histogram" class="plot"></div>
+        </section>
+        <section class="benchee-plot-container">
+          <div id="raw-run-times" class="plot"></div>
+        </section>
+      </article>
+    
+
+    
+
+    <footer>
+      <a href="https://github.com/PragTob/benchee" target="blank">benchee version: 1.0.1 </a>
+<br/>
+<a href="https://github.com/PragTob/benchee_html" target="blank">benchee_html version: 1.0.0</a>
+
+
+    </footer>
+
+    
+  <script src="assets/javascripts/plotly-1.30.1.min.js"></script>
+  <script src="assets/javascripts/benchee.js"></script>
+
+
+
+    <script>
+      var scenario = {"name":"Arrays.replace/3 (ErlangArray)","job_name":"Arrays.replace/3 (ErlangArray)","input_name":"0000131072 elements","run_time_data":{"statistics":{"absolute_difference":2328.48200058399,"average":6885.984732824428,"ips":145222.5119282002,"maximum":52628.0,"median":3606.0,"minimum":2016.0,"mode":[3254.0,3614.0,3156.0],"percentiles":{"50":3606.0,"99":48356.00000000009},"relative_less":0.661851994895592,"relative_more":1.510911816708736,"sample_size":131,"std_dev":8512.073052195861,"std_dev_ips":179516.02832688752,"std_dev_ratio":1.2361446303562251},"samples":[4814.0,3254.0,2511.0,3997.0,3284.0,3215.0,2231.0,3437.0,3656.0,3481.0,3470.0,3260.0,2122.0,3627.0,3617.0,3350.0,3168.0,3176.0,3343.0,3582.0,2016.0,3230.0,3441.0,16435.0,3615.0,3445.0,4195.0,3285.0,3368.0,2936.0,3509.0,3185.0,2.2e3,3521.0,4044.0,4925.0,5697.0,4543.0,5233.0,4795.0,5587.0,18050.0,4.2e3,3893.0,3740.0,4223.0,3616.0,2254.0,4110.0,3363.0,3181.0,3166.0,3183.0,3353.0,2143.0,3737.0,3253.0,6470.0,3773.0,3327.0,2075.0,3732.0,3687.0,3160.0,3325.0,3257.0,3783.0,2545.0,3614.0,3606.0,3254.0,3559.0,3466.0,3381.0,16647.0,3382.0,3081.0,3110.0,5.8e3,5304.0,4930.0,2276.0,2805.0,3210.0,2097.0,4446.0,3770.0,2183.0,3533.0,3087.0,3281.0,3156.0,3614.0,16741.0,3696.0,3337.0,3272.0,3054.0,3267.0,2993.0,3252.0,2365.0,2612.0,5133.0,4853.0,6696.0,3156.0,5220.0,13756.0,5912.0,38683.0,18378.0,37923.0,17215.0,9395.0,52628.0,30565.0,9310.0,6214.0,8257.0,13816.0,8897.0,10899.0,19271.0,25878.0,25288.0,7721.0,16370.0,39278.0,34163.0,13609.0]},"memory_usage_data":{"statistics":{"absolute_difference":null,"average":null,"ips":null,"maximum":null,"median":null,"minimum":null,"mode":null,"percentiles":null,"relative_less":null,"relative_more":null,"sample_size":0,"std_dev":null,"std_dev_ips":null,"std_dev_ratio":null},"samples":[]},"tag":null};
+
+      var inputHeadline = " (0000131072 elements)"
+
+      
+        drawRunTimeHistogram(scenario, inputHeadline);
+        drawRawRunTimeChart(scenario, inputHeadline);
+      
+
+      
+    </script>
+  </body>
+</html>

@@ -77,32 +77,15 @@
           <td class="text-left"><a href="append_0000131072_elements__val___list___list__interpreted_backwards_.html">[val | list] (list, interpreted backwards)</a></td>
         
         
-          <td>992.06 K</td>
-          <td>1.01 μs</td>
-          <td>±18.51%</td>
-          <td>0.98 μs</td>
+          <td>1006.29 K</td>
+          <td>0.99 μs</td>
+          <td>±18.05%</td>
+          <td>0.91 μs</td>
           <td>none</td>
-          <td>0.84 μs</td>
-          <td>1.23 μs</td>
+          <td>0.89 μs</td>
+          <td>1.26 μs</td>
         
         <td>4</td>
-      </tr>
-    
-      
-      <tr>
-        
-          <td class="text-left"><a href="append_0000131072_elements_arrays_concat_2__erlangarray_.html">Arrays.concat/2 (ErlangArray)</a></td>
-        
-        
-          <td>766.28 K</td>
-          <td>1.30 μs</td>
-          <td>±4.89%</td>
-          <td>1.33 μs</td>
-          <td>none</td>
-          <td>1.23 μs</td>
-          <td>1.35 μs</td>
-        
-        <td>3</td>
       </tr>
     
       
@@ -111,15 +94,32 @@
           <td class="text-left"><a href="append_0000131072_elements_arrays_append_2__maparray_.html">Arrays.append/2 (MapArray)</a></td>
         
         
-          <td>765.70 K</td>
-          <td>1.31 μs</td>
-          <td>±4.56%</td>
-          <td>1.31 μs</td>
+          <td>715.99 K</td>
+          <td>1.40 μs</td>
+          <td>±5.27%</td>
+          <td>1.42 μs</td>
           <td>none</td>
-          <td>1.25 μs</td>
-          <td>1.37 μs</td>
+          <td>1.31 μs</td>
+          <td>1.46 μs</td>
         
         <td>3</td>
+      </tr>
+    
+      
+      <tr>
+        
+          <td class="text-left"><a href="append_0000131072_elements_arrays_append_2__erlangarray_.html">Arrays.append/2 (ErlangArray)</a></td>
+        
+        
+          <td>235.57 K</td>
+          <td>4.25 μs</td>
+          <td>±95.68%</td>
+          <td>4.25 μs</td>
+          <td>none</td>
+          <td>1.37 μs</td>
+          <td>7.12 μs</td>
+        
+        <td>2</td>
       </tr>
     
       
@@ -128,13 +128,13 @@
           <td class="text-left"><a href="append_0000131072_elements_list_____val___list_.html">list ++ [val] (list)</a></td>
         
         
-          <td>1.08 K</td>
-          <td>922.69 μs</td>
-          <td>±92.98%</td>
-          <td>538.37 μs</td>
+          <td>0.97 K</td>
+          <td>1036.17 μs</td>
+          <td>±99.94%</td>
+          <td>566.63 μs</td>
           <td>none</td>
-          <td>530.79 μs</td>
-          <td>2457.30 μs</td>
+          <td>554.65 μs</td>
+          <td>2888.22 μs</td>
         
         <td>5</td>
       </tr>
@@ -195,23 +195,7 @@
           <td>16 B</td>
           <td>16 B</td>
         
-        <td>4</td>
-      </tr>
-    
-      
-      <tr>
-        
-          <td class="text-left"><a href="append_0000131072_elements_arrays_concat_2__erlangarray_.html">Arrays.concat/2 (ErlangArray)</a></td>
-        
-        
-          <td>656 B</td>
-          <td>±0.00%</td>
-          <td>656 B</td>
-          <td>656 B</td>
-          <td>656 B</td>
-          <td>656 B</td>
-        
-        <td>4</td>
+        <td>5</td>
       </tr>
     
       
@@ -228,6 +212,22 @@
           <td>656 B</td>
         
         <td>3</td>
+      </tr>
+    
+      
+      <tr>
+        
+          <td class="text-left"><a href="append_0000131072_elements_arrays_append_2__erlangarray_.html">Arrays.append/2 (ErlangArray)</a></td>
+        
+        
+          <td>656 B</td>
+          <td>±0.00%</td>
+          <td>656 B</td>
+          <td>656 B</td>
+          <td>656 B</td>
+          <td>656 B</td>
+        
+        <td>2</td>
       </tr>
     
       
@@ -276,7 +276,7 @@
 
 
     <script>
-      var scenarios     = [{"name":"[val | list] (list, interpreted backwards)","job_name":"[val | list] (list, interpreted backwards)","input_name":"0000131072 elements","run_time_data":{"statistics":{"absolute_difference":null,"average":1008.0,"ips":992063.4920634921,"maximum":1228.0,"median":982.0,"minimum":840.0,"mode":null,"percentiles":{"50":982.0,"99":1228.0},"relative_less":null,"relative_more":null,"sample_size":4,"std_dev":186.5708087206213,"std_dev_ips":183621.11906397756,"std_dev_ratio":0.18509008801648938},"samples":[867.0,840.0,1228.0,1097.0]},"memory_usage_data":{"statistics":{"absolute_difference":null,"average":16.0,"ips":null,"maximum":16,"median":16.0,"minimum":16,"mode":16,"percentiles":{"50":16.0,"99":16.0},"relative_less":null,"relative_more":null,"sample_size":4,"std_dev":0.0,"std_dev_ips":null,"std_dev_ratio":0.0},"samples":[16,16,16,16]},"tag":null},{"name":"Arrays.concat/2 (ErlangArray)","job_name":"Arrays.concat/2 (ErlangArray)","input_name":"0000131072 elements","run_time_data":{"statistics":{"absolute_difference":297.0,"average":1305.0,"ips":766283.5249042145,"maximum":1350.0,"median":1333.0,"minimum":1232.0,"mode":null,"percentiles":{"50":1333.0,"99":1350.0},"relative_less":0.7724137931034483,"relative_more":1.2946428571428572,"sample_size":3,"std_dev":63.788713735268246,"std_dev_ips":37456.12291966838,"std_dev_ratio":0.04888024041016724},"samples":[1232.0,1333.0,1350.0]},"memory_usage_data":{"statistics":{"absolute_difference":640.0,"average":656.0,"ips":null,"maximum":656,"median":656.0,"minimum":656,"mode":656,"percentiles":{"50":656.0,"99":656.0},"relative_less":0.024390243902439025,"relative_more":41.0,"sample_size":4,"std_dev":0.0,"std_dev_ips":null,"std_dev_ratio":0.0},"samples":[656,656,656,656]},"tag":null},{"name":"Arrays.append/2 (MapArray)","job_name":"Arrays.append/2 (MapArray)","input_name":"0000131072 elements","run_time_data":{"statistics":{"absolute_difference":298.0,"average":1306.0,"ips":765696.784073507,"maximum":1365.0,"median":1307.0,"minimum":1246.0,"mode":null,"percentiles":{"50":1307.0,"99":1365.0},"relative_less":0.7718223583460949,"relative_more":1.2956349206349207,"sample_size":3,"std_dev":59.50630218724736,"std_dev_ips":34888.04304508545,"std_dev_ratio":0.04556378421688159},"samples":[1307.0,1365.0,1246.0]},"memory_usage_data":{"statistics":{"absolute_difference":640.0,"average":656.0,"ips":null,"maximum":656,"median":656.0,"minimum":656,"mode":656,"percentiles":{"50":656.0,"99":656.0},"relative_less":0.024390243902439025,"relative_more":41.0,"sample_size":3,"std_dev":0.0,"std_dev_ips":null,"std_dev_ratio":0.0},"samples":[656,656,656]},"tag":null},{"name":"list ++ [val] (list)","job_name":"list ++ [val] (list)","input_name":"0000131072 elements","run_time_data":{"statistics":{"absolute_difference":921684.0,"average":922692.0,"ips":1083.7852717916705,"maximum":2.4573e6,"median":538373.0,"minimum":530788.0,"mode":null,"percentiles":{"50":538373.0,"99":2.4573e6},"relative_less":0.001092455553966004,"relative_more":915.3690476190476,"sample_size":5,"std_dev":857920.7086855405,"std_dev_ips":1007.7055273465697,"std_dev_ratio":0.929801828438461},"samples":[538373.0,532862.0,554137.0,2.4573e6,530788.0]},"memory_usage_data":{"statistics":{"absolute_difference":447936.0,"average":447952.0,"ips":null,"maximum":447952,"median":447952.0,"minimum":447952,"mode":447952,"percentiles":{"50":447952.0,"99":447952.0},"relative_less":3.571811265492731e-5,"relative_more":27997.0,"sample_size":5,"std_dev":0.0,"std_dev_ips":null,"std_dev_ratio":0.0},"samples":[447952,447952,447952,447952,447952]},"tag":null}];
+      var scenarios     = [{"name":"[val | list] (list, interpreted backwards)","job_name":"[val | list] (list, interpreted backwards)","input_name":"0000131072 elements","run_time_data":{"statistics":{"absolute_difference":null,"average":993.75,"ips":1006289.3081761006,"maximum":1261.0,"median":914.0,"minimum":886.0,"mode":null,"percentiles":{"50":914.0,"99":1261.0},"relative_less":null,"relative_more":null,"sample_size":4,"std_dev":179.39969342225754,"std_dev_ips":181663.38956567354,"std_dev_ratio":0.1805279933808881},"samples":[1261.0,894.0,934.0,886.0]},"memory_usage_data":{"statistics":{"absolute_difference":null,"average":16.0,"ips":null,"maximum":16,"median":16.0,"minimum":16,"mode":16,"percentiles":{"50":16.0,"99":16.0},"relative_less":null,"relative_more":null,"sample_size":5,"std_dev":0.0,"std_dev_ips":null,"std_dev_ratio":0.0},"samples":[16,16,16,16,16]},"tag":null},{"name":"Arrays.append/2 (MapArray)","job_name":"Arrays.append/2 (MapArray)","input_name":"0000131072 elements","run_time_data":{"statistics":{"absolute_difference":402.91666666666674,"average":1396.6666666666667,"ips":715990.4534606205,"maximum":1455.0,"median":1421.0,"minimum":1314.0,"mode":null,"percentiles":{"50":1421.0,"99":1455.0},"relative_less":0.7115155131264916,"relative_more":1.4054507337526205,"sample_size":3,"std_dev":73.58215363342754,"std_dev_ips":37721.326644348555,"std_dev_ratio":0.052684119546606824},"samples":[1314.0,1455.0,1421.0]},"memory_usage_data":{"statistics":{"absolute_difference":640.0,"average":656.0,"ips":null,"maximum":656,"median":656.0,"minimum":656,"mode":656,"percentiles":{"50":656.0,"99":656.0},"relative_less":0.024390243902439025,"relative_more":41.0,"sample_size":3,"std_dev":0.0,"std_dev_ips":null,"std_dev_ratio":0.0},"samples":[656,656,656]},"tag":null},{"name":"Arrays.append/2 (ErlangArray)","job_name":"Arrays.append/2 (ErlangArray)","input_name":"0000131072 elements","run_time_data":{"statistics":{"absolute_difference":3251.25,"average":4245.0,"ips":235571.26030624265,"maximum":7117.0,"median":4245.0,"minimum":1373.0,"mode":null,"percentiles":{"50":4245.0,"99":7117.0},"relative_less":0.23409893992932862,"relative_more":4.271698113207547,"sample_size":2,"std_dev":4061.621351135529,"std_dev_ips":225394.87881595775,"std_dev_ratio":0.9568012605737406},"samples":[1373.0,7117.0]},"memory_usage_data":{"statistics":{"absolute_difference":640.0,"average":656.0,"ips":null,"maximum":656,"median":656.0,"minimum":656,"mode":656,"percentiles":{"50":656.0,"99":656.0},"relative_less":0.024390243902439025,"relative_more":41.0,"sample_size":2,"std_dev":0.0,"std_dev_ips":null,"std_dev_ratio":0.0},"samples":[656,656]},"tag":null},{"name":"list ++ [val] (list)","job_name":"list ++ [val] (list)","input_name":"0000131072 elements","run_time_data":{"statistics":{"absolute_difference":1035179.25,"average":1036173.0,"ips":965.0898064319375,"maximum":2888225.0,"median":566627.0,"minimum":554652.0,"mode":null,"percentiles":{"50":566627.0,"99":2888225.0},"relative_less":9.590579951417379e-4,"relative_more":1042.6898113207546,"sample_size":5,"std_dev":1035524.6676026119,"std_dev_ips":964.4859507168217,"std_dev_ratio":0.9993743010121012},"samples":[564165.0,566627.0,2888225.0,607196.0,554652.0]},"memory_usage_data":{"statistics":{"absolute_difference":447936.0,"average":447952.0,"ips":null,"maximum":447952,"median":447952.0,"minimum":447952,"mode":447952,"percentiles":{"50":447952.0,"99":447952.0},"relative_less":3.571811265492731e-5,"relative_more":27997.0,"sample_size":5,"std_dev":0.0,"std_dev_ips":null,"std_dev_ratio":0.0},"samples":[447952,447952,447952,447952,447952]},"tag":null}];
       var inputHeadline = " (0000131072 elements)";
 
       
