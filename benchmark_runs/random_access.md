@@ -72,38 +72,38 @@ Run Time
 
   <tr>
     <td style="white-space: nowrap">Enum.fetch/2 (list)</td>
-    <td style="white-space: nowrap; text-align: right">7.07 M</td>
-    <td style="white-space: nowrap; text-align: right">141.35 ns</td>
-    <td style="white-space: nowrap; text-align: right">±671.42%</td>
+    <td style="white-space: nowrap; text-align: right">6.50 M</td>
+    <td style="white-space: nowrap; text-align: right">153.96 ns</td>
+    <td style="white-space: nowrap; text-align: right">±601.77%</td>
     <td style="white-space: nowrap; text-align: right">116 ns</td>
-    <td style="white-space: nowrap; text-align: right">266.97 ns</td>
+    <td style="white-space: nowrap; text-align: right">367.68 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.get/2 (PersistentVector)</td>
-    <td style="white-space: nowrap; text-align: right">6.84 M</td>
-    <td style="white-space: nowrap; text-align: right">146.10 ns</td>
-    <td style="white-space: nowrap; text-align: right">±598.83%</td>
-    <td style="white-space: nowrap; text-align: right">128 ns</td>
-    <td style="white-space: nowrap; text-align: right">232 ns</td>
+    <td style="white-space: nowrap; text-align: right">5.28 M</td>
+    <td style="white-space: nowrap; text-align: right">189.44 ns</td>
+    <td style="white-space: nowrap; text-align: right">±519.92%</td>
+    <td style="white-space: nowrap; text-align: right">157 ns</td>
+    <td style="white-space: nowrap; text-align: right">341.93 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.get/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">5.46 M</td>
-    <td style="white-space: nowrap; text-align: right">183.09 ns</td>
-    <td style="white-space: nowrap; text-align: right">±543.19%</td>
-    <td style="white-space: nowrap; text-align: right">157 ns</td>
-    <td style="white-space: nowrap; text-align: right">241 ns</td>
+    <td style="white-space: nowrap; text-align: right">4.91 M</td>
+    <td style="white-space: nowrap; text-align: right">203.86 ns</td>
+    <td style="white-space: nowrap; text-align: right">±531.17%</td>
+    <td style="white-space: nowrap; text-align: right">161 ns</td>
+    <td style="white-space: nowrap; text-align: right">528.80 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.get/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">5.19 M</td>
-    <td style="white-space: nowrap; text-align: right">192.71 ns</td>
-    <td style="white-space: nowrap; text-align: right">±586.12%</td>
-    <td style="white-space: nowrap; text-align: right">161 ns</td>
-    <td style="white-space: nowrap; text-align: right">284.36 ns</td>
+    <td style="white-space: nowrap; text-align: right">4.51 M</td>
+    <td style="white-space: nowrap; text-align: right">221.80 ns</td>
+    <td style="white-space: nowrap; text-align: right">±505.12%</td>
+    <td style="white-space: nowrap; text-align: right">169 ns</td>
+    <td style="white-space: nowrap; text-align: right">603.39 ns</td>
   </tr>
 
 </table>
@@ -118,26 +118,26 @@ Comparison
     <th style="text-align: right">Slower</th>
   <tr>
     <td style="white-space: nowrap">Enum.fetch/2 (list)</td>
-    <td style="white-space: nowrap;text-align: right">7.07 M</td>
+    <td style="white-space: nowrap;text-align: right">6.50 M</td>
     <td>&nbsp;</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.get/2 (PersistentVector)</td>
-    <td style="white-space: nowrap; text-align: right">6.84 M</td>
-    <td style="white-space: nowrap; text-align: right">1.03x</td>
+    <td style="white-space: nowrap; text-align: right">5.28 M</td>
+    <td style="white-space: nowrap; text-align: right">1.23x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.get/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">5.46 M</td>
-    <td style="white-space: nowrap; text-align: right">1.3x</td>
+    <td style="white-space: nowrap; text-align: right">4.91 M</td>
+    <td style="white-space: nowrap; text-align: right">1.32x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.get/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">5.19 M</td>
-    <td style="white-space: nowrap; text-align: right">1.36x</td>
+    <td style="white-space: nowrap; text-align: right">4.51 M</td>
+    <td style="white-space: nowrap; text-align: right">1.44x</td>
   </tr>
 
 </table>
@@ -162,39 +162,39 @@ Run Time
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">Enum.fetch/2 (list)</td>
-    <td style="white-space: nowrap; text-align: right">5.47 M</td>
-    <td style="white-space: nowrap; text-align: right">182.77 ns</td>
-    <td style="white-space: nowrap; text-align: right">±494.41%</td>
-    <td style="white-space: nowrap; text-align: right">163 ns</td>
-    <td style="white-space: nowrap; text-align: right">362.57 ns</td>
-  </tr>
-
-  <tr>
-    <td style="white-space: nowrap">Arrays.get/2 (PersistentVector)</td>
-    <td style="white-space: nowrap; text-align: right">5.47 M</td>
-    <td style="white-space: nowrap; text-align: right">182.94 ns</td>
-    <td style="white-space: nowrap; text-align: right">±703.95%</td>
-    <td style="white-space: nowrap; text-align: right">147 ns</td>
-    <td style="white-space: nowrap; text-align: right">295 ns</td>
-  </tr>
-
-  <tr>
     <td style="white-space: nowrap">Arrays.get/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">5.46 M</td>
-    <td style="white-space: nowrap; text-align: right">183.23 ns</td>
-    <td style="white-space: nowrap; text-align: right">±556.19%</td>
+    <td style="white-space: nowrap; text-align: right">5.04 M</td>
+    <td style="white-space: nowrap; text-align: right">198.55 ns</td>
+    <td style="white-space: nowrap; text-align: right">±537.49%</td>
     <td style="white-space: nowrap; text-align: right">156 ns</td>
-    <td style="white-space: nowrap; text-align: right">248.46 ns</td>
+    <td style="white-space: nowrap; text-align: right">485.05 ns</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Enum.fetch/2 (list)</td>
+    <td style="white-space: nowrap; text-align: right">4.82 M</td>
+    <td style="white-space: nowrap; text-align: right">207.30 ns</td>
+    <td style="white-space: nowrap; text-align: right">±480.47%</td>
+    <td style="white-space: nowrap; text-align: right">167 ns</td>
+    <td style="white-space: nowrap; text-align: right">481.79 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.get/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">4.95 M</td>
-    <td style="white-space: nowrap; text-align: right">202.18 ns</td>
-    <td style="white-space: nowrap; text-align: right">±559.92%</td>
-    <td style="white-space: nowrap; text-align: right">168 ns</td>
-    <td style="white-space: nowrap; text-align: right">295 ns</td>
+    <td style="white-space: nowrap; text-align: right">4.70 M</td>
+    <td style="white-space: nowrap; text-align: right">212.76 ns</td>
+    <td style="white-space: nowrap; text-align: right">±563.09%</td>
+    <td style="white-space: nowrap; text-align: right">158 ns</td>
+    <td style="white-space: nowrap; text-align: right">361.21 ns</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.get/2 (PersistentVector)</td>
+    <td style="white-space: nowrap; text-align: right">4.30 M</td>
+    <td style="white-space: nowrap; text-align: right">232.82 ns</td>
+    <td style="white-space: nowrap; text-align: right">±485.88%</td>
+    <td style="white-space: nowrap; text-align: right">186 ns</td>
+    <td style="white-space: nowrap; text-align: right">481.15 ns</td>
   </tr>
 
 </table>
@@ -208,27 +208,27 @@ Comparison
     <th style="text-align: right">IPS</th>
     <th style="text-align: right">Slower</th>
   <tr>
-    <td style="white-space: nowrap">Enum.fetch/2 (list)</td>
-    <td style="white-space: nowrap;text-align: right">5.47 M</td>
+    <td style="white-space: nowrap">Arrays.get/2 (ErlangArray)</td>
+    <td style="white-space: nowrap;text-align: right">5.04 M</td>
     <td>&nbsp;</td>
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">Arrays.get/2 (PersistentVector)</td>
-    <td style="white-space: nowrap; text-align: right">5.47 M</td>
-    <td style="white-space: nowrap; text-align: right">1.0x</td>
-  </tr>
-
-  <tr>
-    <td style="white-space: nowrap">Arrays.get/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">5.46 M</td>
-    <td style="white-space: nowrap; text-align: right">1.0x</td>
+    <td style="white-space: nowrap">Enum.fetch/2 (list)</td>
+    <td style="white-space: nowrap; text-align: right">4.82 M</td>
+    <td style="white-space: nowrap; text-align: right">1.04x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.get/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">4.95 M</td>
-    <td style="white-space: nowrap; text-align: right">1.11x</td>
+    <td style="white-space: nowrap; text-align: right">4.70 M</td>
+    <td style="white-space: nowrap; text-align: right">1.07x</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.get/2 (PersistentVector)</td>
+    <td style="white-space: nowrap; text-align: right">4.30 M</td>
+    <td style="white-space: nowrap; text-align: right">1.17x</td>
   </tr>
 
 </table>
@@ -253,39 +253,39 @@ Run Time
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">Arrays.get/2 (PersistentVector)</td>
-    <td style="white-space: nowrap; text-align: right">5.33 M</td>
-    <td style="white-space: nowrap; text-align: right">187.63 ns</td>
-    <td style="white-space: nowrap; text-align: right">±562.90%</td>
-    <td style="white-space: nowrap; text-align: right">161 ns</td>
-    <td style="white-space: nowrap; text-align: right">299 ns</td>
-  </tr>
-
-  <tr>
     <td style="white-space: nowrap">Arrays.get/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">5.23 M</td>
-    <td style="white-space: nowrap; text-align: right">191.14 ns</td>
-    <td style="white-space: nowrap; text-align: right">±564.80%</td>
-    <td style="white-space: nowrap; text-align: right">161 ns</td>
-    <td style="white-space: nowrap; text-align: right">255 ns</td>
+    <td style="white-space: nowrap; text-align: right">4.86 M</td>
+    <td style="white-space: nowrap; text-align: right">205.91 ns</td>
+    <td style="white-space: nowrap; text-align: right">±558.34%</td>
+    <td style="white-space: nowrap; text-align: right">163 ns</td>
+    <td style="white-space: nowrap; text-align: right">392.19 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.get/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">4.96 M</td>
-    <td style="white-space: nowrap; text-align: right">201.54 ns</td>
-    <td style="white-space: nowrap; text-align: right">±626.89%</td>
-    <td style="white-space: nowrap; text-align: right">165 ns</td>
-    <td style="white-space: nowrap; text-align: right">294 ns</td>
+    <td style="white-space: nowrap; text-align: right">4.44 M</td>
+    <td style="white-space: nowrap; text-align: right">225.23 ns</td>
+    <td style="white-space: nowrap; text-align: right">±537.39%</td>
+    <td style="white-space: nowrap; text-align: right">163 ns</td>
+    <td style="white-space: nowrap; text-align: right">639 ns</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.get/2 (PersistentVector)</td>
+    <td style="white-space: nowrap; text-align: right">4.05 M</td>
+    <td style="white-space: nowrap; text-align: right">247.16 ns</td>
+    <td style="white-space: nowrap; text-align: right">±739.87%</td>
+    <td style="white-space: nowrap; text-align: right">194 ns</td>
+    <td style="white-space: nowrap; text-align: right">402 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Enum.fetch/2 (list)</td>
-    <td style="white-space: nowrap; text-align: right">3.60 M</td>
-    <td style="white-space: nowrap; text-align: right">277.53 ns</td>
-    <td style="white-space: nowrap; text-align: right">±388.21%</td>
-    <td style="white-space: nowrap; text-align: right">248 ns</td>
-    <td style="white-space: nowrap; text-align: right">605.39 ns</td>
+    <td style="white-space: nowrap; text-align: right">3.29 M</td>
+    <td style="white-space: nowrap; text-align: right">304.10 ns</td>
+    <td style="white-space: nowrap; text-align: right">±346.09%</td>
+    <td style="white-space: nowrap; text-align: right">260 ns</td>
+    <td style="white-space: nowrap; text-align: right">685.50 ns</td>
   </tr>
 
 </table>
@@ -299,26 +299,26 @@ Comparison
     <th style="text-align: right">IPS</th>
     <th style="text-align: right">Slower</th>
   <tr>
-    <td style="white-space: nowrap">Arrays.get/2 (PersistentVector)</td>
-    <td style="white-space: nowrap;text-align: right">5.33 M</td>
+    <td style="white-space: nowrap">Arrays.get/2 (ErlangArray)</td>
+    <td style="white-space: nowrap;text-align: right">4.86 M</td>
     <td>&nbsp;</td>
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">Arrays.get/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">5.23 M</td>
-    <td style="white-space: nowrap; text-align: right">1.02x</td>
+    <td style="white-space: nowrap">Arrays.get/2 (MapArray)</td>
+    <td style="white-space: nowrap; text-align: right">4.44 M</td>
+    <td style="white-space: nowrap; text-align: right">1.09x</td>
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">Arrays.get/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">4.96 M</td>
-    <td style="white-space: nowrap; text-align: right">1.07x</td>
+    <td style="white-space: nowrap">Arrays.get/2 (PersistentVector)</td>
+    <td style="white-space: nowrap; text-align: right">4.05 M</td>
+    <td style="white-space: nowrap; text-align: right">1.2x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Enum.fetch/2 (list)</td>
-    <td style="white-space: nowrap; text-align: right">3.60 M</td>
+    <td style="white-space: nowrap; text-align: right">3.29 M</td>
     <td style="white-space: nowrap; text-align: right">1.48x</td>
   </tr>
 
@@ -345,38 +345,38 @@ Run Time
 
   <tr>
     <td style="white-space: nowrap">Arrays.get/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">5.32 M</td>
-    <td style="white-space: nowrap; text-align: right">188.07 ns</td>
-    <td style="white-space: nowrap; text-align: right">±566.51%</td>
-    <td style="white-space: nowrap; text-align: right">163 ns</td>
-    <td style="white-space: nowrap; text-align: right">269.68 ns</td>
-  </tr>
-
-  <tr>
-    <td style="white-space: nowrap">Arrays.get/2 (PersistentVector)</td>
-    <td style="white-space: nowrap; text-align: right">5.29 M</td>
-    <td style="white-space: nowrap; text-align: right">189.08 ns</td>
-    <td style="white-space: nowrap; text-align: right">±569.51%</td>
-    <td style="white-space: nowrap; text-align: right">164 ns</td>
-    <td style="white-space: nowrap; text-align: right">314 ns</td>
+    <td style="white-space: nowrap; text-align: right">4.71 M</td>
+    <td style="white-space: nowrap; text-align: right">212.26 ns</td>
+    <td style="white-space: nowrap; text-align: right">±529.31%</td>
+    <td style="white-space: nowrap; text-align: right">168 ns</td>
+    <td style="white-space: nowrap; text-align: right">429.44 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.get/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">4.87 M</td>
-    <td style="white-space: nowrap; text-align: right">205.32 ns</td>
-    <td style="white-space: nowrap; text-align: right">±564.70%</td>
-    <td style="white-space: nowrap; text-align: right">170 ns</td>
-    <td style="white-space: nowrap; text-align: right">303 ns</td>
+    <td style="white-space: nowrap; text-align: right">4.55 M</td>
+    <td style="white-space: nowrap; text-align: right">219.62 ns</td>
+    <td style="white-space: nowrap; text-align: right">±558.02%</td>
+    <td style="white-space: nowrap; text-align: right">172 ns</td>
+    <td style="white-space: nowrap; text-align: right">298.98 ns</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.get/2 (PersistentVector)</td>
+    <td style="white-space: nowrap; text-align: right">4.03 M</td>
+    <td style="white-space: nowrap; text-align: right">247.97 ns</td>
+    <td style="white-space: nowrap; text-align: right">±477.50%</td>
+    <td style="white-space: nowrap; text-align: right">203 ns</td>
+    <td style="white-space: nowrap; text-align: right">300.40 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Enum.fetch/2 (list)</td>
-    <td style="white-space: nowrap; text-align: right">2.19 M</td>
-    <td style="white-space: nowrap; text-align: right">455.87 ns</td>
-    <td style="white-space: nowrap; text-align: right">±271.19%</td>
-    <td style="white-space: nowrap; text-align: right">422 ns</td>
-    <td style="white-space: nowrap; text-align: right">929.25 ns</td>
+    <td style="white-space: nowrap; text-align: right">2.08 M</td>
+    <td style="white-space: nowrap; text-align: right">481.49 ns</td>
+    <td style="white-space: nowrap; text-align: right">±225.56%</td>
+    <td style="white-space: nowrap; text-align: right">430 ns</td>
+    <td style="white-space: nowrap; text-align: right">1013.90 ns</td>
   </tr>
 
 </table>
@@ -391,26 +391,26 @@ Comparison
     <th style="text-align: right">Slower</th>
   <tr>
     <td style="white-space: nowrap">Arrays.get/2 (ErlangArray)</td>
-    <td style="white-space: nowrap;text-align: right">5.32 M</td>
+    <td style="white-space: nowrap;text-align: right">4.71 M</td>
     <td>&nbsp;</td>
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">Arrays.get/2 (PersistentVector)</td>
-    <td style="white-space: nowrap; text-align: right">5.29 M</td>
-    <td style="white-space: nowrap; text-align: right">1.01x</td>
+    <td style="white-space: nowrap">Arrays.get/2 (MapArray)</td>
+    <td style="white-space: nowrap; text-align: right">4.55 M</td>
+    <td style="white-space: nowrap; text-align: right">1.03x</td>
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">Arrays.get/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">4.87 M</td>
-    <td style="white-space: nowrap; text-align: right">1.09x</td>
+    <td style="white-space: nowrap">Arrays.get/2 (PersistentVector)</td>
+    <td style="white-space: nowrap; text-align: right">4.03 M</td>
+    <td style="white-space: nowrap; text-align: right">1.17x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Enum.fetch/2 (list)</td>
-    <td style="white-space: nowrap; text-align: right">2.19 M</td>
-    <td style="white-space: nowrap; text-align: right">2.42x</td>
+    <td style="white-space: nowrap; text-align: right">2.08 M</td>
+    <td style="white-space: nowrap; text-align: right">2.27x</td>
   </tr>
 
 </table>
@@ -435,39 +435,39 @@ Run Time
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">Arrays.get/2 (PersistentVector)</td>
-    <td style="white-space: nowrap; text-align: right">5.11 M</td>
-    <td style="white-space: nowrap; text-align: right">195.61 ns</td>
-    <td style="white-space: nowrap; text-align: right">±600.13%</td>
-    <td style="white-space: nowrap; text-align: right">169 ns</td>
-    <td style="white-space: nowrap; text-align: right">315.90 ns</td>
-  </tr>
-
-  <tr>
     <td style="white-space: nowrap">Arrays.get/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">4.89 M</td>
-    <td style="white-space: nowrap; text-align: right">204.48 ns</td>
-    <td style="white-space: nowrap; text-align: right">±600.90%</td>
-    <td style="white-space: nowrap; text-align: right">173 ns</td>
-    <td style="white-space: nowrap; text-align: right">285 ns</td>
+    <td style="white-space: nowrap; text-align: right">4.67 M</td>
+    <td style="white-space: nowrap; text-align: right">214.36 ns</td>
+    <td style="white-space: nowrap; text-align: right">±714.84%</td>
+    <td style="white-space: nowrap; text-align: right">168 ns</td>
+    <td style="white-space: nowrap; text-align: right">403.84 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.get/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">4.66 M</td>
-    <td style="white-space: nowrap; text-align: right">214.78 ns</td>
-    <td style="white-space: nowrap; text-align: right">±576.42%</td>
-    <td style="white-space: nowrap; text-align: right">177 ns</td>
-    <td style="white-space: nowrap; text-align: right">312.04 ns</td>
+    <td style="white-space: nowrap; text-align: right">4.43 M</td>
+    <td style="white-space: nowrap; text-align: right">225.97 ns</td>
+    <td style="white-space: nowrap; text-align: right">±546.66%</td>
+    <td style="white-space: nowrap; text-align: right">179 ns</td>
+    <td style="white-space: nowrap; text-align: right">287 ns</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.get/2 (PersistentVector)</td>
+    <td style="white-space: nowrap; text-align: right">4.16 M</td>
+    <td style="white-space: nowrap; text-align: right">240.18 ns</td>
+    <td style="white-space: nowrap; text-align: right">±447.52%</td>
+    <td style="white-space: nowrap; text-align: right">207 ns</td>
+    <td style="white-space: nowrap; text-align: right">286.57 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Enum.fetch/2 (list)</td>
-    <td style="white-space: nowrap; text-align: right">1.22 M</td>
-    <td style="white-space: nowrap; text-align: right">818.09 ns</td>
-    <td style="white-space: nowrap; text-align: right">±130.33%</td>
-    <td style="white-space: nowrap; text-align: right">775 ns</td>
-    <td style="white-space: nowrap; text-align: right">2007.20 ns</td>
+    <td style="white-space: nowrap; text-align: right">1.15 M</td>
+    <td style="white-space: nowrap; text-align: right">867.99 ns</td>
+    <td style="white-space: nowrap; text-align: right">±159.77%</td>
+    <td style="white-space: nowrap; text-align: right">788 ns</td>
+    <td style="white-space: nowrap; text-align: right">1744.37 ns</td>
   </tr>
 
 </table>
@@ -481,27 +481,27 @@ Comparison
     <th style="text-align: right">IPS</th>
     <th style="text-align: right">Slower</th>
   <tr>
-    <td style="white-space: nowrap">Arrays.get/2 (PersistentVector)</td>
-    <td style="white-space: nowrap;text-align: right">5.11 M</td>
+    <td style="white-space: nowrap">Arrays.get/2 (ErlangArray)</td>
+    <td style="white-space: nowrap;text-align: right">4.67 M</td>
     <td>&nbsp;</td>
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">Arrays.get/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">4.89 M</td>
+    <td style="white-space: nowrap">Arrays.get/2 (MapArray)</td>
+    <td style="white-space: nowrap; text-align: right">4.43 M</td>
     <td style="white-space: nowrap; text-align: right">1.05x</td>
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">Arrays.get/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">4.66 M</td>
-    <td style="white-space: nowrap; text-align: right">1.1x</td>
+    <td style="white-space: nowrap">Arrays.get/2 (PersistentVector)</td>
+    <td style="white-space: nowrap; text-align: right">4.16 M</td>
+    <td style="white-space: nowrap; text-align: right">1.12x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Enum.fetch/2 (list)</td>
-    <td style="white-space: nowrap; text-align: right">1.22 M</td>
-    <td style="white-space: nowrap; text-align: right">4.18x</td>
+    <td style="white-space: nowrap; text-align: right">1.15 M</td>
+    <td style="white-space: nowrap; text-align: right">4.05x</td>
   </tr>
 
 </table>
@@ -526,39 +526,39 @@ Run Time
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">Arrays.get/2 (PersistentVector)</td>
-    <td style="white-space: nowrap; text-align: right">5.08 M</td>
-    <td style="white-space: nowrap; text-align: right">196.84 ns</td>
-    <td style="white-space: nowrap; text-align: right">±539.62%</td>
-    <td style="white-space: nowrap; text-align: right">174 ns</td>
-    <td style="white-space: nowrap; text-align: right">308.31 ns</td>
-  </tr>
-
-  <tr>
     <td style="white-space: nowrap">Arrays.get/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">4.68 M</td>
-    <td style="white-space: nowrap; text-align: right">213.67 ns</td>
-    <td style="white-space: nowrap; text-align: right">±606.27%</td>
-    <td style="white-space: nowrap; text-align: right">182 ns</td>
-    <td style="white-space: nowrap; text-align: right">288 ns</td>
+    <td style="white-space: nowrap; text-align: right">4.31 M</td>
+    <td style="white-space: nowrap; text-align: right">232.29 ns</td>
+    <td style="white-space: nowrap; text-align: right">±588.36%</td>
+    <td style="white-space: nowrap; text-align: right">180 ns</td>
+    <td style="white-space: nowrap; text-align: right">428.17 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.get/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">4.60 M</td>
-    <td style="white-space: nowrap; text-align: right">217.62 ns</td>
-    <td style="white-space: nowrap; text-align: right">±687.66%</td>
-    <td style="white-space: nowrap; text-align: right">177 ns</td>
-    <td style="white-space: nowrap; text-align: right">319.59 ns</td>
+    <td style="white-space: nowrap; text-align: right">4.07 M</td>
+    <td style="white-space: nowrap; text-align: right">245.98 ns</td>
+    <td style="white-space: nowrap; text-align: right">±567.48%</td>
+    <td style="white-space: nowrap; text-align: right">184 ns</td>
+    <td style="white-space: nowrap; text-align: right">699.02 ns</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.get/2 (PersistentVector)</td>
+    <td style="white-space: nowrap; text-align: right">3.82 M</td>
+    <td style="white-space: nowrap; text-align: right">261.87 ns</td>
+    <td style="white-space: nowrap; text-align: right">±473.20%</td>
+    <td style="white-space: nowrap; text-align: right">208 ns</td>
+    <td style="white-space: nowrap; text-align: right">293 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Enum.fetch/2 (list)</td>
-    <td style="white-space: nowrap; text-align: right">0.53 M</td>
-    <td style="white-space: nowrap; text-align: right">1896.44 ns</td>
-    <td style="white-space: nowrap; text-align: right">±92.53%</td>
-    <td style="white-space: nowrap; text-align: right">1736 ns</td>
-    <td style="white-space: nowrap; text-align: right">4972.26 ns</td>
+    <td style="white-space: nowrap; text-align: right">0.63 M</td>
+    <td style="white-space: nowrap; text-align: right">1590.07 ns</td>
+    <td style="white-space: nowrap; text-align: right">±106.00%</td>
+    <td style="white-space: nowrap; text-align: right">1470.50 ns</td>
+    <td style="white-space: nowrap; text-align: right">3241.05 ns</td>
   </tr>
 
 </table>
@@ -572,27 +572,27 @@ Comparison
     <th style="text-align: right">IPS</th>
     <th style="text-align: right">Slower</th>
   <tr>
-    <td style="white-space: nowrap">Arrays.get/2 (PersistentVector)</td>
-    <td style="white-space: nowrap;text-align: right">5.08 M</td>
+    <td style="white-space: nowrap">Arrays.get/2 (ErlangArray)</td>
+    <td style="white-space: nowrap;text-align: right">4.31 M</td>
     <td>&nbsp;</td>
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">Arrays.get/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">4.68 M</td>
-    <td style="white-space: nowrap; text-align: right">1.09x</td>
+    <td style="white-space: nowrap">Arrays.get/2 (MapArray)</td>
+    <td style="white-space: nowrap; text-align: right">4.07 M</td>
+    <td style="white-space: nowrap; text-align: right">1.06x</td>
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">Arrays.get/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">4.60 M</td>
-    <td style="white-space: nowrap; text-align: right">1.11x</td>
+    <td style="white-space: nowrap">Arrays.get/2 (PersistentVector)</td>
+    <td style="white-space: nowrap; text-align: right">3.82 M</td>
+    <td style="white-space: nowrap; text-align: right">1.13x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Enum.fetch/2 (list)</td>
-    <td style="white-space: nowrap; text-align: right">0.53 M</td>
-    <td style="white-space: nowrap; text-align: right">9.63x</td>
+    <td style="white-space: nowrap; text-align: right">0.63 M</td>
+    <td style="white-space: nowrap; text-align: right">6.85x</td>
   </tr>
 
 </table>
@@ -617,39 +617,39 @@ Run Time
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">Arrays.get/2 (PersistentVector)</td>
-    <td style="white-space: nowrap; text-align: right">4.59 M</td>
-    <td style="white-space: nowrap; text-align: right">217.90 ns</td>
-    <td style="white-space: nowrap; text-align: right">±517.44%</td>
-    <td style="white-space: nowrap; text-align: right">190 ns</td>
-    <td style="white-space: nowrap; text-align: right">331.83 ns</td>
-  </tr>
-
-  <tr>
     <td style="white-space: nowrap">Arrays.get/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">4.17 M</td>
-    <td style="white-space: nowrap; text-align: right">239.69 ns</td>
-    <td style="white-space: nowrap; text-align: right">±790.46%</td>
-    <td style="white-space: nowrap; text-align: right">187 ns</td>
-    <td style="white-space: nowrap; text-align: right">344.48 ns</td>
+    <td style="white-space: nowrap; text-align: right">4.42 M</td>
+    <td style="white-space: nowrap; text-align: right">226.43 ns</td>
+    <td style="white-space: nowrap; text-align: right">±477.68%</td>
+    <td style="white-space: nowrap; text-align: right">183 ns</td>
+    <td style="white-space: nowrap; text-align: right">436 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.get/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">3.88 M</td>
-    <td style="white-space: nowrap; text-align: right">257.68 ns</td>
-    <td style="white-space: nowrap; text-align: right">±741.24%</td>
-    <td style="white-space: nowrap; text-align: right">201 ns</td>
-    <td style="white-space: nowrap; text-align: right">329.78 ns</td>
+    <td style="white-space: nowrap; text-align: right">3.91 M</td>
+    <td style="white-space: nowrap; text-align: right">255.63 ns</td>
+    <td style="white-space: nowrap; text-align: right">±464.03%</td>
+    <td style="white-space: nowrap; text-align: right">205 ns</td>
+    <td style="white-space: nowrap; text-align: right">637.92 ns</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.get/2 (PersistentVector)</td>
+    <td style="white-space: nowrap; text-align: right">3.82 M</td>
+    <td style="white-space: nowrap; text-align: right">261.65 ns</td>
+    <td style="white-space: nowrap; text-align: right">±424.92%</td>
+    <td style="white-space: nowrap; text-align: right">222 ns</td>
+    <td style="white-space: nowrap; text-align: right">296.43 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Enum.fetch/2 (list)</td>
-    <td style="white-space: nowrap; text-align: right">0.33 M</td>
-    <td style="white-space: nowrap; text-align: right">3017.48 ns</td>
-    <td style="white-space: nowrap; text-align: right">±76.74%</td>
-    <td style="white-space: nowrap; text-align: right">2909 ns</td>
-    <td style="white-space: nowrap; text-align: right">8967.25 ns</td>
+    <td style="white-space: nowrap; text-align: right">0.31 M</td>
+    <td style="white-space: nowrap; text-align: right">3227.50 ns</td>
+    <td style="white-space: nowrap; text-align: right">±119.33%</td>
+    <td style="white-space: nowrap; text-align: right">3016 ns</td>
+    <td style="white-space: nowrap; text-align: right">18382.22 ns</td>
   </tr>
 
 </table>
@@ -663,27 +663,27 @@ Comparison
     <th style="text-align: right">IPS</th>
     <th style="text-align: right">Slower</th>
   <tr>
-    <td style="white-space: nowrap">Arrays.get/2 (PersistentVector)</td>
-    <td style="white-space: nowrap;text-align: right">4.59 M</td>
+    <td style="white-space: nowrap">Arrays.get/2 (ErlangArray)</td>
+    <td style="white-space: nowrap;text-align: right">4.42 M</td>
     <td>&nbsp;</td>
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">Arrays.get/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">4.17 M</td>
-    <td style="white-space: nowrap; text-align: right">1.1x</td>
+    <td style="white-space: nowrap">Arrays.get/2 (MapArray)</td>
+    <td style="white-space: nowrap; text-align: right">3.91 M</td>
+    <td style="white-space: nowrap; text-align: right">1.13x</td>
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">Arrays.get/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">3.88 M</td>
-    <td style="white-space: nowrap; text-align: right">1.18x</td>
+    <td style="white-space: nowrap">Arrays.get/2 (PersistentVector)</td>
+    <td style="white-space: nowrap; text-align: right">3.82 M</td>
+    <td style="white-space: nowrap; text-align: right">1.16x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Enum.fetch/2 (list)</td>
-    <td style="white-space: nowrap; text-align: right">0.33 M</td>
-    <td style="white-space: nowrap; text-align: right">13.85x</td>
+    <td style="white-space: nowrap; text-align: right">0.31 M</td>
+    <td style="white-space: nowrap; text-align: right">14.25x</td>
   </tr>
 
 </table>
@@ -708,39 +708,39 @@ Run Time
   </tr>
 
   <tr>
+    <td style="white-space: nowrap">Arrays.get/2 (MapArray)</td>
+    <td style="white-space: nowrap; text-align: right">4.01 M</td>
+    <td style="white-space: nowrap; text-align: right">249.15 ns</td>
+    <td style="white-space: nowrap; text-align: right">±555.18%</td>
+    <td style="white-space: nowrap; text-align: right">206 ns</td>
+    <td style="white-space: nowrap; text-align: right">344.65 ns</td>
+  </tr>
+
+  <tr>
     <td style="white-space: nowrap">Arrays.get/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">4.46 M</td>
-    <td style="white-space: nowrap; text-align: right">224.41 ns</td>
-    <td style="white-space: nowrap; text-align: right">±561.10%</td>
-    <td style="white-space: nowrap; text-align: right">199 ns</td>
-    <td style="white-space: nowrap; text-align: right">363 ns</td>
+    <td style="white-space: nowrap; text-align: right">3.70 M</td>
+    <td style="white-space: nowrap; text-align: right">270.04 ns</td>
+    <td style="white-space: nowrap; text-align: right">±518.41%</td>
+    <td style="white-space: nowrap; text-align: right">202 ns</td>
+    <td style="white-space: nowrap; text-align: right">882.72 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.get/2 (PersistentVector)</td>
-    <td style="white-space: nowrap; text-align: right">4.44 M</td>
-    <td style="white-space: nowrap; text-align: right">225.35 ns</td>
-    <td style="white-space: nowrap; text-align: right">±538.67%</td>
-    <td style="white-space: nowrap; text-align: right">196 ns</td>
-    <td style="white-space: nowrap; text-align: right">332 ns</td>
-  </tr>
-
-  <tr>
-    <td style="white-space: nowrap">Arrays.get/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">3.93 M</td>
-    <td style="white-space: nowrap; text-align: right">254.44 ns</td>
-    <td style="white-space: nowrap; text-align: right">±494.48%</td>
-    <td style="white-space: nowrap; text-align: right">225 ns</td>
-    <td style="white-space: nowrap; text-align: right">357.18 ns</td>
+    <td style="white-space: nowrap; text-align: right">3.66 M</td>
+    <td style="white-space: nowrap; text-align: right">273.11 ns</td>
+    <td style="white-space: nowrap; text-align: right">±432.65%</td>
+    <td style="white-space: nowrap; text-align: right">226 ns</td>
+    <td style="white-space: nowrap; text-align: right">324.82 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Enum.fetch/2 (list)</td>
-    <td style="white-space: nowrap; text-align: right">0.175 M</td>
-    <td style="white-space: nowrap; text-align: right">5730.44 ns</td>
-    <td style="white-space: nowrap; text-align: right">±61.34%</td>
-    <td style="white-space: nowrap; text-align: right">5662 ns</td>
-    <td style="white-space: nowrap; text-align: right">11387.21 ns</td>
+    <td style="white-space: nowrap; text-align: right">0.159 M</td>
+    <td style="white-space: nowrap; text-align: right">6295.35 ns</td>
+    <td style="white-space: nowrap; text-align: right">±73.85%</td>
+    <td style="white-space: nowrap; text-align: right">5974 ns</td>
+    <td style="white-space: nowrap; text-align: right">26217.92 ns</td>
   </tr>
 
 </table>
@@ -754,27 +754,27 @@ Comparison
     <th style="text-align: right">IPS</th>
     <th style="text-align: right">Slower</th>
   <tr>
-    <td style="white-space: nowrap">Arrays.get/2 (ErlangArray)</td>
-    <td style="white-space: nowrap;text-align: right">4.46 M</td>
+    <td style="white-space: nowrap">Arrays.get/2 (MapArray)</td>
+    <td style="white-space: nowrap;text-align: right">4.01 M</td>
     <td>&nbsp;</td>
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">Arrays.get/2 (PersistentVector)</td>
-    <td style="white-space: nowrap; text-align: right">4.44 M</td>
-    <td style="white-space: nowrap; text-align: right">1.0x</td>
+    <td style="white-space: nowrap">Arrays.get/2 (ErlangArray)</td>
+    <td style="white-space: nowrap; text-align: right">3.70 M</td>
+    <td style="white-space: nowrap; text-align: right">1.08x</td>
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">Arrays.get/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">3.93 M</td>
-    <td style="white-space: nowrap; text-align: right">1.13x</td>
+    <td style="white-space: nowrap">Arrays.get/2 (PersistentVector)</td>
+    <td style="white-space: nowrap; text-align: right">3.66 M</td>
+    <td style="white-space: nowrap; text-align: right">1.1x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Enum.fetch/2 (list)</td>
-    <td style="white-space: nowrap; text-align: right">0.175 M</td>
-    <td style="white-space: nowrap; text-align: right">25.54x</td>
+    <td style="white-space: nowrap; text-align: right">0.159 M</td>
+    <td style="white-space: nowrap; text-align: right">25.27x</td>
   </tr>
 
 </table>
@@ -799,39 +799,39 @@ Run Time
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">Arrays.get/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">4.55 M</td>
-    <td style="white-space: nowrap; text-align: right">219.63 ns</td>
-    <td style="white-space: nowrap; text-align: right">±143.28%</td>
-    <td style="white-space: nowrap; text-align: right">210 ns</td>
-    <td style="white-space: nowrap; text-align: right">285.02 ns</td>
+    <td style="white-space: nowrap">Arrays.get/2 (ErlangArray)</td>
+    <td style="white-space: nowrap; text-align: right">3.97 M</td>
+    <td style="white-space: nowrap; text-align: right">252.18 ns</td>
+    <td style="white-space: nowrap; text-align: right">±234.32%</td>
+    <td style="white-space: nowrap; text-align: right">218 ns</td>
+    <td style="white-space: nowrap; text-align: right">466.29 ns</td>
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">Arrays.get/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">4.55 M</td>
-    <td style="white-space: nowrap; text-align: right">219.63 ns</td>
-    <td style="white-space: nowrap; text-align: right">±23.84%</td>
-    <td style="white-space: nowrap; text-align: right">214 ns</td>
-    <td style="white-space: nowrap; text-align: right">315.20 ns</td>
+    <td style="white-space: nowrap">Arrays.get/2 (MapArray)</td>
+    <td style="white-space: nowrap; text-align: right">3.75 M</td>
+    <td style="white-space: nowrap; text-align: right">266.78 ns</td>
+    <td style="white-space: nowrap; text-align: right">±184.44%</td>
+    <td style="white-space: nowrap; text-align: right">225 ns</td>
+    <td style="white-space: nowrap; text-align: right">860 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.get/2 (PersistentVector)</td>
-    <td style="white-space: nowrap; text-align: right">4.47 M</td>
-    <td style="white-space: nowrap; text-align: right">223.81 ns</td>
-    <td style="white-space: nowrap; text-align: right">±468.68%</td>
-    <td style="white-space: nowrap; text-align: right">197 ns</td>
-    <td style="white-space: nowrap; text-align: right">316.12 ns</td>
+    <td style="white-space: nowrap; text-align: right">3.45 M</td>
+    <td style="white-space: nowrap; text-align: right">289.78 ns</td>
+    <td style="white-space: nowrap; text-align: right">±426.24%</td>
+    <td style="white-space: nowrap; text-align: right">230 ns</td>
+    <td style="white-space: nowrap; text-align: right">1314.54 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Enum.fetch/2 (list)</td>
-    <td style="white-space: nowrap; text-align: right">0.0896 M</td>
-    <td style="white-space: nowrap; text-align: right">11160.86 ns</td>
-    <td style="white-space: nowrap; text-align: right">±60.29%</td>
-    <td style="white-space: nowrap; text-align: right">11161.50 ns</td>
-    <td style="white-space: nowrap; text-align: right">22363.06 ns</td>
+    <td style="white-space: nowrap; text-align: right">0.0823 M</td>
+    <td style="white-space: nowrap; text-align: right">12150.26 ns</td>
+    <td style="white-space: nowrap; text-align: right">±67.31%</td>
+    <td style="white-space: nowrap; text-align: right">11797.50 ns</td>
+    <td style="white-space: nowrap; text-align: right">41312.26 ns</td>
   </tr>
 
 </table>
@@ -845,27 +845,27 @@ Comparison
     <th style="text-align: right">IPS</th>
     <th style="text-align: right">Slower</th>
   <tr>
-    <td style="white-space: nowrap">Arrays.get/2 (MapArray)</td>
-    <td style="white-space: nowrap;text-align: right">4.55 M</td>
+    <td style="white-space: nowrap">Arrays.get/2 (ErlangArray)</td>
+    <td style="white-space: nowrap;text-align: right">3.97 M</td>
     <td>&nbsp;</td>
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">Arrays.get/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">4.55 M</td>
-    <td style="white-space: nowrap; text-align: right">1.0x</td>
+    <td style="white-space: nowrap">Arrays.get/2 (MapArray)</td>
+    <td style="white-space: nowrap; text-align: right">3.75 M</td>
+    <td style="white-space: nowrap; text-align: right">1.06x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.get/2 (PersistentVector)</td>
-    <td style="white-space: nowrap; text-align: right">4.47 M</td>
-    <td style="white-space: nowrap; text-align: right">1.02x</td>
+    <td style="white-space: nowrap; text-align: right">3.45 M</td>
+    <td style="white-space: nowrap; text-align: right">1.15x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Enum.fetch/2 (list)</td>
-    <td style="white-space: nowrap; text-align: right">0.0896 M</td>
-    <td style="white-space: nowrap; text-align: right">50.82x</td>
+    <td style="white-space: nowrap; text-align: right">0.0823 M</td>
+    <td style="white-space: nowrap; text-align: right">48.18x</td>
   </tr>
 
 </table>
@@ -890,39 +890,39 @@ Run Time
   </tr>
 
   <tr>
+    <td style="white-space: nowrap">Arrays.get/2 (MapArray)</td>
+    <td style="white-space: nowrap; text-align: right">3.56 M</td>
+    <td style="white-space: nowrap; text-align: right">280.86 ns</td>
+    <td style="white-space: nowrap; text-align: right">±251.64%</td>
+    <td style="white-space: nowrap; text-align: right">246 ns</td>
+    <td style="white-space: nowrap; text-align: right">356.05 ns</td>
+  </tr>
+
+  <tr>
     <td style="white-space: nowrap">Arrays.get/2 (PersistentVector)</td>
-    <td style="white-space: nowrap; text-align: right">4.33 M</td>
-    <td style="white-space: nowrap; text-align: right">231.01 ns</td>
-    <td style="white-space: nowrap; text-align: right">±457.95%</td>
-    <td style="white-space: nowrap; text-align: right">201 ns</td>
-    <td style="white-space: nowrap; text-align: right">306.64 ns</td>
+    <td style="white-space: nowrap; text-align: right">3.48 M</td>
+    <td style="white-space: nowrap; text-align: right">287.71 ns</td>
+    <td style="white-space: nowrap; text-align: right">±429.04%</td>
+    <td style="white-space: nowrap; text-align: right">235 ns</td>
+    <td style="white-space: nowrap; text-align: right">387.89 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.get/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">4.13 M</td>
-    <td style="white-space: nowrap; text-align: right">241.97 ns</td>
-    <td style="white-space: nowrap; text-align: right">±127.17%</td>
-    <td style="white-space: nowrap; text-align: right">230 ns</td>
-    <td style="white-space: nowrap; text-align: right">306.81 ns</td>
-  </tr>
-
-  <tr>
-    <td style="white-space: nowrap">Arrays.get/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">4.03 M</td>
-    <td style="white-space: nowrap; text-align: right">248.33 ns</td>
-    <td style="white-space: nowrap; text-align: right">±10.73%</td>
-    <td style="white-space: nowrap; text-align: right">242 ns</td>
-    <td style="white-space: nowrap; text-align: right">326.96 ns</td>
+    <td style="white-space: nowrap; text-align: right">3.41 M</td>
+    <td style="white-space: nowrap; text-align: right">292.87 ns</td>
+    <td style="white-space: nowrap; text-align: right">±248.78%</td>
+    <td style="white-space: nowrap; text-align: right">241 ns</td>
+    <td style="white-space: nowrap; text-align: right">820 ns</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Enum.fetch/2 (list)</td>
-    <td style="white-space: nowrap; text-align: right">0.0444 M</td>
-    <td style="white-space: nowrap; text-align: right">22509.28 ns</td>
-    <td style="white-space: nowrap; text-align: right">±62.52%</td>
-    <td style="white-space: nowrap; text-align: right">22211 ns</td>
-    <td style="white-space: nowrap; text-align: right">65176.40 ns</td>
+    <td style="white-space: nowrap; text-align: right">0.0423 M</td>
+    <td style="white-space: nowrap; text-align: right">23624.32 ns</td>
+    <td style="white-space: nowrap; text-align: right">±65.26%</td>
+    <td style="white-space: nowrap; text-align: right">23175 ns</td>
+    <td style="white-space: nowrap; text-align: right">77020.42 ns</td>
   </tr>
 
 </table>
@@ -936,27 +936,27 @@ Comparison
     <th style="text-align: right">IPS</th>
     <th style="text-align: right">Slower</th>
   <tr>
-    <td style="white-space: nowrap">Arrays.get/2 (PersistentVector)</td>
-    <td style="white-space: nowrap;text-align: right">4.33 M</td>
+    <td style="white-space: nowrap">Arrays.get/2 (MapArray)</td>
+    <td style="white-space: nowrap;text-align: right">3.56 M</td>
     <td>&nbsp;</td>
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">Arrays.get/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">4.13 M</td>
-    <td style="white-space: nowrap; text-align: right">1.05x</td>
+    <td style="white-space: nowrap">Arrays.get/2 (PersistentVector)</td>
+    <td style="white-space: nowrap; text-align: right">3.48 M</td>
+    <td style="white-space: nowrap; text-align: right">1.02x</td>
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">Arrays.get/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">4.03 M</td>
-    <td style="white-space: nowrap; text-align: right">1.07x</td>
+    <td style="white-space: nowrap">Arrays.get/2 (ErlangArray)</td>
+    <td style="white-space: nowrap; text-align: right">3.41 M</td>
+    <td style="white-space: nowrap; text-align: right">1.04x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Enum.fetch/2 (list)</td>
-    <td style="white-space: nowrap; text-align: right">0.0444 M</td>
-    <td style="white-space: nowrap; text-align: right">97.44x</td>
+    <td style="white-space: nowrap; text-align: right">0.0423 M</td>
+    <td style="white-space: nowrap; text-align: right">84.11x</td>
   </tr>
 
 </table>
@@ -982,38 +982,38 @@ Run Time
 
   <tr>
     <td style="white-space: nowrap">Arrays.get/2 (PersistentVector)</td>
-    <td style="white-space: nowrap; text-align: right">3758.56 K</td>
-    <td style="white-space: nowrap; text-align: right">0.27 μs</td>
-    <td style="white-space: nowrap; text-align: right">±747.36%</td>
-    <td style="white-space: nowrap; text-align: right">0.22 μs</td>
-    <td style="white-space: nowrap; text-align: right">0.52 μs</td>
-  </tr>
-
-  <tr>
-    <td style="white-space: nowrap">Arrays.get/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">552.06 K</td>
-    <td style="white-space: nowrap; text-align: right">1.81 μs</td>
-    <td style="white-space: nowrap; text-align: right">±1533.96%</td>
-    <td style="white-space: nowrap; text-align: right">0.24 μs</td>
-    <td style="white-space: nowrap; text-align: right">0.67 μs</td>
+    <td style="white-space: nowrap; text-align: right">2894.84 K</td>
+    <td style="white-space: nowrap; text-align: right">0.35 μs</td>
+    <td style="white-space: nowrap; text-align: right">±705.76%</td>
+    <td style="white-space: nowrap; text-align: right">0.25 μs</td>
+    <td style="white-space: nowrap; text-align: right">0.68 μs</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.get/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">550.78 K</td>
-    <td style="white-space: nowrap; text-align: right">1.82 μs</td>
-    <td style="white-space: nowrap; text-align: right">±1520.07%</td>
-    <td style="white-space: nowrap; text-align: right">0.27 μs</td>
-    <td style="white-space: nowrap; text-align: right">0.65 μs</td>
+    <td style="white-space: nowrap; text-align: right">485.68 K</td>
+    <td style="white-space: nowrap; text-align: right">2.06 μs</td>
+    <td style="white-space: nowrap; text-align: right">±1520.58%</td>
+    <td style="white-space: nowrap; text-align: right">0.25 μs</td>
+    <td style="white-space: nowrap; text-align: right">0.73 μs</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.get/2 (ErlangArray)</td>
+    <td style="white-space: nowrap; text-align: right">437.95 K</td>
+    <td style="white-space: nowrap; text-align: right">2.28 μs</td>
+    <td style="white-space: nowrap; text-align: right">±1390.42%</td>
+    <td style="white-space: nowrap; text-align: right">0.30 μs</td>
+    <td style="white-space: nowrap; text-align: right">2.30 μs</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Enum.fetch/2 (list)</td>
-    <td style="white-space: nowrap; text-align: right">23.19 K</td>
-    <td style="white-space: nowrap; text-align: right">43.11 μs</td>
-    <td style="white-space: nowrap; text-align: right">±58.96%</td>
-    <td style="white-space: nowrap; text-align: right">42.78 μs</td>
-    <td style="white-space: nowrap; text-align: right">87.21 μs</td>
+    <td style="white-space: nowrap; text-align: right">21.12 K</td>
+    <td style="white-space: nowrap; text-align: right">47.35 μs</td>
+    <td style="white-space: nowrap; text-align: right">±62.65%</td>
+    <td style="white-space: nowrap; text-align: right">46.53 μs</td>
+    <td style="white-space: nowrap; text-align: right">145.19 μs</td>
   </tr>
 
 </table>
@@ -1028,26 +1028,26 @@ Comparison
     <th style="text-align: right">Slower</th>
   <tr>
     <td style="white-space: nowrap">Arrays.get/2 (PersistentVector)</td>
-    <td style="white-space: nowrap;text-align: right">3758.56 K</td>
+    <td style="white-space: nowrap;text-align: right">2894.84 K</td>
     <td>&nbsp;</td>
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">Arrays.get/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">552.06 K</td>
-    <td style="white-space: nowrap; text-align: right">6.81x</td>
+    <td style="white-space: nowrap">Arrays.get/2 (MapArray)</td>
+    <td style="white-space: nowrap; text-align: right">485.68 K</td>
+    <td style="white-space: nowrap; text-align: right">5.96x</td>
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">Arrays.get/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">550.78 K</td>
-    <td style="white-space: nowrap; text-align: right">6.82x</td>
+    <td style="white-space: nowrap">Arrays.get/2 (ErlangArray)</td>
+    <td style="white-space: nowrap; text-align: right">437.95 K</td>
+    <td style="white-space: nowrap; text-align: right">6.61x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Enum.fetch/2 (list)</td>
-    <td style="white-space: nowrap; text-align: right">23.19 K</td>
-    <td style="white-space: nowrap; text-align: right">162.04x</td>
+    <td style="white-space: nowrap; text-align: right">21.12 K</td>
+    <td style="white-space: nowrap; text-align: right">137.06x</td>
   </tr>
 
 </table>
@@ -1073,38 +1073,38 @@ Run Time
 
   <tr>
     <td style="white-space: nowrap">Arrays.get/2 (PersistentVector)</td>
-    <td style="white-space: nowrap; text-align: right">3028.58 K</td>
-    <td style="white-space: nowrap; text-align: right">0.33 μs</td>
-    <td style="white-space: nowrap; text-align: right">±1110.58%</td>
-    <td style="white-space: nowrap; text-align: right">0.24 μs</td>
-    <td style="white-space: nowrap; text-align: right">0.29 μs</td>
-  </tr>
-
-  <tr>
-    <td style="white-space: nowrap">Arrays.get/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">577.17 K</td>
-    <td style="white-space: nowrap; text-align: right">1.73 μs</td>
-    <td style="white-space: nowrap; text-align: right">±119.84%</td>
-    <td style="white-space: nowrap; text-align: right">1.40 μs</td>
-    <td style="white-space: nowrap; text-align: right">15.44 μs</td>
+    <td style="white-space: nowrap; text-align: right">2486.85 K</td>
+    <td style="white-space: nowrap; text-align: right">0.40 μs</td>
+    <td style="white-space: nowrap; text-align: right">±937.61%</td>
+    <td style="white-space: nowrap; text-align: right">0.26 μs</td>
+    <td style="white-space: nowrap; text-align: right">0.53 μs</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.get/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">533.56 K</td>
-    <td style="white-space: nowrap; text-align: right">1.87 μs</td>
-    <td style="white-space: nowrap; text-align: right">±127.28%</td>
-    <td style="white-space: nowrap; text-align: right">1.43 μs</td>
-    <td style="white-space: nowrap; text-align: right">15.21 μs</td>
+    <td style="white-space: nowrap; text-align: right">552.85 K</td>
+    <td style="white-space: nowrap; text-align: right">1.81 μs</td>
+    <td style="white-space: nowrap; text-align: right">±105.79%</td>
+    <td style="white-space: nowrap; text-align: right">1.50 μs</td>
+    <td style="white-space: nowrap; text-align: right">14.84 μs</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.get/2 (ErlangArray)</td>
+    <td style="white-space: nowrap; text-align: right">488.11 K</td>
+    <td style="white-space: nowrap; text-align: right">2.05 μs</td>
+    <td style="white-space: nowrap; text-align: right">±111.54%</td>
+    <td style="white-space: nowrap; text-align: right">1.54 μs</td>
+    <td style="white-space: nowrap; text-align: right">15.37 μs</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Enum.fetch/2 (list)</td>
-    <td style="white-space: nowrap; text-align: right">10.92 K</td>
-    <td style="white-space: nowrap; text-align: right">91.59 μs</td>
-    <td style="white-space: nowrap; text-align: right">±57.83%</td>
-    <td style="white-space: nowrap; text-align: right">90.29 μs</td>
-    <td style="white-space: nowrap; text-align: right">187.03 μs</td>
+    <td style="white-space: nowrap; text-align: right">10.28 K</td>
+    <td style="white-space: nowrap; text-align: right">97.26 μs</td>
+    <td style="white-space: nowrap; text-align: right">±61.26%</td>
+    <td style="white-space: nowrap; text-align: right">95.96 μs</td>
+    <td style="white-space: nowrap; text-align: right">238.49 μs</td>
   </tr>
 
 </table>
@@ -1119,26 +1119,26 @@ Comparison
     <th style="text-align: right">Slower</th>
   <tr>
     <td style="white-space: nowrap">Arrays.get/2 (PersistentVector)</td>
-    <td style="white-space: nowrap;text-align: right">3028.58 K</td>
+    <td style="white-space: nowrap;text-align: right">2486.85 K</td>
     <td>&nbsp;</td>
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">Arrays.get/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">577.17 K</td>
-    <td style="white-space: nowrap; text-align: right">5.25x</td>
+    <td style="white-space: nowrap">Arrays.get/2 (MapArray)</td>
+    <td style="white-space: nowrap; text-align: right">552.85 K</td>
+    <td style="white-space: nowrap; text-align: right">4.5x</td>
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">Arrays.get/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">533.56 K</td>
-    <td style="white-space: nowrap; text-align: right">5.68x</td>
+    <td style="white-space: nowrap">Arrays.get/2 (ErlangArray)</td>
+    <td style="white-space: nowrap; text-align: right">488.11 K</td>
+    <td style="white-space: nowrap; text-align: right">5.09x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Enum.fetch/2 (list)</td>
-    <td style="white-space: nowrap; text-align: right">10.92 K</td>
-    <td style="white-space: nowrap; text-align: right">277.4x</td>
+    <td style="white-space: nowrap; text-align: right">10.28 K</td>
+    <td style="white-space: nowrap; text-align: right">241.86x</td>
   </tr>
 
 </table>
@@ -1164,38 +1164,38 @@ Run Time
 
   <tr>
     <td style="white-space: nowrap">Arrays.get/2 (PersistentVector)</td>
-    <td style="white-space: nowrap; text-align: right">3052.12 K</td>
-    <td style="white-space: nowrap; text-align: right">0.33 μs</td>
-    <td style="white-space: nowrap; text-align: right">±112.33%</td>
-    <td style="white-space: nowrap; text-align: right">0.27 μs</td>
-    <td style="white-space: nowrap; text-align: right">1.35 μs</td>
+    <td style="white-space: nowrap; text-align: right">3180.97 K</td>
+    <td style="white-space: nowrap; text-align: right">0.31 μs</td>
+    <td style="white-space: nowrap; text-align: right">±275.12%</td>
+    <td style="white-space: nowrap; text-align: right">0.22 μs</td>
+    <td style="white-space: nowrap; text-align: right">1.18 μs</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.get/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">399.12 K</td>
-    <td style="white-space: nowrap; text-align: right">2.51 μs</td>
-    <td style="white-space: nowrap; text-align: right">±84.89%</td>
-    <td style="white-space: nowrap; text-align: right">2.12 μs</td>
-    <td style="white-space: nowrap; text-align: right">15.61 μs</td>
+    <td style="white-space: nowrap; text-align: right">400.07 K</td>
+    <td style="white-space: nowrap; text-align: right">2.50 μs</td>
+    <td style="white-space: nowrap; text-align: right">±54.64%</td>
+    <td style="white-space: nowrap; text-align: right">2.34 μs</td>
+    <td style="white-space: nowrap; text-align: right">6.77 μs</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.get/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">330.55 K</td>
-    <td style="white-space: nowrap; text-align: right">3.03 μs</td>
-    <td style="white-space: nowrap; text-align: right">±113.30%</td>
-    <td style="white-space: nowrap; text-align: right">2.18 μs</td>
-    <td style="white-space: nowrap; text-align: right">21.14 μs</td>
+    <td style="white-space: nowrap; text-align: right">328.07 K</td>
+    <td style="white-space: nowrap; text-align: right">3.05 μs</td>
+    <td style="white-space: nowrap; text-align: right">±95.37%</td>
+    <td style="white-space: nowrap; text-align: right">2.46 μs</td>
+    <td style="white-space: nowrap; text-align: right">19.38 μs</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Enum.fetch/2 (list)</td>
-    <td style="white-space: nowrap; text-align: right">4.41 K</td>
-    <td style="white-space: nowrap; text-align: right">226.51 μs</td>
-    <td style="white-space: nowrap; text-align: right">±59.55%</td>
-    <td style="white-space: nowrap; text-align: right">223.88 μs</td>
-    <td style="white-space: nowrap; text-align: right">592.97 μs</td>
+    <td style="white-space: nowrap; text-align: right">4.53 K</td>
+    <td style="white-space: nowrap; text-align: right">220.94 μs</td>
+    <td style="white-space: nowrap; text-align: right">±68.53%</td>
+    <td style="white-space: nowrap; text-align: right">214.71 μs</td>
+    <td style="white-space: nowrap; text-align: right">661.75 μs</td>
   </tr>
 
 </table>
@@ -1210,26 +1210,26 @@ Comparison
     <th style="text-align: right">Slower</th>
   <tr>
     <td style="white-space: nowrap">Arrays.get/2 (PersistentVector)</td>
-    <td style="white-space: nowrap;text-align: right">3052.12 K</td>
+    <td style="white-space: nowrap;text-align: right">3180.97 K</td>
     <td>&nbsp;</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.get/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">399.12 K</td>
-    <td style="white-space: nowrap; text-align: right">7.65x</td>
+    <td style="white-space: nowrap; text-align: right">400.07 K</td>
+    <td style="white-space: nowrap; text-align: right">7.95x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.get/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">330.55 K</td>
-    <td style="white-space: nowrap; text-align: right">9.23x</td>
+    <td style="white-space: nowrap; text-align: right">328.07 K</td>
+    <td style="white-space: nowrap; text-align: right">9.7x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Enum.fetch/2 (list)</td>
-    <td style="white-space: nowrap; text-align: right">4.41 K</td>
-    <td style="white-space: nowrap; text-align: right">691.33x</td>
+    <td style="white-space: nowrap; text-align: right">4.53 K</td>
+    <td style="white-space: nowrap; text-align: right">702.8x</td>
   </tr>
 
 </table>
@@ -1255,38 +1255,38 @@ Run Time
 
   <tr>
     <td style="white-space: nowrap">Arrays.get/2 (PersistentVector)</td>
-    <td style="white-space: nowrap; text-align: right">1077.75 K</td>
-    <td style="white-space: nowrap; text-align: right">0.93 μs</td>
-    <td style="white-space: nowrap; text-align: right">±195.33%</td>
-    <td style="white-space: nowrap; text-align: right">0.58 μs</td>
+    <td style="white-space: nowrap; text-align: right">939.98 K</td>
+    <td style="white-space: nowrap; text-align: right">1.06 μs</td>
+    <td style="white-space: nowrap; text-align: right">±193.54%</td>
+    <td style="white-space: nowrap; text-align: right">0.57 μs</td>
     <td style="white-space: nowrap; text-align: right">13.87 μs</td>
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">Arrays.get/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">388.36 K</td>
-    <td style="white-space: nowrap; text-align: right">2.57 μs</td>
-    <td style="white-space: nowrap; text-align: right">±53.26%</td>
+    <td style="white-space: nowrap">Arrays.get/2 (ErlangArray)</td>
+    <td style="white-space: nowrap; text-align: right">391.30 K</td>
+    <td style="white-space: nowrap; text-align: right">2.56 μs</td>
+    <td style="white-space: nowrap; text-align: right">±53.30%</td>
     <td style="white-space: nowrap; text-align: right">2.38 μs</td>
-    <td style="white-space: nowrap; text-align: right">14.94 μs</td>
+    <td style="white-space: nowrap; text-align: right">15.46 μs</td>
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">Arrays.get/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">366.19 K</td>
-    <td style="white-space: nowrap; text-align: right">2.73 μs</td>
-    <td style="white-space: nowrap; text-align: right">±95.61%</td>
-    <td style="white-space: nowrap; text-align: right">2.17 μs</td>
-    <td style="white-space: nowrap; text-align: right">16.14 μs</td>
+    <td style="white-space: nowrap">Arrays.get/2 (MapArray)</td>
+    <td style="white-space: nowrap; text-align: right">221.71 K</td>
+    <td style="white-space: nowrap; text-align: right">4.51 μs</td>
+    <td style="white-space: nowrap; text-align: right">±320.80%</td>
+    <td style="white-space: nowrap; text-align: right">2.67 μs</td>
+    <td style="white-space: nowrap; text-align: right">144.81 μs</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Enum.fetch/2 (list)</td>
-    <td style="white-space: nowrap; text-align: right">2.05 K</td>
-    <td style="white-space: nowrap; text-align: right">488.63 μs</td>
-    <td style="white-space: nowrap; text-align: right">±54.90%</td>
-    <td style="white-space: nowrap; text-align: right">496.98 μs</td>
-    <td style="white-space: nowrap; text-align: right">946.74 μs</td>
+    <td style="white-space: nowrap; text-align: right">1.94 K</td>
+    <td style="white-space: nowrap; text-align: right">514.80 μs</td>
+    <td style="white-space: nowrap; text-align: right">±61.08%</td>
+    <td style="white-space: nowrap; text-align: right">500.29 μs</td>
+    <td style="white-space: nowrap; text-align: right">1118.52 μs</td>
   </tr>
 
 </table>
@@ -1301,26 +1301,26 @@ Comparison
     <th style="text-align: right">Slower</th>
   <tr>
     <td style="white-space: nowrap">Arrays.get/2 (PersistentVector)</td>
-    <td style="white-space: nowrap;text-align: right">1077.75 K</td>
+    <td style="white-space: nowrap;text-align: right">939.98 K</td>
     <td>&nbsp;</td>
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">Arrays.get/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">388.36 K</td>
-    <td style="white-space: nowrap; text-align: right">2.78x</td>
+    <td style="white-space: nowrap">Arrays.get/2 (ErlangArray)</td>
+    <td style="white-space: nowrap; text-align: right">391.30 K</td>
+    <td style="white-space: nowrap; text-align: right">2.4x</td>
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">Arrays.get/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">366.19 K</td>
-    <td style="white-space: nowrap; text-align: right">2.94x</td>
+    <td style="white-space: nowrap">Arrays.get/2 (MapArray)</td>
+    <td style="white-space: nowrap; text-align: right">221.71 K</td>
+    <td style="white-space: nowrap; text-align: right">4.24x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Enum.fetch/2 (list)</td>
-    <td style="white-space: nowrap; text-align: right">2.05 K</td>
-    <td style="white-space: nowrap; text-align: right">526.61x</td>
+    <td style="white-space: nowrap; text-align: right">1.94 K</td>
+    <td style="white-space: nowrap; text-align: right">483.9x</td>
   </tr>
 
 </table>
@@ -1346,38 +1346,38 @@ Run Time
 
   <tr>
     <td style="white-space: nowrap">Arrays.get/2 (PersistentVector)</td>
-    <td style="white-space: nowrap; text-align: right">568.74 K</td>
-    <td style="white-space: nowrap; text-align: right">1.76 μs</td>
-    <td style="white-space: nowrap; text-align: right">±37.56%</td>
-    <td style="white-space: nowrap; text-align: right">1.59 μs</td>
-    <td style="white-space: nowrap; text-align: right">5.84 μs</td>
-  </tr>
-
-  <tr>
-    <td style="white-space: nowrap">Arrays.get/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">513.62 K</td>
-    <td style="white-space: nowrap; text-align: right">1.95 μs</td>
-    <td style="white-space: nowrap; text-align: right">±14.25%</td>
-    <td style="white-space: nowrap; text-align: right">1.90 μs</td>
-    <td style="white-space: nowrap; text-align: right">3.21 μs</td>
+    <td style="white-space: nowrap; text-align: right">500.91 K</td>
+    <td style="white-space: nowrap; text-align: right">2.00 μs</td>
+    <td style="white-space: nowrap; text-align: right">±22.65%</td>
+    <td style="white-space: nowrap; text-align: right">1.92 μs</td>
+    <td style="white-space: nowrap; text-align: right">4.73 μs</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.get/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">369.72 K</td>
-    <td style="white-space: nowrap; text-align: right">2.70 μs</td>
-    <td style="white-space: nowrap; text-align: right">±89.06%</td>
-    <td style="white-space: nowrap; text-align: right">1.92 μs</td>
-    <td style="white-space: nowrap; text-align: right">15.38 μs</td>
+    <td style="white-space: nowrap; text-align: right">319.49 K</td>
+    <td style="white-space: nowrap; text-align: right">3.13 μs</td>
+    <td style="white-space: nowrap; text-align: right">±93.00%</td>
+    <td style="white-space: nowrap; text-align: right">2.40 μs</td>
+    <td style="white-space: nowrap; text-align: right">18.39 μs</td>
+  </tr>
+
+  <tr>
+    <td style="white-space: nowrap">Arrays.get/2 (MapArray)</td>
+    <td style="white-space: nowrap; text-align: right">308.10 K</td>
+    <td style="white-space: nowrap; text-align: right">3.25 μs</td>
+    <td style="white-space: nowrap; text-align: right">±97.64%</td>
+    <td style="white-space: nowrap; text-align: right">2.56 μs</td>
+    <td style="white-space: nowrap; text-align: right">20.56 μs</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Enum.fetch/2 (list)</td>
-    <td style="white-space: nowrap; text-align: right">1.14 K</td>
-    <td style="white-space: nowrap; text-align: right">875.80 μs</td>
-    <td style="white-space: nowrap; text-align: right">±67.73%</td>
-    <td style="white-space: nowrap; text-align: right">746.54 μs</td>
-    <td style="white-space: nowrap; text-align: right">1994.41 μs</td>
+    <td style="white-space: nowrap; text-align: right">0.94 K</td>
+    <td style="white-space: nowrap; text-align: right">1067.88 μs</td>
+    <td style="white-space: nowrap; text-align: right">±53.87%</td>
+    <td style="white-space: nowrap; text-align: right">1070.01 μs</td>
+    <td style="white-space: nowrap; text-align: right">2277.40 μs</td>
   </tr>
 
 </table>
@@ -1392,26 +1392,26 @@ Comparison
     <th style="text-align: right">Slower</th>
   <tr>
     <td style="white-space: nowrap">Arrays.get/2 (PersistentVector)</td>
-    <td style="white-space: nowrap;text-align: right">568.74 K</td>
+    <td style="white-space: nowrap;text-align: right">500.91 K</td>
     <td>&nbsp;</td>
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">Arrays.get/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">513.62 K</td>
-    <td style="white-space: nowrap; text-align: right">1.11x</td>
+    <td style="white-space: nowrap">Arrays.get/2 (ErlangArray)</td>
+    <td style="white-space: nowrap; text-align: right">319.49 K</td>
+    <td style="white-space: nowrap; text-align: right">1.57x</td>
   </tr>
 
   <tr>
-    <td style="white-space: nowrap">Arrays.get/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">369.72 K</td>
-    <td style="white-space: nowrap; text-align: right">1.54x</td>
+    <td style="white-space: nowrap">Arrays.get/2 (MapArray)</td>
+    <td style="white-space: nowrap; text-align: right">308.10 K</td>
+    <td style="white-space: nowrap; text-align: right">1.63x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Enum.fetch/2 (list)</td>
-    <td style="white-space: nowrap; text-align: right">1.14 K</td>
-    <td style="white-space: nowrap; text-align: right">498.11x</td>
+    <td style="white-space: nowrap; text-align: right">0.94 K</td>
+    <td style="white-space: nowrap; text-align: right">534.91x</td>
   </tr>
 
 </table>
@@ -1437,38 +1437,38 @@ Run Time
 
   <tr>
     <td style="white-space: nowrap">Arrays.get/2 (PersistentVector)</td>
-    <td style="white-space: nowrap; text-align: right">559.90 K</td>
-    <td style="white-space: nowrap; text-align: right">1.79 μs</td>
-    <td style="white-space: nowrap; text-align: right">±13.74%</td>
-    <td style="white-space: nowrap; text-align: right">1.72 μs</td>
-    <td style="white-space: nowrap; text-align: right">2.82 μs</td>
+    <td style="white-space: nowrap; text-align: right">409.87 K</td>
+    <td style="white-space: nowrap; text-align: right">2.44 μs</td>
+    <td style="white-space: nowrap; text-align: right">±36.79%</td>
+    <td style="white-space: nowrap; text-align: right">2.19 μs</td>
+    <td style="white-space: nowrap; text-align: right">8.33 μs</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.get/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">438.14 K</td>
-    <td style="white-space: nowrap; text-align: right">2.28 μs</td>
-    <td style="white-space: nowrap; text-align: right">±16.76%</td>
-    <td style="white-space: nowrap; text-align: right">2.20 μs</td>
-    <td style="white-space: nowrap; text-align: right">3.41 μs</td>
+    <td style="white-space: nowrap; text-align: right">316.24 K</td>
+    <td style="white-space: nowrap; text-align: right">3.16 μs</td>
+    <td style="white-space: nowrap; text-align: right">±35.31%</td>
+    <td style="white-space: nowrap; text-align: right">2.73 μs</td>
+    <td style="white-space: nowrap; text-align: right">6.95 μs</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.get/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">328.33 K</td>
-    <td style="white-space: nowrap; text-align: right">3.05 μs</td>
-    <td style="white-space: nowrap; text-align: right">±93.76%</td>
-    <td style="white-space: nowrap; text-align: right">2.48 μs</td>
-    <td style="white-space: nowrap; text-align: right">16.21 μs</td>
+    <td style="white-space: nowrap; text-align: right">195.07 K</td>
+    <td style="white-space: nowrap; text-align: right">5.13 μs</td>
+    <td style="white-space: nowrap; text-align: right">±105.39%</td>
+    <td style="white-space: nowrap; text-align: right">2.99 μs</td>
+    <td style="white-space: nowrap; text-align: right">20.08 μs</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Enum.fetch/2 (list)</td>
-    <td style="white-space: nowrap; text-align: right">0.48 K</td>
-    <td style="white-space: nowrap; text-align: right">2067.30 μs</td>
-    <td style="white-space: nowrap; text-align: right">±59.66%</td>
-    <td style="white-space: nowrap; text-align: right">2119.14 μs</td>
-    <td style="white-space: nowrap; text-align: right">6092.41 μs</td>
+    <td style="white-space: nowrap; text-align: right">0.51 K</td>
+    <td style="white-space: nowrap; text-align: right">1953.20 μs</td>
+    <td style="white-space: nowrap; text-align: right">±60.07%</td>
+    <td style="white-space: nowrap; text-align: right">1722.06 μs</td>
+    <td style="white-space: nowrap; text-align: right">4623.88 μs</td>
   </tr>
 
 </table>
@@ -1483,26 +1483,26 @@ Comparison
     <th style="text-align: right">Slower</th>
   <tr>
     <td style="white-space: nowrap">Arrays.get/2 (PersistentVector)</td>
-    <td style="white-space: nowrap;text-align: right">559.90 K</td>
+    <td style="white-space: nowrap;text-align: right">409.87 K</td>
     <td>&nbsp;</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.get/2 (MapArray)</td>
-    <td style="white-space: nowrap; text-align: right">438.14 K</td>
-    <td style="white-space: nowrap; text-align: right">1.28x</td>
+    <td style="white-space: nowrap; text-align: right">316.24 K</td>
+    <td style="white-space: nowrap; text-align: right">1.3x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Arrays.get/2 (ErlangArray)</td>
-    <td style="white-space: nowrap; text-align: right">328.33 K</td>
-    <td style="white-space: nowrap; text-align: right">1.71x</td>
+    <td style="white-space: nowrap; text-align: right">195.07 K</td>
+    <td style="white-space: nowrap; text-align: right">2.1x</td>
   </tr>
 
   <tr>
     <td style="white-space: nowrap">Enum.fetch/2 (list)</td>
-    <td style="white-space: nowrap; text-align: right">0.48 K</td>
-    <td style="white-space: nowrap; text-align: right">1157.48x</td>
+    <td style="white-space: nowrap; text-align: right">0.51 K</td>
+    <td style="white-space: nowrap; text-align: right">800.56x</td>
   </tr>
 
 </table>
