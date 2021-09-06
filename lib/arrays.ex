@@ -3,7 +3,7 @@
 # but then with `ErlangArray` as default representation.
 #
 # This allows us to re-use all doctests for the ErlangArray as well as the MapArray.
-contents = quote do
+contents = quote [location: :keep] do
   @current_default_array inspect(@default_array_implementation)
 
   @moduledoc """
