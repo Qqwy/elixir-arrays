@@ -209,9 +209,7 @@ defmodule Arrays.Implementations.ErlangArray do
     end
 
     @impl true
-    defdelegate replace(array, index, element), to: __MODULE__, as: :set
-
-    def set(array = %ErlangArray{contents: contents}, index, item) do
+    def replace(array = %ErlangArray{contents: contents}, index, item) do
       new_contents =
         if index < 0 do
           :array.set(index + :array.size(contents), item, contents)
