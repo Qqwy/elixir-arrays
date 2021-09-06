@@ -3,13 +3,12 @@ defprotocol Arrays.Protocol do
   This protocol is implemented by all array types.
 
   Do not call functions in this module directly if you want to use an array in your code.
-  Instead, use the functions in the `Arrays` module, which will use the methods of this protocol
-  (as well as the `Arrays.Behaviour` behaviour) internally.
+  Instead, use the functions in the `Arrays` module, which will use the methods of this protocol.
   """
   @typedoc """
-  Any datatype implementing the `Arrays.Protocol` as well as the `Arrays.Behaviour`.
+  Any datatype implementing the `Arrays.Protocol`.
   """
-  @type array :: t
+  @type array :: t()
 
   @typedoc """
   An array index can be either a nonnegative index (up to the size of the array),

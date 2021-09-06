@@ -274,13 +274,10 @@ The linear time many operations on lists take, means that the operation becomes 
 
 ## Implementing a new Array type
 
-To add array-functionality to a custom datastructure, two things are required:
-
-- Add an implementation for the `Arrays.Protocol` protocol.
-- Add the `Arrays.Behaviour` to your datatype's module (`@behaviour Arrays.Behaviour`), and implement a sensible definition for `c:Arrays.Behaviour.empty/1`.
+To add array-functionality to a custom datastructure, you'll need to implement the `Arrays.Protocol`.
 
 Besides these, you probably want to implement the above-mentioned protocols as well.
-You can look at the source code of `Arrays.CommonProtocolImplementations` for some hints as to how those protocols can be easily implemented on top of the calls that the `Arrays.Protocol` protocol itself already provides.
+You can look at the source code of `Arrays.CommonProtocolImplementations` for some hints as to how those protocols can be easily implemented, as many functions can be defined as simple wrappers on top of the functions that `Arrays.Protocol` itself already provides.
 
 
 ----

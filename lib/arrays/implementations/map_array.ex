@@ -3,8 +3,6 @@ defmodule Arrays.Implementations.MapArray do
   An array implementation based on the built-in Map structure.
   """
 
-  @behaviour Arrays.Behaviour
-
   alias __MODULE__
 
   defstruct contents: %{}, default: nil

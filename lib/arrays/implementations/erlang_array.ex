@@ -12,8 +12,6 @@ defmodule Arrays.Implementations.ErlangArray do
   `nil` will be used, rather than `:array`'s default of `:undefined`.
   """
 
-  @behaviour Arrays.Behaviour
-
   alias __MODULE__
 
   defstruct contents: :array.new([default: nil])

@@ -76,7 +76,7 @@ defmodule Arrays.Mixfile do
       groups_for_modules: [
         Main: [Arrays],
         "Implementations": ~r{^Arrays.Implementations},
-        "For Implementers": [Arrays.Protocol, Arrays.Behaviour, Arrays.CommonProtocolImplementations],
+        "For Implementers": [Arrays.Protocol, Arrays.CommonProtocolImplementations],
         Other: ~r"^.*"
       ],
       nest_modules_by_prefix: [Arrays, Arrays.Implementations],
