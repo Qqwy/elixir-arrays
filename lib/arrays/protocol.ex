@@ -120,17 +120,11 @@ defprotocol Arrays.Protocol do
   def slice(array, start_index, amount)
 
   @typedoc """
-  Option passed to `c:empty/1`.
+  A list of options passed to `c:empty/1`.
 
-  The option `:default` is recognized by all array implementations.
-  A particular array implementation might recognize other specialized options.
+  What options are recognized by a particular implementation varies.
   """
-  @type option :: {:default, any} | {atom, any}
-
-  @typedoc """
-  A list of options passed to `c:empty/1`
-  """
-  @type options :: [option]
+  @type options :: Keyword.t()
 
 
   @doc """
