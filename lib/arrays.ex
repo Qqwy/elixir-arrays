@@ -541,7 +541,7 @@ contents = quote [location: :keep] do
       iex> Arrays.new([1, 2, 3]) |> Arrays.resize(1)
       ##{@current_default_array}<[1]>
 
-      iex> Arrays.new([1, 2, 3]) |> Arrays.resize(0)
+      iex> Arrays.new([9, 8, 7]) |> Arrays.resize(0)
       ##{@current_default_array}<[]>
 
       iex> Arrays.new([1, 2, 3]) |> Arrays.resize(3)
