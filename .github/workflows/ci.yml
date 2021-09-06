@@ -32,9 +32,9 @@ jobs:
           path: |
             deps
             _build
-          key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
+          key: ${{ runner.os }}-${{ matrix.otp}}-${{ matrix.elixir }}-mix-${{ hashFiles('**/mix.lock') }}
           restore-keys: |
-            ${{ runner.os }}-mix-
+            ${{ runner.os }}-${{ matrix.otp}}-${{ matrix.elixir }}-mix-
       - if: steps.mix-cache.outputs.cache-hit != 'true'
         run: |
           mix deps.get
