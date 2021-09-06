@@ -588,13 +588,23 @@ contents = quote [location: :keep] do
   @doc """
   Turns an array of arrays (or other enumerable of enumerables) into a single array.
 
+      iex> arr = Arrays.new([1, 2, 3])
+      iex> Arrays.concat([arr, arr, arr])
+      ##{@current_default_array}<[1, 2, 3, 1, 2, 3, 1, 2, 3]>
+
+      iex> Arrays.concat([])
+      #Arrays.Implementations.MapArray<[]>
+
   See also `concat/2`.
   """
   @doc since: "1.1.0"
   @spec concat(Enumerable.t()) :: array()
   def concat(enumerable_of_enumerables) do
-    enumerable_of_enumerables
-    |> Enum.reduce(Arrays.new(), &Enum.into/2)
+    case Enum.split(enumerable_of_enumerables, 1) do
+      {[], []} -> Arrays.new()
+      {[first], rest} ->
+        Enum.reduce(rest, first, &Arrays.concat/2)
+    end
   end
 
   @doc """
