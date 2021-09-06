@@ -7,7 +7,6 @@ defmodule Arrays.Implementations.ErlangArray do
 
   Common operations like element access thus take O(log10(n)) time.
 
-
   Note that when no custom default value is specified,
   `nil` will be used, rather than `:array`'s default of `:undefined`.
   """
