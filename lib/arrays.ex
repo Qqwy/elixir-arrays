@@ -333,43 +333,17 @@ contents = quote [location: :keep] do
   @doc """
   Creates a new array, receiving its elements from the given `Enumerable`, with the given options.
 
-  Accepts the same options as `empty/1`.
+  Which options are supported depends on the type of array.
 
-      iex> Arrays.new([], size: 3)
-      ##{@current_default_array}<[nil, nil, nil]>
+      iex> Arrays.new([1, 2, 3])
+      ##{@current_default_array}<[1, 2, 3]>
 
-      iex> Arrays.new(["Hello"], size: 1)
+      iex> Arrays.new(["Hello"])
       ##{@current_default_array}<["Hello"]>
 
-      iex> Arrays.new(["this", "will", "not", "fit"], size: 2)
-      ##{@current_default_array}<["this", "will"]>
-
   """
-  # TODO
   @spec new(Enum.t(), keyword) :: array()
   def new(enumerable, options) do
-    size = Keyword.get(options, :size, nil)
-    options = Keyword.delete(options, :size)
-
-    if size == nil do
-      new_empty(enumerable, options)
-    else
-      count = Enum.count(enumerable)
-
-      cond do
-        count == size ->
-          new_empty(enumerable, options)
-
-        count > size ->
-          new_empty(Enum.slice(enumerable, 0, size), options)
-
-        count < size ->
-          resize(new_empty(enumerable, options), size)
-      end
-    end
-  end
-
-  defp new_empty(enumerable, options) do
     Enum.into(enumerable, empty(options))
   end
 
