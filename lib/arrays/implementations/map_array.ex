@@ -61,7 +61,7 @@ defmodule Arrays.Implementations.MapArray do
   def fetch(%MapArray{}, _index), do: :error
 
   @undefined_pop_message """
-  There is no efficient implementation possible to remove an element from a random location in an array, so `Access.pop/2` (and returning `:pop` from `Access.get_and_update/3` ) are not supported by #{__MODULE__}. If you want to remove the last element, use `Arrays.extract/1`.
+  There is no efficient implementation possible to remove an element from a random location in an array, so `Access.pop/2` (and returning `:pop` from `Access.get_and_update/3` ) are not supported by #{inspect(__MODULE__)}. If you want to remove the last element, use `Arrays.extract/1`.
   """ |> String.trim
 
   @impl Access

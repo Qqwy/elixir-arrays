@@ -141,11 +141,11 @@ contents = quote do
 
       iex> arr = Arrays.new([1, -4, 33, 5])
       iex> {33, arr} = pop_in(arr[-2])
-      ** (ArgumentError) There is no efficient implementation possible to remove an element from a random location in an array, so `Access.pop/2` (and returning `:pop` from `Access.get_and_update/3` ) are not supported by Elixir.Arrays.Implementations.MapArray. If you want to remove the last element, use `Arrays.extract/1`.
+      ** (ArgumentError) There is no efficient implementation possible to remove an element from a random location in an array, so `Access.pop/2` (and returning `:pop` from `Access.get_and_update/3` ) are not supported by #{@current_default_array}. If you want to remove the last element, use `Arrays.extract/1`.
 
       iex> arr2 = Arrays.new([10, 20, 30])
       iex> {20, arr2} = get_and_update_in(arr2[1], fn _ -> :pop end)
-      ** (ArgumentError) There is no efficient implementation possible to remove an element from a random location in an array, so `Access.pop/2` (and returning `:pop` from `Access.get_and_update/3` ) are not supported by Elixir.Arrays.Implementations.MapArray. If you want to remove the last element, use `Arrays.extract/1`.
+      ** (ArgumentError) There is no efficient implementation possible to remove an element from a random location in an array, so `Access.pop/2` (and returning `:pop` from `Access.get_and_update/3` ) are not supported by #{@current_default_array}. If you want to remove the last element, use `Arrays.extract/1`.
 
       iex> arr2 = Arrays.new([10, 20, 30])
       iex> {:ok, {value, arr2}} = Arrays.extract(arr2)
