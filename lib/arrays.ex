@@ -124,6 +124,9 @@ contents = quote do
 
   #### Access
 
+  Fast random-element access and updates are supported.
+
+
       iex> arr = Arrays.new([1, 2, 3, 4])
       iex> arr = put_in(arr[2], 33)
       ##{@current_default_array}<[1, 2, 33, 4]>
@@ -131,20 +134,25 @@ contents = quote do
       ##{@current_default_array}<[1, -4, 33, 4]>
       iex> arr = update_in(arr[-1], (&(&1 + 1)))
       ##{@current_default_array}<[1, -4, 33, 5]>
+
+  Popping from a random location however, is not.
+  Only removals of the last element of the array are fast.
+  For this, use `Arrays.extract/1`.
+
+      iex> arr = Arrays.new([1, -4, 33, 5])
       iex> {33, arr} = pop_in(arr[-2])
-      iex> arr
-      ##{@current_default_array}<[1, -4, 5]>
-      iex> {1, arr} = pop_in(arr[0])
-      iex> arr
-      ##{@current_default_array}<[-4, 5]>
-      iex> {5, arr} = pop_in(arr[-1])
-      iex> arr
-      ##{@current_default_array}<[-4]>
+      ** (ArgumentError) There is no efficient implementation possible to remove an element from a random location in an array, so `Access.pop/2` (and returning `:pop` from `Access.get_and_update/3` ) are not supported by Elixir.Arrays.Implementations.MapArray. If you want to remove the last element, use `Arrays.extract/1`.
 
       iex> arr2 = Arrays.new([10, 20, 30])
       iex> {20, arr2} = get_and_update_in(arr2[1], fn _ -> :pop end)
+      ** (ArgumentError) There is no efficient implementation possible to remove an element from a random location in an array, so `Access.pop/2` (and returning `:pop` from `Access.get_and_update/3` ) are not supported by Elixir.Arrays.Implementations.MapArray. If you want to remove the last element, use `Arrays.extract/1`.
+
+      iex> arr2 = Arrays.new([10, 20, 30])
+      iex> {:ok, {value, arr2}} = Arrays.extract(arr2)
+      iex> value
+      30
       iex> arr2
-      ##{@current_default_array}<[10, 30]>
+      ##{@current_default_array}<[10, 20]>
 
 
 
@@ -156,14 +164,14 @@ contents = quote do
   (`-1` is the last element, `-2` the second-to-last element, etc.) are supported.
 
   However, if `positive_index > Arrays.size(array)` or `negative_index < -Arrays.size(array)`,
-  an ArgumentError is raised:
+  an ArgumentError is raised (when trying to put a new value), or `:error` is returned when fetching a value:
 
       iex> arr = Arrays.new([1,2,3,4])
-      iex> pop_in(arr[4])
+      iex> put_in(arr[4], 1234)
       ** (ArgumentError) argument error
 
       iex> arr = Arrays.new([1,2,3,4])
-      iex> pop_in(arr[-5])
+      iex> put_in(arr[-5], 100)
       ** (ArgumentError) argument error
 
       iex> arr = Arrays.new([1,2,3,4])
@@ -171,6 +179,10 @@ contents = quote do
       :error
       iex> Access.fetch(arr, -5)
       :error
+      iex> arr[4]
+      nil
+      iex> arr[-5]
+      nil
 
       iex> arr = Arrays.new([1,2,3,4])
       iex> update_in(arr[8], fn x -> x * 2 end)
@@ -431,23 +443,6 @@ contents = quote do
   defdelegate reduce_right(array, acc, fun),to: Arrays.Protocol
 
   @doc """
-  Returns which value is currently used as 'default' for elements that have no value of their own.
-
-  Common array definitions use a 'sparse' implementation where elements not explicitly having a different value, are assumed to have this 'default' value.
-  The particular default value can be set by passing the related option when calling `new/2` or `empty/1`.
-  If no other default element is set, it will be `nil`.
-
-      iex> Arrays.new([2, 4, 6]) |> Arrays.default()
-      nil
-
-      iex> Arrays.new([2, 4, 6], default: 42) |> Arrays.default()
-      42
-
-  """
-  @spec default(array) :: any
-  defdelegate default(array), to: Arrays.Protocol
-
-  @doc """
   Retrieves the value stored in `array` of the element at `index`.
 
   Array indexes start at *zero*.
@@ -501,21 +496,6 @@ contents = quote do
   defdelegate replace(array, index, value), to: Arrays.Protocol
 
   @doc """
-  Removes an element from the array `array`, resetting the element at `index` to the array's default value.
-
-      iex> Arrays.new([7, 8, 9]) |> Arrays.reset(2)
-      ##{@current_default_array}<[7, 8, nil]>
-
-  Just like `get/2`, negative indices are supported.
-
-      iex> Arrays.new([7, 8, 9]) |> Arrays.reset(-2)
-      ##{@current_default_array}<[7, nil, 9]>
-  """
-  # TODO implement negative indexes here rather than impl-defined.
-  @spec reset(array, index) :: any
-  defdelegate reset(array, index), to: Arrays.Protocol
-
-  @doc """
   Appends ('pushes') a single element to the end of the array.
 
       iex> Arrays.new([1, 2, 3]) |> Arrays.append(4)
@@ -555,7 +535,7 @@ contents = quote do
       iex> Arrays.new([1, 2, 3]) |> Arrays.resize(6)
       ##{@current_default_array}<[1, 2, 3, nil, nil, nil]>
 
-      iex> Arrays.new([1, 2, 3], default: 42) |> Arrays.resize(5)
+      iex> Arrays.new([1, 2, 3]) |> Arrays.resize(5, 42)
       ##{@current_default_array}<[1, 2, 3, 42, 42]>
 
       iex> Arrays.new([1, 2, 3]) |> Arrays.resize(1)
@@ -569,8 +549,10 @@ contents = quote do
 
   See also `size/1`.
   """
-  @spec resize(array, size :: non_neg_integer) :: array
-  defdelegate resize(array, size), to: Arrays.Protocol
+  @spec resize(array, size :: non_neg_integer, default :: any) :: array
+  def resize(array, size, default \\ nil) do
+    Arrays.Protocol.resize(array, size, default)
+  end
 
   @doc """
   Transforms the array into a list.

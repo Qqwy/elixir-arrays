@@ -59,14 +59,6 @@ defprotocol Arrays.Protocol do
   def reduce_right(array, acc, fun)
 
   @doc """
-  Returns which value is currently used as 'default' for elements that have no value of their own.
-
-  Called by `Arrays.default/1`
-  """
-  @spec default(array) :: any
-  def default(array)
-
-  @doc """
   Retrieves the value stored in `array` of the element at `index`.
 
   Called by `Arrays.get/2`
@@ -81,14 +73,6 @@ defprotocol Arrays.Protocol do
   """
   @spec replace(array, index, item :: any) :: array
   def replace(array, index, item)
-
-  @doc """
-  Removes an element from the array `array`, resetting the element at `index` to the array's default value.
-
-  Called by `Arrays.reset/2`
-  """
-  @spec reset(array, index) :: any
-  def reset(array, index)
 
   @doc """
   Appends ('pushes') a single element to the end of the array.
@@ -109,10 +93,13 @@ defprotocol Arrays.Protocol do
   @doc """
   Changes the size of the array.
 
+  When made smaller, truncates elements beyond the first `size` elements will be removed.
+  When made larger, new elements will receive `default` as value.
+
   Called by `Arrays.resize/2`
   """
-  @spec resize(array, size :: non_neg_integer) :: array
-  def resize(array, size)
+  @spec resize(array, size :: non_neg_integer, default :: any) :: array
+  def resize(array, size, default)
 
   @doc """
   Transforms the array into a list.
