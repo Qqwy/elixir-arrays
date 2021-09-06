@@ -345,6 +345,7 @@ contents = quote [location: :keep] do
       ##{@current_default_array}<["this", "will"]>
 
   """
+  # TODO
   @spec new(Enum.t(), keyword) :: array()
   def new(enumerable, options) do
     size = Keyword.get(options, :size, nil)
