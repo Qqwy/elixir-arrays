@@ -152,10 +152,12 @@ defprotocol Arrays.Protocol do
 
   This is called internally by functions such as `Arrays.new/0` and `Arrays.empty/1`.
 
-  NOTE: This function will not be dispatched by normal protocol handling, but rather directly.
+  NOTE: This function will not be dispatched by normal protocol handling.
+  It will be called directly:
   The first (and only) parameter will be a list of options.
 
   c.f. `t:options`.
   """
+  @spec empty(options) :: array
   def empty(options)
 end
