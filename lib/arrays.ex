@@ -784,6 +784,7 @@ Module.create(Arrays,
       end
     end
     # coveralls-ignore-stop
-  end, Macro.Env.location(__ENV__)
+  end,
+  __ENV__
 )
 
