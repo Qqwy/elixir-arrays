@@ -145,5 +145,10 @@ defprotocol Arrays.Protocol do
   c.f. `t:options`.
   """
   @spec empty(options) :: array
+
+  # Do not report in code coverage, as we will never call it through the protocol
+  # but only directly.
+  # coveralls-ignore-start
   def empty(options)
+  # coveralls-ignore-stop
 end
