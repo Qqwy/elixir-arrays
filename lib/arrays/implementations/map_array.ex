@@ -252,5 +252,12 @@ defmodule Arrays.Implementations.MapArray do
     def slice(array = %MapArray{}, start, amount) do
       @for.build_slice(array, start, amount, @for.empty(default: array.default))
     end
+
+    @impl true
+    def empty(options) when is_list(options) do
+      default = Keyword.get(options, :default, nil)
+      size = Keyword.get(options, :size, 0)
+      %MapArray{contents: MapArray.construct(default, size), default: default}
+    end
   end
 end
