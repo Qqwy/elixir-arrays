@@ -557,8 +557,8 @@ contents = quote [location: :keep] do
   @doc """
   Transforms the array into a list.
 
-      iex> Arrays.new([1, 2, 3]) |> Arrays.to_list
-      [1, 2, 3]
+      iex> Arrays.new(["Joe", "Mike", "Robert"]) |> Arrays.to_list
+      ["Joe", "Mike", "Robert"]
   """
   @spec to_list(array) :: list
   defdelegate to_list(array), to: Arrays.Protocol
