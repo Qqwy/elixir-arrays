@@ -563,7 +563,6 @@ contents = quote [location: :keep] do
   @spec to_list(array) :: list
   defdelegate to_list(array), to: Arrays.Protocol
 
-
   @doc """
   Returns an array where all elements of `right` are added to the end of `left`.
 
