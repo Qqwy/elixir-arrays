@@ -9,18 +9,6 @@ defmodule Arrays.Implementations.MapArray do
 
   defstruct contents: %{}, default: nil
 
-  @impl Arrays.Behaviour
-  def empty(options) do
-    default = Keyword.get(options, :default, nil)
-    size = Keyword.get(options, :size, 0)
-    %MapArray{contents: construct(default, size), default: default}
-  end
-
-  defp construct(_default, 0), do: %{}
-
-  defp construct(default, size) do
-    Enum.into(0..(size - 1), %{}, &{&1, default})
-  end
 
   if Code.ensure_loaded?(FunLand.Mappable) do
     Module.eval_quoted(__MODULE__,
@@ -209,7 +197,7 @@ defmodule Arrays.Implementations.MapArray do
 
     @impl true
     def resize(%MapArray{default: default}, 0) do
-      MapArray.empty(default: default)
+      empty(default: default)
     end
 
     def resize(array = %MapArray{contents: contents}, size) when map_size(contents) == size do
@@ -250,14 +238,20 @@ defmodule Arrays.Implementations.MapArray do
 
     @impl true
     def slice(array = %MapArray{}, start, amount) do
-      @for.build_slice(array, start, amount, @for.empty(default: array.default))
+      @for.build_slice(array, start, amount, empty(default: array.default))
     end
 
     @impl true
     def empty(options) when is_list(options) do
       default = Keyword.get(options, :default, nil)
       size = Keyword.get(options, :size, 0)
-      %MapArray{contents: MapArray.construct(default, size), default: default}
+      %MapArray{contents: construct(default, size), default: default}
+    end
+
+    defp construct(_default, 0), do: %{}
+
+    defp construct(default, size) do
+      Enum.into(0..(size - 1), %{}, &{&1, default})
     end
   end
 end

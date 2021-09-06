@@ -18,12 +18,6 @@ defmodule Arrays.Implementations.ErlangArray do
 
   defstruct contents: :array.new([default: nil])
 
-  @impl Arrays.Behaviour
-  def empty(options) do
-    contents = :array.new([default: nil] ++ options)
-    %ErlangArray{contents: contents}
-  end
-
   @doc """
   Create an `%ErlangArray{}`-struct from an `:array`-record.
 
@@ -276,7 +270,7 @@ defmodule Arrays.Implementations.ErlangArray do
 
     @impl true
     def slice(array = %ErlangArray{}, start, amount) do
-      @for.build_slice(array, start, amount, @for.empty(default: :array.default(array.contents)))
+      @for.build_slice(array, start, amount, empty(default: :array.default(array.contents)))
     end
 
     @impl true

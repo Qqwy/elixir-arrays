@@ -299,7 +299,7 @@ contents = quote do
       )
 
     options = Keyword.delete(options, :implementation)
-    impl_module.empty(options)
+    Module.concat(Arrays.Protocol, impl_module).empty(options)
   end
 
   defp default_array_implementation() do
