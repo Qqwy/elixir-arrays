@@ -603,7 +603,7 @@ contents = quote [location: :keep] do
     case Enum.split(enumerable_of_enumerables, 1) do
       {[], []} -> Arrays.new()
       {[first], rest} ->
-        Enum.reduce(rest, first, &Arrays.concat/2)
+        Enum.reduce(rest, first, &Enum.into/2)
     end
   end
 
