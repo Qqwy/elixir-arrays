@@ -154,11 +154,6 @@ defmodule Arrays.Implementations.ErlangArray do
     end
 
     @impl true
-    def default(%ErlangArray{contents: contents}) do
-      :array.default(contents)
-    end
-
-    @impl true
     def get(%ErlangArray{contents: contents}, index) do
       if index < 0 do
         :array.get(index + :array.size(contents), contents)
@@ -180,18 +175,6 @@ defmodule Arrays.Implementations.ErlangArray do
     end
 
     @impl true
-    def reset(array = %ErlangArray{contents: contents}, index) do
-      new_contents =
-        if index < 0 do
-          :array.reset(index + :array.size(contents), contents)
-        else
-          :array.reset(index, contents)
-        end
-
-      %ErlangArray{array | contents: new_contents}
-    end
-
-    @impl true
     def append(array = %ErlangArray{contents: contents}, item) do
       new_contents = :array.set(:array.size(contents), item, contents)
       %ErlangArray{array | contents: new_contents}
@@ -199,21 +182,24 @@ defmodule Arrays.Implementations.ErlangArray do
 
     @impl true
     def resize(array = %ErlangArray{contents: contents}, new_size, default) do
-      IO.inspect(contents)
       changed = change_default(contents, default)
-      IO.inspect(changed)
       new_contents = :array.resize(new_size, changed)
-      IO.inspect(new_contents)
       %ErlangArray{array | contents: new_contents}
     end
 
+    # NOTE: We depend on the exact implementation of the `:array` record here.
+    # This is _probably_ fine, but important to keep in mind.
+    # Changing the default is a O(1) operation, because:
+    # - All elements between `:array.sparse_size` and the next multiple of 10 are physically stored.
+    #   But these are at most 9 elements.
+    # - All elements after the next multiple of 10 are not physically stored at all.
     defp change_default(raw_array, new_default) do
       sparse_size = :array.sparse_size(raw_array)
-      size = :array.size(raw_array)
+      up_to_next_multiple_of_10 = 10 * div(sparse_size, 10) + 10 - 1
       {:array, a, b, _old_default, vals} = raw_array
       new_array = {:array, a, b, new_default, vals}
-      Enum.reduce(sparse_size..(size - 1), new_array, fn index, arr ->
-        :array.reset(index, arr)
+      Enum.reduce(sparse_size..up_to_next_multiple_of_10, new_array, fn index, arr ->
+        :array.set(index, new_default, arr)
       end)
     end
 
