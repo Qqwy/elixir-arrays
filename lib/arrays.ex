@@ -79,15 +79,15 @@ contents = quote [location: :keep] do
   one can use the following protocols and behaviours with them:
 
   - From Elixir's standard library:
-  - `Enumerable`: Iterating over arrays
-  - `Collectable`: Creating arrays from collections
-  - the `Access` behaviour: access a particular element using square brackets, `put_in` etc.
+    - `Enumerable`: Iterating over arrays
+    - `Collectable`: Creating arrays from collections
+    - the `Access` behaviour: access a particular element using square brackets, `put_in` etc.
 
   - From common container libraries:
-  - `Insertable`: Append a single item from the end of an array
-  - `Extractable`: Take a single item from the end of an array
-  - `FunLand.Mappable`: Map a function over each element in the array, creating a new array with the results
-  - `FunLand.Reducible`: Reduce an array to a single value.
+    - `Insertable`: Append a single item from the end of an array
+    - `Extractable`: Take a single item from the end of an array
+    - `FunLand.Mappable`: Map a function over each element in the array, creating a new array with the results
+    - `FunLand.Reducible`: Reduce an array to a single value.
 
 
   Note: `FunLand` is an optional dependency of this library, so its functionality will only be available if `:fun_land` is also added to your `mix.exs` dependencies list.
