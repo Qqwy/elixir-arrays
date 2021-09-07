@@ -288,6 +288,13 @@ You can look at the source code of `Arrays.CommonProtocolImplementations` for so
 
 ## Changelog
 
+- 2.0.0 Improves the `Arrays.Protocol` to be more friendly to implement. Specifically:
+  - Remove implementations for `Access.pop`. Instead, throw an error when people try to use it.
+  - Similarly, throw an error when `:pop` is used inside `Access.get_and_update`
+  - Move `empty` from `Access.Behaviour` to `Access.Protocol`.
+  - Alter handling of `:default`. It is no longer a required setting, and all arrays are able to work with a `default` passed to `resize`.
+  - Related to above: Replace `Arrays.Protocol.resize/2` with `Arrays.Protocol.resize/3`. (`Arrays.resize/2` will call it with `nil` as third parameter).
+  - `size` is no longer a required setting. `Arrays.new/2` and `Arrays.empty/1` have been edited to reflect this.
 - 1.2.0 - Adds `ErlangArray.from_raw/1` and `ErlangArray.to_raw/1` for interop with `:array`-records created/consumed by other code.
 - 1.1.0 - Improved README and general usage examples. Introduces `Arrays.concat/1`, `Arrays.concat/2`, `Arrays.slice/2`, `Arrays.slice/3`.
 - 1.0.0 - Stable release. Mayor overhaul, 100% test coverage, 100% documentation. 
