@@ -83,5 +83,4 @@ defmodule Arrays.CommonProtocolImplementations do
         end
       end
   end
-
 end

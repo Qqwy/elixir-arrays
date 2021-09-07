@@ -7,22 +7,13 @@ defmodule Arrays.Implementations.ErlangArray do
 
   Common operations like element access thus take O(log10(n)) time.
 
-
   Note that when no custom default value is specified,
   `nil` will be used, rather than `:array`'s default of `:undefined`.
   """
 
-  @behaviour Arrays.Behaviour
-
   alias __MODULE__
 
   defstruct contents: :array.new([default: nil])
-
-  @impl Arrays.Behaviour
-  def empty(options) do
-    contents = :array.new([default: nil] ++ options)
-    %ErlangArray{contents: contents}
-  end
 
   @doc """
   Create an `%ErlangArray{}`-struct from an `:array`-record.
@@ -96,22 +87,22 @@ defmodule Arrays.Implementations.ErlangArray do
     end
   end
 
+  @undefined_pop_message """
+  There is no efficient implementation possible to remove an element from a random location in an array, so `Access.pop/2` (and returning `:pop` from `Access.get_and_update/3` ) are not supported by #{inspect(__MODULE__)}. If you want to remove the last element, use `Arrays.extract/1`.
+  """ |> String.trim
+
   @impl Access
   def get_and_update(array = %ErlangArray{contents: contents}, index, function) when index >= 0 do
     if index >= :array.size(contents) do
       raise ArgumentError
     else
       value = :array.get(index, contents)
-
       case function.(value) do
-        :pop ->
-          value = :array.get(index, contents)
-          new_contents = fix_contents_after_pop(contents, index, :array.default(contents))
-          {value, %ErlangArray{array | contents: new_contents}}
-
         {get, new_value} ->
           new_contents = :array.set(index, new_value, contents)
           {get, %ErlangArray{array | contents: new_contents}}
+        :pop ->
+          raise ArgumentError, @undefined_pop_message
       end
     end
   end
@@ -126,49 +117,8 @@ defmodule Arrays.Implementations.ErlangArray do
   end
 
   @impl Access
-  def pop(array = %ErlangArray{contents: contents}, index) when index >= 0 do
-    cond do
-      (index >= :array.size(contents)) ->
-        raise ArgumentError
-      (index == :array.size(contents) - 1) ->
-        # Fast implementation
-        value = :array.get(index, contents)
-        new_contents = :array.resize(index, contents)
-        {value, %ErlangArray{array | contents: new_contents}}
-      true ->
-        # Slow implementation
-        value = :array.get(index, contents)
-        new_contents = fix_contents_after_pop(contents, index, :array.default(contents))
-        {value, %ErlangArray{array | contents: new_contents}}
-    end
-  end
-
-  def pop(array = %ErlangArray{contents: contents}, index) when index < 0 do
-    if (index < (-:array.size(contents))) do
-      raise ArgumentError
-    else
-      pop(array, index + :array.size(contents))
-    end
-  end
-
-  defp fix_contents_after_pop(contents, index, default) do
-    contents
-    |> do_foldl([], fn key, value, acc ->
-      cond do
-        key > index ->
-          [{key - 1, value} | acc]
-        key == index ->
-          acc # Leave out popped element
-        key < index ->
-          [{key, value} | acc]
-      end
-    end)
-    |> Enum.reverse()
-    |> :array.from_orddict(default)
-  end
-
-  defp do_foldl(arr, acc, fun) do
-    :array.foldl(fun, acc, arr)
+  def pop(%ErlangArray{}, _index) do
+    raise ArgumentError, @undefined_pop_message
   end
 
   @doc false
@@ -203,11 +153,6 @@ defmodule Arrays.Implementations.ErlangArray do
     end
 
     @impl true
-    def default(%ErlangArray{contents: contents}) do
-      :array.default(contents)
-    end
-
-    @impl true
     def get(%ErlangArray{contents: contents}, index) do
       if index < 0 do
         :array.get(index + :array.size(contents), contents)
@@ -217,26 +162,12 @@ defmodule Arrays.Implementations.ErlangArray do
     end
 
     @impl true
-    defdelegate replace(array, index, element), to: __MODULE__, as: :set
-
-    def set(array = %ErlangArray{contents: contents}, index, item) do
+    def replace(array = %ErlangArray{contents: contents}, index, item) do
       new_contents =
         if index < 0 do
           :array.set(index + :array.size(contents), item, contents)
         else
           :array.set(index, item, contents)
-        end
-
-      %ErlangArray{array | contents: new_contents}
-    end
-
-    @impl true
-    def reset(array = %ErlangArray{contents: contents}, index) do
-      new_contents =
-        if index < 0 do
-          :array.reset(index + :array.size(contents), contents)
-        else
-          :array.reset(index, contents)
         end
 
       %ErlangArray{array | contents: new_contents}
@@ -249,9 +180,26 @@ defmodule Arrays.Implementations.ErlangArray do
     end
 
     @impl true
-    def resize(array = %ErlangArray{contents: contents}, new_size) do
-      new_contents = :array.resize(new_size, contents)
+    def resize(array = %ErlangArray{contents: contents}, new_size, default) do
+      changed = change_default(contents, default)
+      new_contents = :array.resize(new_size, changed)
       %ErlangArray{array | contents: new_contents}
+    end
+
+    # NOTE: We depend on the exact implementation of the `:array` record here.
+    # This is _probably_ fine, but important to keep in mind.
+    # Changing the default is a O(1) operation, because:
+    # - All elements between `:array.sparse_size` and the next multiple of 10 are physically stored.
+    #   But these are at most 9 elements.
+    # - All elements after the next multiple of 10 are not physically stored at all.
+    defp change_default(raw_array, new_default) do
+      sparse_size = :array.sparse_size(raw_array)
+      up_to_next_multiple_of_10 = 10 * div(sparse_size, 10) + 10 - 1
+      {:array, a, b, _old_default, vals} = raw_array
+      new_array = {:array, a, b, new_default, vals}
+      Enum.reduce(sparse_size..up_to_next_multiple_of_10, new_array, fn index, arr ->
+        :array.set(index, new_default, arr)
+      end)
     end
 
     @impl true
@@ -276,7 +224,13 @@ defmodule Arrays.Implementations.ErlangArray do
 
     @impl true
     def slice(array = %ErlangArray{}, start, amount) do
-      @for.build_slice(array, start, amount, @for.empty(default: :array.default(array.contents)))
+      @for.build_slice(array, start, amount, empty(default: :array.default(array.contents)))
+    end
+
+    @impl true
+    def empty(options) when is_list(options) do
+      contents = :array.new([default: nil] ++ options)
+      %ErlangArray{contents: contents}
     end
   end
 end

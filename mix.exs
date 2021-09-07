@@ -48,6 +48,7 @@ defmodule Arrays.Mixfile do
       {:excoveralls, "~> 0.13", only: [:test]},
 
       {:benchee, "~> 1.0", only: :dev},
+      {:benchee_csv, "~> 1.0", only: :dev},
       {:benchee_markdown, "~> 0.2", only: :dev},
       {:benchee_html, "~> 1.0", only: :dev}
     ]
@@ -76,7 +77,7 @@ defmodule Arrays.Mixfile do
       groups_for_modules: [
         Main: [Arrays],
         "Implementations": ~r{^Arrays.Implementations},
-        "For Implementers": [Arrays.Protocol, Arrays.Behaviour, Arrays.CommonProtocolImplementations],
+        "For Implementers": [Arrays.Protocol, Arrays.CommonProtocolImplementations],
         Other: ~r"^.*"
       ],
       nest_modules_by_prefix: [Arrays, Arrays.Implementations],

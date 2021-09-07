@@ -1,5 +1,6 @@
 defmodule ArraysTest do
-    use ExUnit.Case
+  use ExUnit.Case
 
-    doctest Arrays
+  doctest Arrays
+
 end

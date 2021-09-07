@@ -3,24 +3,10 @@ defmodule Arrays.Implementations.MapArray do
   An array implementation based on the built-in Map structure.
   """
 
-  @behaviour Arrays.Behaviour
-
   alias __MODULE__
 
-  defstruct contents: %{}, default: nil
+  defstruct contents: %{}
 
-  @impl Arrays.Behaviour
-  def empty(options) do
-    default = Keyword.get(options, :default, nil)
-    size = Keyword.get(options, :size, 0)
-    %MapArray{contents: construct(default, size), default: default}
-  end
-
-  defp construct(_default, 0), do: %{}
-
-  defp construct(default, size) do
-    Enum.into(0..(size - 1), %{}, &{&1, default})
-  end
 
   if Code.ensure_loaded?(FunLand.Mappable) do
     Module.eval_quoted(__MODULE__,
@@ -74,11 +60,21 @@ defmodule Arrays.Implementations.MapArray do
 
   def fetch(%MapArray{}, _index), do: :error
 
+  @undefined_pop_message """
+  There is no efficient implementation possible to remove an element from a random location in an array, so `Access.pop/2` (and returning `:pop` from `Access.get_and_update/3` ) are not supported by #{inspect(__MODULE__)}. If you want to remove the last element, use `Arrays.extract/1`.
+  """ |> String.trim
+
   @impl Access
   def get_and_update(array = %MapArray{contents: contents}, index, function)
       when index >= 0 and index < map_size(contents) do
-    {value, new_contents} = Map.get_and_update(contents, index, function)
-    {value, %MapArray{array | contents: new_contents}}
+    value = contents[index]
+    case function.(value) do
+      {current_value, new_value} ->
+        new_contents = Map.put(contents, index, new_value)
+        {current_value, %MapArray{array | contents: new_contents}}
+        :pop ->
+          raise ArgumentError, @undefined_pop_message
+    end
   end
 
   @impl Access
@@ -92,28 +88,9 @@ defmodule Arrays.Implementations.MapArray do
     raise ArgumentError
   end
 
-  @impl Access
-  def pop(array = %MapArray{contents: contents, default: default}, index)
-      when index >= 0 and index < map_size(contents) do
-    {value, new_contents} = Map.pop(contents, index, default)
-    {value, %MapArray{array | contents: fix_contents_after_pop(new_contents, index)}}
-  end
-
-  def pop(array = %MapArray{contents: contents}, index)
-      when index < 0 and index >= -map_size(contents) do
-    pop(array, index + map_size(contents))
-  end
-
-  def pop(%MapArray{}, _index), do: raise ArgumentError
-
-  defp fix_contents_after_pop(contents, index) do
-    for {key, value} <- contents, into: %{} do
-      if key > index do
-        {key - 1, value}
-      else
-        {key, value}
-      end
-    end
+  @impl true
+  def pop(%MapArray{}, _index) do
+    raise ArgumentError, @undefined_pop_message
   end
 
   @doc false
@@ -160,11 +137,6 @@ defmodule Arrays.Implementations.MapArray do
     end
 
     @impl true
-    def default(%MapArray{default: default}) do
-      default
-    end
-
-    @impl true
     def get(%MapArray{contents: contents}, index)
         when index >= 0 and index < map_size(contents) do
       contents[index]
@@ -189,44 +161,31 @@ defmodule Arrays.Implementations.MapArray do
     end
 
     @impl true
-    def reset(array = %MapArray{contents: contents, default: default}, index)
-        when index >= 0 and index < map_size(contents) do
-      new_contents = Map.put(contents, index, default)
-      %MapArray{array | contents: new_contents}
-    end
-
-    def reset(array = %MapArray{contents: contents, default: default}, index)
-        when index < 0 and index >= -map_size(contents) do
-      new_contents = Map.put(contents, index + map_size(contents), default)
-      %MapArray{array | contents: new_contents}
-    end
-
-    @impl true
     def append(array = %MapArray{contents: contents}, value) do
       new_contents = Map.put(contents, map_size(contents), value)
       %MapArray{array | contents: new_contents}
     end
 
     @impl true
-    def resize(%MapArray{default: default}, 0) do
-      MapArray.empty(default: default)
+    def resize(%MapArray{}, 0, _default) do
+      empty([])
     end
 
-    def resize(array = %MapArray{contents: contents}, size) when map_size(contents) == size do
+    def resize(array = %MapArray{contents: contents}, size, _default) when map_size(contents) == size do
       array
     end
 
-    def resize(array = %MapArray{contents: contents, default: default}, new_size)
-        when new_size > map_size(contents) do
+    def resize(array = %MapArray{contents: contents}, new_size, _default)
+    when new_size < map_size(contents) do
       cur_size = map_size(contents)
-      new_contents = Enum.into(cur_size..(new_size - 1), contents, &{&1, default})
+      new_contents = Map.drop(contents, Enum.to_list(new_size..(cur_size - 1)))
       %MapArray{array | contents: new_contents}
     end
 
-    def resize(array = %MapArray{contents: contents}, new_size)
-        when new_size < map_size(contents) do
+    def resize(array = %MapArray{contents: contents}, new_size, default)
+        when new_size > map_size(contents) do
       cur_size = map_size(contents)
-      new_contents = Map.drop(contents, Enum.to_list(new_size..(cur_size - 1)))
+      new_contents = Enum.into(cur_size..(new_size - 1), contents, &{&1, default})
       %MapArray{array | contents: new_contents}
     end
 
@@ -250,7 +209,20 @@ defmodule Arrays.Implementations.MapArray do
 
     @impl true
     def slice(array = %MapArray{}, start, amount) do
-      @for.build_slice(array, start, amount, @for.empty(default: array.default))
+      @for.build_slice(array, start, amount, empty([]))
+    end
+
+    @impl true
+    def empty(options) when is_list(options) do
+      default = Keyword.get(options, :default, nil)
+      size = Keyword.get(options, :size, 0)
+      %MapArray{contents: construct(default, size)}
+    end
+
+    defp construct(_default, 0), do: %{}
+
+    defp construct(default, size) do
+      Enum.into(0..(size - 1), %{}, &{&1, default})
     end
   end
 end

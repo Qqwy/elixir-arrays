@@ -3,7 +3,7 @@
 # but then with `ErlangArray` as default representation.
 #
 # This allows us to re-use all doctests for the ErlangArray as well as the MapArray.
-contents = quote do
+contents = quote [location: :keep] do
   @current_default_array inspect(@default_array_implementation)
 
   @moduledoc """
@@ -124,27 +124,35 @@ contents = quote do
 
   #### Access
 
+  Fast random-element access and updates are supported.
+
+
       iex> arr = Arrays.new([1, 2, 3, 4])
       iex> arr = put_in(arr[2], 33)
       ##{@current_default_array}<[1, 2, 33, 4]>
       iex> arr = update_in(arr[1], (&(&1 * -2)))
       ##{@current_default_array}<[1, -4, 33, 4]>
-      iex> arr = update_in(arr[-1], (&(&1 + 1)))
+      iex> update_in(arr[-1], (&(&1 + 1)))
       ##{@current_default_array}<[1, -4, 33, 5]>
-      iex> {33, arr} = pop_in(arr[-2])
-      iex> arr
-      ##{@current_default_array}<[1, -4, 5]>
-      iex> {1, arr} = pop_in(arr[0])
-      iex> arr
-      ##{@current_default_array}<[-4, 5]>
-      iex> {5, arr} = pop_in(arr[-1])
-      iex> arr
-      ##{@current_default_array}<[-4]>
+
+  Popping from a random location however, is not.
+  Only removals of the last element of the array are fast.
+  For this, use `Arrays.extract/1`.
+
+      iex> arr = Arrays.new([1, -4, 33, 5])
+      iex> {33, _arr} = pop_in(arr[-2])
+      ** (ArgumentError) There is no efficient implementation possible to remove an element from a random location in an array, so `Access.pop/2` (and returning `:pop` from `Access.get_and_update/3` ) are not supported by #{@current_default_array}. If you want to remove the last element, use `Arrays.extract/1`.
 
       iex> arr2 = Arrays.new([10, 20, 30])
-      iex> {20, arr2} = get_and_update_in(arr2[1], fn _ -> :pop end)
+      iex> {20, _arr2} = get_and_update_in(arr2[1], fn _ -> :pop end)
+      ** (ArgumentError) There is no efficient implementation possible to remove an element from a random location in an array, so `Access.pop/2` (and returning `:pop` from `Access.get_and_update/3` ) are not supported by #{@current_default_array}. If you want to remove the last element, use `Arrays.extract/1`.
+
+      iex> arr2 = Arrays.new([10, 20, 30])
+      iex> {:ok, {value, arr2}} = Arrays.extract(arr2)
+      iex> value
+      30
       iex> arr2
-      ##{@current_default_array}<[10, 30]>
+      ##{@current_default_array}<[10, 20]>
 
 
 
@@ -156,14 +164,14 @@ contents = quote do
   (`-1` is the last element, `-2` the second-to-last element, etc.) are supported.
 
   However, if `positive_index > Arrays.size(array)` or `negative_index < -Arrays.size(array)`,
-  an ArgumentError is raised:
+  an ArgumentError is raised (when trying to put a new value), or `:error` is returned when fetching a value:
 
       iex> arr = Arrays.new([1,2,3,4])
-      iex> pop_in(arr[4])
+      iex> put_in(arr[4], 1234)
       ** (ArgumentError) argument error
 
       iex> arr = Arrays.new([1,2,3,4])
-      iex> pop_in(arr[-5])
+      iex> put_in(arr[-5], 100)
       ** (ArgumentError) argument error
 
       iex> arr = Arrays.new([1,2,3,4])
@@ -171,6 +179,10 @@ contents = quote do
       :error
       iex> Access.fetch(arr, -5)
       :error
+      iex> arr[4]
+      nil
+      iex> arr[-5]
+      nil
 
       iex> arr = Arrays.new([1,2,3,4])
       iex> update_in(arr[8], fn x -> x * 2 end)
@@ -229,17 +241,14 @@ contents = quote do
 
   ## Implementing a new Array type
 
-  To add array-functionality to a custom datastructure, two things are required:
-
-  - Add an implementation for the `Arrays.Protocol` protocol.
-  - Add the `Arrays.Behaviour` to your datatype's module (`@behaviour Arrays.Behaviour`), and implement a sensible definition for `c:Arrays.Behaviour.empty/1`.
+  To add array-functionality to a custom datastructure, you'll need to implement the `Arrays.Protocol`.
 
   Besides these, you probably want to implement the above-mentioned protocols as well.
-  You can look at the source code of `Arrays.CommonProtocolImplementations` for some hints as to how those protocols can be easily implemented on top of the calls that the `Arrays.Protocol` protocol itself already provides.
+  You can look at the source code of `Arrays.CommonProtocolImplementations` for some hints as to how those protocols can be easily implemented, as many functions can be defined as simple wrappers on top of the functions that `Arrays.Protocol` itself already provides.
   """
 
   @typedoc """
-  Any datatype implementing the `Arrays.Protocol` as well as the `Arrays.Behaviour`.
+  Any datatype implementing the `Arrays.Protocol`.
   """
   @type array :: Arrays.Protocol.t()
 
@@ -299,7 +308,7 @@ contents = quote do
       )
 
     options = Keyword.delete(options, :implementation)
-    impl_module.empty(options)
+    Module.concat(Arrays.Protocol, impl_module).empty(options)
   end
 
   defp default_array_implementation() do
@@ -324,42 +333,17 @@ contents = quote do
   @doc """
   Creates a new array, receiving its elements from the given `Enumerable`, with the given options.
 
-  Accepts the same options as `empty/1`.
+  Which options are supported depends on the type of array.
 
-      iex> Arrays.new([], size: 3)
-      ##{@current_default_array}<[nil, nil, nil]>
+      iex> Arrays.new([1, 2, 3])
+      ##{@current_default_array}<[1, 2, 3]>
 
-      iex> Arrays.new(["Hello"], size: 1)
+      iex> Arrays.new(["Hello"])
       ##{@current_default_array}<["Hello"]>
-
-      iex> Arrays.new(["this", "will", "not", "fit"], size: 2)
-      ##{@current_default_array}<["this", "will"]>
 
   """
   @spec new(Enum.t(), keyword) :: array()
   def new(enumerable, options) do
-    size = Keyword.get(options, :size, nil)
-    options = Keyword.delete(options, :size)
-
-    if size == nil do
-      new_empty(enumerable, options)
-    else
-      count = Enum.count(enumerable)
-
-      cond do
-        count == size ->
-          new_empty(enumerable, options)
-
-        count > size ->
-          new_empty(Enum.slice(enumerable, 0, size), options)
-
-        count < size ->
-          resize(new_empty(enumerable, options), size)
-      end
-    end
-  end
-
-  defp new_empty(enumerable, options) do
     Enum.into(enumerable, empty(options))
   end
 
@@ -434,23 +418,6 @@ contents = quote do
   defdelegate reduce_right(array, acc, fun),to: Arrays.Protocol
 
   @doc """
-  Returns which value is currently used as 'default' for elements that have no value of their own.
-
-  Common array definitions use a 'sparse' implementation where elements not explicitly having a different value, are assumed to have this 'default' value.
-  The particular default value can be set by passing the related option when calling `new/2` or `empty/1`.
-  If no other default element is set, it will be `nil`.
-
-      iex> Arrays.new([2, 4, 6]) |> Arrays.default()
-      nil
-
-      iex> Arrays.new([2, 4, 6], default: 42) |> Arrays.default()
-      42
-
-  """
-  @spec default(array) :: any
-  defdelegate default(array), to: Arrays.Protocol
-
-  @doc """
   Retrieves the value stored in `array` of the element at `index`.
 
   Array indexes start at *zero*.
@@ -504,21 +471,6 @@ contents = quote do
   defdelegate replace(array, index, value), to: Arrays.Protocol
 
   @doc """
-  Removes an element from the array `array`, resetting the element at `index` to the array's default value.
-
-      iex> Arrays.new([7, 8, 9]) |> Arrays.reset(2)
-      ##{@current_default_array}<[7, 8, nil]>
-
-  Just like `get/2`, negative indices are supported.
-
-      iex> Arrays.new([7, 8, 9]) |> Arrays.reset(-2)
-      ##{@current_default_array}<[7, nil, 9]>
-  """
-  # TODO implement negative indexes here rather than impl-defined.
-  @spec reset(array, index) :: any
-  defdelegate reset(array, index), to: Arrays.Protocol
-
-  @doc """
   Appends ('pushes') a single element to the end of the array.
 
       iex> Arrays.new([1, 2, 3]) |> Arrays.append(4)
@@ -558,13 +510,13 @@ contents = quote do
       iex> Arrays.new([1, 2, 3]) |> Arrays.resize(6)
       ##{@current_default_array}<[1, 2, 3, nil, nil, nil]>
 
-      iex> Arrays.new([1, 2, 3], default: 42) |> Arrays.resize(5)
+      iex> Arrays.new([1, 2, 3]) |> Arrays.resize(5, 42)
       ##{@current_default_array}<[1, 2, 3, 42, 42]>
 
       iex> Arrays.new([1, 2, 3]) |> Arrays.resize(1)
       ##{@current_default_array}<[1]>
 
-      iex> Arrays.new([1, 2, 3]) |> Arrays.resize(0)
+      iex> Arrays.new([9, 8, 7]) |> Arrays.resize(0)
       ##{@current_default_array}<[]>
 
       iex> Arrays.new([1, 2, 3]) |> Arrays.resize(3)
@@ -572,18 +524,19 @@ contents = quote do
 
   See also `size/1`.
   """
-  @spec resize(array, size :: non_neg_integer) :: array
-  defdelegate resize(array, size), to: Arrays.Protocol
+  @spec resize(array, size :: non_neg_integer, default :: any) :: array
+  def resize(array, size, default \\ nil) do
+    Arrays.Protocol.resize(array, size, default)
+  end
 
   @doc """
   Transforms the array into a list.
 
-      iex> Arrays.new([1, 2, 3]) |> Arrays.to_list
-      [1, 2, 3]
+      iex> Arrays.new(["Joe", "Mike", "Robert"]) |> Arrays.to_list
+      ["Joe", "Mike", "Robert"]
   """
   @spec to_list(array) :: list
   defdelegate to_list(array), to: Arrays.Protocol
-
 
   @doc """
   Returns an array where all elements of `right` are added to the end of `left`.
@@ -609,13 +562,23 @@ contents = quote do
   @doc """
   Turns an array of arrays (or other enumerable of enumerables) into a single array.
 
+      iex> arr = Arrays.new([1, 2, 3])
+      iex> Arrays.concat([arr, arr, arr])
+      ##{@current_default_array}<[1, 2, 3, 1, 2, 3, 1, 2, 3]>
+
+      iex> Arrays.concat([])
+      #Arrays.Implementations.MapArray<[]>
+
   See also `concat/2`.
   """
   @doc since: "1.1.0"
   @spec concat(Enumerable.t()) :: array()
   def concat(enumerable_of_enumerables) do
-    enumerable_of_enumerables
-    |> Enum.reduce(Arrays.new(), &Enum.into/2)
+    case Enum.split(enumerable_of_enumerables, 1) do
+      {[], []} -> Arrays.new()
+      {[first], rest} ->
+        Enum.reduce(rest, first, &Enum.into/2)
+    end
   end
 
   @doc """
@@ -795,6 +758,6 @@ Module.create(Arrays,
       end
     end
     # coveralls-ignore-stop
-  end, Macro.Env.location(__ENV__)
+  end,
+  __ENV__
 )
-
