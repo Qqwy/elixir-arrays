@@ -18,7 +18,7 @@ by adding `arrays` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
 [
-  {:arrays, "~> 1.0"}
+  {:arrays, "~> 2.0"}
 ]
 end
 ```
