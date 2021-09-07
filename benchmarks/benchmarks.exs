@@ -67,6 +67,7 @@ defmodule Benchmarks do
       pre_check: true,
       formatters: [
         Benchee.Formatters.Console,
+        {Benchee.Formatters.CSV, file: "benchmark_runs/concat.csv"},
         {Benchee.Formatters.HTML, file: "benchmark_runs/concat.html", auto_open: false},
         {Benchee.Formatters.Markdown, file: "benchmark_runs/concat.md", description: """
         Comparing `Arrays.concat` with `Kernel.++`,
@@ -123,6 +124,7 @@ defmodule Benchmarks do
       # memory_time: @memory_time,
       formatters: [
         Benchee.Formatters.Console,
+        {Benchee.Formatters.CSV, file: "benchmark_runs/random_access.csv"},
         {Benchee.Formatters.HTML, file: "benchmark_runs/random_access.html", auto_open: false},
         {Benchee.Formatters.Markdown, file: "benchmark_runs/random_access.md", description: """
         Compares random element access (for reading).
@@ -194,6 +196,7 @@ defmodule Benchmarks do
       # memory_time: @memory_time,
       formatters: [
         Benchee.Formatters.Console,
+        {Benchee.Formatters.CSV, file: "benchmark_runs/random_update.csv"},
         {Benchee.Formatters.HTML, file: "benchmark_runs/random_update.html", auto_open: false},
         {Benchee.Formatters.Markdown, file: "benchmark_runs/random_update.md", description: """
         Compares random element replacement.
@@ -256,6 +259,7 @@ defmodule Benchmarks do
       pre_check: true,
       formatters: [
         Benchee.Formatters.Console,
+        {Benchee.Formatters.CSV, file: "benchmark_runs/append.csv"},
         {Benchee.Formatters.HTML, file: "benchmark_runs/append.html", auto_open: false},
         {Benchee.Formatters.Markdown, file: "benchmark_runs/append.md", description: """
         Comparing `Arrays.append` with appending a value to a list.

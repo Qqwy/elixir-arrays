@@ -3,13 +3,12 @@ defprotocol Arrays.Protocol do
   This protocol is implemented by all array types.
 
   Do not call functions in this module directly if you want to use an array in your code.
-  Instead, use the functions in the `Arrays` module, which will use the methods of this protocol
-  (as well as the `Arrays.Behaviour` behaviour) internally.
+  Instead, use the functions in the `Arrays` module, which will use the methods of this protocol.
   """
   @typedoc """
-  Any datatype implementing the `Arrays.Protocol` as well as the `Arrays.Behaviour`.
+  Any datatype implementing the `Arrays.Protocol`.
   """
-  @type array :: t
+  @type array :: t()
 
   @typedoc """
   An array index can be either a nonnegative index (up to the size of the array),
@@ -60,14 +59,6 @@ defprotocol Arrays.Protocol do
   def reduce_right(array, acc, fun)
 
   @doc """
-  Returns which value is currently used as 'default' for elements that have no value of their own.
-
-  Called by `Arrays.default/1`
-  """
-  @spec default(array) :: any
-  def default(array)
-
-  @doc """
   Retrieves the value stored in `array` of the element at `index`.
 
   Called by `Arrays.get/2`
@@ -82,14 +73,6 @@ defprotocol Arrays.Protocol do
   """
   @spec replace(array, index, item :: any) :: array
   def replace(array, index, item)
-
-  @doc """
-  Removes an element from the array `array`, resetting the element at `index` to the array's default value.
-
-  Called by `Arrays.reset/2`
-  """
-  @spec reset(array, index) :: any
-  def reset(array, index)
 
   @doc """
   Appends ('pushes') a single element to the end of the array.
@@ -110,10 +93,13 @@ defprotocol Arrays.Protocol do
   @doc """
   Changes the size of the array.
 
+  When made smaller, truncates elements beyond the first `size` elements will be removed.
+  When made larger, new elements will receive `default` as value.
+
   Called by `Arrays.resize/2`
   """
-  @spec resize(array, size :: non_neg_integer) :: array
-  def resize(array, size)
+  @spec resize(array, size :: non_neg_integer, default :: any) :: array
+  def resize(array, size, default)
 
   @doc """
   Transforms the array into a list.
@@ -132,4 +118,31 @@ defprotocol Arrays.Protocol do
   """
   @spec slice(array, index, non_neg_integer) :: array
   def slice(array, start_index, amount)
+
+  @typedoc """
+  A list of options passed to `c:empty/1`.
+
+  What options are recognized by a particular implementation varies.
+  """
+  @type options :: Keyword.t()
+
+
+  @doc """
+  Should create a new instance of your custom array type.
+
+  This is called internally by functions such as `Arrays.new/0` and `Arrays.empty/1`.
+
+  NOTE: This function will not be dispatched by normal protocol handling.
+  It will be called directly:
+  The first (and only) parameter will be a list of options.
+
+  c.f. `t:options`.
+  """
+  @spec empty(options) :: array
+
+  # Do not report in code coverage, as we will never call it through the protocol
+  # but only directly.
+  # coveralls-ignore-start
+  def empty(options)
+  # coveralls-ignore-stop
 end

@@ -274,13 +274,10 @@ The linear time many operations on lists take, means that the operation becomes 
 
 ## Implementing a new Array type
 
-To add array-functionality to a custom datastructure, two things are required:
-
-- Add an implementation for the `Arrays.Protocol` protocol.
-- Add the `Arrays.Behaviour` to your datatype's module (`@behaviour Arrays.Behaviour`), and implement a sensible definition for `c:Arrays.Behaviour.empty/1`.
+To add array-functionality to a custom datastructure, you'll need to implement the `Arrays.Protocol`.
 
 Besides these, you probably want to implement the above-mentioned protocols as well.
-You can look at the source code of `Arrays.CommonProtocolImplementations` for some hints as to how those protocols can be easily implemented on top of the calls that the `Arrays.Protocol` protocol itself already provides.
+You can look at the source code of `Arrays.CommonProtocolImplementations` for some hints as to how those protocols can be easily implemented, as many functions can be defined as simple wrappers on top of the functions that `Arrays.Protocol` itself already provides.
 
 
 ----
@@ -336,6 +333,10 @@ From below benchmarks, we know (caveat emptor):
 
 
 ### [Append a single element](https://github.com/Qqwy/elixir-arrays/blob/master/benchmark_runs/append.md)
+
+![append](https://github.com/Qqwy/elixir-arrays/blob/master/benchmark_runs/append_graph.png)
+![append_focus](https://github.com/Qqwy/elixir-arrays/blob/master/benchmark_runs/append_graph_focus.png)
+
 Appending a single element is very fast on arrays, even as sizes grow. 
 MapArray and ErlangArray perform similarly. 
 
@@ -347,6 +348,8 @@ As doing this is built-in, it will always be faster than our arrays.
 Thus, it serves as a 'maxline'.
 
 ### [Random element access](https://github.com/Qqwy/elixir-arrays/blob/master/benchmark_runs/random_access.md)
+![random_read](https://github.com/Qqwy/elixir-arrays/blob/master/benchmark_runs/random_element_read_graph.png)
+
 Accessing a random element is very fast on arrays, even as sizes grow. 
 
 Arrays start beating lists significantly once the collection has more than 256 elements.
@@ -356,6 +359,7 @@ MapArray and ErlangArray seem to perform similarly < 8192 elements.
 For larger sizes, ErlangArray seems to be a factor ~2 slower than MapArray again.
 
 ### [Random element update](https://github.com/Qqwy/elixir-arrays/blob/master/benchmark_runs/random_update.md)
+![random_update](https://github.com/Qqwy/elixir-arrays/blob/master/benchmark_runs/random_element_update_graph.png)
 
 Arrays start beating lists once the collection has more than 128 elements.
 
@@ -367,6 +371,10 @@ This warrants more investigation. Maybe `Access` has some overhead for its calls
 or maybe the implementations of `get_and_update_in` could be further optimized.
 
 ### [Concatenate two equally-large collections](https://github.com/Qqwy/elixir-arrays/blob/master/benchmark_runs/concat.md)
+![concat](https://github.com/Qqwy/elixir-arrays/blob/master/benchmark_runs/concat_graph.png)
+![concat_focus](https://github.com/Qqwy/elixir-arrays/blob/master/benchmark_runs/concat_graph_focus.png)
+![concat_focus_log](https://github.com/Qqwy/elixir-arrays/blob/master/benchmark_runs/concat_graph_focus_log.png)
+
 Strangely, concatenation of large collections is very fast on lists. 
 Probably because all of it happens in a single built-in function?
 
