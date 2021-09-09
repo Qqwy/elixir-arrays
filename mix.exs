@@ -47,10 +47,10 @@ defmodule Arrays.Mixfile do
       {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
       {:excoveralls, "~> 0.13", only: [:test]},
 
-      {:benchee, "~> 1.0", only: :dev},
-      {:benchee_csv, "~> 1.0", only: :dev},
-      {:benchee_markdown, "~> 0.2", only: :dev},
-      {:benchee_html, "~> 1.0", only: :dev}
+      {:benchee, "~> 1.0"},
+      {:benchee_csv, "~> 1.0"},
+      {:benchee_markdown, "~> 0.2"},
+      {:benchee_html, "~> 1.0"}
     ]
   end
 

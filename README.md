@@ -313,9 +313,9 @@ You can look at the source code of `Arrays.CommonProtocolImplementations` for so
 - [ ] Potentially add more helper functionality to `Arrays`, such as `sort`, `swap`, `shuffle`, `split`.
 - [ ] Look into adding a [persistent bit-partitioned vector trie ('Hickey trie')](https://hypirion.com/musings/understanding-persistent-vector-pt-1) 
 implementation (potentially based on [persistent_vector](https://github.com/dimagog/persistent_vector)).
-- [ ] Look into adding a NIF-based immutable array implementation, 
+- [x] ~~Look into adding a NIF-based immutable array implementation, 
   such as [im-rs](immutable.rs)'s [RRB-Vector](https://docs.rs/im/15.0.0/im/struct.Vector.html), 
-  where besides being extra performant because of being close to the metal, having access to the reference-count might allow extra optimizations ([in-place mutation](https://docs.rs/im/15.0.0/im/#in-place-mutation) is possible when you know that there is only one variable referencing the array). This is a bit of a long shot, but it might be very worthwhile.
+  where besides being extra performant because of being close to the metal, having access to the reference-count might allow extra optimizations ([in-place mutation](https://docs.rs/im/15.0.0/im/#in-place-mutation) is possible when you know that there is only one variable referencing the array). This is a bit of a long shot, but it might be very worthwhile.~~ -> This is done. See [ArraysRRBVector](https://github.com/Qqwy/elixir-arrays_rrb_vector). Unfortunately, it turned out to not be more performant because of NIF-calling overhead.
   
   
 ----
