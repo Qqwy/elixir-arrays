@@ -73,6 +73,11 @@ contents = quote [location: :keep] do
   By default, #{@default_array_implementation} is used when creating new array objects, but this can be configured by either changing the default in your whole application, or by passing an option to a specific invocation of [`new/0-2`](`new/0`), or [`empty/0-1`](`empty/0`).
 
 
+  Implementations provided by other libraries:
+
+  - [ArraysAja](https://github.com/Qqwy/elixir-arrays_aja) adds support for [Aja](https://github.com/sabiwara/aja)'s `A.Vector`, which is an implementation of a 'Hickey Trie' vector. For most operations, it significantly outperforms `ErlangArray` and `MapArray`.
+
+
   ### Protocols
 
   Besides being able to use all functions in this module,
