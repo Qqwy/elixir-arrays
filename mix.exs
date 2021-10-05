@@ -39,7 +39,7 @@ defmodule Arrays.Mixfile do
   defp deps do
     [
       {:extractable, "~> 0.2"},
-      {:insertable, "~> 0.2"},
+      {:insertable, "~> 1.0"},
       {:fun_land, "~> 0.10.0", optional: true},
 
       {:ex_doc, "~> 0.23", only: :dev, runtime: false},
