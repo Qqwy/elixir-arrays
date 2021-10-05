@@ -252,22 +252,29 @@ contents = quote [location: :keep] do
   You can look at the source code of `Arrays.CommonProtocolImplementations` for some hints as to how those protocols can be easily implemented, as many functions can be defined as simple wrappers on top of the functions that `Arrays.Protocol` itself already provides.
   """
 
+  use TypeCheck
+
+  @type! t() :: array()
+
   @typedoc """
   Any datatype implementing the `Arrays.Protocol`.
   """
-  @type array :: Arrays.Protocol.t()
+  @type! array :: impl(Arrays.Protocol)
 
   @typedoc """
   An array index can be either a nonnegative index (up to the size of the array),
   or a negative index (then we count backwards from the size.)
   """
-  @type index :: Arrays.Protocol.index()
+  @type! index :: integer()
+
 
   @typedoc """
   Type of the kind of value stored in the array.
   In practice, arrays can store anything so this is an alias for `any`.
   """
-  @type value :: Arrays.Protocol.value()
+  @type! value :: term()
+
+  @type! options :: [implementation: module(), default: term(), size: non_negative_integer()] | keyword()
 
   @doc """
   Creates a new, empty, array.
@@ -304,6 +311,8 @@ contents = quote [location: :keep] do
       #Arrays.Implementations.ErlangArray<["Empty"]>
 
   """
+  @spec! empty() :: array()
+  @spec! empty(options()) :: array()
   def empty(options \\ []) do
     impl_module =
       Keyword.get(
@@ -326,13 +335,13 @@ contents = quote [location: :keep] do
       iex> Arrays.new()
       ##{@current_default_array}<[]>
   """
-  @spec new() :: array()
+  @spec! new() :: t()
   def new(), do: new([], [])
 
   @doc """
   Creates a new array, receiving its elements from the given `Enumerable`, with default options.
   """
-  @spec new(Enum.t()) :: array()
+  @spec! new(Enum.t()) :: array()
   def new(enumerable), do: new(enumerable, [])
 
   @doc """
@@ -347,7 +356,7 @@ contents = quote [location: :keep] do
       ##{@current_default_array}<["Hello"]>
 
   """
-  @spec new(Enum.t(), keyword) :: array()
+  @spec! new(Enum.t(), options()) :: array()
   def new(enumerable, options) do
     Enum.into(enumerable, empty(options))
   end
@@ -365,7 +374,7 @@ contents = quote [location: :keep] do
 
   See also `resize/2`.
   """
-  @spec size(array) :: non_neg_integer
+  @spec! size(array()) :: non_neg_integer()
   defdelegate size(array), to: Arrays.Protocol
 
   @doc """
@@ -374,7 +383,7 @@ contents = quote [location: :keep] do
       iex> Arrays.new([1,2,3]) |> Arrays.map(fn val -> val * 2 end)
       ##{@current_default_array}<[2, 4, 6]>
   """
-  @spec map(array, (current_value :: value -> updated_value :: value)) :: array
+  @spec! map(array(), (current_value :: value -> updated_value :: value)) :: array()
   defdelegate map(array, fun), to: Arrays.Protocol
 
   @doc """
