@@ -6,7 +6,7 @@ defmodule Arrays.Mixfile do
     [
       app: :arrays,
       version: "2.0.1",
-      elixir: "~> 1.7",
+      elixir: "~> 1.9",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       deps: deps(),
