@@ -258,6 +258,21 @@ contents = quote [location: :keep] do
   @type array :: Arrays.Protocol.t()
 
   @typedoc """
+  An array of elements of type `element`.
+
+  This type is equivalent to `t:array/0` but is especially useful for documentation.
+
+  For example, imagine you define a function that expects an array of
+  integers and returns an array of strings:
+
+      @spec integers_to_strings(Arrays.array(integer())) :: Arrays.array(String.t())
+      def integers_to_strings(integers) do
+        Arrays.map(integers, &Integer.to_string/1)
+      end
+  """
+  @type array(_element) :: array()
+
+  @typedoc """
   An array index can be either a nonnegative index (up to the size of the array),
   or a negative index (then we count backwards from the size.)
   """
