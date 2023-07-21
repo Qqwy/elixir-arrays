@@ -270,6 +270,7 @@ contents = quote [location: :keep] do
         Arrays.map(integers, &Integer.to_string/1)
       end
   """
+  @typedoc since: "2.1.0"
   @type array(_element) :: array()
 
   @typedoc """
