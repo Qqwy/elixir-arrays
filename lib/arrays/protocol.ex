@@ -35,7 +35,7 @@ defprotocol Arrays.Protocol do
 
   Called by `Arrays.map/2`
   """
-  @spec map(array, (index, current_value :: value -> updated_value :: value)) :: array
+  @spec map(array, (current_value :: value -> updated_value :: value)) :: array
   def map(array, fun)
 
   @doc """
@@ -125,7 +125,6 @@ defprotocol Arrays.Protocol do
   What options are recognized by a particular implementation varies.
   """
   @type options :: Keyword.t()
-
 
   @doc """
   Should create a new instance of your custom array type.
