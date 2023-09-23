@@ -18,7 +18,7 @@ by adding `arrays` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
 [
-  {:arrays, "~> 2.0"}
+  {:arrays, "~> 2.1"}
 ]
 end
 ```
@@ -289,6 +289,7 @@ You can look at the source code of `Arrays.CommonProtocolImplementations` for so
 
 ## Changelog
 
+- 2.1.1 Fixes the incorrect typespec for Arrays.map/2 (c.f. PR #95) . Thank you very much, @ulfurinn!
 - 2.1.0 Adds the `Arrays.array(element)` type. This type is equivalent to `Arrays.array()` but indicates (for documentation) what type of elements are expected. Thank you very much, @jzimbel-mbta!
 - 2.0.0 Improves the `Arrays.Protocol` to be more friendly to implement. Specifically:
   - Remove implementations for `Access.pop`. Instead, throw an error when people try to use it.
